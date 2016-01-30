@@ -4,29 +4,29 @@ namespace Momiji
 {
 	public partial class frmMenu : Gtk.Window
 	{
-        private frmLogin LoginForm;
-        private frmGSSale GSSaleForm;
-        private frmAuctionSale AuctionSaleForm;
-        private frmQuickSale QuickSaleForm;
+		private frmLogin LoginForm;
+		private frmGSSale GSSaleForm;
+		private frmAuctionSale AuctionSaleForm;
+		private frmQuickSale QuickSaleForm;
 		
 		public frmMenu (frmLogin parent) : 
 				base(Gtk.WindowType.Toplevel)
 		{
-            this.LoginForm = parent;
+			this.LoginForm = parent;
 			this.Build ();
 		}
 		
 		private void CloseForm() {
 			//This restores frmlogin and destroys the menu
-            
+			
 			if(QuickSaleForm != null)
 				QuickSaleForm.Destroy ();
-            if(AuctionSaleForm != null)
+			if(AuctionSaleForm != null)
 				AuctionSaleForm.Destroy ();
-            if(GSSaleForm != null)
+			if(GSSaleForm != null)
 				GSSaleForm.Destroy ();
 			LoginForm.Show();
-            LoginForm.GrabFocus();
+			LoginForm.GrabFocus();
 			this.Destroy();
 		}
 
@@ -49,7 +49,7 @@ namespace Momiji
 		{
 			if(QuickSaleForm != null)
 				QuickSaleForm.Destroy();
-       		QuickSaleForm = new frmQuickSale();
+	   		QuickSaleForm = new frmQuickSale();
 		}
 
 		protected void OnBtnAuctionSaleClicked (object sender, System.EventArgs e)
