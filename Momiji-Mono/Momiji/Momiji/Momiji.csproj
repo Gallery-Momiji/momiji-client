@@ -80,6 +80,7 @@
     <Compile Include="gtk-gui\Momiji.frmGSSale.cs" />
     <Compile Include="frmQuickSale.cs" />
     <Compile Include="gtk-gui\Momiji.frmQuickSale.cs" />
+    <Compile Include="MD5.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

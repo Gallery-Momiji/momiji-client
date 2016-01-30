@@ -371,6 +371,9 @@ namespace Momiji
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.closeAction.Activated += new global::System.EventHandler (this.OnExitActionActivated);
+			this.btnQuickSale.Clicked += new global::System.EventHandler (this.OnBtnQuickSaleClicked);
+			this.btnAuctionSale.Clicked += new global::System.EventHandler (this.OnBtnAuctionSaleClicked);
+			this.btnGalleryStoreSale.Clicked += new global::System.EventHandler (this.OnBtnGalleryStoreSaleClicked);
 			this.btnLogout.Clicked += new global::System.EventHandler (this.OnBtnLogoutClicked);
 		}
 	}

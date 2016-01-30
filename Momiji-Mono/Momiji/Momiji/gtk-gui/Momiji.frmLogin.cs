@@ -153,6 +153,8 @@ namespace Momiji
 			}
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+			this.txtUsername.Activated += new global::System.EventHandler (this.OnTxtUsernameActivated);
+			this.txtPassword.Activated += new global::System.EventHandler (this.OnTxtPasswordActivated);
 			this.btnLogin.Clicked += new global::System.EventHandler (this.OnBtnLoginClicked);
 		}
 	}
