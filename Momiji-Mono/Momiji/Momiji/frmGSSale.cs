@@ -15,7 +15,7 @@ namespace Momiji
 
 		protected void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
-			parent.GSSaleForm = null;
+			parent.CleanupGSSale();
 		}
 	}
 }
