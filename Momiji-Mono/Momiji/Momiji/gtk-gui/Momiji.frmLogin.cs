@@ -13,8 +13,9 @@ namespace Momiji
 		private global::Gtk.Entry txtUsername;
 		private global::Gtk.HBox hbox5;
 		private global::Gtk.Button btnRetry;
-		private global::Gtk.Label lblSqlStatusLabel;
-		private global::Gtk.Label lblSqlStatus;
+		private global::Gtk.Label lblConnStatusLabel;
+		private global::Gtk.ScrolledWindow GtkScrolledWindow;
+		private global::Gtk.Label lblConnStatus;
 		
 		protected virtual void Build ()
 		{
@@ -123,30 +124,37 @@ namespace Momiji
 			w7.Expand = false;
 			w7.Fill = false;
 			// Container child hbox5.Gtk.Box+BoxChild
-			this.lblSqlStatusLabel = new global::Gtk.Label ();
-			this.lblSqlStatusLabel.Name = "lblSqlStatusLabel";
-			this.lblSqlStatusLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("MySQL Status :");
-			this.hbox5.Add (this.lblSqlStatusLabel);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.lblSqlStatusLabel]));
+			this.lblConnStatusLabel = new global::Gtk.Label ();
+			this.lblConnStatusLabel.Name = "lblConnStatusLabel";
+			this.lblConnStatusLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("MySQL Status :");
+			this.hbox5.Add (this.lblConnStatusLabel);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.lblConnStatusLabel]));
 			w8.Position = 1;
 			w8.Expand = false;
 			w8.Fill = false;
 			// Container child hbox5.Gtk.Box+BoxChild
-			this.lblSqlStatus = new global::Gtk.Label ();
-			this.lblSqlStatus.Name = "lblSqlStatus";
-			this.lblSqlStatus.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Connecting...</b>");
-			this.lblSqlStatus.UseMarkup = true;
-			this.hbox5.Add (this.lblSqlStatus);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.lblSqlStatus]));
-			w9.Position = 2;
-			w9.Expand = false;
-			w9.Fill = false;
+			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+			global::Gtk.Viewport w9 = new global::Gtk.Viewport ();
+			w9.ShadowType = ((global::Gtk.ShadowType)(0));
+			// Container child GtkViewport.Gtk.Container+ContainerChild
+			this.lblConnStatus = new global::Gtk.Label ();
+			this.lblConnStatus.Name = "lblConnStatus";
+			this.lblConnStatus.Xalign = 0F;
+			this.lblConnStatus.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Connecting...</b>");
+			this.lblConnStatus.UseMarkup = true;
+			w9.Add (this.lblConnStatus);
+			this.GtkScrolledWindow.Add (w9);
+			this.hbox5.Add (this.GtkScrolledWindow);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.GtkScrolledWindow]));
+			w12.Position = 2;
 			this.vbox1.Add (this.hbox5);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox5]));
-			w10.Position = 1;
-			w10.Expand = false;
-			w10.Fill = false;
-			w10.Padding = ((uint)(8));
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox5]));
+			w13.Position = 1;
+			w13.Expand = false;
+			w13.Fill = false;
+			w13.Padding = ((uint)(8));
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -156,6 +164,7 @@ namespace Momiji
 			this.txtUsername.Activated += new global::System.EventHandler (this.OnTxtUsernameActivated);
 			this.txtPassword.Activated += new global::System.EventHandler (this.OnTxtPasswordActivated);
 			this.btnLogin.Clicked += new global::System.EventHandler (this.OnBtnLoginClicked);
+			this.btnRetry.Clicked += new global::System.EventHandler (this.OnBtnRetryClicked);
 		}
 	}
 }

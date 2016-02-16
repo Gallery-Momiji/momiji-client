@@ -221,6 +221,7 @@ namespace Momiji
 			this.DefaultWidth = 800;
 			this.DefaultHeight = 330;
 			this.Show ();
+			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		}
 	}
 }

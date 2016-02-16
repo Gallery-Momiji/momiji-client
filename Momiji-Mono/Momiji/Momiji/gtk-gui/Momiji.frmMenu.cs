@@ -52,6 +52,7 @@ namespace Momiji
 		private global::Gtk.Action dialogQuestionAction2;
 		private global::Gtk.Action propertiesAction3;
 		private global::Gtk.Action revertToSavedAction3;
+		private global::Gtk.Action quitAction;
 		private global::Gtk.VBox vbox2;
 		private global::Gtk.MenuBar menubar3;
 		private global::Gtk.HBox hbox8;
@@ -102,7 +103,7 @@ namespace Momiji
 			this.removeAction = new global::Gtk.Action ("removeAction", global::Mono.Unix.Catalog.GetString ("Remove User"), null, "gtk-remove");
 			this.removeAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Remove User");
 			w1.Add (this.removeAction, null);
-			this.closeAction = new global::Gtk.Action ("closeAction", global::Mono.Unix.Catalog.GetString ("Exit"), null, "gtk-close");
+			this.closeAction = new global::Gtk.Action ("closeAction", global::Mono.Unix.Catalog.GetString ("Logout"), null, "gtk-close");
 			this.closeAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Exit");
 			w1.Add (this.closeAction, null);
 			this.yesAction = new global::Gtk.Action ("yesAction", global::Mono.Unix.Catalog.GetString ("Check In"), null, "gtk-yes");
@@ -210,6 +211,9 @@ namespace Momiji
 			this.revertToSavedAction3 = new global::Gtk.Action ("revertToSavedAction3", global::Mono.Unix.Catalog.GetString ("Check latest receipts"), null, "gtk-revert-to-saved");
 			this.revertToSavedAction3.ShortLabel = global::Mono.Unix.Catalog.GetString ("Check latest receipts");
 			w1.Add (this.revertToSavedAction3, null);
+			this.quitAction = new global::Gtk.Action ("quitAction", global::Mono.Unix.Catalog.GetString ("_Quit"), null, "gtk-quit");
+			this.quitAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Quit");
+			w1.Add (this.quitAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "Momiji.frmMenu";
@@ -220,7 +224,7 @@ namespace Momiji
 			this.vbox2.Name = "vbox2";
 			this.vbox2.Spacing = 8;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><menubar name='menubar3'><menu name='FileAction' action='FileAction'><menu name='preferencesAction' action='preferencesAction'><menuitem name='propertiesAction' action='propertiesAction'/><menu name='indexAction' action='indexAction'><menuitem name='addAction' action='addAction'/><menuitem name='preferencesAction1' action='preferencesAction1'/><menuitem name='removeAction' action='removeAction'/></menu><menuitem/></menu><menuitem name='closeAction' action='closeAction'/></menu><menu name='ArtistsAction' action='ArtistsAction'><menu name='yesAction' action='yesAction'><menuitem name='findAction1' action='findAction1'/><menuitem name='findAndReplaceAction1' action='findAndReplaceAction1'/></menu><menuitem name='noAction' action='noAction'/><menuitem/><menu name='executeAction' action='executeAction'><menuitem name='addAction1' action='addAction1'/><menu name='preferencesAction2' action='preferencesAction2'><menuitem name='findAction2' action='findAction2'/><menuitem name='findAndReplaceAction2' action='findAndReplaceAction2'/></menu><menu name='removeAction1' action='removeAction1'><menuitem name='findAction3' action='findAction3'/><menuitem name='findAndReplaceAction3' action='findAndReplaceAction3'/></menu><menu name='propertiesAction2' action='propertiesAction2'><menuitem name='findAction4' action='findAction4'/><menuitem name='findAndReplaceAction4' action='findAndReplaceAction4'/></menu><menu name='revertToSavedAction' action='revertToSavedAction'><menuitem name='findAction5' action='findAction5'/><menuitem name='findAndReplaceAction5' action='findAndReplaceAction5'/></menu><menu name='convertAction' action='convertAction'><menuitem name='findAction6' action='findAction6'/><menuitem name='findAndReplaceAction6' action='findAndReplaceAction6'/></menu></menu><menu name='propertiesAction1' action='propertiesAction1'><menuitem name='findAction' action='findAction'/><menuitem name='findAndReplaceAction' action='findAndReplaceAction'/></menu></menu><menu name='TreasuryAction' action='TreasuryAction'><menuitem name='revertToSavedAction1' action='revertToSavedAction1'/><menuitem name='undoAction' action='undoAction'/></menu><menu name='HelpAction' action='HelpAction'><menu name='dialogWarningAction' action='dialogWarningAction'><menuitem name='dialogQuestionAction' action='dialogQuestionAction'/><menuitem name='dialogQuestionAction1' action='dialogQuestionAction1'/><menuitem name='dialogQuestionAction2' action='dialogQuestionAction2'/></menu><menuitem name='aboutAction' action='aboutAction'/></menu><menu name='LogAction' action='LogAction'><menuitem name='propertiesAction3' action='propertiesAction3'/><menuitem name='revertToSavedAction3' action='revertToSavedAction3'/></menu></menubar></ui>");
+			this.UIManager.AddUiFromString ("<ui><menubar name='menubar3'><menu name='FileAction' action='FileAction'><menu name='preferencesAction' action='preferencesAction'><menuitem name='propertiesAction' action='propertiesAction'/><menu name='indexAction' action='indexAction'><menuitem name='addAction' action='addAction'/><menuitem name='preferencesAction1' action='preferencesAction1'/><menuitem name='removeAction' action='removeAction'/></menu><menuitem/></menu><menuitem name='closeAction' action='closeAction'/><menuitem name='quitAction' action='quitAction'/></menu><menu name='ArtistsAction' action='ArtistsAction'><menu name='yesAction' action='yesAction'><menuitem name='findAction1' action='findAction1'/><menuitem name='findAndReplaceAction1' action='findAndReplaceAction1'/></menu><menuitem name='noAction' action='noAction'/><menuitem/><menu name='executeAction' action='executeAction'><menuitem name='addAction1' action='addAction1'/><menu name='preferencesAction2' action='preferencesAction2'><menuitem name='findAction2' action='findAction2'/><menuitem name='findAndReplaceAction2' action='findAndReplaceAction2'/></menu><menu name='removeAction1' action='removeAction1'><menuitem name='findAction3' action='findAction3'/><menuitem name='findAndReplaceAction3' action='findAndReplaceAction3'/></menu><menu name='propertiesAction2' action='propertiesAction2'><menuitem name='findAction4' action='findAction4'/><menuitem name='findAndReplaceAction4' action='findAndReplaceAction4'/></menu><menu name='revertToSavedAction' action='revertToSavedAction'><menuitem name='findAction5' action='findAction5'/><menuitem name='findAndReplaceAction5' action='findAndReplaceAction5'/></menu><menu name='convertAction' action='convertAction'><menuitem name='findAction6' action='findAction6'/><menuitem name='findAndReplaceAction6' action='findAndReplaceAction6'/></menu></menu><menu name='propertiesAction1' action='propertiesAction1'><menuitem name='findAction' action='findAction'/><menuitem name='findAndReplaceAction' action='findAndReplaceAction'/></menu></menu><menu name='TreasuryAction' action='TreasuryAction'><menuitem name='revertToSavedAction1' action='revertToSavedAction1'/><menuitem name='undoAction' action='undoAction'/></menu><menu name='HelpAction' action='HelpAction'><menu name='dialogWarningAction' action='dialogWarningAction'><menuitem name='dialogQuestionAction' action='dialogQuestionAction'/><menuitem name='dialogQuestionAction1' action='dialogQuestionAction1'/><menuitem name='dialogQuestionAction2' action='dialogQuestionAction2'/></menu><menuitem name='aboutAction' action='aboutAction'/></menu><menu name='LogAction' action='LogAction'><menuitem name='propertiesAction3' action='propertiesAction3'/><menuitem name='revertToSavedAction3' action='revertToSavedAction3'/></menu></menubar></ui>");
 			this.menubar3 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar3")));
 			this.menubar3.Name = "menubar3";
 			this.vbox2.Add (this.menubar3);
@@ -367,10 +371,11 @@ namespace Momiji
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 438;
-			this.DefaultHeight = 307;
+			this.DefaultHeight = 314;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.closeAction.Activated += new global::System.EventHandler (this.OnExitActionActivated);
+			this.quitAction.Activated += new global::System.EventHandler (this.OnQuitActionActivated);
 			this.btnQuickSale.Clicked += new global::System.EventHandler (this.OnBtnQuickSaleClicked);
 			this.btnAuctionSale.Clicked += new global::System.EventHandler (this.OnBtnAuctionSaleClicked);
 			this.btnGalleryStoreSale.Clicked += new global::System.EventHandler (this.OnBtnGalleryStoreSaleClicked);

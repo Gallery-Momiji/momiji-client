@@ -4,10 +4,18 @@ namespace Momiji
 {
 	public partial class frmGSSale : Gtk.Window
 	{
-		public frmGSSale () : 
+		private frmMenu parent;
+		
+		public frmGSSale (frmMenu parent) : 
 				base(Gtk.WindowType.Toplevel)
 		{
+			this.parent = parent;
 			this.Build ();
+		}
+
+		protected void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
+		{
+			parent.GSSaleForm = null;
 		}
 	}
 }
