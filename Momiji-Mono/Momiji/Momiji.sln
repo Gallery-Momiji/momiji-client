@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Momiji", "Momiji\Momiji.csproj", "{7FEF5642-8CB6-40F3-95B5-51E61D000E49}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48DF2713-4887-424B-9CE8-F40E93701B27}"
-	ProjectSection(SolutionItems) = preProject
-		Momiji\MD5.cs = Momiji\MD5.cs
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
