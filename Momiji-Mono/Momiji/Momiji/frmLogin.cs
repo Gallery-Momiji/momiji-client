@@ -17,8 +17,6 @@ namespace Momiji
 		//  Private Functions  //
 		/////////////////////////
 
-		///TestConnect()
-		//Tests SQL connection and enabled/disables buttons accordingly
 		private void TestConnect ()
 		{
 			lblConnStatus.Text = "Connecting...";

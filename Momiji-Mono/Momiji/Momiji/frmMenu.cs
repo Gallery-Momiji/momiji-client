@@ -20,8 +20,6 @@ namespace Momiji
 		//  Private Functions  //
 		/////////////////////////
 
-		///CloseForm()
-		//Restores frmlogin, destroys children and cleans up
 		private void CloseForm ()
 		{
 			this.SQLConnection.LogAction ("Logged Out", this.User);
@@ -41,22 +39,31 @@ namespace Momiji
 		/////////////////////////
 		//  Public Functions   //
 		/////////////////////////
-
+		
+		/// <summary>
+		/// This should be called when the user closes frmGSSale.
+		/// </summary>
 		public void CleanupGSSale ()
 		{
 			GSSaleForm = null;
 		}
-
+		
+		/// <summary>
+		/// This should be called when the user closes frmQuickSale.
+		/// </summary>
 		public void CleanupQuickSale ()
 		{
 			QuickSaleForm = null;
 		}
-
+		
+		/// <summary>
+		/// This should be called when the user closes frmAuctionSale.
+		/// </summary>
 		public void CleanupAuctionSale ()
 		{
 			AuctionSaleForm = null;
 		}
-
+		
 		/////////////////////////
 		//     Contructor      //
 		/////////////////////////
@@ -87,8 +94,11 @@ namespace Momiji
 			// 11 - Administrator
 			////////////////////////////
 			int userClass = User.getCellInt ("class", 0);
+			string userRank = userClass.ToString ();
+			if (userClass >= 11)
+				userRank = "Administrator";
 			lblGreeting.Text = "Welcome, " + User.getCell ("name", 0) +
-								"! Your Rank is " + userClass + "/11!";
+								"! Your Rank is " + userRank;
 			//Basic Functionality:
 			btnGalleryStoreSale.Sensitive = userClass >= 1 ? true : false;
 
@@ -106,6 +116,10 @@ namespace Momiji
 			//pricingToolStripMenuItem.Sensitive = userClass == 11 ? true : false;
 			//usersToolStripMenuItem.Sensitive = userClass == 11 ? true : false;
 		}
+
+		/////////////////////////
+		//     GTK Signals     //
+		/////////////////////////
 
 		protected void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
