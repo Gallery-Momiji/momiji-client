@@ -39,7 +39,7 @@ namespace Momiji
 		/////////////////////////
 		//  Public Functions   //
 		/////////////////////////
-		
+
 		/// <summary>
 		/// This should be called when the user closes frmGSSale.
 		/// </summary>
@@ -47,7 +47,7 @@ namespace Momiji
 		{
 			GSSaleForm = null;
 		}
-		
+
 		/// <summary>
 		/// This should be called when the user closes frmQuickSale.
 		/// </summary>
@@ -55,7 +55,7 @@ namespace Momiji
 		{
 			QuickSaleForm = null;
 		}
-		
+
 		/// <summary>
 		/// This should be called when the user closes frmAuctionSale.
 		/// </summary>
@@ -63,7 +63,21 @@ namespace Momiji
 		{
 			AuctionSaleForm = null;
 		}
-		
+
+		/////////////////////////
+		//  Public Accessors   //
+		/////////////////////////
+
+		public SQLResult CurrentUser
+		{
+			get {return User;}
+		}
+
+		public SQL currentSQLConnection
+		{
+			get {return SQLConnection;}
+		}
+
 		/////////////////////////
 		//     Contructor      //
 		/////////////////////////
@@ -80,30 +94,40 @@ namespace Momiji
 			// User class explanation //
 			////////////////////////////
 			// Basic Functionality:
-			//  1 - Can do Gallery Store Sales
-			//  2 - Can do Quick Sales
-			//  3 - Can do Auction Sales
+			//  1 - Gallery Store Sales
+			//  2 - Quick Sales
+			//  3 - Auction Sales
 			// Advanced Functionality:
-			//  4 - Can Re-Print Receipts
-			//  5 - Can Check-in Artists
-			//  6 - Generate Bidding sheets / checkout
-			//  7 - Manage artists' stock
-			//  8 - check the activity logs
-			//  9 - check the monetary activity logs
-			// 10 - Treasury
+			//  4 - Re-Print Receipts
+			//  5 - Check-in Artists
+			//  6 - Generate Bidding sheets,
+			//      Check-out Artists
+			//  7 - Manage artist stock
+			//  8 - View Activity logs
+			//  9 - View Monetary activity logs
+			// 10 - Manage Treasury
 			// 11 - Administrator
 			////////////////////////////
 			int userClass = User.getCellInt ("class", 0);
+
+			//Welcome Message:
 			string userRank = userClass.ToString ();
 			if (userClass >= 11)
-				userRank = "Administrator";
-			lblGreeting.Text = "Welcome, " + User.getCell ("name", 0) +
-								"! Your Rank is " + userRank;
+				userRank += " (Administrator)";
+			else if (userClass >= 4)
+				userRank += " (Advanced User)";
+			else if (userClass >= 1)
+				userRank += " (Basic User)";
+			else
+				userRank += " (No privileges)";
+			lblGreeting.Text = "Welcome " + User.getCell ("name", 0) +
+								", Your Rank is " + userRank;
+
 			//Basic Functionality:
 			btnGalleryStoreSale.Sensitive = userClass >= 1 ? true : false;
-
 			btnQuickSale.Sensitive = userClass >= 2 ? true : false;
 			btnAuctionSale.Sensitive = userClass >= 3 ? true : false;
+
 			//Advanced Functionality:
 			//TODO Advanced functions not implemented
 			//receiptRePrintToolStripMenuItem.Sensitive = userClass >= 4 ? true : false;
