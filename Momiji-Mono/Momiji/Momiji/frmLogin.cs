@@ -19,28 +19,25 @@ namespace Momiji
 
 		///TestConnect()
 		//Tests SQL connection and enabled/disables buttons accordingly
-		private void TestConnect()
+		private void TestConnect ()
 		{
 			lblConnStatus.Text = "Connecting...";
 
-			SQLConnection = new SQL(db_user, db_pass, db_host, db_name, db_port);
+			SQLConnection = new SQL (db_user, db_pass, db_host, db_name, db_port);
 
-			if (SQLConnection.GetState() != 1)
-			{
-				lblConnStatus.ModifyFg(StateType.Normal,new Gdk.Color(255,0,0));
-				lblConnStatus.Text = SQLConnection.GetErrorMessage();
+			if (SQLConnection.GetState () != 1) {
+				lblConnStatus.ModifyFg (StateType.Normal, new Gdk.Color (255, 0, 0));
+				lblConnStatus.Text = SQLConnection.GetErrorMessage ();
 				btnRetry.Sensitive = true;
 				btnLogin.Sensitive = false;
-			}
-			else
-			{
-				lblConnStatus.ModifyFg(StateType.Normal,new Gdk.Color(0,255,0));
+			} else {
+				lblConnStatus.ModifyFg (StateType.Normal, new Gdk.Color (0, 255, 0));
 				lblConnStatus.Text = "OK";
 				btnRetry.Sensitive = false;
 				btnLogin.Sensitive = true;
 			}
 
-			SQLConnection.Close();
+			SQLConnection.Close ();
 		}
 
 		/////////////////////////
@@ -50,33 +47,30 @@ namespace Momiji
 		public frmLogin () :
 				base(Gtk.WindowType.Toplevel)
 		{
-			try
-			{
-				IniParser config = new IniParser("config.ini");
+			try {
+				IniParser config = new IniParser ("config.ini");
 
-				db_pass = config.GetSetting("ROOT", "db_pass");
-				db_user = config.GetSetting("ROOT", "db_user");
-				db_name = config.GetSetting("ROOT", "db_name");
-				db_host = config.GetSetting("ROOT", "db_host");
-				db_port = config.GetSetting("ROOT", "db_port");
+				db_pass = config.GetSetting ("ROOT", "db_pass");
+				db_user = config.GetSetting ("ROOT", "db_user");
+				db_name = config.GetSetting ("ROOT", "db_name");
+				db_host = config.GetSetting ("ROOT", "db_host");
+				db_port = config.GetSetting ("ROOT", "db_port");
 
 				this.Build ();
 
-			}
-			catch (Exception ex)
-			{
-				MessageDialog md = new MessageDialog(this,DialogFlags.Modal,
-										MessageType.Error,ButtonsType.Ok,
+			} catch (Exception ex) {
+				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
+										MessageType.Error, ButtonsType.Ok,
 										ex.Message);
 				md.Run ();
 				md.Destroy ();
-				this.Destroy();
+				this.Destroy ();
 			}
 
-			TestConnect();
+			TestConnect ();
 
 			//Set focus on username box
-			txtUsername.GrabFocus();
+			txtUsername.GrabFocus ();
 		}
 
 		/////////////////////////
@@ -94,88 +88,81 @@ namespace Momiji
 			string user = txtUsername.Text;
 
 			//Check for 0 length entry
-			if ( user.Length == 0)
-			{
-				MessageDialog md = new MessageDialog(this,DialogFlags.Modal,
-											MessageType.Error,ButtonsType.Ok,
+			if (user.Length == 0) {
+				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
+											MessageType.Error, ButtonsType.Ok,
 											"Please enter a username");
 				md.Run ();
 				md.Destroy ();
-				txtUsername.GrabFocus();
+				txtUsername.GrabFocus ();
 				return;
-			}
-			else if (pass.Length == 0)
-			{
-				MessageDialog md = new MessageDialog(this,DialogFlags.Modal,
-											MessageType.Error,ButtonsType.Ok,
+			} else if (pass.Length == 0) {
+				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
+											MessageType.Error, ButtonsType.Ok,
 											"Please enter a password");
 				md.Run ();
 				md.Destroy ();
-				txtPassword.GrabFocus();
+				txtPassword.GrabFocus ();
 				return;
 			}
 
 			//MD5Sum for passwords
-			MD5 passhash = new MD5(pass);
-			pass = passhash.getShortHash();
+			MD5 passhash = new MD5 (pass);
+			pass = passhash.getShortHash ();
 
 			//Use a fresh connection for login
 
-			SQLConnection = new SQL(db_user, db_pass, db_host, db_name, db_port);
+			SQLConnection = new SQL (db_user, db_pass, db_host, db_name, db_port);
 
-			if (SQLConnection.GetState() != 1)
-			{
+			if (SQLConnection.GetState () != 1) {
 				//if a new connection fails
-				lblConnStatus.ModifyFg(StateType.Normal,new Gdk.Color(255,0,0));
-				lblConnStatus.Text = SQLConnection.GetErrorMessage();
+				lblConnStatus.ModifyFg (StateType.Normal, new Gdk.Color (255, 0, 0));
+				lblConnStatus.Text = SQLConnection.GetErrorMessage ();
 				btnRetry.Sensitive = true;
 				btnLogin.Sensitive = false;
 				return;
 			}
 
-			MySqlCommand query = new MySqlCommand("SELECT * FROM `users` WHERE `username` = @username AND `password` = @password;", SQLConnection.GetConnection());
-			query.Prepare();
-			query.Parameters.AddWithValue("@username", user);
-			query.Parameters.AddWithValue("@password", pass);
+			MySqlCommand query = new MySqlCommand ("SELECT * FROM `users` WHERE `username` = @username AND `password` = @password;", SQLConnection.GetConnection ());
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@username", user);
+			query.Parameters.AddWithValue ("@password", pass);
 
-			SQLResult results = this.SQLConnection.Query(query);
-			if (results.GetNumberOfRows() == 1)
-			{
+			SQLResult results = this.SQLConnection.Query (query);
+			if (results.GetNumberOfRows () == 1) {
 				//Clear the form
 				txtPassword.Text = "";
 				txtUsername.Text = "";
-				txtUsername.GrabFocus();
+				txtUsername.GrabFocus ();
 				//Log in user
-				SQLConnection.LogAction("Logged In!", results);
-				frmMenu menuInstance = new frmMenu(SQLConnection, results, this);
-				this.Hide();
-				menuInstance.Show();
-			}
-			else
-			{
-				MessageDialog md = new MessageDialog(this,DialogFlags.Modal,
-										MessageType.Error,ButtonsType.Ok,
+				SQLConnection.LogAction ("Logged In!", results);
+				frmMenu menuInstance = new frmMenu (SQLConnection, results, this);
+				this.Hide ();
+				menuInstance.Show ();
+			} else {
+				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
+										MessageType.Error, ButtonsType.Ok,
 										"Incorrect password or username. Please try again.");
 				md.Run ();
 				md.Destroy ();
 				txtPassword.Text = "";
-				txtPassword.GrabFocus();
+				txtPassword.GrabFocus ();
 			}
 		}
 
 		protected void OnTxtPasswordActivated (object sender, System.EventArgs e)
 		{
-			OnBtnLoginClicked(sender,e);
+			OnBtnLoginClicked (sender, e);
 		}
 
 		protected void OnTxtUsernameActivated (object sender, System.EventArgs e)
 		{
-			OnBtnLoginClicked(sender,e);
+			OnBtnLoginClicked (sender, e);
 		}
 
 		protected void OnBtnRetryClicked (object sender, System.EventArgs e)
 		{
-			TestConnect();
+			TestConnect ();
 		}
 	}
 }

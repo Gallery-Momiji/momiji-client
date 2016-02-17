@@ -22,38 +22,37 @@ namespace Momiji
 
 		///CloseForm()
 		//Restores frmlogin, destroys children and cleans up
-		private void CloseForm()
+		private void CloseForm ()
 		{
+			this.SQLConnection.LogAction ("Logged Out", this.User);
+			SQLConnection.Close ();
 
-			this.SQLConnection.LogAction("Logged Out", this.User);
-			SQLConnection.Close();
-
-			if(QuickSaleForm != null)
+			if (QuickSaleForm != null)
 				QuickSaleForm.Destroy ();
-			if(AuctionSaleForm != null)
+			if (AuctionSaleForm != null)
 				AuctionSaleForm.Destroy ();
-			if(GSSaleForm != null)
+			if (GSSaleForm != null)
 				GSSaleForm.Destroy ();
-			LoginForm.Show();
-			LoginForm.GrabFocus();
-			this.Destroy();
+			LoginForm.Show ();
+			LoginForm.GrabFocus ();
+			this.Destroy ();
 		}
 
 		/////////////////////////
 		//  Public Functions   //
 		/////////////////////////
 
-		public CleanupGSSale ()
+		public void CleanupGSSale ()
 		{
 			GSSaleForm = null;
 		}
 
-		public CleanupQuickSale ()
+		public void CleanupQuickSale ()
 		{
 			QuickSaleForm = null;
 		}
 
-		public CleanupAuctionSale ()
+		public void CleanupAuctionSale ()
 		{
 			AuctionSaleForm = null;
 		}
@@ -87,11 +86,12 @@ namespace Momiji
 			// 10 - Treasury
 			// 11 - Administrator
 			////////////////////////////
-			int userClass = User.getCellInt("class", 0);
-			lblGreeting.Text = "Welcome, " + User.getCell("name", 0) +
+			int userClass = User.getCellInt ("class", 0);
+			lblGreeting.Text = "Welcome, " + User.getCell ("name", 0) +
 								"! Your Rank is " + userClass + "/11!";
 			//Basic Functionality:
-			btnGalleryStoreSale.Sensitive = userClass >= 1 ? true : false;;
+			btnGalleryStoreSale.Sensitive = userClass >= 1 ? true : false;
+
 			btnQuickSale.Sensitive = userClass >= 2 ? true : false;
 			btnAuctionSale.Sensitive = userClass >= 3 ? true : false;
 			//Advanced Functionality:
@@ -109,56 +109,56 @@ namespace Momiji
 
 		protected void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
 		{
-			CloseForm();
+			CloseForm ();
 		}
 
 		protected void OnBtnLogoutClicked (object sender, System.EventArgs e)
 		{
-			CloseForm();
+			CloseForm ();
 		}
 
 		protected void OnExitActionActivated (object sender, System.EventArgs e)
 		{
-			CloseForm();
+			CloseForm ();
 		}
 
 		protected void OnBtnQuickSaleClicked (object sender, System.EventArgs e)
 		{
-			if(QuickSaleForm != null)
-				QuickSaleForm.Present();
+			if (QuickSaleForm != null)
+				QuickSaleForm.Present ();
 			else
-				QuickSaleForm = new frmQuickSale(this);
+				QuickSaleForm = new frmQuickSale (this);
 		}
 
 		protected void OnBtnAuctionSaleClicked (object sender, System.EventArgs e)
 		{
-			if(AuctionSaleForm != null)
-				AuctionSaleForm.Present();
+			if (AuctionSaleForm != null)
+				AuctionSaleForm.Present ();
 			else
-				AuctionSaleForm = new frmAuctionSale(this);
+				AuctionSaleForm = new frmAuctionSale (this);
 		}
 
 		protected void OnBtnGalleryStoreSaleClicked (object sender, System.EventArgs e)
 		{
-			if(GSSaleForm != null)
-				GSSaleForm.Present();
+			if (GSSaleForm != null)
+				GSSaleForm.Present ();
 			else
-				GSSaleForm = new frmGSSale(this);
+				GSSaleForm = new frmGSSale (this);
 		}
 
 		protected void OnQuitActionActivated (object sender, System.EventArgs e)
 		{
-			this.SQLConnection.LogAction("Logged Out", this.User);
-			SQLConnection.Close();
+			this.SQLConnection.LogAction ("Logged Out", this.User);
+			SQLConnection.Close ();
 
-			if(QuickSaleForm != null)
+			if (QuickSaleForm != null)
 				QuickSaleForm.Destroy ();
-			if(AuctionSaleForm != null)
+			if (AuctionSaleForm != null)
 				AuctionSaleForm.Destroy ();
-			if(GSSaleForm != null)
+			if (GSSaleForm != null)
 				GSSaleForm.Destroy ();
-			LoginForm.Destroy();
-			this.Destroy();
+			LoginForm.Destroy ();
+			this.Destroy ();
 			Application.Quit ();
 		}
 	}
