@@ -68,7 +68,7 @@ namespace Momiji
 		//  Public Accessors   //
 		/////////////////////////
 
-		public SQLResult CurrentUser
+		public SQLResult currentUser
 		{
 			get {return User;}
 		}

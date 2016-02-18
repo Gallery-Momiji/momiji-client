@@ -20,7 +20,7 @@ namespace Momiji
 		public string PieceTitle;
 		[Gtk.TreeNodeValue (Column=3)]
 		public string PiecePrice;
-		
+
 		/// <summary>
 		/// Builds a NodeView based table of MerchNodes.
 		/// </summary>
@@ -38,6 +38,23 @@ namespace Momiji
 			view.AppendColumn ("Piece ID", new Gtk.CellRendererText (), "text", 1);
 			view.AppendColumn ("Piece Title", new Gtk.CellRendererText (), "text", 2);
 			view.AppendColumn ("Piece Price", new Gtk.CellRendererText (), "text", 3);
+		}
+
+		/// <summary>
+		/// Clears the NodeView table of MerchNodes.
+		/// </summary>
+		/// <param name='view'>
+		/// NodeView to hold the table.
+		/// </param>
+		/// <param name='store'>
+		/// NodeStore for holding the MerchNodes.
+		/// </param>
+		public static void clearTable (ref Gtk.NodeView view, ref Gtk.NodeStore store)
+		{
+			store = null;
+			view.NodeStore = null;
+			store = new Gtk.NodeStore (typeof(MerchNode));
+			view.NodeStore = store;
 		}
 	}
 }
