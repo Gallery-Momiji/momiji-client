@@ -35,6 +35,22 @@ namespace Momiji
 			txtBarcode.GrabFocus ();
 		}
 
+		private int countInList (string barcode)
+		{
+			string temp = items;
+			int count = 0;
+
+			while (temp.Length >= 10) {
+
+				if(temp.Substring (0, 9) == barcode)
+					count++;
+
+				temp = temp.Substring(temp.Length-10);
+			}
+
+			return count;
+		}
+
 		/////////////////////////
 		//     Contructor      //
 		/////////////////////////
@@ -100,12 +116,10 @@ namespace Momiji
 
 				if (results.GetNumberOfRows () == 1) {
 
-					if (results.getCellInt ("PieceStock", 0) < 1) {
-						//TODO does not account for multiple copies sold
+					int count = countInList (txtBarcode.Text.ToUpper ());
+					if (results.getCellInt ("PieceStock", 0) <= count) {
 						MessageBox.Show (this, MessageType.Error,
-										"This is already sold out. This will be reported.");
-
-						SQLConnection.LogAction ("Attempted to sell an already sold out item (" + txtBarcode.Text + ")", parent.currentUser);
+										"This is item is out of stock.");
 						return;
 					}
 
