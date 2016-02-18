@@ -60,27 +60,36 @@ namespace Momiji
 
 		protected void OnTxtBarcodeActivated (object sender, System.EventArgs e)
 		{
+			//Wildcards are considered null characters
+			txtBarcode.Text = txtBarcode.Text.Replace ("*", "").ToUpper ();
+
 			if (txtBarcode.Text.Length < 9) {
 				txtBarcode.Text = "";
 				return;
 			}
 
-			txtBarcode.Text = txtBarcode.Text.ToUpper ();
-
+			//Catch for format, PN###-###
 			if (txtBarcode.Text.Substring (0, 2) != "PN" &&
 				txtBarcode.Text.Substring (5, 1) != "-") {
-				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-										MessageType.Info, ButtonsType.Ok,
+				MessageBox.Show (this, MessageType.Error,
 										"Invalid Gallery Store Piece");
-				md.Run ();
-				md.Destroy ();
+				txtBarcode.Text = "";
+				return;
+			}
+
+			//Catch an invalid barcode, should be PN###-###
+			int ArtistID, PieceID;
+			try {
+				ArtistID = Int32.Parse (txtBarcode.Text.Substring (2, 3));
+				PieceID = Int32.Parse (txtBarcode.Text.Substring (6, 3));
+			} catch {
+				MessageBox.Show (this, MessageType.Error,
+										"Invalid barcode");
 				txtBarcode.Text = "";
 				return;
 			}
 
 			try {
-				int ArtistID = Int32.Parse (txtBarcode.Text.Substring (2, 3));
-				int PieceID = Int32.Parse (txtBarcode.Text.Substring (6, 3));
 				SQL SQLConnection = parent.currentSQLConnection;
 
 				MySqlCommand query = new MySqlCommand ("SELECT * FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;", SQLConnection.GetConnection ());
@@ -93,11 +102,9 @@ namespace Momiji
 
 					if (results.getCellInt ("PieceStock", 0) < 1) {
 						//TODO does not account for multiple copies sold
-						MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-										MessageType.Error, ButtonsType.Ok,
+						MessageBox.Show (this, MessageType.Error,
 										"This is already sold out. This will be reported.");
-						md.Run ();
-						md.Destroy ();
+
 						SQLConnection.LogAction ("Attempted to sell an already sold out item (" + txtBarcode.Text + ")", parent.currentUser);
 						return;
 					}
@@ -120,20 +127,15 @@ namespace Momiji
 					txtPaid.Sensitive = true;
 					btnCancel.Sensitive = true;
 				} else {
-					MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-											MessageType.Error, ButtonsType.Ok,
+					MessageBox.Show (this, MessageType.Error,
 											"Could not find piece in the database");
-					md.Run ();
-					md.Destroy ();
 					txtBarcode.Text = "";
 				}
 			} catch (Exception d) {
-				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-										MessageType.Error, ButtonsType.Ok,
+				MessageBox.Show (this, MessageType.Error,
 										"Error, please show this to your administrator:\n"
 										+ d.ToString ());
-				md.Run ();
-				md.Destroy ();
+
 				txtBarcode.Text = "";
 				return;
 			}
@@ -150,11 +152,8 @@ namespace Momiji
 		{
 			//TODO decrease stock count
 			if (txtPaid.Text == "") {
-				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-										MessageType.Info, ButtonsType.Ok,
+				MessageBox.Show (this, MessageType.Info,
 										"Please specify the amount that the customer has paid");
-				md.Run ();
-				md.Destroy ();
 				return;
 			}
 
@@ -163,20 +162,14 @@ namespace Momiji
 			try {
 				paid = float.Parse (txtPaid.Text);
 			} catch {
-				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-										MessageType.Info, ButtonsType.Ok,
+				MessageBox.Show (this, MessageType.Info,
 										"Please enter a valid number in the paid box");
-				md.Run ();
-				md.Destroy ();
 				return;
 			}
 
 			if (total > paid) {
-				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-										MessageType.Info, ButtonsType.Ok,
+				MessageBox.Show (this, MessageType.Info,
 										"Paid amount is too small");
-				md.Run ();
-				md.Destroy ();
 				return;
 			}
 
@@ -203,25 +196,20 @@ namespace Momiji
 				results = SQLConnection.Query (query);
 				txtChange.Text = String.Format ("{0:0.00}", (paid - total));
 
-				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-										MessageType.Info, ButtonsType.Ok,
+				MessageBox.Show (this, MessageType.Info,
 										"Receipt processed, please give the following change: "
 										+ txtChange.Text +
 										"\n\nPlease check the receipt printer.\nThis was transaction ID #"
 										+ results.getCell ("id", 0));
-				md.Run ();
-				md.Destroy ();
+
 				SQLConnection.LogAction ("Made a gallery store sale with receipt #" + results.getCell ("id", 0), User);
 				btnPay.Sensitive = false;
 				txtPaid.Sensitive = false;
 				txtBarcode.Sensitive = false;
 
 			} else {
-				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-										MessageType.Error, ButtonsType.Ok,
+				MessageBox.Show (this, MessageType.Error,
 										"Connection Error, please close and try again.");
-				md.Run ();
-				md.Destroy ();
 			}
 		}
 	}

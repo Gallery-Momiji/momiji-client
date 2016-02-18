@@ -88,6 +88,7 @@
     <Compile Include="Extern\SQLResult.cs" />
     <Compile Include="Extern\INI.cs" />
     <Compile Include="Extern\MD5.cs" />
+    <Compile Include="Extern\MessageBox.cs" />
     <Compile Include="MerchNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

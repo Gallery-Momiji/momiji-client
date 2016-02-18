@@ -57,11 +57,9 @@ namespace Momiji
 				this.Build ();
 
 			} catch (Exception ex) {
-				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-										MessageType.Error, ButtonsType.Ok,
+				MessageBox.Show (this, MessageType.Error,
 										ex.Message);
-				md.Run ();
-				md.Destroy ();
+
 				this.Destroy ();
 			}
 
@@ -87,19 +85,15 @@ namespace Momiji
 
 			//Check for 0 length entry
 			if (user.Length == 0) {
-				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-											MessageType.Error, ButtonsType.Ok,
+				MessageBox.Show (this, MessageType.Error,
 											"Please enter a username");
-				md.Run ();
-				md.Destroy ();
+
 				txtUsername.GrabFocus ();
 				return;
 			} else if (pass.Length == 0) {
-				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-											MessageType.Error, ButtonsType.Ok,
+				MessageBox.Show (this, MessageType.Error,
 											"Please enter a password");
-				md.Run ();
-				md.Destroy ();
+
 				txtPassword.GrabFocus ();
 				return;
 			}
@@ -138,11 +132,9 @@ namespace Momiji
 				this.Hide ();
 				menuInstance.Show ();
 			} else {
-				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-										MessageType.Error, ButtonsType.Ok,
+				MessageBox.Show (this, MessageType.Error,
 										"Incorrect password or username. Please try again.");
-				md.Run ();
-				md.Destroy ();
+
 				txtPassword.Text = "";
 				txtPassword.GrabFocus ();
 			}
