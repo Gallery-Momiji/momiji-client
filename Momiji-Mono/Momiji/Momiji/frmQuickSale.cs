@@ -26,6 +26,7 @@ namespace Momiji
 			btnCancel.Sensitive = false;
 			btnPay.Sensitive = false;
 			txtPaid.Sensitive = false;
+			txtBarcode.Text = "";
 			txtTotal.Text = "";
 			txtChange.Text = "";
 			txtPaid.Text = "";

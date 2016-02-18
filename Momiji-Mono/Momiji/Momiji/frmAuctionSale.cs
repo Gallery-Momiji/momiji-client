@@ -10,6 +10,48 @@ namespace Momiji
 
 		private frmMenu parent;
 		private Gtk.NodeStore merchStore;
+		private float total = 0;
+		public string items = "";
+		public string prices = "";
+
+		/////////////////////////
+		//  Private Functions  //
+		/////////////////////////
+
+		private void ResetForm ()
+		{
+			//TODO change widget names
+			/*txtBarcode.Sensitive = true;
+			btnCancel.Sensitive = false;
+			btnPay.Sensitive = false;
+			txtPaid.Sensitive = false;
+			btnAddToList.Sensitive = false;
+			btnClear.Sensitive = false;
+			txtBarcode.Text = "";
+			txtPrice.Text = "";
+			txtTotal.Text = "";
+			txtChange.Text = "";
+			txtPaid.Text = "";*/
+			this.items = "";
+			this.prices = "";
+			this.total = 0;
+			//txtBarcode.GrabFocus ();
+		}
+
+		private bool existsInList (string barcode)
+		{
+			string temp = items;
+
+			while (temp.Length >= 10) {
+
+				if(temp.Substring (0, 9) == barcode)
+					return true;
+
+				temp = temp.Substring(temp.Length-10);
+			}
+
+			return false;
+		}
 
 		/////////////////////////
 		//     Contructor      //
@@ -21,8 +63,8 @@ namespace Momiji
 			this.parent = parent;
 			this.Build ();
 			MerchNode.buildTable (ref lstMerch, ref merchStore);
-			//Example node
-			merchStore.AddNode (new MerchNode ("2", "3", "AUCTART", "$125"));
+
+			ResetForm ();
 		}
 
 		/////////////////////////
