@@ -24,11 +24,11 @@ sudo pacman -S monodevelop gtk-sharp-2
 ## Windows
 You will need .NET Framework 4.5, and possibly 4.0, along with GTK# for .NET.
 
-The download links can be found, along with the Xamarin Studio download on the monodevelop website:
+The download links can be found, along with the Xamarin Studio download link, on the monodevelop website:
 http://www.monodevelop.com/download/
 
 ## Mac
 You will need Mono + GTK#.
 
-The download link can be found, along with the Xamarin Studio download on the monodevelop website:
+The download link can be found, along with the Xamarin Studio download link, on the monodevelop website:
 http://www.monodevelop.com/download/
