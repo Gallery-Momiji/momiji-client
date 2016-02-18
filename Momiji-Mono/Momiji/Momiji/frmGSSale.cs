@@ -67,7 +67,8 @@ namespace Momiji
 
 			txtBarcode.Text = txtBarcode.Text.ToUpper ();
 
-			if (txtBarcode.Text.Substring (0, 2) != "PN") {
+			if (txtBarcode.Text.Substring (0, 2) != "PN" &&
+				txtBarcode.Text.Substring (5, 1) != "-") {
 				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
 										MessageType.Info, ButtonsType.Ok,
 										"Invalid Gallery Store Piece");
@@ -89,11 +90,23 @@ namespace Momiji
 				SQLResult results = SQLConnection.Query (query);
 
 				if (results.GetNumberOfRows () == 1) {
+
+					if (results.getCellInt ("PieceStock", 0) < 1) {
+						//TODO does not account for multiple copies sold
+						MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
+										MessageType.Error, ButtonsType.Ok,
+										"This is already sold out. This will be reported.");
+						md.Run ();
+						md.Destroy ();
+						SQLConnection.LogAction ("Attempted to sell an already sold out item (" + txtBarcode.Text + ")", parent.currentUser);
+						return;
+					}
+
 					merchStore.AddNode (new MerchNode (ArtistID.ToString (),
 										PieceID.ToString (),
 										results.getCell ("PieceTitle", 0),
 										"$" + String.Format ("{0:0.00}",
-											results.getCell ("PiecePrice", 0))
+										float.Parse (results.getCell ("PiecePrice", 0)))
 										));
 
 					total = total + float.Parse (results.getCell ("PiecePrice", 0));
@@ -128,13 +141,14 @@ namespace Momiji
 
 		protected void OnBtnCancelClicked (object sender, System.EventArgs e)
 		{
-			ResetForm ();
-
 			MerchNode.clearTable (ref lstMerch, ref merchStore);
+
+			ResetForm ();
 		}
 
 		protected void OnBtnPayClicked (object sender, System.EventArgs e)
 		{
+			//TODO decrease stock count
 			if (txtPaid.Text == "") {
 				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
 										MessageType.Info, ButtonsType.Ok,
@@ -187,10 +201,10 @@ namespace Momiji
 				query.Parameters.AddWithValue ("@ITEMS", items);
 				query.Parameters.AddWithValue ("@PRICES", prices);
 				results = SQLConnection.Query (query);
-				txtChange.Text = "$" + String.Format ("{0:0.00}", (paid - total));
+				txtChange.Text = String.Format ("{0:0.00}", (paid - total));
 
 				MessageDialog md = new MessageDialog (this, DialogFlags.Modal,
-										MessageType.Error, ButtonsType.Ok,
+										MessageType.Info, ButtonsType.Ok,
 										"Receipt processed, please give the following change: "
 										+ txtChange.Text +
 										"\n\nPlease check the receipt printer.\nThis was transaction ID #"

@@ -1973,7 +1973,6 @@ offer a cheque, and ask for help.</property>
                 <child>
                   <widget class="Gtk.Entry" id="txtPaid">
                     <property name="MemberName" />
-                    <property name="Sensitive">False</property>
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">●</property>
@@ -2107,7 +2106,7 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmQuickSale" design-size="800 330">
+  <widget class="Gtk.Window" id="Momiji.frmQuickSale" design-size="800 331">
     <property name="MemberName" />
     <property name="WidthRequest">800</property>
     <property name="Title" translatable="yes">frmQuickSale</property>
@@ -2141,7 +2140,7 @@ offer a cheque, and ask for help.</property>
             <property name="Spacing">6</property>
             <property name="BorderWidth">8</property>
             <child>
-              <widget class="Gtk.Label" id="label1">
+              <widget class="Gtk.Label" id="lblBarcode">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
                 <property name="LabelProp" translatable="yes">Highlight this box and scan:</property>
@@ -2154,11 +2153,12 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Entry" id="entry1">
+              <widget class="Gtk.Entry" id="txtBarcode">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="IsEditable">True</property>
                 <property name="InvisibleChar">●</property>
+                <signal name="Activated" handler="OnTxtBarcodeActivated" />
               </widget>
               <packing>
                 <property name="Position">1</property>
@@ -2175,67 +2175,7 @@ offer a cheque, and ask for help.</property>
                 <property name="RowSpacing">6</property>
                 <property name="ColumnSpacing">6</property>
                 <child>
-                  <widget class="Gtk.Entry" id="entry3">
-                    <property name="MemberName" />
-                    <property name="CanFocus">True</property>
-                    <property name="IsEditable">True</property>
-                    <property name="InvisibleChar">●</property>
-                  </widget>
-                  <packing>
-                    <property name="LeftAttach">1</property>
-                    <property name="RightAttach">2</property>
-                    <property name="AutoSize">True</property>
-                    <property name="YOptions">Fill</property>
-                    <property name="XExpand">True</property>
-                    <property name="XFill">True</property>
-                    <property name="XShrink">False</property>
-                    <property name="YExpand">False</property>
-                    <property name="YFill">True</property>
-                    <property name="YShrink">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Entry" id="entry4">
-                    <property name="MemberName" />
-                    <property name="CanFocus">True</property>
-                    <property name="IsEditable">True</property>
-                    <property name="InvisibleChar">●</property>
-                  </widget>
-                  <packing>
-                    <property name="TopAttach">1</property>
-                    <property name="BottomAttach">2</property>
-                    <property name="LeftAttach">1</property>
-                    <property name="RightAttach">2</property>
-                    <property name="AutoSize">True</property>
-                    <property name="YOptions">Fill</property>
-                    <property name="XExpand">True</property>
-                    <property name="XFill">True</property>
-                    <property name="XShrink">False</property>
-                    <property name="YExpand">False</property>
-                    <property name="YFill">True</property>
-                    <property name="YShrink">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="label3">
-                    <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">Total: &lt;b&gt;$&lt;/b&gt;</property>
-                    <property name="UseMarkup">True</property>
-                  </widget>
-                  <packing>
-                    <property name="AutoSize">True</property>
-                    <property name="XOptions">Fill</property>
-                    <property name="YOptions">Fill</property>
-                    <property name="XExpand">False</property>
-                    <property name="XFill">True</property>
-                    <property name="XShrink">False</property>
-                    <property name="YExpand">False</property>
-                    <property name="YFill">True</property>
-                    <property name="YShrink">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="label4">
+                  <widget class="Gtk.Label" id="lblPaid">
                     <property name="MemberName" />
                     <property name="Xalign">0</property>
                     <property name="LabelProp" translatable="yes">Paid: &lt;b&gt;$&lt;/b&gt;</property>
@@ -2255,6 +2195,67 @@ offer a cheque, and ask for help.</property>
                     <property name="YShrink">False</property>
                   </packing>
                 </child>
+                <child>
+                  <widget class="Gtk.Label" id="lblTotal">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">Total: &lt;b&gt;$&lt;/b&gt;</property>
+                    <property name="UseMarkup">True</property>
+                  </widget>
+                  <packing>
+                    <property name="AutoSize">True</property>
+                    <property name="XOptions">Fill</property>
+                    <property name="YOptions">Fill</property>
+                    <property name="XExpand">False</property>
+                    <property name="XFill">True</property>
+                    <property name="XShrink">False</property>
+                    <property name="YExpand">False</property>
+                    <property name="YFill">True</property>
+                    <property name="YShrink">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Entry" id="txtPaid">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">True</property>
+                    <property name="InvisibleChar">●</property>
+                  </widget>
+                  <packing>
+                    <property name="TopAttach">1</property>
+                    <property name="BottomAttach">2</property>
+                    <property name="LeftAttach">1</property>
+                    <property name="RightAttach">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="YOptions">Fill</property>
+                    <property name="XExpand">True</property>
+                    <property name="XFill">True</property>
+                    <property name="XShrink">False</property>
+                    <property name="YExpand">False</property>
+                    <property name="YFill">True</property>
+                    <property name="YShrink">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Entry" id="txtTotal">
+                    <property name="MemberName" />
+                    <property name="Sensitive">False</property>
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">False</property>
+                    <property name="InvisibleChar">●</property>
+                  </widget>
+                  <packing>
+                    <property name="LeftAttach">1</property>
+                    <property name="RightAttach">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="YOptions">Fill</property>
+                    <property name="XExpand">True</property>
+                    <property name="XFill">True</property>
+                    <property name="XShrink">False</property>
+                    <property name="YExpand">False</property>
+                    <property name="YFill">True</property>
+                    <property name="YShrink">False</property>
+                  </packing>
+                </child>
               </widget>
               <packing>
                 <property name="Position">2</property>
@@ -2264,13 +2265,14 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="button5">
+              <widget class="Gtk.Button" id="btnPay">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextAndIcon</property>
                 <property name="Icon">resource:Momiji.Resources.tag-sale-icon.png</property>
                 <property name="Label">Mark as Paid</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnPayClicked" />
               </widget>
               <packing>
                 <property name="Position">3</property>
@@ -2284,7 +2286,7 @@ offer a cheque, and ask for help.</property>
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.Label" id="label5">
+                  <widget class="Gtk.Label" id="lblChange">
                     <property name="MemberName" />
                     <property name="LabelProp" translatable="yes">Change: &lt;b&gt;$&lt;/b&gt;</property>
                     <property name="UseMarkup">True</property>
@@ -2297,8 +2299,9 @@ offer a cheque, and ask for help.</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Entry" id="entry5">
+                  <widget class="Gtk.Entry" id="txtChange">
                     <property name="MemberName" />
+                    <property name="Sensitive">False</property>
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">False</property>
                     <property name="InvisibleChar">●</property>
@@ -2317,13 +2320,14 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="button4">
+              <widget class="Gtk.Button" id="btnCancel">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextAndIcon</property>
-                <property name="Icon">stock:gtk-apply Menu</property>
-                <property name="Label" translatable="yes">Finish Transaction</property>
+                <property name="Icon">stock:gtk-cancel Menu</property>
+                <property name="Label" translatable="yes">Clear Transaction</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnCancelClicked" />
               </widget>
               <packing>
                 <property name="Position">5</property>

@@ -100,7 +100,6 @@ namespace Momiji
 			w6.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.txtPaid = new global::Gtk.Entry ();
-			this.txtPaid.Sensitive = false;
 			this.txtPaid.CanFocus = true;
 			this.txtPaid.Name = "txtPaid";
 			this.txtPaid.IsEditable = true;

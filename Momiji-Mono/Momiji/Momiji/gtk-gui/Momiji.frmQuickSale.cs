@@ -8,18 +8,18 @@ namespace Momiji
 		private global::Gtk.ScrolledWindow GtkScrolWinMerch;
 		private global::Gtk.NodeView lstMerch;
 		private global::Gtk.VBox vbox2;
-		private global::Gtk.Label label1;
-		private global::Gtk.Entry entry1;
+		private global::Gtk.Label lblBarcode;
+		private global::Gtk.Entry txtBarcode;
 		private global::Gtk.Table table1;
-		private global::Gtk.Entry entry3;
-		private global::Gtk.Entry entry4;
-		private global::Gtk.Label label3;
-		private global::Gtk.Label label4;
-		private global::Gtk.Button button5;
+		private global::Gtk.Label lblPaid;
+		private global::Gtk.Label lblTotal;
+		private global::Gtk.Entry txtPaid;
+		private global::Gtk.Entry txtTotal;
+		private global::Gtk.Button btnPay;
 		private global::Gtk.HBox hbox3;
-		private global::Gtk.Label label5;
-		private global::Gtk.Entry entry5;
-		private global::Gtk.Button button4;
+		private global::Gtk.Label lblChange;
+		private global::Gtk.Entry txtChange;
+		private global::Gtk.Button btnCancel;
 		
 		protected virtual void Build ()
 		{
@@ -52,23 +52,23 @@ namespace Momiji
 			this.vbox2.Spacing = 6;
 			this.vbox2.BorderWidth = ((uint)(8));
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.label1 = new global::Gtk.Label ();
-			this.label1.Name = "label1";
-			this.label1.Xalign = 0F;
-			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Highlight this box and scan:");
-			this.vbox2.Add (this.label1);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.label1]));
+			this.lblBarcode = new global::Gtk.Label ();
+			this.lblBarcode.Name = "lblBarcode";
+			this.lblBarcode.Xalign = 0F;
+			this.lblBarcode.LabelProp = global::Mono.Unix.Catalog.GetString ("Highlight this box and scan:");
+			this.vbox2.Add (this.lblBarcode);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.lblBarcode]));
 			w3.Position = 0;
 			w3.Expand = false;
 			w3.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.entry1 = new global::Gtk.Entry ();
-			this.entry1.CanFocus = true;
-			this.entry1.Name = "entry1";
-			this.entry1.IsEditable = true;
-			this.entry1.InvisibleChar = '●';
-			this.vbox2.Add (this.entry1);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.entry1]));
+			this.txtBarcode = new global::Gtk.Entry ();
+			this.txtBarcode.CanFocus = true;
+			this.txtBarcode.Name = "txtBarcode";
+			this.txtBarcode.IsEditable = true;
+			this.txtBarcode.InvisibleChar = '●';
+			this.vbox2.Add (this.txtBarcode);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.txtBarcode]));
 			w4.Position = 1;
 			w4.Expand = false;
 			w4.Fill = false;
@@ -78,49 +78,50 @@ namespace Momiji
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
 			// Container child table1.Gtk.Table+TableChild
-			this.entry3 = new global::Gtk.Entry ();
-			this.entry3.CanFocus = true;
-			this.entry3.Name = "entry3";
-			this.entry3.IsEditable = true;
-			this.entry3.InvisibleChar = '●';
-			this.table1.Add (this.entry3);
-			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table1 [this.entry3]));
-			w5.LeftAttach = ((uint)(1));
-			w5.RightAttach = ((uint)(2));
+			this.lblPaid = new global::Gtk.Label ();
+			this.lblPaid.Name = "lblPaid";
+			this.lblPaid.Xalign = 0F;
+			this.lblPaid.LabelProp = global::Mono.Unix.Catalog.GetString ("Paid: <b>$</b>");
+			this.lblPaid.UseMarkup = true;
+			this.table1.Add (this.lblPaid);
+			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table1 [this.lblPaid]));
+			w5.TopAttach = ((uint)(1));
+			w5.BottomAttach = ((uint)(2));
+			w5.XOptions = ((global::Gtk.AttachOptions)(4));
 			w5.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.entry4 = new global::Gtk.Entry ();
-			this.entry4.CanFocus = true;
-			this.entry4.Name = "entry4";
-			this.entry4.IsEditable = true;
-			this.entry4.InvisibleChar = '●';
-			this.table1.Add (this.entry4);
-			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.entry4]));
-			w6.TopAttach = ((uint)(1));
-			w6.BottomAttach = ((uint)(2));
-			w6.LeftAttach = ((uint)(1));
-			w6.RightAttach = ((uint)(2));
+			this.lblTotal = new global::Gtk.Label ();
+			this.lblTotal.Name = "lblTotal";
+			this.lblTotal.LabelProp = global::Mono.Unix.Catalog.GetString ("Total: <b>$</b>");
+			this.lblTotal.UseMarkup = true;
+			this.table1.Add (this.lblTotal);
+			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.lblTotal]));
+			w6.XOptions = ((global::Gtk.AttachOptions)(4));
 			w6.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.label3 = new global::Gtk.Label ();
-			this.label3.Name = "label3";
-			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("Total: <b>$</b>");
-			this.label3.UseMarkup = true;
-			this.table1.Add (this.label3);
-			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table1 [this.label3]));
-			w7.XOptions = ((global::Gtk.AttachOptions)(4));
+			this.txtPaid = new global::Gtk.Entry ();
+			this.txtPaid.CanFocus = true;
+			this.txtPaid.Name = "txtPaid";
+			this.txtPaid.IsEditable = true;
+			this.txtPaid.InvisibleChar = '●';
+			this.table1.Add (this.txtPaid);
+			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table1 [this.txtPaid]));
+			w7.TopAttach = ((uint)(1));
+			w7.BottomAttach = ((uint)(2));
+			w7.LeftAttach = ((uint)(1));
+			w7.RightAttach = ((uint)(2));
 			w7.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.label4 = new global::Gtk.Label ();
-			this.label4.Name = "label4";
-			this.label4.Xalign = 0F;
-			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("Paid: <b>$</b>");
-			this.label4.UseMarkup = true;
-			this.table1.Add (this.label4);
-			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table1 [this.label4]));
-			w8.TopAttach = ((uint)(1));
-			w8.BottomAttach = ((uint)(2));
-			w8.XOptions = ((global::Gtk.AttachOptions)(4));
+			this.txtTotal = new global::Gtk.Entry ();
+			this.txtTotal.Sensitive = false;
+			this.txtTotal.CanFocus = true;
+			this.txtTotal.Name = "txtTotal";
+			this.txtTotal.IsEditable = false;
+			this.txtTotal.InvisibleChar = '●';
+			this.table1.Add (this.txtTotal);
+			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table1 [this.txtTotal]));
+			w8.LeftAttach = ((uint)(1));
+			w8.RightAttach = ((uint)(2));
 			w8.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.vbox2.Add (this.table1);
 			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.table1]));
@@ -128,11 +129,11 @@ namespace Momiji
 			w9.Expand = false;
 			w9.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.button5 = new global::Gtk.Button ();
-			this.button5.CanFocus = true;
-			this.button5.Name = "button5";
-			this.button5.UseUnderline = true;
-			// Container child button5.Gtk.Container+ContainerChild
+			this.btnPay = new global::Gtk.Button ();
+			this.btnPay.CanFocus = true;
+			this.btnPay.Name = "btnPay";
+			this.btnPay.UseUnderline = true;
+			// Container child btnPay.Gtk.Container+ContainerChild
 			global::Gtk.Alignment w10 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w11 = new global::Gtk.HBox ();
@@ -147,9 +148,9 @@ namespace Momiji
 			w14.UseUnderline = true;
 			w11.Add (w14);
 			w10.Add (w11);
-			this.button5.Add (w10);
-			this.vbox2.Add (this.button5);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.button5]));
+			this.btnPay.Add (w10);
+			this.vbox2.Add (this.btnPay);
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.btnPay]));
 			w18.Position = 3;
 			w18.Expand = false;
 			w18.Fill = false;
@@ -158,23 +159,24 @@ namespace Momiji
 			this.hbox3.Name = "hbox3";
 			this.hbox3.Spacing = 6;
 			// Container child hbox3.Gtk.Box+BoxChild
-			this.label5 = new global::Gtk.Label ();
-			this.label5.Name = "label5";
-			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("Change: <b>$</b>");
-			this.label5.UseMarkup = true;
-			this.hbox3.Add (this.label5);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.label5]));
+			this.lblChange = new global::Gtk.Label ();
+			this.lblChange.Name = "lblChange";
+			this.lblChange.LabelProp = global::Mono.Unix.Catalog.GetString ("Change: <b>$</b>");
+			this.lblChange.UseMarkup = true;
+			this.hbox3.Add (this.lblChange);
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.lblChange]));
 			w19.Position = 0;
 			w19.Expand = false;
 			w19.Fill = false;
 			// Container child hbox3.Gtk.Box+BoxChild
-			this.entry5 = new global::Gtk.Entry ();
-			this.entry5.CanFocus = true;
-			this.entry5.Name = "entry5";
-			this.entry5.IsEditable = false;
-			this.entry5.InvisibleChar = '●';
-			this.hbox3.Add (this.entry5);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.entry5]));
+			this.txtChange = new global::Gtk.Entry ();
+			this.txtChange.Sensitive = false;
+			this.txtChange.CanFocus = true;
+			this.txtChange.Name = "txtChange";
+			this.txtChange.IsEditable = false;
+			this.txtChange.InvisibleChar = '●';
+			this.hbox3.Add (this.txtChange);
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.txtChange]));
 			w20.Position = 1;
 			this.vbox2.Add (this.hbox3);
 			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox3]));
@@ -182,28 +184,28 @@ namespace Momiji
 			w21.Expand = false;
 			w21.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.button4 = new global::Gtk.Button ();
-			this.button4.CanFocus = true;
-			this.button4.Name = "button4";
-			this.button4.UseUnderline = true;
-			// Container child button4.Gtk.Container+ContainerChild
+			this.btnCancel = new global::Gtk.Button ();
+			this.btnCancel.CanFocus = true;
+			this.btnCancel.Name = "btnCancel";
+			this.btnCancel.UseUnderline = true;
+			// Container child btnCancel.Gtk.Container+ContainerChild
 			global::Gtk.Alignment w22 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
 			// Container child GtkAlignment.Gtk.Container+ContainerChild
 			global::Gtk.HBox w23 = new global::Gtk.HBox ();
 			w23.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Image w24 = new global::Gtk.Image ();
-			w24.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
+			w24.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-cancel", global::Gtk.IconSize.Menu);
 			w23.Add (w24);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w26 = new global::Gtk.Label ();
-			w26.LabelProp = global::Mono.Unix.Catalog.GetString ("Finish Transaction");
+			w26.LabelProp = global::Mono.Unix.Catalog.GetString ("Clear Transaction");
 			w26.UseUnderline = true;
 			w23.Add (w26);
 			w22.Add (w23);
-			this.button4.Add (w22);
-			this.vbox2.Add (this.button4);
-			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.button4]));
+			this.btnCancel.Add (w22);
+			this.vbox2.Add (this.btnCancel);
+			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.btnCancel]));
 			w30.Position = 5;
 			w30.Expand = false;
 			w30.Fill = false;
@@ -219,9 +221,12 @@ namespace Momiji
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 800;
-			this.DefaultHeight = 330;
+			this.DefaultHeight = 331;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+			this.txtBarcode.Activated += new global::System.EventHandler (this.OnTxtBarcodeActivated);
+			this.btnPay.Clicked += new global::System.EventHandler (this.OnBtnPayClicked);
+			this.btnCancel.Clicked += new global::System.EventHandler (this.OnBtnCancelClicked);
 		}
 	}
 }
