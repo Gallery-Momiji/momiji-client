@@ -89,7 +89,7 @@ namespace Momiji
 			if (txtBarcode.Text.Substring (0, 2) != "PN" &&
 				txtBarcode.Text.Substring (5, 1) != "-") {
 				MessageBox.Show (this, MessageType.Error,
-										"Invalid Gallery Store Piece");
+										"Invalid Gallery Store barcode");
 				txtBarcode.Text = "";
 				return;
 			}
@@ -101,7 +101,7 @@ namespace Momiji
 				PieceID = Int32.Parse (txtBarcode.Text.Substring (6, 3));
 			} catch {
 				MessageBox.Show (this, MessageType.Error,
-										"Invalid barcode");
+										"Invalid barcode format");
 				txtBarcode.Text = "";
 				return;
 			}

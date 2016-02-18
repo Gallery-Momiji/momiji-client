@@ -88,7 +88,7 @@ namespace Momiji
 			if (txtBarcode.Text.Substring (0, 2) != "AN" &&
 				txtBarcode.Text.Substring (5, 1) != "-") {
 				MessageBox.Show (this, MessageType.Error,
-										"Invalid Quicksale Piece");
+										"Invalid merchandise barcode");
 
 				txtBarcode.Text = "";
 				return;
@@ -103,13 +103,13 @@ namespace Momiji
 			}
 
 			//Catch an invalid barcode, should be AN###-###
-			int ArtistID, PieceID;
+			int ArtistID, MerchID;
 			try {
 				ArtistID = Int32.Parse (txtBarcode.Text.Substring (2, 3));
-				PieceID = Int32.Parse (txtBarcode.Text.Substring (6, 3));
+				MerchID = Int32.Parse (txtBarcode.Text.Substring (6, 3));
 			} catch {
 				MessageBox.Show (this, MessageType.Error,
-										"Invalid barcode");
+										"Invalid barcode format");
 
 				txtBarcode.Text = "";
 				return;
@@ -117,10 +117,10 @@ namespace Momiji
 
 			try {
 				SQL SQLConnection = parent.currentSQLConnection;
-				MySqlCommand query = new MySqlCommand ("SELECT * FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;", SQLConnection.GetConnection ());
+				MySqlCommand query = new MySqlCommand ("SELECT * FROM `merchandise` WHERE `ArtistID` = @AID AND `MerchID` = @MID;", SQLConnection.GetConnection ());
 				query.Prepare ();
 				query.Parameters.AddWithValue ("@AID", ArtistID);
-				query.Parameters.AddWithValue ("@PID", PieceID);
+				query.Parameters.AddWithValue ("@MID", MerchID);
 				SQLResult results = SQLConnection.Query (query);
 
 				if (results.GetNumberOfRows () == 1) {
@@ -140,17 +140,17 @@ namespace Momiji
 					}
 
 					merchStore.AddNode (new MerchNode (ArtistID.ToString (),
-										PieceID.ToString (),
-										results.getCell ("PieceTitle", 0),
+										MerchID.ToString (),
+										results.getCell ("MerchTitle", 0),
 										"$" + String.Format ("{0:0.00}",
-										float.Parse (results.getCell ("PiecePrice", 0)))
+										float.Parse (results.getCell ("MerchQuickSale", 0)))
 										));
 
-					total = total + float.Parse (results.getCell ("PiecePrice", 0));
+					total = total + float.Parse (results.getCell ("MerchQuickSale", 0));
 					txtTotal.Text = String.Format ("{0:0.00}", total);
 
 					items = items + txtBarcode.Text.ToUpper () + "#";
-					prices = prices + results.getCell ("PiecePrice", 0) + "#";
+					prices = prices + results.getCell ("MerchQuickSale", 0) + "#";
 
 					txtBarcode.Text = "";
 					btnPay.Sensitive = true;
@@ -158,7 +158,7 @@ namespace Momiji
 					btnCancel.Sensitive = true;
 				} else {
 					MessageBox.Show (this, MessageType.Error,
-											"Could not find piece in the database");
+											"Could not find merchandise in the database");
 
 					txtBarcode.Text = "";
 				}

@@ -75,6 +75,121 @@ namespace Momiji
 		{
 			parent.CleanupAuctionSale ();
 		}
+
+		protected void OnbtnAddToListClicked (object sender, System.EventArgs e)
+		{
+			//Wildcards are considered null characters
+			txtBarcode.Text = txtBarcode.Text.Replace ("*", "").ToUpper ();
+
+			if (txtBarcode.Text.Length < 9) {
+				txtBarcode.Text = "";
+				return;
+			}
+
+			//Catch for format, AN###-###
+			if (txtBarcode.Text.Substring (0, 2) != "AN" &&
+				txtBarcode.Text.Substring (5, 1) != "-") {
+				MessageBox.Show (this, MessageType.Error,
+										"Invalid merchandise barcode");
+
+				txtBarcode.Text = "";
+				return;
+			}
+
+			if (existsInList (txtBarcode.Text.ToUpper ())) {
+				MessageBox.Show (this, MessageType.Info,
+									"Item already added");
+
+				txtBarcode.Text = "";
+				txtPrice.Text = "";
+				return;
+			}
+
+			//Catch an invalid barcode, should be AN###-###
+			int ArtistID, MerchID;
+			try {
+				ArtistID = Int32.Parse (txtBarcode.Text.Substring (2, 3));
+				MerchID = Int32.Parse (txtBarcode.Text.Substring (6, 3));
+			} catch {
+				MessageBox.Show (this, MessageType.Error,
+										"Invalid barcode format");
+
+				txtBarcode.Text = "";
+				return;
+			}
+
+			//Catch an invalid price
+			int Price;
+			try {
+				ArtistID = Int32.Parse (txtPrice.Text);
+			} catch {
+				MessageBox.Show (this, MessageType.Error,
+										"Invalid Price");
+
+				txtPrice.Text = "";
+				return;
+			}
+
+			try {
+				SQL SQLConnection = parent.currentSQLConnection;
+				MySqlCommand query = new MySqlCommand ("SELECT * FROM `merchandise` WHERE `ArtistID` = @AID AND `MerchID` = @MID;", SQLConnection.GetConnection ());
+				query.Prepare ();
+				query.Parameters.AddWithValue ("@AID", ArtistID);
+				query.Parameters.AddWithValue ("@MID", MerchID);
+				SQLResult results = SQLConnection.Query (query);
+
+				if (results.GetNumberOfRows () == 1) {
+
+					if (float.Parse (results.getCell ("MerchMinBid ", 0)) > Price) {
+						MessageBox.Show (this, MessageType.Error,
+										"Price is too low.\nThis item has a minimum bid of " +
+										results.getCell ("MerchMinBid ", 0));
+						return;
+					}
+
+					merchStore.AddNode (new MerchNode (ArtistID.ToString (),
+										MerchID.ToString (),
+										results.getCell ("MerchTitle", 0),
+										"$" + String.Format ("{0:0.00}", Price)));
+
+					total = total + Price;
+					txtTotal.Text = String.Format ("{0:0.00}", total);
+
+					items = items + txtBarcode.Text.ToUpper () + "#";
+					prices = prices + Price.ToString + "#";
+
+					txtBarcode.Text = "";
+					btnPay.Sensitive = true;
+					txtPaid.Sensitive = true;
+					btnCancel.Sensitive = true;
+				} else {
+					MessageBox.Show (this, MessageType.Error,
+											"Could not find merchandise in the database");
+
+					txtBarcode.Text = "";
+				}
+			} catch (Exception d) {
+				MessageBox.Show (this, MessageType.Error,
+										"Error, please show this to your administrator:\n"
+										+ d.ToString ());
+
+				txtBarcode.Text = "";
+				return;
+			}
+		}
+
+		protected void OnbtnClearClicked (object sender, System.EventArgs e)
+		{
+			txtBarcode.Text = "";
+			txtPrice.Text = "";
+		}
+
+		protected void OnBtnCancelClicked (object sender, System.EventArgs e)
+		{
+			MerchNode.clearTable (ref lstMerch, ref merchStore);
+
+			ResetForm ();
+		}
 	}
 }
 
