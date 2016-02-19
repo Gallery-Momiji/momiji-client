@@ -68,14 +68,12 @@ namespace Momiji
 		//  Public Accessors   //
 		/////////////////////////
 
-		public SQLResult currentUser
-		{
-			get {return User;}
+		public SQLResult currentUser {
+			get { return User;}
 		}
 
-		public SQL currentSQLConnection
-		{
-			get {return SQLConnection;}
+		public SQL currentSQLConnection {
+			get { return SQLConnection;}
 		}
 
 		/////////////////////////
@@ -126,6 +124,7 @@ namespace Momiji
 			//Basic Functionality:
 			btnGalleryStoreSale.Sensitive = userClass >= 1 ? true : false;
 			btnQuickSale.Sensitive = userClass >= 2 ? true : false;
+			//TODO should be block until a certain time, except admin
 			btnAuctionSale.Sensitive = userClass >= 3 ? true : false;
 
 			//Advanced Functionality:

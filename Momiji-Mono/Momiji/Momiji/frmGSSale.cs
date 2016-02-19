@@ -43,10 +43,10 @@ namespace Momiji
 
 			while (temp.Length >= 10) {
 
-				if(temp.Substring (0, 9) == barcode)
+				if (temp.Substring (0, 9) == barcode)
 					count++;
 
-				temp = temp.Substring(temp.Length-10);
+				temp = temp.Substring (10);
 			}
 
 			return count;
@@ -86,7 +86,7 @@ namespace Momiji
 			}
 
 			//Catch for format, PN###-###
-			if (txtBarcode.Text.Substring (0, 2) != "PN" &&
+			if (txtBarcode.Text.Substring (0, 2) != "PN" ||
 				txtBarcode.Text.Substring (5, 1) != "-") {
 				MessageBox.Show (this, MessageType.Error,
 										"Invalid Gallery Store barcode");
@@ -144,6 +144,7 @@ namespace Momiji
 				} else {
 					MessageBox.Show (this, MessageType.Error,
 											"Could not find piece in the database");
+
 					txtBarcode.Text = "";
 				}
 			} catch (Exception d) {
@@ -165,7 +166,7 @@ namespace Momiji
 
 		protected void OnBtnPayClicked (object sender, System.EventArgs e)
 		{
-			//TODO decrease stock count
+			//TODO decrease stock count and tag receipt
 			if (txtPaid.Text == "") {
 				MessageBox.Show (this, MessageType.Info,
 										"Please specify the amount that the customer has paid");
@@ -221,11 +222,17 @@ namespace Momiji
 				btnPay.Sensitive = false;
 				txtPaid.Sensitive = false;
 				txtBarcode.Sensitive = false;
+				btnCancel.GrabFocus ();
 
 			} else {
 				MessageBox.Show (this, MessageType.Error,
 										"Connection Error, please close and try again.");
 			}
+		}
+
+		protected void OnTxtPaidActivated (object sender, System.EventArgs e)
+		{
+			OnBtnPayClicked (sender, e);
 		}
 	}
 }

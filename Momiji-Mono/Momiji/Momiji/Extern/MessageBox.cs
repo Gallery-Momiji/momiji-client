@@ -5,10 +5,11 @@ using Gtk;
 
 public class MessageBox
 {
-	public static void Show(Window win, MessageType type, string msg)
+	public static void Show (Window win, MessageType type, string msg)
 	{
 		MessageDialog diag = new MessageDialog (win, DialogFlags.Modal, type, ButtonsType.Ok, msg);
 		diag.Run ();
-		diag.Destroy();
+		diag.Destroy ();
+		win.Present ();
 	}
 }

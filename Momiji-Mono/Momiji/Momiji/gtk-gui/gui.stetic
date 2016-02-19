@@ -1608,6 +1608,7 @@ offer a cheque, and ask for help.</property>
                 <property name="CanFocus">True</property>
                 <property name="IsEditable">True</property>
                 <property name="InvisibleChar">●</property>
+                <signal name="Activated" handler="OnTxtBarcodeActivated" />
               </widget>
               <packing>
                 <property name="Position">1</property>
@@ -1635,6 +1636,7 @@ offer a cheque, and ask for help.</property>
                 <property name="CanFocus">True</property>
                 <property name="IsEditable">True</property>
                 <property name="InvisibleChar">●</property>
+                <signal name="Activated" handler="OnTxtPriceActivated" />
               </widget>
               <packing>
                 <property name="Position">3</property>
@@ -1668,7 +1670,7 @@ offer a cheque, and ask for help.</property>
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="Type">TextAndIcon</property>
-                    <property name="Icon">stock:gtk-cancel Menu</property>
+                    <property name="Icon">stock:gtk-delete Menu</property>
                     <property name="Label" translatable="yes">Clear</property>
                     <property name="UseUnderline">True</property>
                     <signal name="Clicked" handler="OnBtnClearClicked" />
@@ -1739,6 +1741,7 @@ offer a cheque, and ask for help.</property>
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">●</property>
+                    <signal name="Activated" handler="OnTxtPaidActivated" />
                   </widget>
                   <packing>
                     <property name="TopAttach">1</property>
@@ -1758,6 +1761,7 @@ offer a cheque, and ask for help.</property>
                 <child>
                   <widget class="Gtk.Entry" id="txtTotal">
                     <property name="MemberName" />
+                    <property name="Sensitive">False</property>
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">●</property>
@@ -1820,6 +1824,7 @@ offer a cheque, and ask for help.</property>
                 <child>
                   <widget class="Gtk.Entry" id="txtChange">
                     <property name="MemberName" />
+                    <property name="Sensitive">False</property>
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">False</property>
                     <property name="InvisibleChar">●</property>
@@ -1842,8 +1847,8 @@ offer a cheque, and ask for help.</property>
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextAndIcon</property>
-                <property name="Icon">stock:gtk-apply Menu</property>
-                <property name="Label" translatable="yes">Finish Transaction</property>
+                <property name="Icon">stock:gtk-cancel Menu</property>
+                <property name="Label" translatable="yes">Clear Transaction</property>
                 <property name="UseUnderline">True</property>
                 <signal name="Clicked" handler="OnBtnCancelClicked" />
               </widget>
@@ -1980,6 +1985,7 @@ offer a cheque, and ask for help.</property>
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">●</property>
+                    <signal name="Activated" handler="OnTxtPaidActivated" />
                   </widget>
                   <packing>
                     <property name="TopAttach">1</property>
@@ -2223,6 +2229,7 @@ offer a cheque, and ask for help.</property>
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">●</property>
+                    <signal name="Activated" handler="OnTxtPaidActivated" />
                   </widget>
                   <packing>
                     <property name="TopAttach">1</property>

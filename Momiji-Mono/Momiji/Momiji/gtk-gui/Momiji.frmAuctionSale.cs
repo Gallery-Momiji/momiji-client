@@ -139,7 +139,7 @@ namespace Momiji
 			w17.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Image w18 = new global::Gtk.Image ();
-			w18.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-cancel", global::Gtk.IconSize.Menu);
+			w18.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-delete", global::Gtk.IconSize.Menu);
 			w17.Add (w18);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w20 = new global::Gtk.Label ();
@@ -198,6 +198,7 @@ namespace Momiji
 			w28.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.txtTotal = new global::Gtk.Entry ();
+			this.txtTotal.Sensitive = false;
 			this.txtTotal.CanFocus = true;
 			this.txtTotal.Name = "txtTotal";
 			this.txtTotal.IsEditable = true;
@@ -254,6 +255,7 @@ namespace Momiji
 			w40.Fill = false;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.txtChange = new global::Gtk.Entry ();
+			this.txtChange.Sensitive = false;
 			this.txtChange.CanFocus = true;
 			this.txtChange.Name = "txtChange";
 			this.txtChange.IsEditable = false;
@@ -278,11 +280,11 @@ namespace Momiji
 			w44.Spacing = 2;
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Image w45 = new global::Gtk.Image ();
-			w45.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
+			w45.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-cancel", global::Gtk.IconSize.Menu);
 			w44.Add (w45);
 			// Container child GtkHBox.Gtk.Container+ContainerChild
 			global::Gtk.Label w47 = new global::Gtk.Label ();
-			w47.LabelProp = global::Mono.Unix.Catalog.GetString ("Finish Transaction");
+			w47.LabelProp = global::Mono.Unix.Catalog.GetString ("Clear Transaction");
 			w47.UseUnderline = true;
 			w44.Add (w47);
 			w43.Add (w44);
@@ -307,8 +309,11 @@ namespace Momiji
 			this.DefaultHeight = 435;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+			this.txtBarcode.Activated += new global::System.EventHandler (this.OnTxtBarcodeActivated);
+			this.txtPrice.Activated += new global::System.EventHandler (this.OnTxtPriceActivated);
 			this.btnAddToList.Clicked += new global::System.EventHandler (this.OnBtnAddToListClicked);
 			this.btnClear.Clicked += new global::System.EventHandler (this.OnBtnClearClicked);
+			this.txtPaid.Activated += new global::System.EventHandler (this.OnTxtPaidActivated);
 			this.btnPay.Clicked += new global::System.EventHandler (this.OnBtnPayClicked);
 			this.btnCancel.Clicked += new global::System.EventHandler (this.OnBtnCancelClicked);
 		}

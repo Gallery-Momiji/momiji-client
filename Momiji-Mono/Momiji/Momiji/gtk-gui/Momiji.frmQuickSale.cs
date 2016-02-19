@@ -225,6 +225,7 @@ namespace Momiji
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.txtBarcode.Activated += new global::System.EventHandler (this.OnTxtBarcodeActivated);
+			this.txtPaid.Activated += new global::System.EventHandler (this.OnTxtPaidActivated);
 			this.btnPay.Clicked += new global::System.EventHandler (this.OnBtnPayClicked);
 			this.btnCancel.Clicked += new global::System.EventHandler (this.OnBtnCancelClicked);
 		}

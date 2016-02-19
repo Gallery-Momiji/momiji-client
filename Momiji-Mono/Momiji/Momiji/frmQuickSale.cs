@@ -42,10 +42,10 @@ namespace Momiji
 
 			while (temp.Length >= 10) {
 
-				if(temp.Substring (0, 9) == barcode)
+				if (temp.Substring (0, 9) == barcode)
 					return true;
 
-				temp = temp.Substring(temp.Length-10);
+				temp = temp.Substring (10);
 			}
 
 			return false;
@@ -55,7 +55,7 @@ namespace Momiji
 		//     Contructor      //
 		/////////////////////////
 
-		public frmQuickSale (frmMenu parent) : 
+		public frmQuickSale (frmMenu parent) :
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
@@ -85,7 +85,7 @@ namespace Momiji
 			}
 
 			//Catch for format, AN###-###
-			if (txtBarcode.Text.Substring (0, 2) != "AN" &&
+			if (txtBarcode.Text.Substring (0, 2) != "AN" ||
 				txtBarcode.Text.Substring (5, 1) != "-") {
 				MessageBox.Show (this, MessageType.Error,
 										"Invalid merchandise barcode");
@@ -130,12 +130,16 @@ namespace Momiji
 										"This item cannot be sold as quicksale. This will be reported.");
 
 						SQLConnection.LogAction ("Attempted to quick sell a non quick sellable item (" + txtBarcode.Text + ")", parent.currentUser);
+
+						txtBarcode.Text = "";
 						return;
 					} else if (results.getCell ("MerchSold", 0) == "1") {
 						MessageBox.Show (this, MessageType.Error,
 										"This item has already been sold. This will be reported.");
 
 						SQLConnection.LogAction ("Attempted to quick sell an already sold item (" + txtBarcode.Text + ")", parent.currentUser);
+
+						txtBarcode.Text = "";
 						return;
 					}
 
@@ -181,7 +185,7 @@ namespace Momiji
 
 		protected void OnBtnPayClicked (object sender, System.EventArgs e)
 		{
-			//TODO mark items as sold
+			//TODO mark items as sold and tag receipt
 			if (txtPaid.Text == "") {
 				MessageBox.Show (this, MessageType.Info,
 										"Please specify the amount that the customer has paid");
@@ -237,11 +241,17 @@ namespace Momiji
 				btnPay.Sensitive = false;
 				txtPaid.Sensitive = false;
 				txtBarcode.Sensitive = false;
+				btnCancel.GrabFocus ();
 
 			} else {
 				MessageBox.Show (this, MessageType.Error,
 										"Connection Error, please close and try again.");
 			}
+		}
+
+		protected void OnTxtPaidActivated (object sender, System.EventArgs e)
+		{
+			OnBtnPayClicked (sender, e);
 		}
 	}
 }

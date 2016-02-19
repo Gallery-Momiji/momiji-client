@@ -26,8 +26,9 @@ namespace Momiji
 			btnCancel.Sensitive = false;
 			btnPay.Sensitive = false;
 			txtPaid.Sensitive = false;
-			btnAddToList.Sensitive = false;
-			btnClear.Sensitive = false;
+			txtPrice.Sensitive = true;
+			btnAddToList.Sensitive = true;
+			btnClear.Sensitive = true;
 			txtBarcode.Text = "";
 			txtPrice.Text = "";
 			txtTotal.Text = "";
@@ -36,7 +37,7 @@ namespace Momiji
 			this.items = "";
 			this.prices = "";
 			this.total = 0;
-			//txtBarcode.GrabFocus ();
+			txtBarcode.GrabFocus ();
 		}
 
 		private bool existsInList (string barcode)
@@ -45,10 +46,10 @@ namespace Momiji
 
 			while (temp.Length >= 10) {
 
-				if(temp.Substring (0, 9) == barcode)
+				if (temp.Substring (0, 9) == barcode)
 					return true;
 
-				temp = temp.Substring(temp.Length-10);
+				temp = temp.Substring (10);
 			}
 
 			return false;
@@ -58,7 +59,7 @@ namespace Momiji
 		//     Contructor      //
 		/////////////////////////
 
-		public frmAuctionSale (frmMenu parent) : 
+		public frmAuctionSale (frmMenu parent) :
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
@@ -77,6 +78,11 @@ namespace Momiji
 			parent.CleanupAuctionSale ();
 		}
 
+		protected void OnTxtBarcodeActivated (object sender, System.EventArgs e)
+		{
+			txtPrice.GrabFocus ();
+		}
+
 		protected void OnBtnAddToListClicked (object sender, System.EventArgs e)
 		{
 			//Wildcards are considered null characters
@@ -84,16 +90,18 @@ namespace Momiji
 
 			if (txtBarcode.Text.Length < 9) {
 				txtBarcode.Text = "";
+				txtBarcode.GrabFocus ();
 				return;
 			}
 
 			//Catch for format, AN###-###
-			if (txtBarcode.Text.Substring (0, 2) != "AN" &&
+			if (txtBarcode.Text.Substring (0, 2) != "AN" ||
 				txtBarcode.Text.Substring (5, 1) != "-") {
 				MessageBox.Show (this, MessageType.Error,
 										"Invalid merchandise barcode");
 
 				txtBarcode.Text = "";
+				txtBarcode.GrabFocus ();
 				return;
 			}
 
@@ -103,6 +111,7 @@ namespace Momiji
 
 				txtBarcode.Text = "";
 				txtPrice.Text = "";
+				txtBarcode.GrabFocus ();
 				return;
 			}
 
@@ -116,6 +125,7 @@ namespace Momiji
 										"Invalid barcode format");
 
 				txtBarcode.Text = "";
+				txtBarcode.GrabFocus ();
 				return;
 			}
 
@@ -128,6 +138,7 @@ namespace Momiji
 										"Invalid Price");
 
 				txtPrice.Text = "";
+				txtPrice.GrabFocus ();
 				return;
 			}
 
@@ -141,10 +152,23 @@ namespace Momiji
 
 				if (results.GetNumberOfRows () == 1) {
 
-					if (float.Parse (results.getCell ("MerchMinBid ", 0)) > Price) {
+					if (float.Parse (results.getCell ("MerchMinBid", 0)) > Price) {
 						MessageBox.Show (this, MessageType.Error,
-										"Price is too low.\nThis item has a minimum bid of " +
-										results.getCell ("MerchMinBid ", 0));
+										"Price is too low.\nThis item has a minimum bid of $" +
+										String.Format ("{0:0.00}",
+										float.Parse (results.getCell ("MerchMinBid", 0))));
+
+						txtPrice.Text = "";
+						txtPrice.GrabFocus ();
+						return;
+					} else if (results.getCell ("MerchSold", 0) == "1") {
+						MessageBox.Show (this, MessageType.Error,
+										"This item has already been sold. This will be reported.");
+
+						SQLConnection.LogAction ("Attempted to auction sell an already sold item (" + txtBarcode.Text + ")", parent.currentUser);
+
+						txtBarcode.Text = "";
+						txtBarcode.GrabFocus ();
 						return;
 					}
 
@@ -157,32 +181,40 @@ namespace Momiji
 					txtTotal.Text = String.Format ("{0:0.00}", total);
 
 					items = items + txtBarcode.Text.ToUpper () + "#";
-					prices = prices + Price.ToString() + "#";
+					prices = prices + Price.ToString () + "#";
 
 					txtBarcode.Text = "";
+					txtPrice.Text = "";
 					btnPay.Sensitive = true;
 					txtPaid.Sensitive = true;
 					btnCancel.Sensitive = true;
+					txtBarcode.GrabFocus ();
+
 				} else {
 					MessageBox.Show (this, MessageType.Error,
 											"Could not find merchandise in the database");
 
+					txtBarcode.GrabFocus ();
 					txtBarcode.Text = "";
 				}
 			} catch (Exception d) {
 				MessageBox.Show (this, MessageType.Error,
 										"Error, please show this to your administrator:\n"
 										+ d.ToString ());
-
-				txtBarcode.Text = "";
 				return;
 			}
+		}
+
+		protected void OnTxtPriceActivated (object sender, System.EventArgs e)
+		{
+			OnBtnAddToListClicked (sender, e);
 		}
 
 		protected void OnBtnClearClicked (object sender, System.EventArgs e)
 		{
 			txtBarcode.Text = "";
 			txtPrice.Text = "";
+			txtBarcode.GrabFocus ();
 		}
 
 		protected void OnBtnCancelClicked (object sender, System.EventArgs e)
@@ -194,7 +226,7 @@ namespace Momiji
 
 		protected void OnBtnPayClicked (object sender, System.EventArgs e)
 		{
-			//TODO mark items as sold
+			//TODO mark items as sold and tag receipt
 			if (txtPaid.Text == "") {
 				MessageBox.Show (this, MessageType.Info,
 										"Please specify the amount that the customer has paid");
@@ -250,11 +282,20 @@ namespace Momiji
 				btnPay.Sensitive = false;
 				txtPaid.Sensitive = false;
 				txtBarcode.Sensitive = false;
+				txtPrice.Sensitive = false;
+				btnAddToList.Sensitive = false;
+				btnClear.Sensitive = false;
+				btnCancel.GrabFocus ();
 
 			} else {
 				MessageBox.Show (this, MessageType.Error,
 										"Connection Error, please close and try again.");
 			}
+		}
+
+		protected void OnTxtPaidActivated (object sender, System.EventArgs e)
+		{
+			OnBtnPayClicked (sender, e);
 		}
 	}
 }
