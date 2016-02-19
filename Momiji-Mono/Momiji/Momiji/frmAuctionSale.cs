@@ -1,4 +1,6 @@
 using System;
+using Gtk;
+using MySql.Data.MySqlClient;
 
 namespace Momiji
 {
@@ -20,8 +22,7 @@ namespace Momiji
 
 		private void ResetForm ()
 		{
-			//TODO change widget names
-			/*txtBarcode.Sensitive = true;
+			txtBarcode.Sensitive = true;
 			btnCancel.Sensitive = false;
 			btnPay.Sensitive = false;
 			txtPaid.Sensitive = false;
@@ -31,7 +32,7 @@ namespace Momiji
 			txtPrice.Text = "";
 			txtTotal.Text = "";
 			txtChange.Text = "";
-			txtPaid.Text = "";*/
+			txtPaid.Text = "";
 			this.items = "";
 			this.prices = "";
 			this.total = 0;
@@ -76,7 +77,7 @@ namespace Momiji
 			parent.CleanupAuctionSale ();
 		}
 
-		protected void OnbtnAddToListClicked (object sender, System.EventArgs e)
+		protected void OnBtnAddToListClicked (object sender, System.EventArgs e)
 		{
 			//Wildcards are considered null characters
 			txtBarcode.Text = txtBarcode.Text.Replace ("*", "").ToUpper ();
@@ -121,7 +122,7 @@ namespace Momiji
 			//Catch an invalid price
 			int Price;
 			try {
-				ArtistID = Int32.Parse (txtPrice.Text);
+				Price = Int32.Parse (txtPrice.Text);
 			} catch {
 				MessageBox.Show (this, MessageType.Error,
 										"Invalid Price");
@@ -156,7 +157,7 @@ namespace Momiji
 					txtTotal.Text = String.Format ("{0:0.00}", total);
 
 					items = items + txtBarcode.Text.ToUpper () + "#";
-					prices = prices + Price.ToString + "#";
+					prices = prices + Price.ToString() + "#";
 
 					txtBarcode.Text = "";
 					btnPay.Sensitive = true;
@@ -178,7 +179,7 @@ namespace Momiji
 			}
 		}
 
-		protected void OnbtnClearClicked (object sender, System.EventArgs e)
+		protected void OnBtnClearClicked (object sender, System.EventArgs e)
 		{
 			txtBarcode.Text = "";
 			txtPrice.Text = "";
@@ -189,6 +190,71 @@ namespace Momiji
 			MerchNode.clearTable (ref lstMerch, ref merchStore);
 
 			ResetForm ();
+		}
+
+		protected void OnBtnPayClicked (object sender, System.EventArgs e)
+		{
+			//TODO mark items as sold
+			if (txtPaid.Text == "") {
+				MessageBox.Show (this, MessageType.Info,
+										"Please specify the amount that the customer has paid");
+				return;
+			}
+
+			float paid;
+
+			try {
+				paid = float.Parse (txtPaid.Text);
+			} catch {
+				MessageBox.Show (this, MessageType.Info,
+										"Please enter a valid number in the paid box");
+				return;
+			}
+
+			if (total > paid) {
+				MessageBox.Show (this, MessageType.Info,
+										"Paid amount is too small");
+				return;
+			}
+
+			SQL SQLConnection = parent.currentSQLConnection;
+			SQLResult User = parent.currentUser;
+
+			MySqlCommand query = new MySqlCommand ("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isQuickSale`, `itemArray`, `priceArray`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES);", SQLConnection.GetConnection ());
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
+			query.Parameters.AddWithValue ("@TOTAL", total);
+			query.Parameters.AddWithValue ("@PAID", paid);
+			query.Parameters.AddWithValue ("@ITEMS", items);
+			query.Parameters.AddWithValue ("@PRICES", prices);
+			SQLResult results = SQLConnection.Query (query);
+
+			if (results.successful ()) {
+				query = new MySqlCommand ("SELECT `id` FROM `receipts` WHERE `userID` = @UID AND `itemArray` = @ITEMS AND `priceArray` = @PRICES AND `isQuickSale` = 1 ORDER BY `id` DESC LIMIT 0,1;", SQLConnection.GetConnection ());
+				query.Prepare ();
+				query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
+				query.Parameters.AddWithValue ("@TOTAL", total);
+				query.Parameters.AddWithValue ("@PAID", paid);
+				query.Parameters.AddWithValue ("@ITEMS", items);
+				query.Parameters.AddWithValue ("@PRICES", prices);
+				results = SQLConnection.Query (query);
+				txtChange.Text = String.Format ("{0:0.00}", (paid - total));
+
+				MessageBox.Show (this, MessageType.Info,
+										"Receipt processed, please give the following change: "
+										+ txtChange.Text +
+										"\n\nPlease check the receipt printer.\nThis was transaction ID #"
+										+ results.getCell ("id", 0));
+
+				SQLConnection.LogAction ("Made a quick sale with receipt #" + results.getCell ("id", 0), User);
+				btnPay.Sensitive = false;
+				txtPaid.Sensitive = false;
+				txtBarcode.Sensitive = false;
+
+			} else {
+				MessageBox.Show (this, MessageType.Error,
+										"Connection Error, please close and try again.");
+			}
 		}
 	}
 }
