@@ -374,6 +374,7 @@ namespace Momiji
 			this.DefaultHeight = 314;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+			this.addAction.Activated += new global::System.EventHandler (this.OnAddUserActionActivated);
 			this.closeAction.Activated += new global::System.EventHandler (this.OnExitActionActivated);
 			this.quitAction.Activated += new global::System.EventHandler (this.OnQuitActionActivated);
 			this.btnQuickSale.Clicked += new global::System.EventHandler (this.OnBtnQuickSaleClicked);

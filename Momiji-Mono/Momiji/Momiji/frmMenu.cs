@@ -198,6 +198,11 @@ namespace Momiji
 			this.Destroy ();
 			Application.Quit ();
 		}
+
+		protected void OnAddUserActionActivated (object sender, System.EventArgs e)
+		{
+			new frmUserAdd(this);
+		}
 	}
 }
 

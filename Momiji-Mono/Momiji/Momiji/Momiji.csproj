@@ -90,6 +90,8 @@
     <Compile Include="Extern\MD5.cs" />
     <Compile Include="Extern\MessageBox.cs" />
     <Compile Include="MerchNode.cs" />
+    <Compile Include="frmUserAdd.cs" />
+    <Compile Include="gtk-gui\Momiji.frmUserAdd.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
