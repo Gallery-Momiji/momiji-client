@@ -124,8 +124,8 @@ namespace Momiji
 						return;
 					}
 
-					merchStore.AddNode (new MerchNode (ArtistID.ToString (),
-										PieceID.ToString (),
+					merchStore.AddNode (new MerchNode (ArtistID,
+										PieceID,
 										results.getCell ("PieceTitle", 0),
 										"$" + String.Format ("{0:0.00}",
 										float.Parse (results.getCell ("PiecePrice", 0)))

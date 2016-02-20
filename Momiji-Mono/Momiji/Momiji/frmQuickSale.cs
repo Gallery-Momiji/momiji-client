@@ -143,12 +143,12 @@ namespace Momiji
 						return;
 					}
 
-					merchStore.AddNode (new MerchNode (ArtistID.ToString (),
-										MerchID.ToString (),
-										results.getCell ("MerchTitle", 0),
-										"$" + String.Format ("{0:0.00}",
-										float.Parse (results.getCell ("MerchQuickSale", 0)))
-										));
+					merchStore.AddNode (new MerchNode (ArtistID,
+									MerchID,
+									results.getCell ("MerchTitle", 0),
+									"$" + String.Format ("{0:0.00}",
+									float.Parse (results.getCell ("MerchQuickSale", 0)))
+									));
 
 					total = total + float.Parse (results.getCell ("MerchQuickSale", 0));
 					txtTotal.Text = String.Format ("{0:0.00}", total);

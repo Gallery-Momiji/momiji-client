@@ -100,10 +100,11 @@ namespace Momiji
 			//  5 - Check-in Artists
 			//  6 - Generate Bidding sheets,
 			//      Check-out Artists
+			//		Bidder Lookup
 			//  7 - Manage artist stock
 			//  8 - View Activity logs
 			//  9 - View Monetary activity logs
-			// 10 - Manage Treasury
+			// 10 - Manage Treasury - refunds
 			// 11 - Administrator
 			////////////////////////////
 			int userClass = User.getCellInt ("class", 0);
@@ -201,7 +202,7 @@ namespace Momiji
 
 		protected void OnAddUserActionActivated (object sender, System.EventArgs e)
 		{
-			new frmUserAdd(this);
+			new frmUserAdd (this);
 		}
 	}
 }

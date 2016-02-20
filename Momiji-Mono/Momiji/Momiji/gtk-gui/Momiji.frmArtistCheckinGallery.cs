@@ -282,6 +282,7 @@ namespace Momiji
 			this.DefaultWidth = 900;
 			this.DefaultHeight = 350;
 			this.Show ();
+			this.btnCheckIn.Clicked += new global::System.EventHandler (this.OnBtnCheckInClicked);
 		}
 	}
 }

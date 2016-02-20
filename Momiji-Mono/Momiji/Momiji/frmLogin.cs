@@ -142,12 +142,14 @@ namespace Momiji
 
 		protected void OnTxtPasswordActivated (object sender, System.EventArgs e)
 		{
-			OnBtnLoginClicked (sender, e);
+			if (btnLogin.Sensitive)
+				OnBtnLoginClicked (sender, e);
 		}
 
 		protected void OnTxtUsernameActivated (object sender, System.EventArgs e)
 		{
-			OnBtnLoginClicked (sender, e);
+			if (btnLogin.Sensitive)
+				OnBtnLoginClicked (sender, e);
 		}
 
 		protected void OnBtnRetryClicked (object sender, System.EventArgs e)

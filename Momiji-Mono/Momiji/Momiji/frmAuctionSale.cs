@@ -172,10 +172,10 @@ namespace Momiji
 						return;
 					}
 
-					merchStore.AddNode (new MerchNode (ArtistID.ToString (),
-										MerchID.ToString (),
-										results.getCell ("MerchTitle", 0),
-										"$" + String.Format ("{0:0.00}", Price)));
+					merchStore.AddNode (new MerchNode (ArtistID,
+									MerchID,
+									results.getCell ("MerchTitle", 0),
+									"$" + String.Format ("{0:0.00}", Price)));
 
 					total = total + Price;
 					txtTotal.Text = String.Format ("{0:0.00}", total);
