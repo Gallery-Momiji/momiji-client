@@ -32,7 +32,7 @@ namespace Momiji
 		protected void OnButton1Clicked (object sender, System.EventArgs e)
 		{
 			string userName, password1, password2 , userFnameLname, userClass;
-			userName = txtUsername.Text;
+			userName = txtUsername.Text.ToLower();
 			password1 = txtPassword.Text;
 			password2 = txtPasswordRetype.Text;
 			userFnameLname = txtFirstAndLast.Text;

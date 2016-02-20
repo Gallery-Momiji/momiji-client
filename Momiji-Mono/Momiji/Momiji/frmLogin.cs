@@ -81,7 +81,7 @@ namespace Momiji
 		protected void OnBtnLoginClicked (object sender, System.EventArgs e)
 		{
 			string pass = txtPassword.Text;
-			string user = txtUsername.Text;
+			string user = txtUsername.Text.ToLower();
 
 			//Check for 0 length entry
 			if (user.Length == 0) {
