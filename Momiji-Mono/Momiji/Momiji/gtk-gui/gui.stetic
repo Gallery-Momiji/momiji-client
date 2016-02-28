@@ -2362,7 +2362,7 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmUserAdd" design-size="257 406">
+  <widget class="Gtk.Window" id="Momiji.frmUserAdd" design-size="320 407">
     <property name="MemberName" />
     <property name="Title" translatable="yes">frmUserAdd</property>
     <property name="TypeHint">Dialog</property>
@@ -2372,7 +2372,7 @@ offer a cheque, and ask for help.</property>
       <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />
         <property name="Spacing">6</property>
-        <property name="BorderWidth">15</property>
+        <property name="BorderWidth">16</property>
         <child>
           <widget class="Gtk.Label" id="lblUsername">
             <property name="MemberName" />
@@ -2499,17 +2499,18 @@ offer a cheque, and ask for help.</property>
           <widget class="Gtk.ComboBox" id="drpRank">
             <property name="MemberName" />
             <property name="IsTextCombo">True</property>
-            <property name="Items">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11</property>
+            <property name="Items" translatable="yes">0 - Login
+1 - Gallery Store Sales
+2 - Quick Sales
+3 - Auction Sales
+4 - Re-Print Receipts
+5 - Check-in Artists
+6 - Bidding sheets, Check-out, Bidders
+7 - Manage artist stock
+8 - View Activity logs
+9 - View Monetary activity logs
+10 - Manage Treasury/refunds
+11 - Administrator</property>
           </widget>
           <packing>
             <property name="Position">9</property>
@@ -2701,7 +2702,7 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmUserEdit" design-size="400 456">
+  <widget class="Gtk.Window" id="Momiji.frmUserEdit" design-size="404 488">
     <property name="MemberName" />
     <property name="Title" translatable="yes">frmUserEdit</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -2711,6 +2712,7 @@ offer a cheque, and ask for help.</property>
       <widget class="Gtk.VBox" id="vboxUser">
         <property name="MemberName" />
         <property name="Spacing">6</property>
+        <property name="BorderWidth">16</property>
         <child>
           <widget class="Gtk.Label" id="lblChooseUser">
             <property name="MemberName" />
@@ -2870,7 +2872,18 @@ offer a cheque, and ask for help.</property>
                       <widget class="Gtk.ComboBox" id="drpRank">
                         <property name="MemberName" />
                         <property name="IsTextCombo">True</property>
-                        <property name="Items" translatable="yes" />
+                        <property name="Items" translatable="yes">0 - Login
+1 - Gallery Store Sales
+2 - Quick Sales
+3 - Auction Sales
+4 - Re-Print Receipts
+5 - Check-in Artists
+6 - Bidding sheets, Check-out, Bidders
+7 - Manage artist stock
+8 - View Activity logs
+9 - View Monetary activity logs
+10 - Manage Treasury/refunds
+11 - Administrator</property>
                       </widget>
                       <packing>
                         <property name="Position">5</property>

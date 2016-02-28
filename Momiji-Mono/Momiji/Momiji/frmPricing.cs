@@ -4,11 +4,26 @@ namespace Momiji
 {
 	public partial class frmPricing : Gtk.Window
 	{
-		public frmPricing () : 
+		/////////////////////////
+		//  Private Attributes //
+		/////////////////////////
+
+		private frmMenu parent;
+
+		/////////////////////////
+		//     Contructor      //
+		/////////////////////////
+
+		public frmPricing (frmMenu parent) : 
 				base(Gtk.WindowType.Toplevel)
 		{
+			this.parent = parent;
 			this.Build ();
 		}
+
+		/////////////////////////
+		//     GTK Signals     //
+		/////////////////////////
 	}
 }
 

@@ -126,17 +126,18 @@ namespace Momiji
 			w9.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.drpRank = global::Gtk.ComboBox.NewText ();
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("1"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("2"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("3"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("4"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("5"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("6"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("7"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("8"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("9"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("10"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("11"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("0 - Login"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("1 - Gallery Store Sales"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("2 - Quick Sales"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("3 - Auction Sales"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("4 - Re-Print Receipts"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("5 - Check-in Artists"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("6 - Bidding sheets, Check-out, Bidders"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("7 - Manage artist stock"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("8 - View Activity logs"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("9 - View Monetary activity logs"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("10 - Manage Treasury/refunds"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("11 - Administrator"));
 			this.drpRank.Name = "drpRank";
 			this.vbox1.Add (this.drpRank);
 			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.drpRank]));
@@ -207,7 +208,7 @@ namespace Momiji
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 257;
+			this.DefaultWidth = 318;
 			this.DefaultHeight = 406;
 			this.Show ();
 			this.txtUsername.Activated += new global::System.EventHandler (this.OnTxtUsernameActivated);
