@@ -1,4 +1,6 @@
 using System;
+using Gtk;
+using MySql.Data.MySqlClient;
 
 namespace Momiji
 {

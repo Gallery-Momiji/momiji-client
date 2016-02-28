@@ -16,6 +16,7 @@ namespace Momiji
 			this.Name = "Momiji.frmReceipts";
 			this.Title = global::Mono.Unix.Catalog.GetString ("frmReceipts");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.Modal = true;
 			// Container child Momiji.frmReceipts.Gtk.Container+ContainerChild
 			this.vbox4 = new global::Gtk.VBox ();
 			this.vbox4.Name = "vbox4";
@@ -72,6 +73,7 @@ namespace Momiji
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 116;
 			this.Show ();
+			this.btnPrint.Clicked += new global::System.EventHandler (this.OnBtnPrintClicked);
 		}
 	}
 }

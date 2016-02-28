@@ -32,7 +32,7 @@ namespace Momiji
 			this.vbox1 = new global::Gtk.VBox ();
 			this.vbox1.Name = "vbox1";
 			this.vbox1.Spacing = 6;
-			this.vbox1.BorderWidth = ((uint)(15));
+			this.vbox1.BorderWidth = ((uint)(16));
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.lblUsername = new global::Gtk.Label ();
 			this.lblUsername.Name = "lblUsername";
@@ -208,8 +208,8 @@ namespace Momiji
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 318;
-			this.DefaultHeight = 406;
+			this.DefaultWidth = 320;
+			this.DefaultHeight = 407;
 			this.Show ();
 			this.txtUsername.Activated += new global::System.EventHandler (this.OnTxtUsernameActivated);
 			this.txtFirstAndLast.Activated += new global::System.EventHandler (this.OnTxtFirstAndLastActivated);

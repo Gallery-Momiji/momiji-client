@@ -43,6 +43,7 @@ namespace Momiji
 			this.vboxUser = new global::Gtk.VBox ();
 			this.vboxUser.Name = "vboxUser";
 			this.vboxUser.Spacing = 6;
+			this.vboxUser.BorderWidth = ((uint)(16));
 			// Container child vboxUser.Gtk.Box+BoxChild
 			this.lblChooseUser = new global::Gtk.Label ();
 			this.lblChooseUser.Name = "lblChooseUser";
@@ -189,6 +190,18 @@ namespace Momiji
 			w26.Fill = false;
 			// Container child vboxUserInfo.Gtk.Box+BoxChild
 			this.drpRank = global::Gtk.ComboBox.NewText ();
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("0 - Login"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("1 - Gallery Store Sales"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("2 - Quick Sales"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("3 - Auction Sales"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("4 - Re-Print Receipts"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("5 - Check-in Artists"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("6 - Bidding sheets, Check-out, Bidders"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("7 - Manage artist stock"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("8 - View Activity logs"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("9 - View Monetary activity logs"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("10 - Manage Treasury/refunds"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("11 - Administrator"));
 			this.drpRank.Name = "drpRank";
 			this.vboxUserInfo.Add (this.drpRank);
 			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.vboxUserInfo [this.drpRank]));
@@ -352,8 +365,8 @@ namespace Momiji
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 400;
-			this.DefaultHeight = 456;
+			this.DefaultWidth = 404;
+			this.DefaultHeight = 488;
 			this.Show ();
 		}
 	}

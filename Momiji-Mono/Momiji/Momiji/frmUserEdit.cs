@@ -16,7 +16,7 @@ namespace Momiji
 		//     Contructor      //
 		/////////////////////////
 
-		public frmUserEdit () : 
+		public frmUserEdit (frmMenu parent) : 
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;

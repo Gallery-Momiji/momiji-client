@@ -204,6 +204,11 @@ namespace Momiji
 		{
 			new frmUserAdd (this);
 		}
+
+		protected void OnReprintReceiptsActionActivated (object sender, System.EventArgs e)
+		{
+			new frmReceipts (this);
+		}
 	}
 }
 
