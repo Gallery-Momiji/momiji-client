@@ -1,5 +1,0 @@
-db_user=USER
-db_pass=PASSWORD
-db_name=DBNAME
-db_host=DBADDRESS
-db_port=DBPORT
