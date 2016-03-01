@@ -222,7 +222,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmMenu" design-size="438 315">
+  <widget class="Gtk.Window" id="Momiji.frmMenu" design-size="438 307">
     <action-group name="Default">
       <action id="FileAction">
         <property name="Type">Action</property>
@@ -289,7 +289,7 @@
       <action id="closeAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Logout</property>
-        <property name="ShortLabel" translatable="yes">Exit</property>
+        <property name="ShortLabel" translatable="yes">Logout</property>
         <property name="StockId">gtk-close</property>
         <signal name="Activated" handler="OnExitActionActivated" />
       </action>
@@ -504,7 +504,7 @@
       <action id="quitAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Quit</property>
-        <property name="ShortLabel" translatable="yes">_Quit</property>
+        <property name="ShortLabel" translatable="yes">Quit</property>
         <property name="StockId">gtk-quit</property>
         <signal name="Activated" handler="OnQuitActionActivated" />
       </action>

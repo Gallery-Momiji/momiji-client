@@ -37,9 +37,9 @@ namespace Momiji
 				for (int i = 0; i < results.GetNumberOfRows(); i++) {
 					idnumbers [i] = results.getCellInt ("id", i);
 					string temp;
-					temp = results.getCell ("id", i);
-					temp += " by user " + results.getCell ("userid", i);
-					temp += " for " + results.getCell ("price", i);
+					temp = "Receipt ID " + results.getCell ("id", i);
+					temp += " processed by staff id #" + results.getCell ("userid", i);
+					temp += " for $" + results.getCell ("price", i);
 					drpTransaction.AppendText (temp);
 				}
 			}
@@ -64,7 +64,7 @@ namespace Momiji
 
 			SQLResult result = SQLConnection.Query (reprint);
 
-			if (result.successful () && result.GetNumberOfRows () == 1)
+			if (result.successful ())
 				MessageBox.Show (this, MessageType.Info, "The follow receipt has been requested to be reprinted:\n" + drpTransaction.ActiveText +"\nPlease check receipt printer.");
 			else
 				MessageBox.Show (this, MessageType.Info, "Could not reprint receipt.\nPlease contact your administrator.");

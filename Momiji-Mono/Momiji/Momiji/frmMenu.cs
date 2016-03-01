@@ -124,21 +124,22 @@ namespace Momiji
 
 			//Basic Functionality:
 			btnGalleryStoreSale.Sensitive = userClass >= 1 ? true : false;
+			//TODO these two should be block until a certain time, except admin
 			btnQuickSale.Sensitive = userClass >= 2 ? true : false;
-			//TODO should be block until a certain time, except admin
 			btnAuctionSale.Sensitive = userClass >= 3 ? true : false;
 
 			//Advanced Functionality:
-			//TODO Advanced functions not implemented
-			//receiptRePrintToolStripMenuItem.Sensitive = userClass >= 4 ? true : false;
-			//checkInToolStripMenuItem.Sensitive = userClass >= 5 ? true : false;
-			//checkOutToolStripMenuItem.Sensitive = userClass >= 6 ? true : false;
-			//generateBiddingSheetsToolStripMenuItem.Sensitive = userClass >= 6 ? true : false;
-			//manageToolStripMenuItem.Sensitive = userClass >= 7 ? true : false;
-			//checkUserActivitiesToolStripMenuItem.Sensitive = userClass >= 8 ? true : false;
-			//checkLatestReceiptsToolStripMenuItem.Sensitive = userClass >= 9 ? true : false;
-			//pricingToolStripMenuItem.Sensitive = userClass == 11 ? true : false;
-			//usersToolStripMenuItem.Sensitive = userClass == 11 ? true : false;
+			reprintReceiptsAction.Sensitive = userClass >= 4 ? true : false;
+			checkInAction.Sensitive = userClass >= 5 ? true : false;
+			CheckOutAction.Sensitive = userClass >= 6 ? true : false;
+			GenerateBiddingSheetsAction.Sensitive = userClass >= 6 ? true : false;
+			ManageArtistAction.Sensitive = userClass >= 7 ? true : false;
+			checkUserActivitiesAction.Sensitive = userClass >= 8 ? true : false;
+			checkLatestReceiptsAction.Sensitive = userClass >= 9 ? true : false;
+            CheckSalesAction.Sensitive = userClass >= 9 ? true : false;
+			RefundAction.Sensitive = userClass == 10 ? true : false;
+			PricingAction.Sensitive = userClass == 11 ? true : false;
+			UsersPrefAction.Sensitive = userClass == 11 ? true : false;
 		}
 
 		/////////////////////////
