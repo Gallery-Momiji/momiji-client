@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7FEF5642-8CB6-40F3-95B5-51E61D000E49}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -11,6 +11,7 @@
     <AssemblyName>Momiji</AssemblyName>
     <StartupObject>Momiji.MainClass</StartupObject>
     <ApplicationIcon>Resources\Crystal-Star-256.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,10 +63,10 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources/Crystal-Star-256.ico" />
     <EmbeddedResource Include="Resources\tag-sale-icon.png" />
     <EmbeddedResource Include="Resources\shopping-bag-icon.png" />
     <EmbeddedResource Include="Resources\shopping-basket-icon.png" />
+    <EmbeddedResource Include="Resources\Crystal-Star-256.ico" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
