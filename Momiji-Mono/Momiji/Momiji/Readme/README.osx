@@ -5,4 +5,4 @@ First make sure you have the Mono Framework installed:
 
 http://download.mono-project.com/archive/4.2.2/macos-10-x86/MonoFramework-MDK-4.2.2.30.macos10.xamarin.x86.pkg
 
-Then open Momiji.sh in Finder to run
+Then open/double-click Momiji (not Momiji.exe) in Finder to run

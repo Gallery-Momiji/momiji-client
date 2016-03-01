@@ -13,4 +13,4 @@ Arch/Manjaro:
 sudo pacman -S mono gtk-sharp-2
 
 
-Then execute Momiji.sh to run
+Then execute Momiji (not Momiji.exe) to run
