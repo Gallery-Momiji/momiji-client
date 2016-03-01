@@ -9,6 +9,8 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Momiji</RootNamespace>
     <AssemblyName>Momiji</AssemblyName>
+    <StartupObject>Momiji.MainClass</StartupObject>
+    <ApplicationIcon>Resources\Crystal-Star-256.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,6 +62,7 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources/Crystal-Star-256.ico" />
     <EmbeddedResource Include="Resources\tag-sale-icon.png" />
     <EmbeddedResource Include="Resources\shopping-bag-icon.png" />
     <EmbeddedResource Include="Resources\shopping-basket-icon.png" />

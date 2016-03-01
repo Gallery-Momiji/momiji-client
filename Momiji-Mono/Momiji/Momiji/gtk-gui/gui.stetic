@@ -10,6 +10,7 @@
   <widget class="Gtk.Window" id="Momiji.frmLogin" design-size="524 157">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Welcome to Gallery Momiji</property>
+    <property name="Icon">resource:Momiji.Resources.Crystal-Star-256.ico</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>

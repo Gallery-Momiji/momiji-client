@@ -23,6 +23,7 @@ namespace Momiji
 			// Widget Momiji.frmLogin
 			this.Name = "Momiji.frmLogin";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Welcome to Gallery Momiji");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.Crystal-Star-256.ico");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Resizable = false;
 			this.AllowGrow = false;
