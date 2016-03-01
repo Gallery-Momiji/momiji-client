@@ -464,7 +464,7 @@
       <action id="FAQAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_FAQ</property>
-        <property name="ShortLabel" translatable="yes">Panic</property>
+        <property name="ShortLabel" translatable="yes">FAQ</property>
         <property name="StockId">gtk-dialog-warning</property>
       </action>
       <action id="aboutAction">
