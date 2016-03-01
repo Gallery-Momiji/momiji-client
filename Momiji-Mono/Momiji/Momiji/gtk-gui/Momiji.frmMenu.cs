@@ -227,45 +227,7 @@ namespace Momiji
 			this.vboxMenu.Name = "vboxMenu";
 			this.vboxMenu.Spacing = 8;
 			// Container child vboxMenu.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><menubar name=\'menubarMenu\'><menu name=\'FileAction\' action=\'FileAction\'><menu" +
-			" name=\'preferencesAction\' action=\'preferencesAction\'><menuitem name=\'PricingActi" +
-			"on\' action=\'PricingAction\'/><menu name=\'UsersPrefAction\' action=\'UsersPrefAction" +
-			"\'><menuitem name=\'addUserAction\' action=\'addUserAction\'/><menuitem name=\'editUse" +
-			"rAction\' action=\'editUserAction\'/></menu><menuitem/></menu><menuitem name=\'close" +
-			"Action\' action=\'closeAction\'/><menuitem name=\'quitAction\' action=\'quitAction\'/><" +
-			"/menu><menu name=\'ArtistsAction\' action=\'ArtistsAction\'><menu name=\'checkInActio" +
-			"n\' action=\'checkInAction\'><menuitem name=\'checkInByIDAction\' action=\'checkInByID" +
-			"Action\'/><menuitem name=\'checkInByNameAction\' action=\'checkInByNameAction\'/></me" +
-			"nu><menuitem name=\'CheckOutAction\' action=\'CheckOutAction\'/><menuitem/><menu nam" +
-			"e=\'ManageArtistAction\' action=\'ManageArtistAction\'><menuitem name=\'AddArtistActi" +
-			"on\' action=\'AddArtistAction\'/><menu name=\'EditArtistAction\' action=\'EditArtistAc" +
-			"tion\'><menuitem name=\'EditArtistByIDAction\' action=\'EditArtistByIDAction\'/><menu" +
-			"item name=\'EditArtistByNameAction\' action=\'EditArtistByNameAction\'/></menu><menu" +
-			" name=\'DeleteArtistAction\' action=\'DeleteArtistAction\'><menuitem name=\'DeleteArt" +
-			"istByIDAction\' action=\'DeleteArtistByIDAction\'/><menuitem name=\'DeleteArtistByNa" +
-			"meAction1\' action=\'DeleteArtistByNameAction1\'/></menu><menu name=\'EditArtistMerc" +
-			"hAction\' action=\'EditArtistMerchAction\'><menuitem name=\'EditArtistMerchByIDActio" +
-			"n\' action=\'EditArtistMerchByIDAction\'/><menuitem name=\'EditArtistMerchByNameActi" +
-			"on\' action=\'EditArtistMerchByNameAction\'/></menu><menu name=\'EditArtistGSMerchAc" +
-			"tion\' action=\'EditArtistGSMerchAction\'><menuitem name=\'EditArtistGSMerchByIDActi" +
-			"on\' action=\'EditArtistGSMerchByIDAction\'/><menuitem name=\'EditArtistGSMerchByNam" +
-			"eAction\' action=\'EditArtistGSMerchByNameAction\'/></menu><menu name=\'ManageArtist" +
-			"BalanceAction\' action=\'ManageArtistBalanceAction\'><menuitem name=\'ManageArtistBy" +
-			"IDAction\' action=\'ManageArtistByIDAction\'/><menuitem name=\'ManageArtistByNameAct" +
-			"ion\' action=\'ManageArtistByNameAction\'/></menu></menu><menu name=\'GenerateBiddin" +
-			"gAction\' action=\'GenerateBiddingAction\'><menuitem name=\'GenerateBiddingByIDActio" +
-			"n\' action=\'GenerateBiddingByIDAction\'/><menuitem name=\'GenerateBiddingByNameActi" +
-			"on\' action=\'GenerateBiddingByNameAction\'/></menu></menu><menu name=\'TreasuryActi" +
-			"on\' action=\'TreasuryAction\'><menuitem name=\'CheckSalesAction\' action=\'CheckSales" +
-			"Action\'/><menuitem name=\'RefundAction\' action=\'RefundAction\'/><menuitem name=\'re" +
-			"printReceiptsAction\' action=\'reprintReceiptsAction\'/></menu><menu name=\'LogActio" +
-			"n\' action=\'LogAction\'><menuitem name=\'checkUserActivitiesAction\' action=\'checkUs" +
-			"erActivitiesAction\'/><menuitem name=\'checkLatestReceiptsAction\' action=\'checkLat" +
-			"estReceiptsAction\'/></menu><menu name=\'HelpAction\' action=\'HelpAction\'><menu nam" +
-			"e=\'FAQAction\' action=\'FAQAction\'><menuitem name=\'WhatIsThisAction\' action=\'WhatI" +
-			"sThisAction\'/><menuitem name=\'WhatDoIDoAction\' action=\'WhatDoIDoAction\'/><menuit" +
-			"em name=\'WhyCantUseFeatureAction\' action=\'WhyCantUseFeatureAction\'/></menu><menu" +
-			"item name=\'aboutAction\' action=\'aboutAction\'/></menu></menubar></ui>");
+			this.UIManager.AddUiFromString ("<ui><menubar name=\'menubarMenu\'><menu name=\'FileAction\' action=\'FileAction\'><menu name=\'preferencesAction\' action=\'preferencesAction\'><menuitem name=\'PricingAction\' action=\'PricingAction\'/><menu name=\'UsersPrefAction\' action=\'UsersPrefAction\'><menuitem name=\'addUserAction\' action=\'addUserAction\'/><menuitem name=\'editUserAction\' action=\'editUserAction\'/></menu><menuitem/></menu><menuitem name=\'closeAction\' action=\'closeAction\'/><menuitem name=\'quitAction\' action=\'quitAction\'/></menu><menu name=\'ArtistsAction\' action=\'ArtistsAction\'><menu name=\'checkInAction\' action=\'checkInAction\'><menuitem name=\'checkInByIDAction\' action=\'checkInByIDAction\'/><menuitem name=\'checkInByNameAction\' action=\'checkInByNameAction\'/></menu><menuitem name=\'CheckOutAction\' action=\'CheckOutAction\'/><menuitem/><menu name=\'ManageArtistAction\' action=\'ManageArtistAction\'><menuitem name=\'AddArtistAction\' action=\'AddArtistAction\'/><menu name=\'EditArtistAction\' action=\'EditArtistAction\'><menuitem name=\'EditArtistByIDAction\' action=\'EditArtistByIDAction\'/><menuitem name=\'EditArtistByNameAction\' action=\'EditArtistByNameAction\'/></menu><menu name=\'DeleteArtistAction\' action=\'DeleteArtistAction\'><menuitem name=\'DeleteArtistByIDAction\' action=\'DeleteArtistByIDAction\'/><menuitem name=\'DeleteArtistByNameAction1\' action=\'DeleteArtistByNameAction1\'/></menu><menu name=\'EditArtistMerchAction\' action=\'EditArtistMerchAction\'><menuitem name=\'EditArtistMerchByIDAction\' action=\'EditArtistMerchByIDAction\'/><menuitem name=\'EditArtistMerchByNameAction\' action=\'EditArtistMerchByNameAction\'/></menu><menu name=\'EditArtistGSMerchAction\' action=\'EditArtistGSMerchAction\'><menuitem name=\'EditArtistGSMerchByIDAction\' action=\'EditArtistGSMerchByIDAction\'/><menuitem name=\'EditArtistGSMerchByNameAction\' action=\'EditArtistGSMerchByNameAction\'/></menu><menu name=\'ManageArtistBalanceAction\' action=\'ManageArtistBalanceAction\'><menuitem name=\'ManageArtistByIDAction\' action=\'ManageArtistByIDAction\'/><menuitem name=\'ManageArtistByNameAction\' action=\'ManageArtistByNameAction\'/></menu></menu><menu name=\'GenerateBiddingAction\' action=\'GenerateBiddingAction\'><menuitem name=\'GenerateBiddingByIDAction\' action=\'GenerateBiddingByIDAction\'/><menuitem name=\'GenerateBiddingByNameAction\' action=\'GenerateBiddingByNameAction\'/></menu></menu><menu name=\'TreasuryAction\' action=\'TreasuryAction\'><menuitem name=\'CheckSalesAction\' action=\'CheckSalesAction\'/><menuitem name=\'RefundAction\' action=\'RefundAction\'/><menuitem name=\'reprintReceiptsAction\' action=\'reprintReceiptsAction\'/></menu><menu name=\'LogAction\' action=\'LogAction\'><menuitem name=\'checkUserActivitiesAction\' action=\'checkUserActivitiesAction\'/><menuitem name=\'checkLatestReceiptsAction\' action=\'checkLatestReceiptsAction\'/></menu><menu name=\'HelpAction\' action=\'HelpAction\'><menu name=\'FAQAction\' action=\'FAQAction\'><menuitem name=\'WhatIsThisAction\' action=\'WhatIsThisAction\'/><menuitem name=\'WhatDoIDoAction\' action=\'WhatDoIDoAction\'/><menuitem name=\'WhyCantUseFeatureAction\' action=\'WhyCantUseFeatureAction\'/></menu><menuitem name=\'aboutAction\' action=\'aboutAction\'/></menu></menubar></ui>");
 			this.menubarMenu = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubarMenu")));
 			this.menubarMenu.Name = "menubarMenu";
 			this.vboxMenu.Add (this.menubarMenu);
@@ -284,15 +246,26 @@ namespace Momiji
 			this.btnQuickSale.HeightRequest = 130;
 			this.btnQuickSale.CanFocus = true;
 			this.btnQuickSale.Name = "btnQuickSale";
-			this.btnQuickSale.Label = "Quick\r\nSale";
-			global::Gtk.Image w3 = new global::Gtk.Image ();
-			w3.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.tag-sale-icon.png");
-			this.btnQuickSale.Image = w3;
+			// Container child btnQuickSale.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w3 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w4 = new global::Gtk.HBox ();
+			w4.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w5 = new global::Gtk.Image ();
+			w5.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.tag-sale-icon.png");
+			w4.Add (w5);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w7 = new global::Gtk.Label ();
+			w7.LabelProp = global::Mono.Unix.Catalog.GetString ("Quick\nSale");
+			w4.Add (w7);
+			w3.Add (w4);
+			this.btnQuickSale.Add (w3);
 			this.hboxButtons.Add (this.btnQuickSale);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hboxButtons [this.btnQuickSale]));
-			w4.Position = 0;
-			w4.Expand = false;
-			w4.Fill = false;
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hboxButtons [this.btnQuickSale]));
+			w11.Position = 0;
+			w11.Expand = false;
+			w11.Fill = false;
 			// Container child hboxButtons.Gtk.Box+BoxChild
 			this.btnAuctionSale = new global::Gtk.Button ();
 			this.btnAuctionSale.WidthRequest = 130;
@@ -300,15 +273,27 @@ namespace Momiji
 			this.btnAuctionSale.CanFocus = true;
 			this.btnAuctionSale.Name = "btnAuctionSale";
 			this.btnAuctionSale.UseUnderline = true;
-			this.btnAuctionSale.Label = global::Mono.Unix.Catalog.GetString ("Auction\r\nSale");
-			global::Gtk.Image w5 = new global::Gtk.Image ();
-			w5.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.shopping-bag-icon.png");
-			this.btnAuctionSale.Image = w5;
+			// Container child btnAuctionSale.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w12 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w13 = new global::Gtk.HBox ();
+			w13.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w14 = new global::Gtk.Image ();
+			w14.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.shopping-bag-icon.png");
+			w13.Add (w14);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w16 = new global::Gtk.Label ();
+			w16.LabelProp = global::Mono.Unix.Catalog.GetString ("Auction\nSale");
+			w16.UseUnderline = true;
+			w13.Add (w16);
+			w12.Add (w13);
+			this.btnAuctionSale.Add (w12);
 			this.hboxButtons.Add (this.btnAuctionSale);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hboxButtons [this.btnAuctionSale]));
-			w6.Position = 1;
-			w6.Expand = false;
-			w6.Fill = false;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hboxButtons [this.btnAuctionSale]));
+			w20.Position = 1;
+			w20.Expand = false;
+			w20.Fill = false;
 			// Container child hboxButtons.Gtk.Box+BoxChild
 			this.btnGalleryStoreSale = new global::Gtk.Button ();
 			this.btnGalleryStoreSale.WidthRequest = 130;
@@ -316,20 +301,32 @@ namespace Momiji
 			this.btnGalleryStoreSale.CanFocus = true;
 			this.btnGalleryStoreSale.Name = "btnGalleryStoreSale";
 			this.btnGalleryStoreSale.UseUnderline = true;
-			this.btnGalleryStoreSale.Label = "Gallery\r\nStore\r\nSale";
-			global::Gtk.Image w7 = new global::Gtk.Image ();
-			w7.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.shopping-basket-icon.png");
-			this.btnGalleryStoreSale.Image = w7;
+			// Container child btnGalleryStoreSale.Gtk.Container+ContainerChild
+			global::Gtk.Alignment w21 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
+			// Container child GtkAlignment.Gtk.Container+ContainerChild
+			global::Gtk.HBox w22 = new global::Gtk.HBox ();
+			w22.Spacing = 2;
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Image w23 = new global::Gtk.Image ();
+			w23.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.shopping-basket-icon.png");
+			w22.Add (w23);
+			// Container child GtkHBox.Gtk.Container+ContainerChild
+			global::Gtk.Label w25 = new global::Gtk.Label ();
+			w25.LabelProp = global::Mono.Unix.Catalog.GetString ("Gallery\nStore\nSale");
+			w25.UseUnderline = true;
+			w22.Add (w25);
+			w21.Add (w22);
+			this.btnGalleryStoreSale.Add (w21);
 			this.hboxButtons.Add (this.btnGalleryStoreSale);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hboxButtons [this.btnGalleryStoreSale]));
-			w8.Position = 2;
-			w8.Expand = false;
-			w8.Fill = false;
+			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hboxButtons [this.btnGalleryStoreSale]));
+			w29.Position = 2;
+			w29.Expand = false;
+			w29.Fill = false;
 			this.vboxMenu.Add (this.hboxButtons);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vboxMenu [this.hboxButtons]));
-			w9.Position = 1;
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vboxMenu [this.hboxButtons]));
+			w30.Position = 1;
+			w30.Expand = false;
+			w30.Fill = false;
 			// Container child vboxMenu.Gtk.Box+BoxChild
 			this.hboxLogout = new global::Gtk.HBox ();
 			this.hboxLogout.Name = "hboxLogout";
@@ -343,15 +340,11 @@ namespace Momiji
 			this.btnLogout.UseUnderline = true;
 			this.btnLogout.Label = global::Mono.Unix.Catalog.GetString ("Logout");
 			this.hboxLogout.Add (this.btnLogout);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hboxLogout [this.btnLogout]));
-			w10.Position = 0;
-			w10.Expand = false;
-			w10.Fill = false;
+			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vboxMenu [this.btnLogout]));
+			w31.Position = 2;
+			w31.Expand = true;
+			w31.Fill = true;
 			this.vboxMenu.Add (this.hboxLogout);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vboxMenu [this.hboxLogout]));
-			w11.Position = 2;
-			w11.Expand = false;
-			w11.Fill = false;
 			// Container child vboxMenu.Gtk.Box+BoxChild
 			this.lblGreeting = new global::Gtk.Label ();
 			this.lblGreeting.Name = "lblGreeting";
@@ -359,11 +352,11 @@ namespace Momiji
 			this.lblGreeting.Xalign = 0F;
 			this.lblGreeting.LabelProp = global::Mono.Unix.Catalog.GetString ("lblGreeting");
 			this.vboxMenu.Add (this.lblGreeting);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vboxMenu [this.lblGreeting]));
-			w12.Position = 3;
-			w12.Expand = false;
-			w12.Fill = false;
-			w12.Padding = ((uint)(8));
+			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.vboxMenu [this.lblGreeting]));
+			w32.Position = 3;
+			w32.Expand = false;
+			w32.Fill = false;
+			w32.Padding = 8;
 			this.Add (this.vboxMenu);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
