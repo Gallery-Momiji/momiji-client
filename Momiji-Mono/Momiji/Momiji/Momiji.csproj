@@ -94,8 +94,8 @@
     <Compile Include="gtk-gui\Momiji.frmUserAdd.cs" />
     <Compile Include="frmGSManager.cs" />
     <Compile Include="gtk-gui\Momiji.frmGSManager.cs" />
-    <Compile Include="frmlog.cs" />
-    <Compile Include="gtk-gui\Momiji.frmlog.cs" />
+    <Compile Include="frmLog.cs" />
+    <Compile Include="gtk-gui\Momiji.frmLog.cs" />
     <Compile Include="frmPricing.cs" />
     <Compile Include="gtk-gui\Momiji.frmPricing.cs" />
     <Compile Include="frmReceipts.cs" />

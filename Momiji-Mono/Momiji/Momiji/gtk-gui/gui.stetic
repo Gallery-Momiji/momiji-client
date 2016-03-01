@@ -2571,9 +2571,9 @@ offer a cheque, and ask for help.</property>
       <placeholder />
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmlog" design-size="631 497">
+  <widget class="Gtk.Window" id="Momiji.frmLog" design-size="631 497">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">frmlog</property>
+    <property name="Title" translatable="yes">frmLog</property>
     <property name="WindowPosition">CenterOnParent</property>
     <child>
       <widget class="Gtk.VBox" id="vbox5">

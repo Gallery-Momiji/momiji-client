@@ -4,7 +4,7 @@ using MySql.Data.MySqlClient;
 
 namespace Momiji
 {
-	public partial class frmlog : Gtk.Window
+	public partial class frmLog : Gtk.Window
 	{
 		/////////////////////////
 		//  Private Attributes //
@@ -16,7 +16,7 @@ namespace Momiji
 		//     Contructor      //
 		/////////////////////////
 
-		public frmlog (frmMenu parent) : 
+		public frmLog (frmMenu parent) : 
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
