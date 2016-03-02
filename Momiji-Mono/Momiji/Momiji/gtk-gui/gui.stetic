@@ -224,7 +224,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmMenu" design-size="438 307">
+  <widget class="Gtk.Window" id="Momiji.frmMenu" design-size="438 315">
     <action-group name="Default">
       <action id="FileAction">
         <property name="Type">Action</property>
@@ -253,63 +253,63 @@
       </action>
       <action id="preferencesAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Preferences</property>
+        <property name="Label" translatable="yes">Preferences</property>
         <property name="ShortLabel" translatable="yes">Preferences</property>
         <property name="StockId">gtk-preferences</property>
       </action>
-      <action id="PricingAction">
+      <action id="pricingAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Pricing</property>
+        <property name="Label" translatable="yes">Pricing</property>
         <property name="ShortLabel" translatable="yes">Pricing</property>
         <property name="StockId">gtk-properties</property>
       </action>
-      <action id="UsersPrefAction">
+      <action id="usersPrefAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Users</property>
+        <property name="Label" translatable="yes">Users</property>
         <property name="ShortLabel" translatable="yes">Users</property>
         <property name="StockId">gtk-index</property>
       </action>
-      <action id="addUserAction">
+      <action id="addAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Add User</property>
+        <property name="Label" translatable="yes">Add User</property>
         <property name="ShortLabel" translatable="yes">Add User</property>
         <property name="StockId">gtk-add</property>
         <signal name="Activated" handler="OnAddUserActionActivated" />
       </action>
-      <action id="editUserAction">
+      <action id="preferencesAction1">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Edit User</property>
+        <property name="Label" translatable="yes">Edit User</property>
         <property name="ShortLabel" translatable="yes">Edit User</property>
         <property name="StockId">gtk-preferences</property>
       </action>
       <action id="removeAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes" />
+        <property name="Label" translatable="yes">Remove User</property>
         <property name="ShortLabel" translatable="yes">Remove User</property>
         <property name="StockId">gtk-remove</property>
       </action>
       <action id="closeAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Logout</property>
-        <property name="ShortLabel" translatable="yes">Logout</property>
+        <property name="Label" translatable="yes">Logout</property>
+        <property name="ShortLabel" translatable="yes">Exit</property>
         <property name="StockId">gtk-close</property>
         <signal name="Activated" handler="OnExitActionActivated" />
       </action>
       <action id="checkInAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Check _In</property>
+        <property name="Label" translatable="yes">Check In</property>
         <property name="ShortLabel" translatable="yes">Check In</property>
         <property name="StockId">gtk-yes</property>
       </action>
-      <action id="CheckOutAction">
+      <action id="checkOutAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Check _Out</property>
+        <property name="Label" translatable="yes">Check Out</property>
         <property name="ShortLabel" translatable="yes">Check Out</property>
         <property name="StockId">gtk-no</property>
       </action>
-      <action id="GenerateBiddingAction">
+      <action id="propertiesAction1">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Generate _Bidding Sheets</property>
+        <property name="Label" translatable="yes">Generate Bidding Sheets</property>
         <property name="ShortLabel" translatable="yes">Generate Bidding Sheets</property>
         <property name="StockId">gtk-properties</property>
       </action>
@@ -318,27 +318,27 @@
         <property name="Label" translatable="yes">Generate Bidding Sheets</property>
         <property name="ShortLabel" translatable="yes">Generate Bidding Sheets</property>
       </action>
-      <action id="checkInByIDAction">
+      <action id="findAction1">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by _ID</property>
+        <property name="Label" translatable="yes">Search Artist by ID</property>
         <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
         <property name="StockId">gtk-find</property>
       </action>
-      <action id="checkInByNameAction">
+      <action id="findAndReplaceAction1">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by _Name</property>
+        <property name="Label" translatable="yes">Search Artist by Name</property>
         <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
         <property name="StockId">gtk-find-and-replace</property>
       </action>
-      <action id="GenerateBiddingByIDAction">
+      <action id="findAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by _ID</property>
+        <property name="Label" translatable="yes">Search Artist by ID</property>
         <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
         <property name="StockId">gtk-find</property>
       </action>
-      <action id="GenerateBiddingByNameAction">
+      <action id="findAndReplaceAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by _Name</property>
+        <property name="Label" translatable="yes">Search Artist by Name</property>
         <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
         <property name="StockId">gtk-find-and-replace</property>
       </action>
@@ -347,145 +347,146 @@
         <property name="Label" translatable="yes">Generate Bidding Sheets</property>
         <property name="ShortLabel" translatable="yes">Generate Bidding Sheets</property>
       </action>
-      <action id="ManageArtistAction">
+      <action id="manageArtistAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Manage</property>
+        <property name="Label" translatable="yes">Manage</property>
         <property name="ShortLabel" translatable="yes">Manage</property>
         <property name="StockId">gtk-execute</property>
       </action>
-      <action id="AddArtistAction">
+      <action id="addAction1">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Add Artist</property>
+        <property name="Label" translatable="yes">Add Artist</property>
         <property name="ShortLabel" translatable="yes">Add Artist</property>
         <property name="StockId">gtk-add</property>
       </action>
-      <action id="EditArtistAction">
+      <action id="preferencesAction2">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Edit Artist</property>
+        <property name="Label" translatable="yes">Edit Artist</property>
         <property name="ShortLabel" translatable="yes">Edit Artist</property>
         <property name="StockId">gtk-preferences</property>
       </action>
-      <action id="DeleteArtistAction">
+      <action id="removeAction1">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Delete Artist</property>
+        <property name="Label" translatable="yes">Delete Artist</property>
         <property name="ShortLabel" translatable="yes">Delete Artist</property>
         <property name="StockId">gtk-remove</property>
       </action>
-      <action id="EditArtistMerchAction">
+      <action id="propertiesAction2">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Edit _Merchandise</property>
+        <property name="Label" translatable="yes">Edit Merchandise</property>
         <property name="ShortLabel" translatable="yes">Edit Merchandise</property>
         <property name="StockId">gtk-properties</property>
       </action>
-      <action id="EditArtistGSMerchAction">
+      <action id="revertToSavedAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Edit _Gallery Store Merchandise</property>
+        <property name="Label" translatable="yes">Edit Gallery Store Merchandise</property>
         <property name="ShortLabel" translatable="yes">Edit Gallery Store Merchandise</property>
         <property name="StockId">gtk-revert-to-saved</property>
       </action>
-      <action id="ManageArtistBalanceAction">
+      <action id="convertAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Manage Artist _Balance</property>
+        <property name="Label" translatable="yes">Manage Artist Balance</property>
         <property name="ShortLabel" translatable="yes">Manage Artist Balance</property>
         <property name="StockId">gtk-convert</property>
       </action>
-      <action id="EditArtistByIDAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by _ID</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
-        <property name="StockId">gtk-find</property>
-      </action>
-      <action id="EditArtistByNameAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by _Name</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
-        <property name="StockId">gtk-find-and-replace</property>
-      </action>
-      <action id="DeleteArtistByIDAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by _ID</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
-        <property name="StockId">gtk-find</property>
-      </action>
-      <action id="DeleteArtistByNameAction1">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by _Name</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
-        <property name="StockId">gtk-find-and-replace</property>
-      </action>
-      <action id="EditArtistMerchByIDAction">
+      <action id="findAction2">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Search Artist by ID</property>
         <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
         <property name="StockId">gtk-find</property>
       </action>
-      <action id="EditArtistMerchByNameAction">
+      <action id="findAndReplaceAction2">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Search Artist by Name</property>
         <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
         <property name="StockId">gtk-find-and-replace</property>
       </action>
-      <action id="EditArtistGSMerchByIDAction">
+      <action id="findAction3">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Search Artist by ID</property>
         <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
         <property name="StockId">gtk-find</property>
       </action>
-      <action id="EditArtistGSMerchByNameAction">
+      <action id="findAndReplaceAction3">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Search Artist by Name</property>
         <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
         <property name="StockId">gtk-find-and-replace</property>
       </action>
-      <action id="ManageArtistByIDAction">
+      <action id="findAction4">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Search Artist by ID</property>
         <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
         <property name="StockId">gtk-find</property>
       </action>
-      <action id="ManageArtistByNameAction">
+      <action id="findAndReplaceAction4">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Search Artist by Name</property>
         <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
         <property name="StockId">gtk-find-and-replace</property>
       </action>
-      <action id="CheckSalesAction">
+      <action id="findAction5">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Check Sales Records</property>
+        <property name="Label" translatable="yes">Search Artist by ID</property>
+        <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
+        <property name="StockId">gtk-find</property>
+      </action>
+      <action id="findAndReplaceAction5">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Search Artist by Name</property>
+        <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
+        <property name="StockId">gtk-find-and-replace</property>
+      </action>
+      <action id="findAction6">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Search Artist by ID</property>
+        <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
+        <property name="StockId">gtk-find</property>
+      </action>
+      <action id="findAndReplaceAction6">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Search Artist by Name</property>
+        <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
+        <property name="StockId">gtk-find-and-replace</property>
+      </action>
+      <action id="checkSalesAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Check Sales Records</property>
         <property name="ShortLabel" translatable="yes">Check Sales Records</property>
         <property name="StockId">gtk-revert-to-saved</property>
       </action>
-      <action id="RefundAction">
+      <action id="refundAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Refunds</property>
+        <property name="Label" translatable="yes">Refunds</property>
         <property name="ShortLabel" translatable="yes">Refunds</property>
         <property name="StockId">gtk-undo</property>
       </action>
-      <action id="FAQAction">
+      <action id="dialogWarningAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_FAQ</property>
-        <property name="ShortLabel" translatable="yes">FAQ</property>
+        <property name="Label" translatable="yes">FAQ</property>
+        <property name="ShortLabel" translatable="yes">Panic</property>
         <property name="StockId">gtk-dialog-warning</property>
       </action>
       <action id="aboutAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_About</property>
+        <property name="Label" translatable="yes">About</property>
         <property name="ShortLabel" translatable="yes">About</property>
         <property name="StockId">gtk-about</property>
+        <signal name="Activated" handler="OnAboutActionActivated" />
       </action>
-      <action id="WhatIsThisAction">
+      <action id="dialogQuestionAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">What is this?</property>
         <property name="ShortLabel" translatable="yes">What is this?</property>
         <property name="StockId">gtk-dialog-question</property>
       </action>
-      <action id="WhatDoIDoAction">
+      <action id="dialogQuestionAction1">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">What do I do?</property>
         <property name="ShortLabel" translatable="yes">What do I do?</property>
         <property name="StockId">gtk-dialog-question</property>
       </action>
-      <action id="WhyCantUseFeatureAction">
+      <action id="dialogQuestionAction2">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Why can't I use certain features?</property>
         <property name="ShortLabel" translatable="yes">Why can't I use certain features?</property>
@@ -493,29 +494,29 @@
       </action>
       <action id="checkUserActivitiesAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Check _user activities</property>
+        <property name="Label" translatable="yes">Check user activities</property>
         <property name="ShortLabel" translatable="yes">Check user activities</property>
         <property name="StockId">gtk-properties</property>
       </action>
-      <action id="checkLatestReceiptsAction">
+      <action id="revertToSavedAction3">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Check latest _receipts</property>
+        <property name="Label" translatable="yes">Check latest receipts</property>
         <property name="ShortLabel" translatable="yes">Check latest receipts</property>
-        <property name="StockId">gtk-print-preview</property>
+        <property name="StockId">gtk-revert-to-saved</property>
       </action>
       <action id="quitAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Quit</property>
-        <property name="ShortLabel" translatable="yes">Quit</property>
+        <property name="ShortLabel" translatable="yes">_Quit</property>
         <property name="StockId">gtk-quit</property>
         <signal name="Activated" handler="OnQuitActionActivated" />
       </action>
-      <action id="reprintReceiptsAction">
+      <action id="reprintReceiptAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Re-_Print Receipt</property>
-        <property name="ShortLabel" translatable="yes">Re-_Print Receipt</property>
+        <property name="ShortLabel" translatable="yes">RePrint Receipt</property>
         <property name="StockId">gtk-print</property>
-        <signal name="Activated" handler="OnReprintReceiptsActionActivated" />
+        <signal name="Activated" handler="OnReprintReceiptActionActivated" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -523,19 +524,20 @@
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
-      <widget class="Gtk.VBox" id="vboxMenu">
+      <widget class="Gtk.VBox" id="vbox2">
         <property name="MemberName" />
         <property name="Spacing">8</property>
         <child>
-          <widget class="Gtk.MenuBar" id="menubarMenu">
+          <widget class="Gtk.MenuBar" id="menubar3">
             <property name="MemberName" />
-            <node name="menubarMenu" type="Menubar">
+            <node name="menubar3" type="Menubar">
               <node type="Menu" action="FileAction">
                 <node type="Menu" action="preferencesAction">
-                  <node type="Menuitem" action="PricingAction" />
-                  <node type="Menu" action="UsersPrefAction">
-                    <node type="Menuitem" action="addUserAction" />
-                    <node type="Menuitem" action="editUserAction" />
+                  <node type="Menuitem" action="pricingAction" />
+                  <node type="Menu" action="usersPrefAction">
+                    <node type="Menuitem" action="addAction" />
+                    <node type="Menuitem" action="preferencesAction1" />
+                    <node type="Menuitem" action="removeAction" />
                   </node>
                   <node type="Menuitem" />
                 </node>
@@ -544,53 +546,53 @@
               </node>
               <node type="Menu" action="ArtistsAction">
                 <node type="Menu" action="checkInAction">
-                  <node type="Menuitem" action="checkInByIDAction" />
-                  <node type="Menuitem" action="checkInByNameAction" />
+                  <node type="Menuitem" action="findAction1" />
+                  <node type="Menuitem" action="findAndReplaceAction1" />
                 </node>
-                <node type="Menuitem" action="CheckOutAction" />
+                <node type="Menuitem" action="checkOutAction" />
                 <node type="Menuitem" />
-                <node type="Menu" action="ManageArtistAction">
-                  <node type="Menuitem" action="AddArtistAction" />
-                  <node type="Menu" action="EditArtistAction">
-                    <node type="Menuitem" action="EditArtistByIDAction" />
-                    <node type="Menuitem" action="EditArtistByNameAction" />
+                <node type="Menu" action="manageArtistAction">
+                  <node type="Menuitem" action="addAction1" />
+                  <node type="Menu" action="preferencesAction2">
+                    <node type="Menuitem" action="findAction2" />
+                    <node type="Menuitem" action="findAndReplaceAction2" />
                   </node>
-                  <node type="Menu" action="DeleteArtistAction">
-                    <node type="Menuitem" action="DeleteArtistByIDAction" />
-                    <node type="Menuitem" action="DeleteArtistByNameAction1" />
+                  <node type="Menu" action="removeAction1">
+                    <node type="Menuitem" action="findAction3" />
+                    <node type="Menuitem" action="findAndReplaceAction3" />
                   </node>
-                  <node type="Menu" action="EditArtistMerchAction">
-                    <node type="Menuitem" action="EditArtistMerchByIDAction" />
-                    <node type="Menuitem" action="EditArtistMerchByNameAction" />
+                  <node type="Menu" action="propertiesAction2">
+                    <node type="Menuitem" action="findAction4" />
+                    <node type="Menuitem" action="findAndReplaceAction4" />
                   </node>
-                  <node type="Menu" action="EditArtistGSMerchAction">
-                    <node type="Menuitem" action="EditArtistGSMerchByIDAction" />
-                    <node type="Menuitem" action="EditArtistGSMerchByNameAction" />
+                  <node type="Menu" action="revertToSavedAction">
+                    <node type="Menuitem" action="findAction5" />
+                    <node type="Menuitem" action="findAndReplaceAction5" />
                   </node>
-                  <node type="Menu" action="ManageArtistBalanceAction">
-                    <node type="Menuitem" action="ManageArtistByIDAction" />
-                    <node type="Menuitem" action="ManageArtistByNameAction" />
+                  <node type="Menu" action="convertAction">
+                    <node type="Menuitem" action="findAction6" />
+                    <node type="Menuitem" action="findAndReplaceAction6" />
                   </node>
                 </node>
-                <node type="Menu" action="GenerateBiddingAction">
-                  <node type="Menuitem" action="GenerateBiddingByIDAction" />
-                  <node type="Menuitem" action="GenerateBiddingByNameAction" />
+                <node type="Menu" action="propertiesAction1">
+                  <node type="Menuitem" action="findAction" />
+                  <node type="Menuitem" action="findAndReplaceAction" />
                 </node>
               </node>
               <node type="Menu" action="TreasuryAction">
-                <node type="Menuitem" action="CheckSalesAction" />
-                <node type="Menuitem" action="RefundAction" />
-                <node type="Menuitem" action="reprintReceiptsAction" />
+                <node type="Menuitem" action="checkSalesAction" />
+                <node type="Menuitem" action="refundAction" />
+                <node type="Menuitem" action="reprintReceiptAction" />
               </node>
               <node type="Menu" action="LogAction">
                 <node type="Menuitem" action="checkUserActivitiesAction" />
-                <node type="Menuitem" action="checkLatestReceiptsAction" />
+                <node type="Menuitem" action="revertToSavedAction3" />
               </node>
               <node type="Menu" action="HelpAction">
-                <node type="Menu" action="FAQAction">
-                  <node type="Menuitem" action="WhatIsThisAction" />
-                  <node type="Menuitem" action="WhatDoIDoAction" />
-                  <node type="Menuitem" action="WhyCantUseFeatureAction" />
+                <node type="Menu" action="dialogWarningAction">
+                  <node type="Menuitem" action="dialogQuestionAction" />
+                  <node type="Menuitem" action="dialogQuestionAction1" />
+                  <node type="Menuitem" action="dialogQuestionAction2" />
                 </node>
                 <node type="Menuitem" action="aboutAction" />
               </node>
@@ -604,7 +606,7 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.HBox" id="hboxButtons">
+          <widget class="Gtk.HBox" id="hbox8">
             <property name="MemberName" />
             <property name="Spacing">8</property>
             <property name="BorderWidth">16</property>
@@ -677,7 +679,7 @@ Sale</property>
           </packing>
         </child>
         <child>
-          <widget class="Gtk.HBox" id="hboxLogout">
+          <widget class="Gtk.HBox" id="hbox9">
             <property name="MemberName" />
             <property name="Spacing">8</property>
             <property name="BorderWidth">16</property>
@@ -2573,63 +2575,6 @@ offer a cheque, and ask for help.</property>
       <placeholder />
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmLog" design-size="631 497">
-    <property name="MemberName" />
-    <property name="Title" translatable="yes">frmLog</property>
-    <property name="WindowPosition">CenterOnParent</property>
-    <child>
-      <widget class="Gtk.VBox" id="vbox5">
-        <property name="MemberName" />
-        <property name="Spacing">6</property>
-        <property name="BorderWidth">8</property>
-        <child>
-          <widget class="Gtk.Label" id="lblDate">
-            <property name="MemberName" />
-            <property name="Xalign">0</property>
-            <property name="LabelProp" translatable="yes">Select a Date</property>
-          </widget>
-          <packing>
-            <property name="Position">0</property>
-            <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="Gtk.ComboBox" id="drpDate">
-            <property name="MemberName" />
-            <property name="IsTextCombo">True</property>
-            <property name="Items" translatable="yes" />
-          </widget>
-          <packing>
-            <property name="Position">1</property>
-            <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
-            <property name="MemberName" />
-            <property name="ShadowType">In</property>
-            <child>
-              <widget class="Gtk.NodeView" id="lstLog">
-                <property name="MemberName" />
-                <property name="WidthRequest">600</property>
-                <property name="HeightRequest">400</property>
-                <property name="CanFocus">True</property>
-                <property name="ShowScrollbars">True</property>
-              </widget>
-            </child>
-          </widget>
-          <packing>
-            <property name="Position">2</property>
-            <property name="AutoSize">True</property>
-          </packing>
-        </child>
-      </widget>
-    </child>
-  </widget>
   <widget class="Gtk.Window" id="Momiji.frmPricing" design-size="400 300">
     <property name="MemberName" />
     <property name="Title" translatable="yes">frmPricing</property>
@@ -2650,7 +2595,6 @@ offer a cheque, and ask for help.</property>
     <property name="MemberName" />
     <property name="Title" translatable="yes">frmReceipts</property>
     <property name="WindowPosition">CenterOnParent</property>
-    <property name="Modal">True</property>
     <child>
       <widget class="Gtk.VBox" id="vbox4">
         <property name="MemberName" />
@@ -2690,7 +2634,6 @@ offer a cheque, and ask for help.</property>
             <property name="Icon">stock:gtk-print Menu</property>
             <property name="Label" translatable="yes">Re-print Receipt</property>
             <property name="UseUnderline">True</property>
-            <signal name="Clicked" handler="OnBtnPrintClicked" />
           </widget>
           <packing>
             <property name="Position">2</property>

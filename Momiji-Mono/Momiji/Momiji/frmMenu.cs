@@ -129,17 +129,17 @@ namespace Momiji
 			btnAuctionSale.Sensitive = userClass >= 3 ? true : false;
 
 			//Advanced Functionality:
-			reprintReceiptsAction.Sensitive = userClass >= 4 ? true : false;
+			reprintReceiptAction.Sensitive = userClass >= 4 ? true : false;
 			checkInAction.Sensitive = userClass >= 5 ? true : false;
-			CheckOutAction.Sensitive = userClass >= 6 ? true : false;
-			GenerateBiddingSheetsAction.Sensitive = userClass >= 6 ? true : false;
-			ManageArtistAction.Sensitive = userClass >= 7 ? true : false;
+			checkOutAction.Sensitive = userClass >= 6 ? true : false;
+			propertiesAction1.Sensitive = userClass >= 6 ? true : false;
+			manageArtistAction.Sensitive = userClass >= 7 ? true : false;
 			checkUserActivitiesAction.Sensitive = userClass >= 8 ? true : false;
-			checkLatestReceiptsAction.Sensitive = userClass >= 9 ? true : false;
-            CheckSalesAction.Sensitive = userClass >= 9 ? true : false;
-			RefundAction.Sensitive = userClass == 10 ? true : false;
-			PricingAction.Sensitive = userClass == 11 ? true : false;
-			UsersPrefAction.Sensitive = userClass == 11 ? true : false;
+			revertToSavedAction3.Sensitive = userClass >= 9 ? true : false;
+            checkSalesAction.Sensitive = userClass >= 9 ? true : false;
+			refundAction.Sensitive = userClass >= 10 ? true : false;
+			pricingAction.Sensitive = userClass >= 11 ? true : false;
+			usersPrefAction.Sensitive = userClass >= 11 ? true : false;
 		}
 
 		/////////////////////////
@@ -206,9 +206,14 @@ namespace Momiji
 			new frmUserAdd (this);
 		}
 
-		protected void OnReprintReceiptsActionActivated (object sender, System.EventArgs e)
+		protected void OnReprintReceiptActionActivated (object sender, System.EventArgs e)
 		{
 			new frmReceipts (this);
+		}
+
+		protected void OnAboutActionActivated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
 		}
 	}
 }
