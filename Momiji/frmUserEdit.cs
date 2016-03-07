@@ -19,9 +19,49 @@ namespace Momiji
 
 		private void loadUserData()
 		{
-			//TODO
-			//if drpUsers.Active == -1, clear form
-			//else load info
+
+			if (drpUsers.Active >= 0) {
+				SQL SQLConnection = parent.currentSQLConnection;
+				SQLResult User = parent.currentUser;
+				string userID = userids [drpUsers.Active].ToString ();
+
+				MySqlCommand query = new MySqlCommand("SELECT * FROM `users` WHERE `id` = @ID;", SQLConnection.GetConnection());
+				query.Prepare();
+				query.Parameters.AddWithValue("@ID", userID);
+				SQLConnection.LogAction("Queried DB for users", User);
+				SQLResult results = SQLConnection.Query(query);
+
+				if (results.successful())
+				{
+					SQLConnection.LogAction("Loaded info from user #" + userID, User);
+					txtName.Text = results.getCell("name", 0);
+					txtUsername.Text = results.getCell("username", 0);
+					drpRank.Active = results.getCellInt("class", 0);
+					txtUsername.Sensitive = true;
+					txtName.Sensitive = true;
+					drpRank.Sensitive = true;
+					txtPass.Sensitive = true;
+					txtPassRepeat.Sensitive = true;
+				} else {
+					MessageBox.Show (this, MessageType.Error, "Could not load user.\nPlease contact your administrator.");
+					drpUsers.Active = -1; //load error
+				}
+			}
+			//If no user selected or on load error, reset form
+			if (drpUsers.Active < 0){
+				txtUsername.Text = "";
+				txtName.Text = "";
+				drpRank.Active = -1;
+				txtUsername.Sensitive = false;
+				txtName.Sensitive = false;
+				drpRank.Sensitive = false;
+				txtPass.Sensitive = false;
+				txtPassRepeat.Sensitive = false;
+			}
+
+			//Always clear password fields
+			txtPass.Text = "";
+			txtPassRepeat.Text = "";
 		}
 
 		/////////////////////////
@@ -34,7 +74,7 @@ namespace Momiji
 			this.parent = parent;
 			this.Build ();
 			drpUsers.Active = -1;
-			drpRank.Active = -1;
+			loadUserData();
 
 			SQL SQLConnection = parent.currentSQLConnection;
 			SQLResult User = parent.currentUser;
@@ -77,7 +117,6 @@ namespace Momiji
 			loadUserData();
 		}
 
-		//TODO these buttons should be disabled if a user is not selected
 		protected void OnBtnDeleteClicked (object sender, System.EventArgs e)
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
