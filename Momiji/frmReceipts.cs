@@ -67,7 +67,7 @@ namespace Momiji
 			if (result.successful ())
 				MessageBox.Show (this, MessageType.Info, "The follow receipt has been requested to be reprinted:\n" + drpTransaction.ActiveText +"\nPlease check receipt printer.");
 			else
-				MessageBox.Show (this, MessageType.Info, "Could not reprint receipt.\nPlease contact your administrator.");
+				MessageBox.Show (this, MessageType.Error, "Could not reprint receipt.\nPlease contact your administrator.");
 		}
 	}
 }
