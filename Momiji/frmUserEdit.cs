@@ -20,6 +20,8 @@ namespace Momiji
 		private void loadUserData()
 		{
 			//TODO
+			//if drpUsers.Active == -1, clear form
+			//else load info
 		}
 
 		/////////////////////////
@@ -70,14 +72,31 @@ namespace Momiji
 			this.Destroy ();
 		}
 
-		//TODO these buttons should be disabled if a user is not selected
 		protected void OnBtnLoadInfoClicked (object sender, System.EventArgs e)
 		{
 			loadUserData();
 		}
 
+		//TODO these buttons should be disabled if a user is not selected
 		protected void OnBtnDeleteClicked (object sender, System.EventArgs e)
 		{
+			SQL SQLConnection = parent.currentSQLConnection;
+			string userID = userids [drpUsers.Active].ToString ();
+
+            MySqlCommand query = new MySqlCommand("DELETE FROM `users` WHERE `id`=@ID;", SQLConnection.GetConnection());
+            query.Prepare();
+			query.Parameters.AddWithValue("@ID", userID);
+            SQLResult results = SQLConnection.Query(query);
+
+			if (results.successful()) {
+				SQLConnection.LogAction("Deleted user " + userID, parent.currentUser);
+				MessageBox.Show (this, MessageType.Info, "User deleted successfully");
+			} else {
+				MessageBox.Show (this, MessageType.Error, "Could not update user.\nPlease contact your administrator.");
+			}
+
+			drpUsers.Active = -1;
+			loadUserData();
 		}
 
 		protected void OnBtnUpdateClicked (object sender, System.EventArgs e)
@@ -88,7 +107,6 @@ namespace Momiji
 			password2 = txtPassRepeat.Text;
 			userFnameLname = txtName.Text;
 			SQL SQLConnection = parent.currentSQLConnection;
-			SQLResult User = parent.currentUser;
 			MySqlCommand query;
 			userID = userids [drpUsers.Active].ToString ();
 
@@ -100,8 +118,7 @@ namespace Momiji
 
 			userClass = drpRank.Active.ToString ();
 
-			if (password1.Length != 0 || password2.Length != 0)
-			{
+			if (password1.Length != 0 || password2.Length != 0)	{
 				if (txtPass.Text == txtPassRepeat.Text) {
 					MD5 passHash = new MD5 (password1);
 					query = new MySqlCommand("UPDATE `users` SET `username`=@USER, `password`=@PASS, `class`=@RANK, `name`=@NAME WHERE `id`=@ID;", SQLConnection.GetConnection());
@@ -119,12 +136,14 @@ namespace Momiji
 			query.Parameters.AddWithValue("@RANK", userClass);
 			query.Parameters.AddWithValue("@NAME", userFnameLname);
 			query.Parameters.AddWithValue("@ID", userID);
-			SQLConnection.LogAction("Updated info on user #" + userID, User);
 			SQLResult results = SQLConnection.Query(query);
-			if (results.successful())
+
+			if (results.successful()) {
+				SQLConnection.LogAction("Updated info on user #" + userID, parent.currentUser);
 				MessageBox.Show (this, MessageType.Info, "User updated successfully");
-			else
+			} else {
 				MessageBox.Show (this, MessageType.Error, "Could not update user.\nPlease contact your administrator.");
+			}
 
 			loadUserData();
 		}

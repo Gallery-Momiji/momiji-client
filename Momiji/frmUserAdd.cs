@@ -54,7 +54,7 @@ namespace Momiji
 
 			// Make sure user doesn't exist already
 
-			MySqlCommand query = new MySqlCommand ("SELECT * FROM `users` WHERE `username` = @username;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT `id` FROM `users` WHERE `username` = @username;", SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@username", userName);
 
