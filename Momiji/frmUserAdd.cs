@@ -41,14 +41,14 @@ namespace Momiji
 			if (userName.Length == 0 || password1.Length == 0 ||
 				password2.Length == 0 || userFnameLname.Length == 0 ||
 				drpRank.Active < 0) {
-				MessageBox.Show (this, MessageType.Info, "One or more fields are empty.. Please make sure to fill all fields!");
+				MessageBox.Show (this, MessageType.Info, "All fields are required");
 				return;
 			}
 
 			userClass = drpRank.Active.ToString ();
 
 			if (password1 != password2) {
-				MessageBox.Show (this, MessageType.Info, "Please make sure both the password and its retype match! I want to make sure you use the right password and that there is no typo!");
+				MessageBox.Show (this, MessageType.Info, "Password and and retype password fields do not match");
 				return;
 			}
 
@@ -59,8 +59,8 @@ namespace Momiji
 			query.Parameters.AddWithValue ("@username", userName);
 
 			SQLResult results = SQLConnection.Query (query);
-			if (results.GetNumberOfRows () == 1) {
-				MessageBox.Show (this, MessageType.Error, "This username already exists!");
+			if (results.GetNumberOfRows () > 0) {
+				MessageBox.Show (this, MessageType.Error, "This username already exists");
 				return;
 			}
 
@@ -77,7 +77,7 @@ namespace Momiji
 			results = SQLConnection.Query (query);
 
 			if (results.successful ()) {
-				MessageBox.Show (this, MessageType.Info, "User added successfully!");
+				MessageBox.Show (this, MessageType.Info, "User added successfully");
 				txtFirstAndLast.Text = "";
 				txtPassword.Text = "";
 				txtPasswordRetype.Text = "";
