@@ -86,12 +86,12 @@
     <Compile Include="gtk-gui\Momiji.frmUserAdd.cs" />
     <Compile Include="frmGSManager.cs" />
     <Compile Include="gtk-gui\Momiji.frmGSManager.cs" />
-    <Compile Include="frmPricing.cs" />
-    <Compile Include="gtk-gui\Momiji.frmPricing.cs" />
     <Compile Include="frmReceipts.cs" />
     <Compile Include="gtk-gui\Momiji.frmReceipts.cs" />
     <Compile Include="frmUserEdit.cs" />
     <Compile Include="gtk-gui\Momiji.frmUserEdit.cs" />
+    <Compile Include="frmPricing.cs" />
+    <Compile Include="gtk-gui\Momiji.frmPricing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

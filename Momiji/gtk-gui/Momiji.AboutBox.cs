@@ -20,7 +20,7 @@ namespace Momiji
 			global::Stetic.Gui.Initialize (this);
 			// Widget Momiji.AboutBox
 			this.Name = "Momiji.AboutBox";
-			this.Title = global::Mono.Unix.Catalog.GetString ("AboutBox");
+			this.Title = global::Mono.Unix.Catalog.GetString ("About");
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Modal = true;

@@ -49,7 +49,7 @@ namespace Momiji
 			global::Stetic.Gui.Initialize (this);
 			// Widget Momiji.frmArtistCheckout
 			this.Name = "Momiji.frmArtistCheckout";
-			this.Title = global::Mono.Unix.Catalog.GetString ("frmArtistCheckout");
+			this.Title = global::Mono.Unix.Catalog.GetString ("Artist Checkout");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.BorderWidth = ((uint)(8));
 			this.Resizable = false;

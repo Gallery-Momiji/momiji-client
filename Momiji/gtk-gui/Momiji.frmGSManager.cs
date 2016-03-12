@@ -9,7 +9,7 @@ namespace Momiji
 			global::Stetic.Gui.Initialize (this);
 			// Widget Momiji.frmGSManager
 			this.Name = "Momiji.frmGSManager";
-			this.Title = global::Mono.Unix.Catalog.GetString ("frmGSManager");
+			this.Title = global::Mono.Unix.Catalog.GetString ("GS Manager");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

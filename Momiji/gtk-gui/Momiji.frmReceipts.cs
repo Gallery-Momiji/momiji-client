@@ -14,8 +14,9 @@ namespace Momiji
 			global::Stetic.Gui.Initialize (this);
 			// Widget Momiji.frmReceipts
 			this.Name = "Momiji.frmReceipts";
-			this.Title = global::Mono.Unix.Catalog.GetString ("frmReceipts");
+			this.Title = global::Mono.Unix.Catalog.GetString ("Print Receipts");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.Modal = true;
 			// Container child Momiji.frmReceipts.Gtk.Container+ContainerChild
 			this.vbox4 = new global::Gtk.VBox ();
 			this.vbox4.Name = "vbox4";

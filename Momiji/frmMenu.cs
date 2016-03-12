@@ -136,7 +136,7 @@ namespace Momiji
 			manageArtistAction.Sensitive = userClass >= 7 ? true : false;
 			checkUserActivitiesAction.Sensitive = userClass >= 8 ? true : false;
 			revertToSavedAction3.Sensitive = userClass >= 9 ? true : false;
-            checkSalesAction.Sensitive = userClass >= 9 ? true : false;
+			checkSalesAction.Sensitive = userClass >= 9 ? true : false;
 			refundAction.Sensitive = userClass >= 10 ? true : false;
 			pricingAction.Sensitive = userClass >= 11 ? true : false;
 			usersPrefAction.Sensitive = userClass >= 11 ? true : false;
@@ -151,6 +151,8 @@ namespace Momiji
 			CloseForm ();
 		}
 
+		//File
+
 		protected void OnBtnLogoutClicked (object sender, System.EventArgs e)
 		{
 			CloseForm ();
@@ -160,6 +162,192 @@ namespace Momiji
 		{
 			CloseForm ();
 		}
+
+		protected void OnQuitActionActivated (object sender, System.EventArgs e)
+		{
+			this.SQLConnection.LogAction ("Logged Out", this.User);
+			SQLConnection.Close ();
+
+			if (QuickSaleForm != null)
+				QuickSaleForm.Destroy ();
+			if (AuctionSaleForm != null)
+				AuctionSaleForm.Destroy ();
+			if (GSSaleForm != null)
+				GSSaleForm.Destroy ();
+			LoginForm.Destroy ();
+			this.Destroy ();
+			Application.Quit ();
+		}
+
+		//File > Preferences
+
+		protected void OnPricingActionActivated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//File > Preferences > Users
+
+		protected void OnAddUserActionActivated (object sender, System.EventArgs e)
+		{
+			new frmUserAdd (this);
+		}
+
+		protected void OnPreferencesAction1Activated (object sender, System.EventArgs e)
+		{
+			new frmUserEdit (this);
+		}
+
+		//Artists
+
+		protected void OnCheckOutActionActivated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//Artists > Checkin
+
+		protected void OnFindAction1Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnFindAndReplaceAction1Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//Artists > Manage
+
+		protected void OnAddAction1Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//Artists > Manage > Edit Artist
+
+		protected void OnFindAction2Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnFindAndReplaceAction2Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//Artists > Manage > Delete Artist
+
+		protected void OnFindAction3Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnFindAndReplaceAction3Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//Artists > Manage > Edit Merchandise
+
+		protected void OnFindAction4Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnFindAndReplaceAction4Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//Artists > Manage > Edit GS Merchandise
+
+		protected void OnFindAction5Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnFindAndReplaceAction5Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//Artists > Manage > Manage Artist Balance
+
+		protected void OnFindAction6Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnFindAndReplaceAction6Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//Artists > Generate Bidding Sheet
+
+		protected void OnFindActionActivated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnFindAndReplaceActionActivated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//Treasury
+
+		protected void OnCheckSalesActionActivated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnRefundActionActivated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnReprintReceiptActionActivated (object sender, System.EventArgs e)
+		{
+			new frmReceipts (this);
+		}
+
+		//Log
+
+		protected void OnCheckUserActivitiesActionActivated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnRevertToSavedAction3Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//About
+
+		protected void OnAboutActionActivated (object sender, System.EventArgs e)
+		{
+			new AboutBox ();
+		}
+
+		protected void OnDialogQuestionActionActivated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnDialogQuestionAction1Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnDialogQuestionAction2Activated (object sender, System.EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//Buttons
 
 		protected void OnBtnQuickSaleClicked (object sender, System.EventArgs e)
 		{
@@ -183,37 +371,6 @@ namespace Momiji
 				GSSaleForm.Present ();
 			else
 				GSSaleForm = new frmGSSale (this);
-		}
-
-		protected void OnQuitActionActivated (object sender, System.EventArgs e)
-		{
-			this.SQLConnection.LogAction ("Logged Out", this.User);
-			SQLConnection.Close ();
-
-			if (QuickSaleForm != null)
-				QuickSaleForm.Destroy ();
-			if (AuctionSaleForm != null)
-				AuctionSaleForm.Destroy ();
-			if (GSSaleForm != null)
-				GSSaleForm.Destroy ();
-			LoginForm.Destroy ();
-			this.Destroy ();
-			Application.Quit ();
-		}
-
-		protected void OnAddUserActionActivated (object sender, System.EventArgs e)
-		{
-			new frmUserAdd (this);
-		}
-
-		protected void OnReprintReceiptActionActivated (object sender, System.EventArgs e)
-		{
-			new frmReceipts (this);
-		}
-
-		protected void OnAboutActionActivated (object sender, System.EventArgs e)
-		{
-			new AboutBox ();
 		}
 	}
 }

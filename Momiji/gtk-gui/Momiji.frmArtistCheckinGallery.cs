@@ -32,7 +32,7 @@ namespace Momiji
 			this.WidthRequest = 900;
 			this.HeightRequest = 0;
 			this.Name = "Momiji.frmArtistCheckinGallery";
-			this.Title = global::Mono.Unix.Catalog.GetString ("frmArtistCheckinGallery");
+			this.Title = global::Mono.Unix.Catalog.GetString ("Artist Checkin");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child Momiji.frmArtistCheckinGallery.Gtk.Container+ContainerChild
 			this.hboxCheckin = new global::Gtk.HBox ();

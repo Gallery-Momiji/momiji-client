@@ -17,7 +17,7 @@ namespace Momiji
 		//  Private Functions  //
 		/////////////////////////
 
-		private void loadUserData()
+		private void loadUserData ()
 		{
 
 			if (drpUsers.Active >= 0) {
@@ -25,22 +25,24 @@ namespace Momiji
 				SQLResult User = parent.currentUser;
 				string userID = userids [drpUsers.Active].ToString ();
 
-				MySqlCommand query = new MySqlCommand("SELECT * FROM `users` WHERE `id` = @ID;", SQLConnection.GetConnection());
-				query.Prepare();
-				query.Parameters.AddWithValue("@ID", userID);
-				SQLConnection.LogAction("Queried DB for users", User);
-				SQLResult results = SQLConnection.Query(query);
+				MySqlCommand query = new MySqlCommand ("SELECT * FROM `users` WHERE `id` = @ID;", SQLConnection.GetConnection ());
+				query.Prepare ();
+				query.Parameters.AddWithValue ("@ID", userID);
+				SQLConnection.LogAction ("Queried DB for users", User);
+				SQLResult results = SQLConnection.Query (query);
 
-				if (results.successful())
-				{
-					SQLConnection.LogAction("Loaded info from user #" + userID, User);
-					txtName.Text = results.getCell("name", 0);
-					txtUsername.Text = results.getCell("username", 0);
-					drpRank.Active = results.getCellInt("class", 0);
+				if (results.successful ()) {
+					SQLConnection.LogAction ("Loaded info from user #" + userID, User);
+					txtName.Text = results.getCell ("name", 0);
+					txtUsername.Text = results.getCell ("username", 0);
+					drpRank.Active = results.getCellInt ("class", 0);
 					txtUsername.Sensitive = true;
 					txtName.Sensitive = true;
 					drpRank.Sensitive = true;
 					txtPass.Sensitive = true;
+					btnDelete.Sensitive = true;
+					btnUpdate.Sensitive = true;
+					btnCancel.Sensitive = true;
 					txtPassRepeat.Sensitive = true;
 				} else {
 					MessageBox.Show (this, MessageType.Error, "Could not load user.\nPlease contact your administrator.");
@@ -48,7 +50,7 @@ namespace Momiji
 				}
 			}
 			//If no user selected or on load error, reset form
-			if (drpUsers.Active < 0){
+			if (drpUsers.Active < 0) {
 				txtUsername.Text = "";
 				txtName.Text = "";
 				drpRank.Active = -1;
@@ -57,6 +59,9 @@ namespace Momiji
 				drpRank.Sensitive = false;
 				txtPass.Sensitive = false;
 				txtPassRepeat.Sensitive = false;
+				btnDelete.Sensitive = false;
+				btnUpdate.Sensitive = false;
+				btnCancel.Sensitive = false;
 			}
 
 			//Always clear password fields
@@ -64,18 +69,8 @@ namespace Momiji
 			txtPassRepeat.Text = "";
 		}
 
-		/////////////////////////
-		//     Contructor      //
-		/////////////////////////
-
-		public frmUserEdit (frmMenu parent) : 
-				base(Gtk.WindowType.Toplevel)
+		private void loadUserList ()
 		{
-			this.parent = parent;
-			this.Build ();
-			drpUsers.Active = -1;
-			loadUserData();
-
 			SQL SQLConnection = parent.currentSQLConnection;
 			SQLResult User = parent.currentUser;
 
@@ -85,6 +80,8 @@ namespace Momiji
 			SQLConnection.LogAction ("Queried DB for users", User);
 			SQLResult results = SQLConnection.Query (query);
 			if (results.GetNumberOfRows () > 0) {
+				ListStore ClearList = new ListStore (typeof(string), typeof(string));
+				drpUsers.Model = ClearList;
 				userids = new int[results.GetNumberOfRows ()];
 				for (int i = 0; i < results.GetNumberOfRows(); i++) {
 					userids [i] = results.getCellInt ("id", i);
@@ -100,21 +97,31 @@ namespace Momiji
 		}
 
 		/////////////////////////
-		//     GTK Signals     //
+		//     Contructor      //
 		/////////////////////////
 
-		//TODO these are not tied to gtk EventHandler's yet
+		public frmUserEdit (frmMenu parent) :
+				base(Gtk.WindowType.Toplevel)
+		{
+			this.parent = parent;
+			this.Build ();
+			drpUsers.Active = -1;
+			loadUserData ();
+			loadUserList ();
+		}
 
-		//TODO on drpUsers change, automatically call loadUserData()
+		/////////////////////////
+		//     GTK Signals     //
+		/////////////////////////
 
 		protected void OnBtnCloseClicked (object sender, System.EventArgs e)
 		{
 			this.Destroy ();
 		}
 
-		protected void OnBtnLoadInfoClicked (object sender, System.EventArgs e)
+		protected void OnDrpUsersChanged (object sender, System.EventArgs e)
 		{
-			loadUserData();
+			loadUserData ();
 		}
 
 		protected void OnBtnDeleteClicked (object sender, System.EventArgs e)
@@ -122,20 +129,21 @@ namespace Momiji
 			SQL SQLConnection = parent.currentSQLConnection;
 			string userID = userids [drpUsers.Active].ToString ();
 
-            MySqlCommand query = new MySqlCommand("DELETE FROM `users` WHERE `id`=@ID;", SQLConnection.GetConnection());
-            query.Prepare();
-			query.Parameters.AddWithValue("@ID", userID);
-            SQLResult results = SQLConnection.Query(query);
+			MySqlCommand query = new MySqlCommand ("DELETE FROM `users` WHERE `id`=@ID;", SQLConnection.GetConnection ());
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@ID", userID);
+			SQLResult results = SQLConnection.Query (query);
 
-			if (results.successful()) {
-				SQLConnection.LogAction("Deleted user " + userID, parent.currentUser);
+			if (results.successful ()) {
+				SQLConnection.LogAction ("Deleted user " + userID, parent.currentUser);
 				MessageBox.Show (this, MessageType.Info, "User deleted successfully");
 			} else {
 				MessageBox.Show (this, MessageType.Error, "Could not update user.\nPlease contact your administrator.");
 			}
 
 			drpUsers.Active = -1;
-			loadUserData();
+			loadUserData ();
+			loadUserList ();
 		}
 
 		protected void OnBtnUpdateClicked (object sender, System.EventArgs e)
@@ -157,34 +165,40 @@ namespace Momiji
 
 			userClass = drpRank.Active.ToString ();
 
-			if (password1.Length != 0 || password2.Length != 0)	{
+			if (password1.Length != 0 || password2.Length != 0) {
 				if (txtPass.Text == txtPassRepeat.Text) {
 					MD5 passHash = new MD5 (password1);
-					query = new MySqlCommand("UPDATE `users` SET `username`=@USER, `password`=@PASS, `class`=@RANK, `name`=@NAME WHERE `id`=@ID;", SQLConnection.GetConnection());
-					query.Parameters.AddWithValue("@PASS", passHash.getShortHash ());
+					query = new MySqlCommand ("UPDATE `users` SET `username`=@USER, `password`=@PASS, `class`=@RANK, `name`=@NAME WHERE `id`=@ID;", SQLConnection.GetConnection ());
+					query.Parameters.AddWithValue ("@PASS", passHash.getShortHash ());
 				} else {
 					MessageBox.Show (this, MessageType.Info, "Password and and retype password fields do not match");
 					return;
 				}
 			} else {
-				query = new MySqlCommand("UPDATE `users` SET `username`=@USER, `class`=@RANK, `name`=@NAME WHERE `id`=@ID;", SQLConnection.GetConnection());
+				query = new MySqlCommand ("UPDATE `users` SET `username`=@USER, `class`=@RANK, `name`=@NAME WHERE `id`=@ID;", SQLConnection.GetConnection ());
 			}
 
-			query.Prepare();
-			query.Parameters.AddWithValue("@USER", userName);
-			query.Parameters.AddWithValue("@RANK", userClass);
-			query.Parameters.AddWithValue("@NAME", userFnameLname);
-			query.Parameters.AddWithValue("@ID", userID);
-			SQLResult results = SQLConnection.Query(query);
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@USER", userName);
+			query.Parameters.AddWithValue ("@RANK", userClass);
+			query.Parameters.AddWithValue ("@NAME", userFnameLname);
+			query.Parameters.AddWithValue ("@ID", userID);
+			SQLResult results = SQLConnection.Query (query);
 
-			if (results.successful()) {
-				SQLConnection.LogAction("Updated info on user #" + userID, parent.currentUser);
+			if (results.successful ()) {
+				SQLConnection.LogAction ("Updated info on user #" + userID, parent.currentUser);
 				MessageBox.Show (this, MessageType.Info, "User updated successfully");
 			} else {
 				MessageBox.Show (this, MessageType.Error, "Could not update user.\nPlease contact your administrator.");
 			}
 
-			loadUserData();
+			loadUserData ();
+		}
+
+		protected void OnBtnCancelClicked (object sender, System.EventArgs e)
+		{
+			drpUsers.Active = -1;
+			loadUserData ();
 		}
 	}
 }

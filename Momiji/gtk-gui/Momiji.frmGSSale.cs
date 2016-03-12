@@ -27,7 +27,7 @@ namespace Momiji
 			// Widget Momiji.frmGSSale
 			this.WidthRequest = 800;
 			this.Name = "Momiji.frmGSSale";
-			this.Title = global::Mono.Unix.Catalog.GetString ("frmGSSale");
+			this.Title = global::Mono.Unix.Catalog.GetString ("GS Sale");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child Momiji.frmGSSale.Gtk.Container+ContainerChild
 			this.hboxCheckin = new global::Gtk.HBox ();
@@ -48,6 +48,7 @@ namespace Momiji
 			w2.Position = 0;
 			// Container child hboxCheckin.Gtk.Box+BoxChild
 			this.vbox2 = new global::Gtk.VBox ();
+			this.vbox2.Name = "vbox2";
 			this.vbox2.Spacing = 6;
 			this.vbox2.BorderWidth = ((uint)(8));
 			// Container child vbox2.Gtk.Box+BoxChild

@@ -24,7 +24,7 @@ namespace Momiji
 			global::Stetic.Gui.Initialize (this);
 			// Widget Momiji.frmUserAdd
 			this.Name = "Momiji.frmUserAdd";
-			this.Title = global::Mono.Unix.Catalog.GetString ("frmUserAdd");
+			this.Title = global::Mono.Unix.Catalog.GetString ("Add User");
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Modal = true;
