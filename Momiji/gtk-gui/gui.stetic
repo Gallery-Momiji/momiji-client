@@ -3554,6 +3554,7 @@ offer a cheque, and ask for help.</property>
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="IsEditable">True</property>
+                            <property name="Visibility">False</property>
                             <property name="InvisibleChar">●</property>
                           </widget>
                           <packing>
@@ -3574,6 +3575,7 @@ offer a cheque, and ask for help.</property>
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="IsEditable">True</property>
+                            <property name="Visibility">False</property>
                             <property name="InvisibleChar">●</property>
                           </widget>
                           <packing>
