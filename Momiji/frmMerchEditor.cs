@@ -1,10 +1,8 @@
 using System;
-using Gtk;
-using MySql.Data.MySqlClient;
 
 namespace Momiji
 {
-	public partial class frmGSManager : Gtk.Window
+	public partial class frmMerchEditor : Gtk.Window
 	{
 		/////////////////////////
 		//  Private Attributes //
@@ -16,7 +14,7 @@ namespace Momiji
 		//     Contructor      //
 		/////////////////////////
 
-		public frmGSManager (frmMenu parent) :
+		public frmMerchEditor (frmMenu parent) :
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
@@ -52,7 +50,7 @@ namespace Momiji
 			throw new System.NotImplementedException ();
 		}
 
-		protected void OnBtnGenBarcodeClicked (object sender, System.EventArgs e)
+		protected void OnBtnCreateSheetClicked (object sender, System.EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}
@@ -62,7 +60,7 @@ namespace Momiji
 			throw new System.NotImplementedException ();
 		}
 
-		protected void OnButton6Clicked (object sender, System.EventArgs e)
+		protected void OnBtnCancelClicked (object sender, System.EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}
