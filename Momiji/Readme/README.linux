@@ -1,0 +1,16 @@
+Running POS on GNU/Linux
+----------------------
+
+First make sure you have mono and gtksharp installed:
+
+Fedora/Redhat/CentOS:
+sudo yum install mono gtk-sharp2
+
+Debian/Ubuntu/Mint:
+sudo apt-get install mono gtk-sharp2
+
+Arch/Manjaro:
+sudo pacman -S mono gtk-sharp-2
+
+
+Then execute Momiji (not Momiji.exe) to run

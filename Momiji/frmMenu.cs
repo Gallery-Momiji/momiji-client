@@ -1,228 +1,334 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+using Gtk;
 
 namespace Momiji
 {
-    public partial class frmMenu : Form
-    {
-        public bool forceclose = false;
-        public SQL SQLConnection;
-        public SQLResult User;
-        public frmLogin LoginForm;
+	public partial class frmMenu : Gtk.Window
+	{
+		/////////////////////////
+		//  Private Attributes //
+		/////////////////////////
 
+		private frmLogin LoginForm;
+		private frmGSSale GSSaleForm;
+		private frmQuickSale QuickSaleForm;
+		private frmAuctionSale AuctionSaleForm;
+		private SQL SQLConnection;
+		private SQLResult User;
 
-        public frmMenu(SQL Link, SQLResult UserIdentifier, frmLogin parent)
-        {
-            this.LoginForm = parent;
-            this.SQLConnection = Link;
-            this.User = UserIdentifier;
-            InitializeComponent();
-        }
+		/////////////////////////
+		//  Private Functions  //
+		/////////////////////////
 
-        private void frmMenu_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            this.exitToolStripMenuItem_Click(sender, e);
-        }
+		private void CloseForm ()
+		{
+			this.SQLConnection.LogAction ("Logged Out", this.User);
+			SQLConnection.Close ();
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-                this.SQLConnection.LogAction("Logged Out", this.User);
-                LoginForm.Dispose();
-                Application.Exit();
+			if (QuickSaleForm != null)
+				QuickSaleForm.Destroy ();
+			if (AuctionSaleForm != null)
+				AuctionSaleForm.Destroy ();
+			if (GSSaleForm != null)
+				GSSaleForm.Destroy ();
+			LoginForm.Show ();
+			LoginForm.GrabFocus ();
+			this.Destroy ();
+		}
 
-        }
+		/////////////////////////
+		//  Public Functions   //
+		/////////////////////////
 
-        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+		/// <summary>
+		/// This should be called when the user closes frmGSSale.
+		/// </summary>
+		public void CleanupGSSale ()
+		{
+			GSSaleForm = null;
+		}
 
-        }
+		/// <summary>
+		/// This should be called when the user closes frmQuickSale.
+		/// </summary>
+		public void CleanupQuickSale ()
+		{
+			QuickSaleForm = null;
+		}
 
-        private void frmMenu_Load(object sender, EventArgs e)
-        {
-            lblGreeting.Text = "Welcome, " + User.getCell("name", 0);
-            if (User.getCell("class", 0) != "10")
-            {
-                treasuryToolStripMenuItem.Enabled = false;
-                artistsToolStripMenuItem.Enabled = false;
-                logToolStripMenuItem.Enabled = false;
-                preferencesToolStripMenuItem.Enabled = false;
-                btnAuctionSale.Enabled = false;
-            }
-        }
+		/// <summary>
+		/// This should be called when the user closes frmAuctionSale.
+		/// </summary>
+		public void CleanupAuctionSale ()
+		{
+			AuctionSaleForm = null;
+		}
 
-        private void addArtistToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmArtistAdd tmpArtistAdd = new frmArtistAdd(this.SQLConnection, this.User, 3, 0);
-            tmpArtistAdd.Show();
-        }
+		/////////////////////////
+		//  Public Accessors   //
+		/////////////////////////
 
-        private void searchByIDToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistById src = new frmSearchArtistById(0, this.SQLConnection, this.User);   // Edit by ID
-            src.Show();
-        }
+		public SQLResult currentUser {
+			get { return User; }
+		}
 
-        private void searchByNameToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistByName src = new frmSearchArtistByName(0, this.SQLConnection, this.User);    // edit by name
-            src.Show();
-        }
+		public SQL currentSQLConnection {
+			get { return SQLConnection; }
+		}
 
-        private void searchByIDToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistById src = new frmSearchArtistById(1, this.SQLConnection, this.User);    // delete by ID
-            src.Show();
-        }
+		/////////////////////////
+		//     Contructor      //
+		/////////////////////////
 
-        private void searchByNameToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistByName src = new frmSearchArtistByName(1, this.SQLConnection, this.User);    // delete by Name
-            src.Show();
-        }
+		public frmMenu (SQL SQLConnection, SQLResult results, frmLogin parent) :
+				base (Gtk.WindowType.Toplevel)
+		{
+			this.LoginForm = parent;
+			this.SQLConnection = SQLConnection;
+			this.User = results;
+			this.Build ();
 
-        private void searchArtistByIDToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistById src = new frmSearchArtistById(2, this.SQLConnection, this.User);   // Edit merchandise by ID
-            src.Show();              
-        }
+			////////////////////////////
+			// User class explanation //
+			////////////////////////////
+			// Basic Functionality:
+			//  1 - Gallery Store Sales
+			//  2 - Quick Sales
+			//  3 - Auction Sales
+			// Advanced Functionality:
+			//  4 - Re-Print Receipts
+			//  5 - Check-in Artists
+			//  6 - Generate Bidding sheets,
+			//      Check-out Artists
+			//		Bidder Lookup
+			//  7 - Manage artist stock
+			//  8 - View Activity logs
+			//  9 - View Monetary activity logs
+			// 10 - Manage Treasury - refunds
+			// 11 - Administrator
+			////////////////////////////
+			int userClass = User.getCellInt ("class", 0);
 
-        private void searchArtistByNameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistByName src = new frmSearchArtistByName(2, this.SQLConnection, this.User);   // Edit merchandise by Name
-            src.Show();
-        }
+			//Welcome Message:
+			string userRank = userClass.ToString ();
+			if (userClass >= 11)
+				userRank += " (Administrator)";
+			else if (userClass >= 4)
+				userRank += " (Advanced User)";
+			else if (userClass >= 1)
+				userRank += " (Basic User)";
+			else
+				userRank += " (No privileges)";
+			lblGreeting.Text = "Welcome " + User.getCell ("name", 0) +
+								", Your Rank is " + userRank;
 
-        private void checkUserActivitiesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmLog tmpLog = new frmLog(this.SQLConnection, this.User);
-            tmpLog.Show();
-        }
+			//Basic Functionality:
+			btnGalleryStoreSale.Sensitive = userClass >= 1 ? true : false;
+			//TODO these two should be block until a certain time, except admin
+			btnQuickSale.Sensitive = userClass >= 2 ? true : false;
+			btnAuctionSale.Sensitive = userClass >= 3 ? true : false;
 
-        private void whatIsThisToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.SQLConnection.LogAction("Asked what this is", this.User);
-            MessageBox.Show(@"This is the Point-Of-Sale system for Gallery Momiji @ Anime North. 
-This program was designed to manage the gallery completely!
+			//Advanced Functionality:
+			reprintReceiptAction.Sensitive = userClass >= 4 ? true : false;
+			checkInAction.Sensitive = userClass >= 5 ? true : false;
+			checkOutAction.Sensitive = userClass >= 6 ? true : false;
+			generateBiddingSheetsAction.Sensitive = userClass >= 6 ? true : false;
+			biddersAction.Sensitive = userClass >= 6 ? true : false;
+			manageArtistAction.Sensitive = userClass >= 7 ? true : false;
+			checkUserActivitiesAction.Sensitive = userClass >= 8 ? true : false;
+			checkReceiptsAction.Sensitive = userClass >= 9 ? true : false;
+			checkSalesAction.Sensitive = userClass >= 9 ? true : false;
+			refundAction.Sensitive = userClass >= 10 ? true : false;
+			pricingAction.Sensitive = userClass >= 11 ? true : false;
+			usersPrefAction.Sensitive = userClass >= 11 ? true : false;
+		}
 
-Through it, we can do anything from changing your name to Nancy, 
-to miraculously make Artists' do the chicken dance!","What is this?", MessageBoxButtons.OK, MessageBoxIcon.Question);
-        }
+		/////////////////////////
+		//     GTK Signals     //
+		/////////////////////////
 
-        private void whatDoIDoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.SQLConnection.LogAction("Asked what to do", this.User);
-            MessageBox.Show(@"Depending on your assigned position, you will handle gallery store sales,
-quick sales, or auction sales. Pretty simple, huh?", "What do I do?", MessageBoxButtons.OK, MessageBoxIcon.Question);
-        }
+		protected void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
+		{
+			CloseForm ();
+		}
 
-        private void whyCantIUseCertainFeaturesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.SQLConnection.LogAction("Asked why certain features are locked", this.User);
-            MessageBox.Show(@"Depending on your role within the gallery, certain features might be disabled/enabled for you,
-This had to be done because Mike Tyson threatened to kill the programmer if he didn't.", "Why can't I use certain features?", MessageBoxButtons.OK, MessageBoxIcon.Question);
-        }
+		//File
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AboutBox1 tmpAbout = new AboutBox1();
-            tmpAbout.Show(); 
-        }
+		protected void OnExitActionActivated (object sender, EventArgs e)
+		{
+			CloseForm ();
+		}
 
-        private void btnQuickSale_Click(object sender, EventArgs e)
-        {
-            frmQuickSale quickSale = new frmQuickSale(this.SQLConnection, this.User);
-            quickSale.Show();
-        }
+		protected void OnQuitActionActivated (object sender, EventArgs e)
+		{
+			this.SQLConnection.LogAction ("Logged Out", this.User);
+			SQLConnection.Close ();
 
-        private void searchArtistByIDToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistById src = new frmSearchArtistById(3, this.SQLConnection, this.User);    // mass gen bid sheets by ID
-            src.Show();
-        }
+			if (QuickSaleForm != null)
+				QuickSaleForm.Destroy ();
+			if (AuctionSaleForm != null)
+				AuctionSaleForm.Destroy ();
+			if (GSSaleForm != null)
+				GSSaleForm.Destroy ();
+			LoginForm.Destroy ();
+			this.Destroy ();
+			Application.Quit ();
+		}
 
-        private void searchArtistByNameToolStripMenuItem3_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistByName src = new frmSearchArtistByName(3, this.SQLConnection, this.User);    // mass gen bid sheets by name
-            src.Show();
-        }
+		//File > Preferences
 
-        private void pricingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmPricing pricing = new frmPricing(this.SQLConnection, this.User);
-            pricing.Show();
-        }
+		protected void OnPricingActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
 
-        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistById src = new frmSearchArtistById(4, this.SQLConnection, this.User);    // mass gen bid sheets by ID
-            src.Show();
-        }
+		protected void OnBiddersActionActivated (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
 
-        private void searchArtistByNameToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistByName src = new frmSearchArtistByName(4, this.SQLConnection, this.User);    // mass gen bid sheets by name
-            src.Show();
-        }
+		//File > Preferences > Users
 
-        private void searchArtistByIDToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistById src = new frmSearchArtistById(5, this.SQLConnection, this.User);    // mass gen bid sheets by ID
-            src.Show();
-        }
+		protected void OnAddUserActionActivated (object sender, EventArgs e)
+		{
+			new frmUserAdd (this);
+		}
 
-        private void searchArtistByNameToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistByName src = new frmSearchArtistByName(5, this.SQLConnection, this.User);    // mass gen bid sheets by name
-            src.Show();
-        }
+		protected void OnEditUserActionActivated (object sender, EventArgs e)
+		{
+			new frmUserEdit (this);
+		}
 
-        private void searchArtistByIDToolStripMenuItem3_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistById src = new frmSearchArtistById(6, this.SQLConnection, this.User);    // mass gen bid sheets by ID
-            src.Show();
-        }
+		//Artists
 
-        private void searchArtistByNameToolStripMenuItem4_Click(object sender, EventArgs e)
-        {
-            frmSearchArtistByName src = new frmSearchArtistByName(6, this.SQLConnection, this.User);    // mass gen bid sheets by name
-            src.Show();
-        }
+		protected void OnCheckInActionActivated (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
 
-        private void receiptRePrintToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmReceiptReprint reprint = new frmReceiptReprint(SQLConnection, User);
-            reprint.Show();
-        }
+		protected void OnCheckOutActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
 
-        private void btnAuctionSale_Click(object sender, EventArgs e)
-        {
-            frmAuctionSale auction = new frmAuctionSale(SQLConnection, User);
-            auction.Show();
-        }
+		protected void OnGenerateBiddingSheetsActionActivated (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
 
-        private void btnGalleryStoreSale_Click(object sender, EventArgs e)
-        {
-            frmGSSale gssale = new frmGSSale(SQLConnection, User);
-            gssale.Show();
-        }
+		//Artists > Manage
 
-        private void addUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmUserAdd test = new frmUserAdd(this.SQLConnection, this.User);
-            test.Show();
+		protected void OnAddArtistActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
 
-        }
+		protected void OnEditArtistActionActivated (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
 
-  
- 
-      
+		protected void OnDeleteArtistActionActivated (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
 
-       
-    }
+		protected void OnEditMerchandiseActionActivated (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
+
+		protected void OnEditGalleryStoreMerchandiseActionActivated (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
+
+		protected void OnManageArtistBalanceActionActivated (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
+
+		//Treasury
+
+		protected void OnCheckSalesActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnRefundActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnReprintReceiptActionActivated (object sender, EventArgs e)
+		{
+			new frmReceipts (this);
+		}
+
+		//Log
+
+		protected void OnCheckUserActivitiesActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void checkReceiptsActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//About
+
+		protected void OnAboutActionActivated (object sender, EventArgs e)
+		{
+			new AboutBox ();
+		}
+
+		protected void OnDialogQuestionActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnWhatDoIDoActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnWhyCantIUseActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		//Buttons
+
+		protected void OnBtnQuickSaleClicked (object sender, EventArgs e)
+		{
+			if (QuickSaleForm != null)
+				QuickSaleForm.Present ();
+			else
+				QuickSaleForm = new frmQuickSale (this);
+		}
+
+		protected void OnBtnAuctionSaleClicked (object sender, EventArgs e)
+		{
+			if (AuctionSaleForm != null)
+				AuctionSaleForm.Present ();
+			else
+				AuctionSaleForm = new frmAuctionSale (this);
+		}
+
+		protected void OnBtnGalleryStoreSaleClicked (object sender, EventArgs e)
+		{
+			if (GSSaleForm != null)
+				GSSaleForm.Present ();
+			else
+				GSSaleForm = new frmGSSale (this);
+		}
+
+		protected void OnBtnLogoutClicked (object sender, EventArgs e)
+		{
+			CloseForm ();
+		}
+	}
 }
+

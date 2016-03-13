@@ -1,124 +1,162 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Security.Cryptography;
-using System.Text.RegularExpressions;
+using Gtk;
 using MySql.Data.MySqlClient;
 
 namespace Momiji
 {
-    
-    public partial class frmLogin : Form
-    {
+	public partial class frmLogin : Gtk.Window
+	{
+		/////////////////////////
+		//  Private Attributes //
+		/////////////////////////
 
+		private SQL SQLConnection;
+		private string db_pass, db_user, db_name, db_host, db_port;
 
-        SQL SQLConnection;
-       
-        public void frmLogin_Load(object sender, EventArgs e)
-        {
-            lblSqlStatus.Text = "Connecting...";
-            
-            SQLConnection = new SQL("gallery", "animenorthdanitiago", "192.168.1.3", "gallery", 3306);
-            if (SQLConnection.GetState() != 1)
-            {
-                lblSqlStatus.ForeColor = Color.Red;
-                btnLogin.Enabled = false;
-            }
-            else
-            {
-                btnLogin.Enabled = true;
-                btnRetry.Enabled = false;
-                lblSqlStatus.ForeColor = Color.Green;
-              
-            }
-            
-            lblSqlStatus.Text = SQLConnection.GetErrorMessage();
+		/////////////////////////
+		//  Private Functions  //
+		/////////////////////////
 
-            txtUsername.Focus();
+		private void TestConnect ()
+		{
+			lblConnStatus.Text = "Connecting...";
 
-        }
+			SQLConnection = new SQL (db_user, db_pass, db_host, db_name, db_port);
 
+			if (SQLConnection.GetState () != 1) {
+				lblConnStatus.ModifyFg (StateType.Normal, new Gdk.Color (255, 0, 0));
+				lblConnStatus.Text = SQLConnection.GetErrorMessage ();
+				btnRetry.Sensitive = true;
+				btnLogin.Sensitive = false;
+			} else {
+				lblConnStatus.ModifyFg (StateType.Normal, new Gdk.Color (0, 255, 0));
+				lblConnStatus.Text = "OK";
+				btnRetry.Sensitive = false;
+				btnLogin.Sensitive = true;
+			}
 
-        public frmLogin()
-        {
-            InitializeComponent();
-        }
+			SQLConnection.Close ();
+		}
 
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            string pass = txtPassword.Text;
-            string user = txtUsername.Text;
+		/////////////////////////
+		//     Contructor      //
+		/////////////////////////
 
-            if (pass.Length == 0 || user.Length == 0)
-            {
-                MessageBox.Show("Please make sure to use an Username AND password! Can't have strangers connecting to our server, now can we?", "Uh oh..", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
+		public frmLogin () :
+				base(Gtk.WindowType.Toplevel)
+		{
+			try {
+				IniParser config = new IniParser ("config.ini");
 
+				db_pass = config.GetSetting ("ROOT", "db_pass");
+				db_user = config.GetSetting ("ROOT", "db_user");
+				db_name = config.GetSetting ("ROOT", "db_name");
+				db_host = config.GetSetting ("ROOT", "db_host");
+				db_port = config.GetSetting ("ROOT", "db_port");
 
-            MD5 passhash = new MD5(pass);
+				this.Build ();
 
-            pass = passhash.hash.Substring(0, 8).ToLower();
+			} catch (Exception ex) {
+				MessageBox.Show (this, MessageType.Error,
+										ex.Message);
 
-            MySqlCommand query = new MySqlCommand("SELECT * FROM `users` WHERE `username` = @username AND `password` = @password;", SQLConnection.GetConnection());
-            query.Prepare();
-            query.Parameters.AddWithValue("@username", user);
-            query.Parameters.AddWithValue("@password", pass);
+				this.Destroy ();
+			}
 
+			TestConnect ();
 
-            SQLResult results = this.SQLConnection.Query(query);
-            if (results.GetNumberOfRows() == 1)
-            {
-                SQLConnection.LogAction("Logged In!", results);
-                frmMenu menuInstance = new frmMenu(SQLConnection, results, this);
-                this.Hide();
-                menuInstance.ShowDialog();
-                
-            }
-            else
-            {
-                MessageBox.Show("Sorry, but according to our records, these credentials are wrong, please double check them!", "Oh noes!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
+			//Set focus on username box
+			txtUsername.GrabFocus ();
+		}
 
-        }
+		/////////////////////////
+		//     GTK Signals     //
+		/////////////////////////
 
+		protected void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
+		{
+			Application.Quit ();
+		}
 
+		protected void OnBtnLoginClicked (object sender, EventArgs e)
+		{
+			string pass = txtPassword.Text;
+			string user = txtUsername.Text.ToLower();
 
-        public bool IsHex(string data)
-        {
-            return Regex.IsMatch(data, "^([A-Fa-f0-9]+)$");
+			//Check for 0 length entry
+			if (user.Length == 0) {
+				MessageBox.Show (this, MessageType.Error,
+											"Please enter a username");
 
-        }
+				txtUsername.GrabFocus ();
+				return;
+			} else if (pass.Length == 0) {
+				MessageBox.Show (this, MessageType.Error,
+											"Please enter a password");
 
-        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Return)
-            {
-                if (btnLogin.Enabled) {
-                    this.btnLogin_Click(sender, e);
+				txtPassword.GrabFocus ();
+				return;
+			}
 
-                }
+			//MD5Sum for passwords
+			MD5 passhash = new MD5 (pass);
+			pass = passhash.getShortHash ();
 
-            }
-        }
+			//Use a fresh connection for login
 
-        private void btnRetry_Click(object sender, EventArgs e)
-        {
-            frmLogin_Load(sender, e);
-        }
+			SQLConnection = new SQL (db_user, db_pass, db_host, db_name, db_port);
 
+			if (SQLConnection.GetState () != 1) {
+				//if a new connection fails
+				lblConnStatus.ModifyFg (StateType.Normal, new Gdk.Color (255, 0, 0));
+				lblConnStatus.Text = SQLConnection.GetErrorMessage ();
+				btnRetry.Sensitive = true;
+				btnLogin.Sensitive = false;
+				return;
+			}
 
+			MySqlCommand query = new MySqlCommand ("SELECT * FROM `users` WHERE `username` = @username AND `password` = @password;", SQLConnection.GetConnection ());
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@username", user);
+			query.Parameters.AddWithValue ("@password", pass);
 
-  
+			SQLResult results = this.SQLConnection.Query (query);
+			if (results.GetNumberOfRows () == 1) {
+				//Clear the form
+				txtPassword.Text = "";
+				txtUsername.Text = "";
+				txtUsername.GrabFocus ();
+				//Log in user
+				SQLConnection.LogAction ("Logged In!", results);
+				frmMenu menuInstance = new frmMenu (SQLConnection, results, this);
+				this.Hide ();
+				menuInstance.Show ();
+			} else {
+				MessageBox.Show (this, MessageType.Error,
+										"Incorrect password or username. Please try again.");
 
- 
+				txtPassword.Text = "";
+				txtPassword.GrabFocus ();
+			}
+		}
 
+		protected void OnTxtPasswordActivated (object sender, EventArgs e)
+		{
+			if (btnLogin.Sensitive)
+				OnBtnLoginClicked (sender, e);
+		}
 
-      
-    }
+		protected void OnTxtUsernameActivated (object sender, EventArgs e)
+		{
+			if (btnLogin.Sensitive)
+				OnBtnLoginClicked (sender, e);
+		}
+
+		protected void OnBtnRetryClicked (object sender, EventArgs e)
+		{
+			TestConnect ();
+		}
+	}
 }
+
+

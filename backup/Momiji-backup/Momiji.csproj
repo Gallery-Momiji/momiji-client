@@ -1,0 +1,457 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D882205B-2B86-4C19-B859-B3B13482F597}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Momiji</RootNamespace>
+    <AssemblyName>Momiji</AssemblyName>
+    <ApplicationIcon>Resources\Crystal-Star-256.ico</ApplicationIcon>
+    <ManifestCertificateThumbprint>7BC8BEC0EE40CB15E6B4C67D90E09AC989CE7DF1</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Momiji_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <StartupObject>Momiji.Program</StartupObject>
+    <PublishUrl>E:\MomijiPOS\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <UpdateUrl>http://madcat1990.no-ip.biz/Momiji/</UpdateUrl>
+    <SupportUrl>http://madcat1990.no-ip.biz</SupportUrl>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>Gallery Momiji POS</ProductName>
+    <PublisherName>Anime North</PublisherName>
+    <WebPage>publish.htm</WebPage>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mysql.data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SQL\v2.0\mysql.data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="barcode.cs" />
+    <Compile Include="biddingsheet.cs" />
+    <Compile Include="Artist\frmArtistBallance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Artist\frmArtistBallance.Designer.cs">
+      <DependentUpon>frmArtistBallance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeFile1.cs" />
+    <Compile Include="controlsheet.cs" />
+    <Compile Include="frmGSSale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGSSale.Designer.cs">
+      <DependentUpon>frmGSSale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Mgmt\frmUserAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Mgmt\frmUserAdd.Designer.cs">
+      <DependentUpon>frmUserAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GScontrolsheet.cs" />
+    <Compile Include="frmAuctionSale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAuctionSale.Designer.cs">
+      <DependentUpon>frmAuctionSale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCheckin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCheckin.Designer.cs">
+      <DependentUpon>frmCheckin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGSManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGSManager.Designer.cs">
+      <DependentUpon>frmGSManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Artist\frmArtistAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Artist\frmArtistAdd.Designer.cs">
+      <DependentUpon>frmArtistAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLog.Designer.cs">
+      <DependentUpon>frmLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Artist\frmMerchEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Artist\frmMerchEditor.Designer.cs">
+      <DependentUpon>frmMerchEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPricing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPricing.Designer.cs">
+      <DependentUpon>frmPricing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProcessing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProcessing.Designer.cs">
+      <DependentUpon>frmProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQuickSale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuickSale.Designer.cs">
+      <DependentUpon>frmQuickSale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Artist\frmSearchArtistById.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Artist\frmSearchArtistById.Designer.cs">
+      <DependentUpon>frmSearchArtistById.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Artist\frmSearchArtistByName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Artist\frmSearchArtistByName.Designer.cs">
+      <DependentUpon>frmSearchArtistByName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReceiptReprint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReceiptReprint.Designer.cs">
+      <DependentUpon>frmReceiptReprint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\SQLResult.cs" />
+    <Compile Include="MD5.cs" />
+    <Compile Include="SQL\SQL.cs" />
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutBox1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Artist\frmArtistAdd.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmArtistAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Artist\frmArtistBallance.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmArtistBallance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGSSale.resx">
+      <DependentUpon>frmGSSale.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAuctionSale.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmAuctionSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCheckin.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmCheckin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGSManager.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmGSManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenu.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Artist\frmMerchEditor.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmMerchEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPricing.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmPricing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProcessing.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuickSale.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmQuickSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Artist\frmSearchArtistById.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmSearchArtistById.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Artist\frmSearchArtistByName.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmSearchArtistByName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReceiptReprint.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmReceiptReprint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Mgmt\frmUserAdd.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmUserAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal-Star-256.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10001315_10151890223111106_2101858362_n.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Green-Cart-256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\status_online.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\status_busy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table_gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_view_columns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asterisk_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shape_ungroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart_bar_error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money_dollar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer_empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer_error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\status_away.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calculator_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\textfield_key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vcard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bug_go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping-basket-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag-sale-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping-bag-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barcode.ttf" />
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\200.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Momiji_TemporaryKey.pfx" />
+    <None Include="Resources\page_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bid_sheet.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barcode.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\door_in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer_add1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\controlsheet.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GScontrolsheet.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

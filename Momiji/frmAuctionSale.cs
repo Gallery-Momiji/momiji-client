@@ -1,253 +1,302 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+using Gtk;
 using MySql.Data.MySqlClient;
 
 namespace Momiji
 {
-    public partial class frmAuctionSale : Form
-    {
+	public partial class frmAuctionSale : Gtk.Window
+	{
+		/////////////////////////
+		//  Private Attributes //
+		/////////////////////////
 
-        public SQL SQLConnection;
-        public SQLResult User;
-        public float total = 0;
-        public string Items = "";
-        public string Prices = "";
+		private frmMenu parent;
+		private Gtk.NodeStore merchStore;
+		private float total = 0;
+		public string items = "";
+		public string prices = "";
 
-        public frmAuctionSale(SQL Link, SQLResult UserIdentifier)
-        {
-            this.SQLConnection = Link;
-            this.User = UserIdentifier;
-            InitializeComponent();
-        }
+		/////////////////////////
+		//  Private Functions  //
+		/////////////////////////
 
-        private void frmAuctionSale_Load(object sender, EventArgs e)
-        {
-            SQLConnection.LogAction("Started an Auction Sale!", this.User);
-        }
+		private void ResetForm ()
+		{
+			txtBarcode.Sensitive = true;
+			btnCancel.Sensitive = false;
+			btnPay.Sensitive = false;
+			txtPaid.Sensitive = false;
+			txtPrice.Sensitive = true;
+			btnAddToList.Sensitive = true;
+			btnClear.Sensitive = true;
+			txtBarcode.Text = "";
+			txtPrice.Text = "";
+			txtTotal.Text = "";
+			txtChange.Text = "";
+			txtPaid.Text = "";
+			this.items = "";
+			this.prices = "";
+			this.total = 0;
+			txtBarcode.GrabFocus ();
+		}
 
-        private void txtID_KeyPress(object sender, KeyPressEventArgs e)
-        {
+		private bool existsInList (string barcode)
+		{
+			string temp = items;
 
-            if (e.KeyChar == (char)Keys.Return)
-            {
+			while (temp.Length >= 10) {
 
+				if (temp.Substring (0, 9) == barcode)
+					return true;
 
-                txtPrice.Focus();
+				temp = temp.Substring (10);
+			}
 
+			return false;
+		}
 
+		/////////////////////////
+		//     Contructor      //
+		/////////////////////////
 
+		public frmAuctionSale (frmMenu parent) :
+				base(Gtk.WindowType.Toplevel)
+		{
+			this.parent = parent;
+			this.Build ();
+			MerchNode.buildTable (ref lstMerch, ref merchStore);
 
-            }
-        }
+			ResetForm ();
+		}
 
-        private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Return)
-            {
+		/////////////////////////
+		//     GTK Signals     //
+		/////////////////////////
 
-                btnAddToList_Click(sender, null);
-        
-            
-            }
-        }
+		protected void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
+		{
+			parent.CleanupAuctionSale ();
+		}
 
-        private bool isNumeric(string num)
-        {
-            string numString = num; 
-            long number1 = 0;
-            float num2 = 0;
-            bool canConvert = long.TryParse(numString, out number1);
-            bool convert2 = float.TryParse(numString, out num2);
-            return canConvert || convert2;
-        }
+		protected void OnTxtBarcodeActivated (object sender, EventArgs e)
+		{
+			txtPrice.GrabFocus ();
+		}
 
+		protected void OnBtnAddToListClicked (object sender, EventArgs e)
+		{
+			//Wildcards are considered null characters
+			txtBarcode.Text = txtBarcode.Text.Replace ("*", "").ToUpper ();
 
-        private void btnAddToList_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtID.Text.Length == 0)
-                {
-                    MessageBox.Show("No item ID entered!", "Missing Data", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+			if (txtBarcode.Text.Length < 9) {
+				txtBarcode.Text = "";
+				txtBarcode.GrabFocus ();
+				return;
+			}
 
-                if (txtPrice.Text.Length == 0)
-                {
-                    MessageBox.Show("No price entered!", "Missing Data", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+			//Catch for format, AN###-###
+			if (txtBarcode.Text.Substring (0, 2) != "AN" ||
+				txtBarcode.Text.Substring (5, 1) != "-") {
+				MessageBox.Show (this, MessageType.Error,
+										"Invalid merchandise barcode");
 
-                }
+				txtBarcode.Text = "";
+				txtBarcode.GrabFocus ();
+				return;
+			}
 
-                if (!isNumeric(txtPrice.Text))
-                {
-                    MessageBox.Show("Price doesn't seem to be numeric, use only numbers and a '.' for decimals", "Bad Data", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+			if (existsInList (txtBarcode.Text.ToUpper ())) {
+				MessageBox.Show (this, MessageType.Info,
+									"Item already added");
 
+				txtBarcode.Text = "";
+				txtPrice.Text = "";
+				txtBarcode.GrabFocus ();
+				return;
+			}
 
-                if (txtID.Text.Substring(0, 2).ToUpper() != "AN")
-                {
-                    MessageBox.Show("Check your Item ID, it's not an auctionable item! They start with 'AN'", "Wrong barcode dude!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+			//Catch an invalid barcode, should be AN###-###
+			int ArtistID, MerchID;
+			try {
+				ArtistID = Int32.Parse (txtBarcode.Text.Substring (2, 3));
+				MerchID = Int32.Parse (txtBarcode.Text.Substring (6, 3));
+			} catch {
+				MessageBox.Show (this, MessageType.Error,
+										"Invalid barcode format");
 
-                if (!isNumeric(txtID.Text.Substring(2, 3)))
-                {
-                    MessageBox.Show("Something isn't right with the Item ID, it should be 'AN' followed by 3 numbers, like '001'!", "Wrong barcode dude!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+				txtBarcode.Text = "";
+				txtBarcode.GrabFocus ();
+				return;
+			}
 
-                }
+			//Catch an invalid price
+			int Price;
+			try {
+				Price = Int32.Parse (txtPrice.Text);
+			} catch {
+				MessageBox.Show (this, MessageType.Error,
+										"Invalid Price");
 
-                if (txtID.Text.Substring(5, 1) != "-")
-                {
-                    MessageBox.Show("Something isn't right with the Item ID! After AN123 it should have a '-'!", "Wrong barcode dude!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+				txtPrice.Text = "";
+				txtPrice.GrabFocus ();
+				return;
+			}
 
-                if (!isNumeric(txtID.Text.Substring(6, 3))) {
-                    MessageBox.Show("Something isn't right with the Item ID! After AN123- it should have 3 numbers!", "Wrong barcode dude!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                
-                }
+			try {
+				SQL SQLConnection = parent.currentSQLConnection;
+				MySqlCommand query = new MySqlCommand ("SELECT * FROM `merchandise` WHERE `ArtistID` = @AID AND `MerchID` = @MID;", SQLConnection.GetConnection ());
+				query.Prepare ();
+				query.Parameters.AddWithValue ("@AID", ArtistID);
+				query.Parameters.AddWithValue ("@MID", MerchID);
+				SQLResult results = SQLConnection.Query (query);
 
-                int MID = Int32.Parse(txtID.Text.Substring(6, 3));
-                int AID = Int32.Parse(txtID.Text.Substring(2, 3));
+				if (results.GetNumberOfRows () == 1) {
 
-                MySqlCommand query = new MySqlCommand("SELECT * FROM `merchandise` WHERE `ArtistID` = @AID AND `MerchID` = @MID LIMIT 0,1;", SQLConnection.GetConnection());
-                query.Prepare();
-                query.Parameters.AddWithValue("@AID", AID);
-                query.Parameters.AddWithValue("@MID", MID);
+					if (float.Parse (results.getCell ("MerchMinBid", 0)) > Price) {
+						MessageBox.Show (this, MessageType.Error,
+										"Price is too low.\nThis item has a minimum bid of $" +
+										String.Format ("{0:0.00}",
+										float.Parse (results.getCell ("MerchMinBid", 0))));
 
-                SQLResult results = this.SQLConnection.Query(query);
+						txtPrice.Text = "";
+						txtPrice.GrabFocus ();
+						return;
+					} else if (results.getCell ("MerchSold", 0) == "1") {
+						MessageBox.Show (this, MessageType.Error,
+										"This item has already been sold. This will be reported.");
 
-                if (results.successful() != true)
-                {
-                    throw new Exception("Failed to grab info for this piece!");
-                }
+						SQLConnection.LogAction ("Attempted to auction sell an already sold item (" + txtBarcode.Text + ")", parent.currentUser);
 
-                ListViewItem newItem = new ListViewItem( AID.ToString()   );
-                newItem.SubItems.Add( results.getCell("MerchTitle", 0)   );
-                newItem.SubItems.Add(MID.ToString());
-                newItem.SubItems.Add(txtPrice.Text);
+						txtBarcode.Text = "";
+						txtBarcode.GrabFocus ();
+						return;
+					}
 
-                if (isNumeric(txtPrice.Text))
-                {
-                    total = total + float.Parse(txtPrice.Text);
-                }
-                else
-                {
-                    throw new Exception("Invalid price");
-                }
+					merchStore.AddNode (new MerchNode (ArtistID,
+									MerchID,
+									results.getCell ("MerchTitle", 0),
+									"$" + String.Format ("{0:0.00}", Price)));
 
-                listView1.Items.Add(newItem);
-                Items = Items + txtID.Text + "#";
-                Prices = Prices + txtPrice.Text + "#";
-                txtPrice.Text = "";
-                txtID.Text = "";
-                txtTotal.Text = "$" + total.ToString();
-                txtID.Focus();
+					total = total + Price;
+					txtTotal.Text = String.Format ("{0:0.00}", total);
 
+					items = items + txtBarcode.Text.ToUpper () + "#";
+					prices = prices + Price.ToString () + "#";
 
-            }
-            catch (Exception d)
-            {
-                MessageBox.Show("Um... Master? I'm afraid there's something wrong here.. I probably lost connection to the MySQL server (Database stuffs!). ;3; I know not what to do... I think I'm going to commit Seppuku! I'm sorry ;3;", "THIS IS BAD, M'KAY?", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MessageBox.Show("System had this to say : " + d.Message);
-                Console.Write(d.Message);
-                Application.Exit();
-                return;
+					txtBarcode.Text = "";
+					txtPrice.Text = "";
+					btnPay.Sensitive = true;
+					txtPaid.Sensitive = true;
+					btnCancel.Sensitive = true;
+					txtBarcode.GrabFocus ();
 
-            }
-        }
+				} else {
+					MessageBox.Show (this, MessageType.Error,
+											"Could not find merchandise in the database");
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            txtPrice.Text = "";
-            txtID.Text = "";
-        }
+					txtBarcode.GrabFocus ();
+					txtBarcode.Text = "";
+				}
+			} catch (Exception d) {
+				MessageBox.Show (this, MessageType.Error,
+										"Error, please show this to your administrator:\n"
+										+ d.ToString ());
+				return;
+			}
+		}
 
-        private void btnFinish_Click(object sender, EventArgs e)
-        {
-            Items = "";
-            Prices = "";
-            total = 0;
-            listView1.Items.Clear();
-            txtPrice.Text = "";
-            txtID.Text = "";
-            txtPaid.Text = "";
-            txtTotal.Text = "";
-            txtChange.Text = "";
+		protected void OnTxtPriceActivated (object sender, EventArgs e)
+		{
+			OnBtnAddToListClicked (sender, e);
+		}
 
-           
-        }
+		protected void OnBtnClearClicked (object sender, EventArgs e)
+		{
+			txtBarcode.Text = "";
+			txtPrice.Text = "";
+			txtBarcode.GrabFocus ();
+		}
 
-        private void btnPaid_Click(object sender, EventArgs e)
-        {
-            float paid = 0;
-            try
-            {
-                paid = float.Parse(txtPaid.Text);
-            }
-            catch (Exception d)
-            {
-                Console.Write(d.Message);
-                MessageBox.Show("Error reading paid price. Make sure it's only a number..");
-                return;
-            }
+		protected void OnBtnCancelClicked (object sender, EventArgs e)
+		{
+			MerchNode.clearTable (ref lstMerch, ref merchStore);
 
-            if (paid < total)
-            {
-                MessageBox.Show("Client needs to pay a bit more... This is not enough!", "Unnacceptable", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                return;
-            }
+			ResetForm ();
+		}
 
-            txtChange.Text = "$" + (paid - total).ToString();
-            MySqlCommand query = new MySqlCommand("INSERT INTO `receipts` (`userID`, `price`, `paid`, `isAuctionSale`, `itemArray`, `priceArray`) VALUES (@UID, @PRICE, @PAID, 1, @ITEMARRAY, @PRICEARRAY);", SQLConnection.GetConnection());
-            query.Prepare();
-            query.Parameters.AddWithValue("@UID", this.User.getCell("id", 0));
-            query.Parameters.AddWithValue("@PRICE", this.total);
-            query.Parameters.AddWithValue("@PAID", paid);
-            query.Parameters.AddWithValue("@ITEMARRAY", Items);
-            query.Parameters.AddWithValue("@PRICEARRAY", Prices);
-            //genItemArray
-            SQLResult results = this.SQLConnection.Query(query);
+		protected void OnBtnPayClicked (object sender, EventArgs e)
+		{
+			//TODO mark items as sold and tag receipt
+			if (txtPaid.Text == "") {
+				MessageBox.Show (this, MessageType.Info,
+										"Please specify the amount that the customer has paid");
+				return;
+			}
 
+			float paid;
 
-            query = new MySqlCommand("SELECT `id` from `receipts` where `userID` = @UID  AND `price` = @PRICE AND `paid` = @PAID AND `isAuctionSale` = 1 ORDER BY `id` DESC;", this.SQLConnection.GetConnection());
-            query.Prepare();
-            query.Parameters.AddWithValue("@UID", this.User.getCell("id", 0));
-            query.Parameters.AddWithValue("@PRICE", this.total);
-            query.Parameters.AddWithValue("@PAID", paid);
-            results = this.SQLConnection.Query(query);
+			try {
+				paid = float.Parse (txtPaid.Text);
+			} catch {
+				MessageBox.Show (this, MessageType.Info,
+										"Please enter a valid number in the paid box");
+				return;
+			}
 
-            int receiptID = Int32.Parse(results.getCell("id", 0).ToString());
+			if (total > paid) {
+				MessageBox.Show (this, MessageType.Info,
+										"Paid amount is too small");
+				return;
+			}
 
-            int i;
-            for (i = 0; i < listView1.Items.Count; i++)
-            {
+			SQL SQLConnection = parent.currentSQLConnection;
+			SQLResult User = parent.currentUser;
 
-                query = new MySqlCommand("UPDATE `merchandise` SET `MerchSold`=1, `ReceiptID`=@RECEIPTID WHERE  `ArtistID`=@ARTISTID AND `MerchID`=@MERCHID LIMIT 1;", SQLConnection.GetConnection());
-                query.Prepare();
-                query.Parameters.AddWithValue("@RECEIPTID", receiptID);
-                query.Parameters.AddWithValue("@ARTISTID", listView1.Items[i].SubItems[0].Text);
-                query.Parameters.AddWithValue("@MERCHID", listView1.Items[i].SubItems[2].Text);
-                results = this.SQLConnection.Query(query);
+			MySqlCommand query = new MySqlCommand ("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isQuickSale`, `itemArray`, `priceArray`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES);", SQLConnection.GetConnection ());
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
+			query.Parameters.AddWithValue ("@TOTAL", total);
+			query.Parameters.AddWithValue ("@PAID", paid);
+			query.Parameters.AddWithValue ("@ITEMS", items);
+			query.Parameters.AddWithValue ("@PRICES", prices);
+			SQLResult results = SQLConnection.Query (query);
 
+			if (results.successful ()) {
+				query = new MySqlCommand ("SELECT `id` FROM `receipts` WHERE `userID` = @UID AND `itemArray` = @ITEMS AND `priceArray` = @PRICES AND `isQuickSale` = 1 ORDER BY `id` DESC LIMIT 0,1;", SQLConnection.GetConnection ());
+				query.Prepare ();
+				query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
+				query.Parameters.AddWithValue ("@TOTAL", total);
+				query.Parameters.AddWithValue ("@PAID", paid);
+				query.Parameters.AddWithValue ("@ITEMS", items);
+				query.Parameters.AddWithValue ("@PRICES", prices);
+				results = SQLConnection.Query (query);
+				txtChange.Text = String.Format ("{0:0.00}", (paid - total));
 
-                MessageBox.Show("Receipt processed! Please go to our receipt printer. This was transaction ID #" + receiptID.ToString());
+				MessageBox.Show (this, MessageType.Info,
+										"Receipt processed, please give the following change: "
+										+ txtChange.Text +
+										"\n\nPlease check the receipt printer.\nThis was transaction ID #"
+										+ results.getCell ("id", 0));
 
+				SQLConnection.LogAction ("Made a quick sale with receipt #" + results.getCell ("id", 0), User);
+				btnPay.Sensitive = false;
+				txtPaid.Sensitive = false;
+				txtBarcode.Sensitive = false;
+				txtPrice.Sensitive = false;
+				btnAddToList.Sensitive = false;
+				btnClear.Sensitive = false;
+				btnCancel.GrabFocus ();
 
-            }
+			} else {
+				MessageBox.Show (this, MessageType.Error,
+										"Connection Error, please close and try again.");
+			}
+		}
 
-        }
-
-
-
-    }
+		protected void OnTxtPaidActivated (object sender, EventArgs e)
+		{
+			OnBtnPayClicked (sender, e);
+		}
+	}
 }
+
