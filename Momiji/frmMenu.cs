@@ -138,7 +138,7 @@ namespace Momiji
 			btnAuctionSale.Sensitive = userClass >= 3 ? true : false;
 
 			//Advanced Functionality:
-			/*reprintReceiptAction.Sensitive = userClass >= 4 ? true : false;
+			reprintReceiptAction.Sensitive = userClass >= 4 ? true : false;
 			checkInAction.Sensitive = userClass >= 5 ? true : false;
 			checkOutAction.Sensitive = userClass >= 6 ? true : false;
 			generateBiddingSheetsAction.Sensitive = userClass >= 6 ? true : false;
@@ -150,7 +150,7 @@ namespace Momiji
 			refundAction.Sensitive = userClass >= 10 ? true : false;
 			pricingAction.Sensitive = userClass >= 11 ? true : false;
 			usersPrefAction.Sensitive = userClass >= 11 ? true : false;
-		*/}
+		}
 
 		/////////////////////////
 		//     GTK Signals     //
@@ -202,13 +202,6 @@ namespace Momiji
 			new frmSearchArtist (frmSearchArtist.Operations.ArtistCheckout, this);
 		}
 
-		protected void OnGenerateBiddingSheetsActionActivated (object sender, EventArgs e)
-		{
-			if(SearchArtistForm != null)
-				SearchArtistForm.Destroy();
-			new frmSearchArtist (frmSearchArtist.Operations.GenerateBiddingSheets, this);
-		}
-
 		//Artists > Manage
 
 		protected void OnAddArtistActionActivated (object sender, EventArgs e)
@@ -244,7 +237,7 @@ namespace Momiji
 			new frmSearchArtist (frmSearchArtist.Operations.ManageArtistBalance, this);
 		}
 
-		//Treasury
+		//Tools
 
 		protected void OnCheckSalesActionActivated (object sender, EventArgs e)
 		{
@@ -261,16 +254,21 @@ namespace Momiji
 			new frmReceipts (this);
 		}
 
-		//Log
+		protected void OnCheckReceiptsActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
 
 		protected void OnCheckUserActivitiesActionActivated (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}
 
-		protected void OnCheckReceiptsActionActivated (object sender, EventArgs e)
+		protected void OnGenerateBiddingSheetsActionActivated (object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException ();
+			if(SearchArtistForm != null)
+				SearchArtistForm.Destroy();
+			new frmSearchArtist (frmSearchArtist.Operations.GenerateBiddingSheets, this);
 		}
 
 		//Preferences
