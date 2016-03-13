@@ -4,81 +4,7 @@ namespace Momiji
 {
 	public partial class frmMenu
 	{
-		private global::Gtk.UIManager UIManager;
-		
-		private global::Gtk.Action FileAction;
-		
-		private global::Gtk.Action artistsAction;
-		
-		private global::Gtk.Action TreasuryAction;
-		
-		private global::Gtk.Action HelpAction;
-		
-		private global::Gtk.Action LogAction;
-		
-		private global::Gtk.Action preferencesAction;
-		
-		private global::Gtk.Action pricingAction;
-		
-		private global::Gtk.Action usersPrefAction;
-		
-		private global::Gtk.Action addUserAction;
-		
-		private global::Gtk.Action editUserAction;
-		
-		private global::Gtk.Action removeAction;
-		
-		private global::Gtk.Action closeAction;
-		
-		private global::Gtk.Action checkOutAction;
-		
-		private global::Gtk.Action manageArtistAction;
-		
-		private global::Gtk.Action addArtistAction;
-		
-		private global::Gtk.Action checkSalesAction;
-		
-		private global::Gtk.Action refundAction;
-		
-		private global::Gtk.Action FAQAction;
-		
-		private global::Gtk.Action aboutAction;
-		
-		private global::Gtk.Action whatIsThisAction;
-		
-		private global::Gtk.Action whatDoIDoAction;
-		
-		private global::Gtk.Action whyCantIUseAction;
-		
-		private global::Gtk.Action checkUserActivitiesAction;
-		
-		private global::Gtk.Action checkReceiptsAction;
-		
-		private global::Gtk.Action quitAction;
-		
-		private global::Gtk.Action reprintReceiptAction;
-		
-		private global::Gtk.Action checkInAction;
-		
-		private global::Gtk.Action editArtistAction;
-		
-		private global::Gtk.Action deleteArtistAction;
-		
-		private global::Gtk.Action editMerchandiseAction;
-		
-		private global::Gtk.Action editGalleryStoreMerchandiseAction;
-		
-		private global::Gtk.Action manageArtistBalanceAction;
-		
-		private global::Gtk.Action generateBiddingSheetsAction;
-		
-		private global::Gtk.Action sadAction;
-		
-		private global::Gtk.Action biddersAction;
-		
 		private global::Gtk.VBox vbox2;
-		
-		private global::Gtk.MenuBar menubar3;
 		
 		private global::Gtk.HBox hbox8;
 		
@@ -110,132 +36,13 @@ namespace Momiji
 		{
 			global::Stetic.Gui.Initialize (this);
 			// Widget Momiji.frmMenu
-			this.UIManager = new global::Gtk.UIManager ();
-			global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
-			this.FileAction = new global::Gtk.Action ("FileAction", global::Mono.Unix.Catalog.GetString ("File"), null, null);
-			this.FileAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("File");
-			w1.Add (this.FileAction, null);
-			this.artistsAction = new global::Gtk.Action ("artistsAction", global::Mono.Unix.Catalog.GetString ("Artists"), null, null);
-			this.artistsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Artists");
-			w1.Add (this.artistsAction, null);
-			this.TreasuryAction = new global::Gtk.Action ("TreasuryAction", global::Mono.Unix.Catalog.GetString ("Treasury"), null, null);
-			this.TreasuryAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Treasury");
-			w1.Add (this.TreasuryAction, null);
-			this.HelpAction = new global::Gtk.Action ("HelpAction", global::Mono.Unix.Catalog.GetString ("Help"), null, null);
-			this.HelpAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Help");
-			w1.Add (this.HelpAction, null);
-			this.LogAction = new global::Gtk.Action ("LogAction", global::Mono.Unix.Catalog.GetString ("Log"), null, null);
-			this.LogAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Log");
-			w1.Add (this.LogAction, null);
-			this.preferencesAction = new global::Gtk.Action ("preferencesAction", global::Mono.Unix.Catalog.GetString ("Preferences"), null, "gtk-preferences");
-			this.preferencesAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Preferences");
-			w1.Add (this.preferencesAction, null);
-			this.pricingAction = new global::Gtk.Action ("pricingAction", global::Mono.Unix.Catalog.GetString ("Pricing"), null, "gtk-properties");
-			this.pricingAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Pricing");
-			w1.Add (this.pricingAction, null);
-			this.usersPrefAction = new global::Gtk.Action ("usersPrefAction", global::Mono.Unix.Catalog.GetString ("Users"), null, "gtk-index");
-			this.usersPrefAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Users");
-			w1.Add (this.usersPrefAction, null);
-			this.addUserAction = new global::Gtk.Action ("addUserAction", global::Mono.Unix.Catalog.GetString ("Add User"), null, "gtk-add");
-			this.addUserAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Add User");
-			w1.Add (this.addUserAction, null);
-			this.editUserAction = new global::Gtk.Action ("editUserAction", global::Mono.Unix.Catalog.GetString ("Edit User"), null, "gtk-preferences");
-			this.editUserAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit User");
-			w1.Add (this.editUserAction, null);
-			this.removeAction = new global::Gtk.Action ("removeAction", global::Mono.Unix.Catalog.GetString ("Remove User"), null, "gtk-remove");
-			this.removeAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Remove User");
-			w1.Add (this.removeAction, null);
-			this.closeAction = new global::Gtk.Action ("closeAction", global::Mono.Unix.Catalog.GetString ("Logout"), null, "gtk-close");
-			this.closeAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Exit");
-			w1.Add (this.closeAction, null);
-			this.checkOutAction = new global::Gtk.Action ("checkOutAction", global::Mono.Unix.Catalog.GetString ("Check Out"), null, "gtk-no");
-			this.checkOutAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Check Out");
-			w1.Add (this.checkOutAction, null);
-			this.manageArtistAction = new global::Gtk.Action ("manageArtistAction", global::Mono.Unix.Catalog.GetString ("Manage"), null, "gtk-execute");
-			this.manageArtistAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Manage");
-			w1.Add (this.manageArtistAction, null);
-			this.addArtistAction = new global::Gtk.Action ("addArtistAction", global::Mono.Unix.Catalog.GetString ("Add Artist"), null, "gtk-add");
-			this.addArtistAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Add Artist");
-			w1.Add (this.addArtistAction, null);
-			this.checkSalesAction = new global::Gtk.Action ("checkSalesAction", global::Mono.Unix.Catalog.GetString ("Check Sales Records"), null, "gtk-revert-to-saved");
-			this.checkSalesAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Check Sales Records");
-			w1.Add (this.checkSalesAction, null);
-			this.refundAction = new global::Gtk.Action ("refundAction", global::Mono.Unix.Catalog.GetString ("Refunds"), null, "gtk-undo");
-			this.refundAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Refunds");
-			w1.Add (this.refundAction, null);
-			this.FAQAction = new global::Gtk.Action ("FAQAction", global::Mono.Unix.Catalog.GetString ("FAQ"), null, "gtk-dialog-warning");
-			this.FAQAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Panic");
-			w1.Add (this.FAQAction, null);
-			this.aboutAction = new global::Gtk.Action ("aboutAction", global::Mono.Unix.Catalog.GetString ("About"), null, "gtk-about");
-			this.aboutAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("About");
-			w1.Add (this.aboutAction, null);
-			this.whatIsThisAction = new global::Gtk.Action ("whatIsThisAction", global::Mono.Unix.Catalog.GetString ("What is this?"), null, "gtk-dialog-question");
-			this.whatIsThisAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("What is this?");
-			w1.Add (this.whatIsThisAction, null);
-			this.whatDoIDoAction = new global::Gtk.Action ("whatDoIDoAction", global::Mono.Unix.Catalog.GetString ("What do I do?"), null, "gtk-dialog-question");
-			this.whatDoIDoAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("What do I do?");
-			w1.Add (this.whatDoIDoAction, null);
-			this.whyCantIUseAction = new global::Gtk.Action ("whyCantIUseAction", global::Mono.Unix.Catalog.GetString ("Why can't I use certain features?"), null, "gtk-dialog-question");
-			this.whyCantIUseAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Why can't I use certain features?");
-			w1.Add (this.whyCantIUseAction, null);
-			this.checkUserActivitiesAction = new global::Gtk.Action ("checkUserActivitiesAction", global::Mono.Unix.Catalog.GetString ("Check user activities"), null, "gtk-properties");
-			this.checkUserActivitiesAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Check user activities");
-			w1.Add (this.checkUserActivitiesAction, null);
-			this.checkReceiptsAction = new global::Gtk.Action ("checkReceiptsAction", global::Mono.Unix.Catalog.GetString ("Check latest receipts"), null, "gtk-revert-to-saved");
-			this.checkReceiptsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Check latest receipts");
-			w1.Add (this.checkReceiptsAction, null);
-			this.quitAction = new global::Gtk.Action ("quitAction", global::Mono.Unix.Catalog.GetString ("_Quit"), null, "gtk-quit");
-			this.quitAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Quit");
-			w1.Add (this.quitAction, null);
-			this.reprintReceiptAction = new global::Gtk.Action ("reprintReceiptAction", global::Mono.Unix.Catalog.GetString ("Re-_Print Receipt"), null, "gtk-print");
-			this.reprintReceiptAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("RePrint Receipt");
-			w1.Add (this.reprintReceiptAction, null);
-			this.checkInAction = new global::Gtk.Action ("checkInAction", global::Mono.Unix.Catalog.GetString ("Check In"), null, "gtk-yes");
-			this.checkInAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Check In");
-			w1.Add (this.checkInAction, null);
-			this.editArtistAction = new global::Gtk.Action ("editArtistAction", global::Mono.Unix.Catalog.GetString ("Edit Artist"), null, "gtk-preferences");
-			this.editArtistAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit Artist");
-			w1.Add (this.editArtistAction, null);
-			this.deleteArtistAction = new global::Gtk.Action ("deleteArtistAction", global::Mono.Unix.Catalog.GetString ("Delete Artist"), null, "gtk-remove");
-			this.deleteArtistAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Delete Artist");
-			w1.Add (this.deleteArtistAction, null);
-			this.editMerchandiseAction = new global::Gtk.Action ("editMerchandiseAction", global::Mono.Unix.Catalog.GetString ("Edit Merchandise"), null, "gtk-properties");
-			this.editMerchandiseAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit Merchandise");
-			w1.Add (this.editMerchandiseAction, null);
-			this.editGalleryStoreMerchandiseAction = new global::Gtk.Action ("editGalleryStoreMerchandiseAction", global::Mono.Unix.Catalog.GetString ("Edit Gallery Store Merchandise"), null, "gtk-revert-to-saved");
-			this.editGalleryStoreMerchandiseAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit Gallery Store Merchandise");
-			w1.Add (this.editGalleryStoreMerchandiseAction, null);
-			this.manageArtistBalanceAction = new global::Gtk.Action ("manageArtistBalanceAction", global::Mono.Unix.Catalog.GetString ("Manage Artist Balance"), null, "gtk-convert");
-			this.manageArtistBalanceAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Manage Artist Balance");
-			w1.Add (this.manageArtistBalanceAction, null);
-			this.generateBiddingSheetsAction = new global::Gtk.Action ("generateBiddingSheetsAction", global::Mono.Unix.Catalog.GetString ("Generate Bidding Sheets"), null, "gtk-properties");
-			this.generateBiddingSheetsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Generate Bidding Sheets");
-			w1.Add (this.generateBiddingSheetsAction, null);
-			this.sadAction = new global::Gtk.Action ("sadAction", global::Mono.Unix.Catalog.GetString ("sad"), null, null);
-			this.sadAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("sad");
-			w1.Add (this.sadAction, null);
-			this.biddersAction = new global::Gtk.Action ("biddersAction", global::Mono.Unix.Catalog.GetString ("Bidders"), null, "gtk-select-color");
-			this.biddersAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Bidders");
-			w1.Add (this.biddersAction, null);
-			this.UIManager.InsertActionGroup (w1, 0);
-			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "Momiji.frmMenu";
-			this.Title = global::Mono.Unix.Catalog.GetString ("Gallery Momiji Point-Of-Sale");
-			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
-			this.Resizable = false;
+			this.Title = global::Mono.Unix.Catalog.GetString ("frmMenu");
+			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child Momiji.frmMenu.Gtk.Container+ContainerChild
 			this.vbox2 = new global::Gtk.VBox ();
 			this.vbox2.Name = "vbox2";
 			this.vbox2.Spacing = 8;
-			// Container child vbox2.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><menubar name='menubar3'><menu name='FileAction' action='FileAction'><menu name='preferencesAction' action='preferencesAction'><menuitem name='pricingAction' action='pricingAction'/><menu name='usersPrefAction' action='usersPrefAction'><menuitem name='addUserAction' action='addUserAction'/><menuitem name='editUserAction' action='editUserAction'/></menu><menuitem/><menuitem name='biddersAction' action='biddersAction'/></menu><menuitem name='closeAction' action='closeAction'/><menuitem name='quitAction' action='quitAction'/></menu><menu name='artistsAction' action='artistsAction'><menuitem name='checkInAction' action='checkInAction'/><menuitem name='checkOutAction' action='checkOutAction'/><menuitem/><menu name='manageArtistAction' action='manageArtistAction'><menuitem name='addArtistAction' action='addArtistAction'/><menuitem name='editArtistAction' action='editArtistAction'/><menuitem name='deleteArtistAction' action='deleteArtistAction'/><menuitem name='editMerchandiseAction' action='editMerchandiseAction'/><menuitem name='editGalleryStoreMerchandiseAction' action='editGalleryStoreMerchandiseAction'/><menuitem name='manageArtistBalanceAction' action='manageArtistBalanceAction'/></menu><menuitem name='generateBiddingSheetsAction' action='generateBiddingSheetsAction'/></menu><menu name='TreasuryAction' action='TreasuryAction'><menuitem name='checkSalesAction' action='checkSalesAction'/><menuitem name='refundAction' action='refundAction'/><menuitem name='reprintReceiptAction' action='reprintReceiptAction'/></menu><menu name='LogAction' action='LogAction'><menuitem name='checkUserActivitiesAction' action='checkUserActivitiesAction'/><menuitem name='checkReceiptsAction' action='checkReceiptsAction'/></menu><menu name='HelpAction' action='HelpAction'><menu name='FAQAction' action='FAQAction'><menuitem name='whatIsThisAction' action='whatIsThisAction'/><menuitem name='whatDoIDoAction' action='whatDoIDoAction'/><menuitem name='whyCantIUseAction' action='whyCantIUseAction'/></menu><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
-			this.menubar3 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar3")));
-			this.menubar3.Name = "menubar3";
-			this.vbox2.Add (this.menubar3);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.menubar3]));
-			w2.Position = 0;
-			w2.Expand = false;
-			w2.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.hbox8 = new global::Gtk.HBox ();
 			this.hbox8.Name = "hbox8";
@@ -260,14 +67,14 @@ namespace Momiji
 			this.imgQuickSale.Name = "imgQuickSale";
 			this.imgQuickSale.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.tag-sale-icon.png");
 			this.fixedQuickSale.Add (this.imgQuickSale);
-			global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixedQuickSale [this.imgQuickSale]));
-			w4.X = 33;
-			w4.Y = 24;
+			global::Gtk.Fixed.FixedChild w2 = ((global::Gtk.Fixed.FixedChild)(this.fixedQuickSale [this.imgQuickSale]));
+			w2.X = 33;
+			w2.Y = 24;
 			this.hbox8.Add (this.fixedQuickSale);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.fixedQuickSale]));
-			w5.Position = 0;
-			w5.Expand = false;
-			w5.Fill = false;
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.fixedQuickSale]));
+			w3.Position = 0;
+			w3.Expand = false;
+			w3.Fill = false;
 			// Container child hbox8.Gtk.Box+BoxChild
 			this.fixedAuctionSale = new global::Gtk.Fixed ();
 			this.fixedAuctionSale.Name = "fixedAuctionSale";
@@ -287,14 +94,14 @@ namespace Momiji
 			this.imgAuctionSale.Name = "imgAuctionSale";
 			this.imgAuctionSale.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.shopping-bag-icon.png");
 			this.fixedAuctionSale.Add (this.imgAuctionSale);
-			global::Gtk.Fixed.FixedChild w7 = ((global::Gtk.Fixed.FixedChild)(this.fixedAuctionSale [this.imgAuctionSale]));
-			w7.X = 33;
-			w7.Y = 24;
+			global::Gtk.Fixed.FixedChild w5 = ((global::Gtk.Fixed.FixedChild)(this.fixedAuctionSale [this.imgAuctionSale]));
+			w5.X = 33;
+			w5.Y = 24;
 			this.hbox8.Add (this.fixedAuctionSale);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.fixedAuctionSale]));
-			w8.Position = 1;
-			w8.Expand = false;
-			w8.Fill = false;
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.fixedAuctionSale]));
+			w6.Position = 1;
+			w6.Expand = false;
+			w6.Fill = false;
 			// Container child hbox8.Gtk.Box+BoxChild
 			this.fixedGalleryStoreSale = new global::Gtk.Fixed ();
 			this.fixedGalleryStoreSale.Name = "fixedGalleryStoreSale";
@@ -314,19 +121,19 @@ namespace Momiji
 			this.imgGalleryStoreSale.Name = "imgGalleryStoreSale";
 			this.imgGalleryStoreSale.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.shopping-basket-icon.png");
 			this.fixedGalleryStoreSale.Add (this.imgGalleryStoreSale);
-			global::Gtk.Fixed.FixedChild w10 = ((global::Gtk.Fixed.FixedChild)(this.fixedGalleryStoreSale [this.imgGalleryStoreSale]));
-			w10.X = 33;
-			w10.Y = 24;
+			global::Gtk.Fixed.FixedChild w8 = ((global::Gtk.Fixed.FixedChild)(this.fixedGalleryStoreSale [this.imgGalleryStoreSale]));
+			w8.X = 33;
+			w8.Y = 24;
 			this.hbox8.Add (this.fixedGalleryStoreSale);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.fixedGalleryStoreSale]));
-			w11.Position = 2;
-			w11.Expand = false;
-			w11.Fill = false;
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.fixedGalleryStoreSale]));
+			w9.Position = 2;
+			w9.Expand = false;
+			w9.Fill = false;
 			this.vbox2.Add (this.hbox8);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox8]));
-			w12.Position = 1;
-			w12.Expand = false;
-			w12.Fill = false;
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox8]));
+			w10.Position = 1;
+			w10.Expand = false;
+			w10.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.hbox9 = new global::Gtk.HBox ();
 			this.hbox9.Name = "hbox9";
@@ -340,13 +147,13 @@ namespace Momiji
 			this.btnLogout.UseUnderline = true;
 			this.btnLogout.Label = global::Mono.Unix.Catalog.GetString ("Logout");
 			this.hbox9.Add (this.btnLogout);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.btnLogout]));
-			w13.Position = 0;
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox9 [this.btnLogout]));
+			w11.Position = 0;
 			this.vbox2.Add (this.hbox9);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox9]));
-			w14.Position = 2;
-			w14.Expand = false;
-			w14.Fill = false;
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox9]));
+			w12.Position = 2;
+			w12.Expand = false;
+			w12.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.lblGreeting = new global::Gtk.Label ();
 			this.lblGreeting.Name = "lblGreeting";
@@ -354,43 +161,18 @@ namespace Momiji
 			this.lblGreeting.Xalign = 0F;
 			this.lblGreeting.LabelProp = global::Mono.Unix.Catalog.GetString ("lblGreeting");
 			this.vbox2.Add (this.lblGreeting);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.lblGreeting]));
-			w15.Position = 3;
-			w15.Expand = false;
-			w15.Fill = false;
-			w15.Padding = ((uint)(8));
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.lblGreeting]));
+			w13.Position = 3;
+			w13.Expand = false;
+			w13.Fill = false;
+			w13.Padding = ((uint)(8));
 			this.Add (this.vbox2);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 438;
-			this.DefaultHeight = 320;
+			this.DefaultHeight = 300;
 			this.Show ();
-			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
-			this.pricingAction.Activated += new global::System.EventHandler (this.OnPricingActionActivated);
-			this.addUserAction.Activated += new global::System.EventHandler (this.OnAddUserActionActivated);
-			this.editUserAction.Activated += new global::System.EventHandler (this.OnEditUserActionActivated);
-			this.closeAction.Activated += new global::System.EventHandler (this.OnExitActionActivated);
-			this.checkOutAction.Activated += new global::System.EventHandler (this.OnCheckOutActionActivated);
-			this.addArtistAction.Activated += new global::System.EventHandler (this.OnAddArtistActionActivated);
-			this.checkSalesAction.Activated += new global::System.EventHandler (this.OnCheckSalesActionActivated);
-			this.refundAction.Activated += new global::System.EventHandler (this.OnRefundActionActivated);
-			this.aboutAction.Activated += new global::System.EventHandler (this.OnAboutActionActivated);
-			this.whatIsThisAction.Activated += new global::System.EventHandler (this.OnDialogQuestionActionActivated);
-			this.whatDoIDoAction.Activated += new global::System.EventHandler (this.OnWhatDoIDoActionActivated);
-			this.whyCantIUseAction.Activated += new global::System.EventHandler (this.OnWhyCantIUseActionActivated);
-			this.checkUserActivitiesAction.Activated += new global::System.EventHandler (this.OnCheckUserActivitiesActionActivated);
-			this.checkReceiptsAction.Activated += new global::System.EventHandler (this.checkReceiptsActionActivated);
-			this.quitAction.Activated += new global::System.EventHandler (this.OnQuitActionActivated);
-			this.reprintReceiptAction.Activated += new global::System.EventHandler (this.OnReprintReceiptActionActivated);
-			this.checkInAction.Activated += new global::System.EventHandler (this.OnCheckInActionActivated);
-			this.editArtistAction.Activated += new global::System.EventHandler (this.OnEditArtistActionActivated);
-			this.deleteArtistAction.Activated += new global::System.EventHandler (this.OnDeleteArtistActionActivated);
-			this.editMerchandiseAction.Activated += new global::System.EventHandler (this.OnEditMerchandiseActionActivated);
-			this.editGalleryStoreMerchandiseAction.Activated += new global::System.EventHandler (this.OnEditGalleryStoreMerchandiseActionActivated);
-			this.manageArtistBalanceAction.Activated += new global::System.EventHandler (this.OnManageArtistBalanceActionActivated);
-			this.generateBiddingSheetsAction.Activated += new global::System.EventHandler (this.OnGenerateBiddingSheetsActionActivated);
-			this.biddersAction.Activated += new global::System.EventHandler (this.OnBiddersActionActivated);
 			this.btnQuickSale.Clicked += new global::System.EventHandler (this.OnBtnQuickSaleClicked);
 			this.btnAuctionSale.Clicked += new global::System.EventHandler (this.OnBtnAuctionSaleClicked);
 			this.btnGalleryStoreSale.Clicked += new global::System.EventHandler (this.OnBtnGalleryStoreSaleClicked);

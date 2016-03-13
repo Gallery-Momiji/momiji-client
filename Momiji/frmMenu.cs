@@ -13,6 +13,7 @@ namespace Momiji
 		private frmGSSale GSSaleForm;
 		private frmQuickSale QuickSaleForm;
 		private frmAuctionSale AuctionSaleForm;
+		private frmSearchArtist SearchArtistForm;
 		private SQL SQLConnection;
 		private SQLResult User;
 
@@ -62,6 +63,14 @@ namespace Momiji
 		public void CleanupAuctionSale ()
 		{
 			AuctionSaleForm = null;
+		}
+
+		/// <summary>
+		/// This should be called when the user closes frmSearchArtist.
+		/// </summary>
+		public void CleanupSearchArtist ()
+		{
+			SearchArtistForm = null;
 		}
 
 		/////////////////////////
@@ -129,7 +138,7 @@ namespace Momiji
 			btnAuctionSale.Sensitive = userClass >= 3 ? true : false;
 
 			//Advanced Functionality:
-			reprintReceiptAction.Sensitive = userClass >= 4 ? true : false;
+			/*reprintReceiptAction.Sensitive = userClass >= 4 ? true : false;
 			checkInAction.Sensitive = userClass >= 5 ? true : false;
 			checkOutAction.Sensitive = userClass >= 6 ? true : false;
 			generateBiddingSheetsAction.Sensitive = userClass >= 6 ? true : false;
@@ -141,7 +150,7 @@ namespace Momiji
 			refundAction.Sensitive = userClass >= 10 ? true : false;
 			pricingAction.Sensitive = userClass >= 11 ? true : false;
 			usersPrefAction.Sensitive = userClass >= 11 ? true : false;
-		}
+		*/}
 
 		/////////////////////////
 		//     GTK Signals     //
@@ -154,7 +163,7 @@ namespace Momiji
 
 		//File
 
-		protected void OnExitActionActivated (object sender, EventArgs e)
+		protected void OnCloseActionActivated (object sender, EventArgs e)
 		{
 			CloseForm ();
 		}
@@ -170,50 +179,34 @@ namespace Momiji
 				AuctionSaleForm.Destroy ();
 			if (GSSaleForm != null)
 				GSSaleForm.Destroy ();
+			if(SearchArtistForm != null)
+				SearchArtistForm.Destroy();
 			LoginForm.Destroy ();
 			this.Destroy ();
 			Application.Quit ();
-		}
-
-		//File > Preferences
-
-		protected void OnPricingActionActivated (object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException ();
-		}
-
-		protected void OnBiddersActionActivated (object sender, EventArgs e)
-		{
-			throw new NotImplementedException ();
-		}
-
-		//File > Preferences > Users
-
-		protected void OnAddUserActionActivated (object sender, EventArgs e)
-		{
-			new frmUserAdd (this);
-		}
-
-		protected void OnEditUserActionActivated (object sender, EventArgs e)
-		{
-			new frmUserEdit (this);
 		}
 
 		//Artists
 
 		protected void OnCheckInActionActivated (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			if(SearchArtistForm != null)
+				SearchArtistForm.Destroy();
+			SearchArtistForm = new frmSearchArtist (frmSearchArtist.Operations.ArtistCheckin, this);
 		}
 
 		protected void OnCheckOutActionActivated (object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException ();
+			if(SearchArtistForm != null)
+				SearchArtistForm.Destroy();
+			new frmSearchArtist (frmSearchArtist.Operations.ArtistCheckout, this);
 		}
 
 		protected void OnGenerateBiddingSheetsActionActivated (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			if(SearchArtistForm != null)
+				SearchArtistForm.Destroy();
+			new frmSearchArtist (frmSearchArtist.Operations.GenerateBiddingSheets, this);
 		}
 
 		//Artists > Manage
@@ -225,27 +218,30 @@ namespace Momiji
 
 		protected void OnEditArtistActionActivated (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
-		}
-
-		protected void OnDeleteArtistActionActivated (object sender, EventArgs e)
-		{
-			throw new NotImplementedException ();
+			if(SearchArtistForm != null)
+				SearchArtistForm.Destroy();
+			new frmSearchArtist (frmSearchArtist.Operations.EditArtist, this);
 		}
 
 		protected void OnEditMerchandiseActionActivated (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			if(SearchArtistForm != null)
+				SearchArtistForm.Destroy();
+			new frmSearchArtist (frmSearchArtist.Operations.EditMerchandise, this);
 		}
 
 		protected void OnEditGalleryStoreMerchandiseActionActivated (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			if(SearchArtistForm != null)
+				SearchArtistForm.Destroy();
+			new frmSearchArtist (frmSearchArtist.Operations.EditGalleryStore, this);
 		}
 
 		protected void OnManageArtistBalanceActionActivated (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			if(SearchArtistForm != null)
+				SearchArtistForm.Destroy();
+			new frmSearchArtist (frmSearchArtist.Operations.ManageArtistBalance, this);
 		}
 
 		//Treasury
@@ -272,9 +268,38 @@ namespace Momiji
 			throw new System.NotImplementedException ();
 		}
 
-		protected void checkReceiptsActionActivated (object sender, EventArgs e)
+		protected void OnCheckReceiptsActionActivated (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
+		}
+
+		//Preferences
+
+		protected void OnUserPreferencesActionActivated (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
+
+		protected void OnPricingActionActivated (object sender, EventArgs e)
+		{
+			throw new System.NotImplementedException ();
+		}
+
+		protected void OnBiddersActionActivated (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
+
+		//Preferences > Users
+
+		protected void OnAddUserActionActivated (object sender, EventArgs e)
+		{
+			new frmUserAdd (this);
+		}
+
+		protected void OnEditUserActionActivated (object sender, EventArgs e)
+		{
+			new frmUserEdit (this);
 		}
 
 		//About
@@ -282,21 +307,6 @@ namespace Momiji
 		protected void OnAboutActionActivated (object sender, EventArgs e)
 		{
 			new AboutBox ();
-		}
-
-		protected void OnDialogQuestionActionActivated (object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException ();
-		}
-
-		protected void OnWhatDoIDoActionActivated (object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException ();
-		}
-
-		protected void OnWhyCantIUseActionActivated (object sender, EventArgs e)
-		{
-			throw new System.NotImplementedException ();
 		}
 
 		//Buttons

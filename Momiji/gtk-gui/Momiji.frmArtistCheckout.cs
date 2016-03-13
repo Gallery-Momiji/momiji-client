@@ -231,7 +231,7 @@ namespace Momiji
 			this.btnGenSaleSum.UseUnderline = true;
 			this.btnGenSaleSum.Label = global::Mono.Unix.Catalog.GetString ("Generate Sales Summary");
 			global::Gtk.Image w13 = new global::Gtk.Image ();
-			w13.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-new", global::Gtk.IconSize.Menu);
+			w13.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-execute", global::Gtk.IconSize.Menu);
 			this.btnGenSaleSum.Image = w13;
 			this.vboxStep1.Add (this.btnGenSaleSum);
 			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vboxStep1 [this.btnGenSaleSum]));
@@ -435,6 +435,9 @@ namespace Momiji
 			this.DefaultWidth = 829;
 			this.DefaultHeight = 360;
 			this.Show ();
+			this.button6.Clicked += new global::System.EventHandler (this.OnButton6Clicked);
+			this.btnGenSaleSum.Clicked += new global::System.EventHandler (this.OnBtnGenSaleSumClicked);
+			this.buttonCancel.Clicked += new global::System.EventHandler (this.OnButtonCancelClicked);
 		}
 	}
 }

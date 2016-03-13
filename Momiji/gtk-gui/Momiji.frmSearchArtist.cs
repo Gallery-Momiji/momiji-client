@@ -18,7 +18,7 @@ namespace Momiji
 		
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 		
-		private global::Gtk.NodeView lstMerch;
+		private global::Gtk.NodeView lstArtists;
 
 		protected virtual void Build ()
 		{
@@ -87,11 +87,11 @@ namespace Momiji
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-			this.lstMerch = new global::Gtk.NodeView ();
-			this.lstMerch.CanFocus = true;
-			this.lstMerch.Name = "lstMerch";
-			this.lstMerch.EnableSearch = false;
-			this.GtkScrolledWindow.Add (this.lstMerch);
+			this.lstArtists = new global::Gtk.NodeView ();
+			this.lstArtists.CanFocus = true;
+			this.lstArtists.Name = "lstArtists";
+			this.lstArtists.EnableSearch = false;
+			this.GtkScrolledWindow.Add (this.lstArtists);
 			this.vbox1.Add (this.GtkScrolledWindow);
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
 			w8.Position = 1;
@@ -103,8 +103,10 @@ namespace Momiji
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 376;
 			this.Show ();
+			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.txtSearch.Activated += new global::System.EventHandler (this.OnTxtSearchActivated);
 			this.btnSearch.Clicked += new global::System.EventHandler (this.OnBtnSearchClicked);
+			this.lstArtists.RowActivated += new global::Gtk.RowActivatedHandler (this.OnLstArtistsRowActivated);
 		}
 	}
 }

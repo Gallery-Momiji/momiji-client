@@ -9,16 +9,19 @@ namespace Momiji
 		/////////////////////////
 
 		private frmMenu parent;
+		private int artistID;
 
 		/////////////////////////
 		//     Contructor      //
 		/////////////////////////
 
-		public frmArtistAdd (frmMenu parent) :
-				base(Gtk.WindowType.Toplevel)
+		public frmArtistAdd (int artistID, bool newArtist, frmMenu parent) :
+			base (Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
+			this.artistID = artistID;
 			this.Build ();
+			btnDelete.Sensitive = !newArtist;
 		}
 
 		/////////////////////////
@@ -38,6 +41,11 @@ namespace Momiji
 		protected void OnBtnUpdateClicked (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
+		}
+
+		protected void OnBtnDeleteClicked (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
 		}
 	}
 }

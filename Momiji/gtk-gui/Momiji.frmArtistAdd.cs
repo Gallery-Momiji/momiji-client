@@ -68,6 +68,8 @@ namespace Momiji
 		
 		private global::Gtk.Button btnCancel;
 		
+		private global::Gtk.Button btnDelete;
+		
 		private global::Gtk.Button btnUpdate;
 
 		protected virtual void Build ()
@@ -408,28 +410,42 @@ namespace Momiji
 			w31.Expand = false;
 			w31.Fill = false;
 			// Container child hbox3.Gtk.Box+BoxChild
+			this.btnDelete = new global::Gtk.Button ();
+			this.btnDelete.CanFocus = true;
+			this.btnDelete.Name = "btnDelete";
+			this.btnDelete.UseUnderline = true;
+			this.btnDelete.Label = global::Mono.Unix.Catalog.GetString ("Delete Artist");
+			global::Gtk.Image w32 = new global::Gtk.Image ();
+			w32.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-delete", global::Gtk.IconSize.Menu);
+			this.btnDelete.Image = w32;
+			this.hbox3.Add (this.btnDelete);
+			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnDelete]));
+			w33.Position = 1;
+			w33.Expand = false;
+			w33.Fill = false;
+			// Container child hbox3.Gtk.Box+BoxChild
 			this.btnUpdate = new global::Gtk.Button ();
 			this.btnUpdate.CanFocus = true;
 			this.btnUpdate.Name = "btnUpdate";
 			this.btnUpdate.UseUnderline = true;
 			this.btnUpdate.Label = global::Mono.Unix.Catalog.GetString ("Finish");
-			global::Gtk.Image w32 = new global::Gtk.Image ();
-			w32.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
-			this.btnUpdate.Image = w32;
+			global::Gtk.Image w34 = new global::Gtk.Image ();
+			w34.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
+			this.btnUpdate.Image = w34;
 			this.hbox3.Add (this.btnUpdate);
-			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnUpdate]));
-			w33.Position = 2;
-			w33.Expand = false;
-			w33.Fill = false;
+			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnUpdate]));
+			w35.Position = 3;
+			w35.Expand = false;
+			w35.Fill = false;
 			this.vbox5.Add (this.hbox3);
-			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.hbox3]));
-			w34.Position = 1;
-			w34.Expand = false;
-			w34.Fill = false;
-			w34.Padding = ((uint)(8));
+			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.hbox3]));
+			w36.Position = 1;
+			w36.Expand = false;
+			w36.Fill = false;
+			w36.Padding = ((uint)(8));
 			this.hbox2.Add (this.vbox5);
-			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.vbox5]));
-			w35.Position = 1;
+			global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.vbox5]));
+			w37.Position = 1;
 			this.Add (this.hbox2);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -439,6 +455,7 @@ namespace Momiji
 			this.Show ();
 			this.btnGenerate.Clicked += new global::System.EventHandler (this.OnBtnGenerateClicked);
 			this.btnCancel.Clicked += new global::System.EventHandler (this.OnBtnCancelClicked);
+			this.btnDelete.Clicked += new global::System.EventHandler (this.OnBtnDeleteClicked);
 			this.btnUpdate.Clicked += new global::System.EventHandler (this.OnBtnUpdateClicked);
 		}
 	}

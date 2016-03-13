@@ -11,21 +11,38 @@ namespace Momiji
 		/////////////////////////
 
 		private frmMenu parent;
+		private int artistID;
 
 		/////////////////////////
 		//     Contructor      //
 		/////////////////////////
 
-		public frmArtistCheckout (frmMenu parent) : 
-				base(Gtk.WindowType.Toplevel)
+		public frmArtistCheckout (int artistID, frmMenu parent) :
+			base (Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
+			this.artistID = artistID;
 			this.Build ();
 		}
 
 		/////////////////////////
 		//     GTK Signals     //
 		/////////////////////////
+
+		protected void OnBtnGenSaleSumClicked (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
+
+		protected void OnButton6Clicked (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
+
+		protected void OnButtonCancelClicked (object sender, EventArgs e)
+		{
+			throw new NotImplementedException ();
+		}
 	}
 }
 

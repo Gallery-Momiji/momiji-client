@@ -9,15 +9,17 @@ namespace Momiji
 		/////////////////////////
 
 		private frmMenu parent;
+		private int artistID;
 
 		/////////////////////////
 		//     Contructor      //
 		/////////////////////////
 
-		public frmCheckin (frmMenu parent) :
-				base(Gtk.WindowType.Toplevel)
+		public frmCheckin (int artistID, frmMenu parent) :
+			base (Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
+			this.artistID = artistID;
 			this.Build ();
 		}
 

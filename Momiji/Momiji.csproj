@@ -64,7 +64,6 @@
     <Compile Include="frmLogin.cs" />
     <Compile Include="gtk-gui\Momiji.frmLogin.cs" />
     <Compile Include="frmMenu.cs" />
-    <Compile Include="gtk-gui\Momiji.frmMenu.cs" />
     <Compile Include="AboutBox.cs" />
     <Compile Include="gtk-gui\Momiji.AboutBox.cs" />
     <Compile Include="frmArtistCheckinGallery.cs" />
@@ -103,6 +102,10 @@
     <Compile Include="gtk-gui\Momiji.frmArtistAdd.cs" />
     <Compile Include="frmMerchEditor.cs" />
     <Compile Include="gtk-gui\Momiji.frmMerchEditor.cs" />
+    <Compile Include="frmBidders.cs" />
+    <Compile Include="gtk-gui\Momiji.frmBidders.cs" />
+    <Compile Include="ArtistNode.cs" />
+    <Compile Include="gtk-gui\Momiji.frmMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
