@@ -24,12 +24,12 @@ namespace Momiji
 		//     GTK Signals     //
 		/////////////////////////
 
-		protected void OnTxtSearchActivated (object sender, System.EventArgs e)
+		protected void OnTxtSearchActivated (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}
 
-		protected void OnBtnSearchClicked (object sender, System.EventArgs e)
+		protected void OnBtnSearchClicked (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}

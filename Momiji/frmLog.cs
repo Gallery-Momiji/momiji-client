@@ -25,7 +25,7 @@ namespace Momiji
 		//     GTK Signals     //
 		/////////////////////////
 
-		protected void OnDrpDateChanged (object sender, System.EventArgs e)
+		protected void OnDrpDateChanged (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}

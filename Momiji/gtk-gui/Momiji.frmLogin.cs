@@ -5,18 +5,29 @@ namespace Momiji
 	public partial class frmLogin
 	{
 		private global::Gtk.VBox vbox1;
-		private global::Gtk.Table table1;
-		private global::Gtk.Button btnLogin;
-		private global::Gtk.Label label1;
-		private global::Gtk.Label label2;
-		private global::Gtk.Entry txtPassword;
-		private global::Gtk.Entry txtUsername;
-		private global::Gtk.HBox hbox5;
-		private global::Gtk.Button btnRetry;
-		private global::Gtk.Label lblConnStatusLabel;
-		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-		private global::Gtk.Label lblConnStatus;
 		
+		private global::Gtk.Table table1;
+		
+		private global::Gtk.Button btnLogin;
+		
+		private global::Gtk.Label label1;
+		
+		private global::Gtk.Label label2;
+		
+		private global::Gtk.Entry txtPassword;
+		
+		private global::Gtk.Entry txtUsername;
+		
+		private global::Gtk.HBox hbox5;
+		
+		private global::Gtk.Button btnRetry;
+		
+		private global::Gtk.Label lblConnStatusLabel;
+		
+		private global::Gtk.ScrolledWindow GtkScrolledWindow;
+		
+		private global::Gtk.Label lblConnStatus;
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -24,7 +35,7 @@ namespace Momiji
 			this.Name = "Momiji.frmLogin";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Welcome to Gallery Momiji");
 			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.Crystal-Star-256.ico");
-			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			this.Resizable = false;
 			this.AllowGrow = false;
 			this.DefaultWidth = 432;

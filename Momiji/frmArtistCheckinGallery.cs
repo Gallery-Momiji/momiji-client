@@ -71,7 +71,7 @@ namespace Momiji
 		//     GTK Signals     //
 		/////////////////////////
 
-		protected void OnBtnCheckInClicked (object sender, System.EventArgs e)
+		protected void OnBtnCheckInClicked (object sender, EventArgs e)
 		{
 			if (chkBinder.Active && chkGSCS.Active && chkMatch.Active) {
 				SQL SQLConnection = parent.currentSQLConnection;

@@ -78,7 +78,7 @@ namespace Momiji
 			Application.Quit ();
 		}
 
-		protected void OnBtnLoginClicked (object sender, System.EventArgs e)
+		protected void OnBtnLoginClicked (object sender, EventArgs e)
 		{
 			string pass = txtPassword.Text;
 			string user = txtUsername.Text.ToLower();
@@ -140,19 +140,19 @@ namespace Momiji
 			}
 		}
 
-		protected void OnTxtPasswordActivated (object sender, System.EventArgs e)
+		protected void OnTxtPasswordActivated (object sender, EventArgs e)
 		{
 			if (btnLogin.Sensitive)
 				OnBtnLoginClicked (sender, e);
 		}
 
-		protected void OnTxtUsernameActivated (object sender, System.EventArgs e)
+		protected void OnTxtUsernameActivated (object sender, EventArgs e)
 		{
 			if (btnLogin.Sensitive)
 				OnBtnLoginClicked (sender, e);
 		}
 
-		protected void OnBtnRetryClicked (object sender, System.EventArgs e)
+		protected void OnBtnRetryClicked (object sender, EventArgs e)
 		{
 			TestConnect ();
 		}

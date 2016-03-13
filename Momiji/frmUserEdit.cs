@@ -114,17 +114,17 @@ namespace Momiji
 		//     GTK Signals     //
 		/////////////////////////
 
-		protected void OnBtnCloseClicked (object sender, System.EventArgs e)
+		protected void OnBtnCloseClicked (object sender, EventArgs e)
 		{
 			this.Destroy ();
 		}
 
-		protected void OnDrpUsersChanged (object sender, System.EventArgs e)
+		protected void OnDrpUsersChanged (object sender, EventArgs e)
 		{
 			loadUserData ();
 		}
 
-		protected void OnBtnDeleteClicked (object sender, System.EventArgs e)
+		protected void OnBtnDeleteClicked (object sender, EventArgs e)
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
 			string userID = userids [drpUsers.Active].ToString ();
@@ -146,7 +146,7 @@ namespace Momiji
 			loadUserList ();
 		}
 
-		protected void OnBtnUpdateClicked (object sender, System.EventArgs e)
+		protected void OnBtnUpdateClicked (object sender, EventArgs e)
 		{
 			string userID, userName, password1, password2, userFnameLname, userClass;
 			userName = txtUsername.Text.ToLower ();
@@ -195,7 +195,7 @@ namespace Momiji
 			loadUserData ();
 		}
 
-		protected void OnBtnCancelClicked (object sender, System.EventArgs e)
+		protected void OnBtnCancelClicked (object sender, EventArgs e)
 		{
 			drpUsers.Active = -1;
 			loadUserData ();

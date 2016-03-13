@@ -57,7 +57,7 @@ namespace Momiji
 		//     GTK Signals     //
 		/////////////////////////
 
-		protected void OnBtnCloseClicked (object sender, System.EventArgs e)
+		protected void OnBtnCloseClicked (object sender, EventArgs e)
 		{
 			this.Destroy();
 		}

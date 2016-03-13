@@ -25,42 +25,42 @@ namespace Momiji
 		//     GTK Signals     //
 		/////////////////////////
 
-		protected void OnBtnGenIDClicked (object sender, System.EventArgs e)
+		protected void OnBtnGenIDClicked (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}
 
-		protected void OnBtnUpdateClicked (object sender, System.EventArgs e)
+		protected void OnBtnUpdateClicked (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}
 
-		protected void OnBtnAddClicked (object sender, System.EventArgs e)
+		protected void OnBtnAddClicked (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}
 
-		protected void OnBtnClearClicked (object sender, System.EventArgs e)
+		protected void OnBtnClearClicked (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}
 
-		protected void OnBtnDeleteClicked (object sender, System.EventArgs e)
+		protected void OnBtnDeleteClicked (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}
 
-		protected void OnBtnCreateSheetClicked (object sender, System.EventArgs e)
+		protected void OnBtnCreateSheetClicked (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}
 
-		protected void OnBtnGenCSClicked (object sender, System.EventArgs e)
+		protected void OnBtnGenCSClicked (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}
 
-		protected void OnBtnCancelClicked (object sender, System.EventArgs e)
+		protected void OnBtnCancelClicked (object sender, EventArgs e)
 		{
 			throw new System.NotImplementedException ();
 		}

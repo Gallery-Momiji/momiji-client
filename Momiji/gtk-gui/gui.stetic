@@ -12,7 +12,7 @@
     <property name="MemberName" />
     <property name="Title" translatable="yes">Welcome to Gallery Momiji</property>
     <property name="Icon">resource:Momiji.Resources.Crystal-Star-256.ico</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">CenterAlways</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>
     <property name="DefaultWidth">432</property>
@@ -224,14 +224,14 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmMenu" design-size="438 315">
+  <widget class="Gtk.Window" id="Momiji.frmMenu" design-size="438 320">
     <action-group name="Default">
       <action id="FileAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">File</property>
         <property name="ShortLabel" translatable="yes">File</property>
       </action>
-      <action id="ArtistsAction">
+      <action id="artistsAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Artists</property>
         <property name="ShortLabel" translatable="yes">Artists</property>
@@ -270,19 +270,19 @@
         <property name="ShortLabel" translatable="yes">Users</property>
         <property name="StockId">gtk-index</property>
       </action>
-      <action id="addAction">
+      <action id="addUserAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Add User</property>
         <property name="ShortLabel" translatable="yes">Add User</property>
         <property name="StockId">gtk-add</property>
         <signal name="Activated" handler="OnAddUserActionActivated" />
       </action>
-      <action id="preferencesAction1">
+      <action id="editUserAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Edit User</property>
         <property name="ShortLabel" translatable="yes">Edit User</property>
         <property name="StockId">gtk-preferences</property>
-        <signal name="Activated" handler="OnPreferencesAction1Activated" />
+        <signal name="Activated" handler="OnEditUserActionActivated" />
       </action>
       <action id="removeAction">
         <property name="Type">Action</property>
@@ -297,12 +297,6 @@
         <property name="StockId">gtk-close</property>
         <signal name="Activated" handler="OnExitActionActivated" />
       </action>
-      <action id="checkInAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Check In</property>
-        <property name="ShortLabel" translatable="yes">Check In</property>
-        <property name="StockId">gtk-yes</property>
-      </action>
       <action id="checkOutAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Check Out</property>
@@ -310,162 +304,18 @@
         <property name="StockId">gtk-no</property>
         <signal name="Activated" handler="OnCheckOutActionActivated" />
       </action>
-      <action id="propertiesAction1">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Generate Bidding Sheets</property>
-        <property name="ShortLabel" translatable="yes">Generate Bidding Sheets</property>
-        <property name="StockId">gtk-properties</property>
-      </action>
-      <action id="GenerateBiddingSheetsAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Generate Bidding Sheets</property>
-        <property name="ShortLabel" translatable="yes">Generate Bidding Sheets</property>
-      </action>
-      <action id="findAction1">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by ID</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
-        <property name="StockId">gtk-find</property>
-        <signal name="Activated" handler="OnFindAction1Activated" />
-      </action>
-      <action id="findAndReplaceAction1">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by Name</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
-        <property name="StockId">gtk-find-and-replace</property>
-        <signal name="Activated" handler="OnFindAndReplaceAction1Activated" />
-      </action>
-      <action id="findAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by ID</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
-        <property name="StockId">gtk-find</property>
-        <signal name="Activated" handler="OnFindActionActivated" />
-      </action>
-      <action id="findAndReplaceAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by Name</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
-        <property name="StockId">gtk-find-and-replace</property>
-        <signal name="Activated" handler="OnFindAndReplaceActionActivated" />
-      </action>
-      <action id="GenerateBiddingSheetsAction1">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Generate Bidding Sheets</property>
-        <property name="ShortLabel" translatable="yes">Generate Bidding Sheets</property>
-      </action>
       <action id="manageArtistAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Manage</property>
         <property name="ShortLabel" translatable="yes">Manage</property>
         <property name="StockId">gtk-execute</property>
       </action>
-      <action id="addAction1">
+      <action id="addArtistAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Add Artist</property>
         <property name="ShortLabel" translatable="yes">Add Artist</property>
         <property name="StockId">gtk-add</property>
-        <signal name="Activated" handler="OnAddAction1Activated" />
-      </action>
-      <action id="preferencesAction2">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Edit Artist</property>
-        <property name="ShortLabel" translatable="yes">Edit Artist</property>
-        <property name="StockId">gtk-preferences</property>
-      </action>
-      <action id="removeAction1">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Delete Artist</property>
-        <property name="ShortLabel" translatable="yes">Delete Artist</property>
-        <property name="StockId">gtk-remove</property>
-      </action>
-      <action id="propertiesAction2">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Edit Merchandise</property>
-        <property name="ShortLabel" translatable="yes">Edit Merchandise</property>
-        <property name="StockId">gtk-properties</property>
-      </action>
-      <action id="revertToSavedAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Edit Gallery Store Merchandise</property>
-        <property name="ShortLabel" translatable="yes">Edit Gallery Store Merchandise</property>
-        <property name="StockId">gtk-revert-to-saved</property>
-      </action>
-      <action id="convertAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Manage Artist Balance</property>
-        <property name="ShortLabel" translatable="yes">Manage Artist Balance</property>
-        <property name="StockId">gtk-convert</property>
-      </action>
-      <action id="findAction2">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by ID</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
-        <property name="StockId">gtk-find</property>
-        <signal name="Activated" handler="OnFindAction2Activated" />
-      </action>
-      <action id="findAndReplaceAction2">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by Name</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
-        <property name="StockId">gtk-find-and-replace</property>
-        <signal name="Activated" handler="OnFindAndReplaceAction2Activated" />
-      </action>
-      <action id="findAction3">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by ID</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
-        <property name="StockId">gtk-find</property>
-        <signal name="Activated" handler="OnFindAction3Activated" />
-      </action>
-      <action id="findAndReplaceAction3">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by Name</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
-        <property name="StockId">gtk-find-and-replace</property>
-        <signal name="Activated" handler="OnFindAndReplaceAction3Activated" />
-      </action>
-      <action id="findAction4">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by ID</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
-        <property name="StockId">gtk-find</property>
-        <signal name="Activated" handler="OnFindAction4Activated" />
-      </action>
-      <action id="findAndReplaceAction4">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by Name</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
-        <property name="StockId">gtk-find-and-replace</property>
-        <signal name="Activated" handler="OnFindAndReplaceAction4Activated" />
-      </action>
-      <action id="findAction5">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by ID</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
-        <property name="StockId">gtk-find</property>
-        <signal name="Activated" handler="OnFindAction5Activated" />
-      </action>
-      <action id="findAndReplaceAction5">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by Name</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
-        <property name="StockId">gtk-find-and-replace</property>
-        <signal name="Activated" handler="OnFindAndReplaceAction5Activated" />
-      </action>
-      <action id="findAction6">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by ID</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by ID</property>
-        <property name="StockId">gtk-find</property>
-        <signal name="Activated" handler="OnFindAction6Activated" />
-      </action>
-      <action id="findAndReplaceAction6">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Search Artist by Name</property>
-        <property name="ShortLabel" translatable="yes">Search Artist by Name</property>
-        <property name="StockId">gtk-find-and-replace</property>
-        <signal name="Activated" handler="OnFindAndReplaceAction6Activated" />
+        <signal name="Activated" handler="OnAddArtistActionActivated" />
       </action>
       <action id="checkSalesAction">
         <property name="Type">Action</property>
@@ -481,7 +331,7 @@
         <property name="StockId">gtk-undo</property>
         <signal name="Activated" handler="OnRefundActionActivated" />
       </action>
-      <action id="dialogWarningAction">
+      <action id="FAQAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">FAQ</property>
         <property name="ShortLabel" translatable="yes">Panic</property>
@@ -494,26 +344,26 @@
         <property name="StockId">gtk-about</property>
         <signal name="Activated" handler="OnAboutActionActivated" />
       </action>
-      <action id="dialogQuestionAction">
+      <action id="whatIsThisAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">What is this?</property>
         <property name="ShortLabel" translatable="yes">What is this?</property>
         <property name="StockId">gtk-dialog-question</property>
         <signal name="Activated" handler="OnDialogQuestionActionActivated" />
       </action>
-      <action id="dialogQuestionAction1">
+      <action id="whatDoIDoAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">What do I do?</property>
         <property name="ShortLabel" translatable="yes">What do I do?</property>
         <property name="StockId">gtk-dialog-question</property>
-        <signal name="Activated" handler="OnDialogQuestionAction1Activated" />
+        <signal name="Activated" handler="OnWhatDoIDoActionActivated" />
       </action>
-      <action id="dialogQuestionAction2">
+      <action id="whyCantIUseAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Why can't I use certain features?</property>
         <property name="ShortLabel" translatable="yes">Why can't I use certain features?</property>
         <property name="StockId">gtk-dialog-question</property>
-        <signal name="Activated" handler="OnDialogQuestionAction2Activated" />
+        <signal name="Activated" handler="OnWhyCantIUseActionActivated" />
       </action>
       <action id="checkUserActivitiesAction">
         <property name="Type">Action</property>
@@ -522,12 +372,12 @@
         <property name="StockId">gtk-properties</property>
         <signal name="Activated" handler="OnCheckUserActivitiesActionActivated" />
       </action>
-      <action id="revertToSavedAction3">
+      <action id="checkReceiptsAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Check latest receipts</property>
         <property name="ShortLabel" translatable="yes">Check latest receipts</property>
         <property name="StockId">gtk-revert-to-saved</property>
-        <signal name="Activated" handler="OnRevertToSavedAction3Activated" />
+        <signal name="Activated" handler="checkReceiptsActionActivated" />
       </action>
       <action id="quitAction">
         <property name="Type">Action</property>
@@ -543,10 +393,72 @@
         <property name="StockId">gtk-print</property>
         <signal name="Activated" handler="OnReprintReceiptActionActivated" />
       </action>
+      <action id="checkInAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Check In</property>
+        <property name="ShortLabel" translatable="yes">Check In</property>
+        <property name="StockId">gtk-yes</property>
+        <signal name="Activated" handler="OnCheckInActionActivated" />
+      </action>
+      <action id="editArtistAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Edit Artist</property>
+        <property name="ShortLabel" translatable="yes">Edit Artist</property>
+        <property name="StockId">gtk-preferences</property>
+        <signal name="Activated" handler="OnEditArtistActionActivated" />
+      </action>
+      <action id="deleteArtistAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Delete Artist</property>
+        <property name="ShortLabel" translatable="yes">Delete Artist</property>
+        <property name="StockId">gtk-remove</property>
+        <signal name="Activated" handler="OnDeleteArtistActionActivated" />
+      </action>
+      <action id="editMerchandiseAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Edit Merchandise</property>
+        <property name="ShortLabel" translatable="yes">Edit Merchandise</property>
+        <property name="StockId">gtk-properties</property>
+        <signal name="Activated" handler="OnEditMerchandiseActionActivated" />
+      </action>
+      <action id="editGalleryStoreMerchandiseAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Edit Gallery Store Merchandise</property>
+        <property name="ShortLabel" translatable="yes">Edit Gallery Store Merchandise</property>
+        <property name="StockId">gtk-revert-to-saved</property>
+        <signal name="Activated" handler="OnEditGalleryStoreMerchandiseActionActivated" />
+      </action>
+      <action id="manageArtistBalanceAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Manage Artist Balance</property>
+        <property name="ShortLabel" translatable="yes">Manage Artist Balance</property>
+        <property name="StockId">gtk-convert</property>
+        <signal name="Activated" handler="OnManageArtistBalanceActionActivated" />
+      </action>
+      <action id="generateBiddingSheetsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Generate Bidding Sheets</property>
+        <property name="ShortLabel" translatable="yes">Generate Bidding Sheets</property>
+        <property name="StockId">gtk-properties</property>
+        <signal name="Activated" handler="OnGenerateBiddingSheetsActionActivated" />
+      </action>
+      <action id="sadAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">sad</property>
+        <property name="ShortLabel" translatable="yes">sad</property>
+      </action>
+      <action id="biddersAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Bidders</property>
+        <property name="ShortLabel" translatable="yes">Bidders</property>
+        <property name="StockId">gtk-select-color</property>
+        <signal name="Activated" handler="OnBiddersActionActivated" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">Gallery Momiji Point-Of-Sale</property>
-    <property name="WindowPosition">CenterOnParent</property>
+    <property name="WindowPosition">CenterAlways</property>
+    <property name="Resizable">False</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox2">
@@ -560,48 +472,28 @@
                 <node type="Menu" action="preferencesAction">
                   <node type="Menuitem" action="pricingAction" />
                   <node type="Menu" action="usersPrefAction">
-                    <node type="Menuitem" action="addAction" />
-                    <node type="Menuitem" action="preferencesAction1" />
+                    <node type="Menuitem" action="addUserAction" />
+                    <node type="Menuitem" action="editUserAction" />
                   </node>
                   <node type="Menuitem" />
+                  <node type="Menuitem" action="biddersAction" />
                 </node>
                 <node type="Menuitem" action="closeAction" />
                 <node type="Menuitem" action="quitAction" />
               </node>
-              <node type="Menu" action="ArtistsAction">
-                <node type="Menu" action="checkInAction">
-                  <node type="Menuitem" action="findAction1" />
-                  <node type="Menuitem" action="findAndReplaceAction1" />
-                </node>
+              <node type="Menu" action="artistsAction">
+                <node type="Menuitem" action="checkInAction" />
                 <node type="Menuitem" action="checkOutAction" />
                 <node type="Menuitem" />
                 <node type="Menu" action="manageArtistAction">
-                  <node type="Menuitem" action="addAction1" />
-                  <node type="Menu" action="preferencesAction2">
-                    <node type="Menuitem" action="findAction2" />
-                    <node type="Menuitem" action="findAndReplaceAction2" />
-                  </node>
-                  <node type="Menu" action="removeAction1">
-                    <node type="Menuitem" action="findAction3" />
-                    <node type="Menuitem" action="findAndReplaceAction3" />
-                  </node>
-                  <node type="Menu" action="propertiesAction2">
-                    <node type="Menuitem" action="findAction4" />
-                    <node type="Menuitem" action="findAndReplaceAction4" />
-                  </node>
-                  <node type="Menu" action="revertToSavedAction">
-                    <node type="Menuitem" action="findAction5" />
-                    <node type="Menuitem" action="findAndReplaceAction5" />
-                  </node>
-                  <node type="Menu" action="convertAction">
-                    <node type="Menuitem" action="findAction6" />
-                    <node type="Menuitem" action="findAndReplaceAction6" />
-                  </node>
+                  <node type="Menuitem" action="addArtistAction" />
+                  <node type="Menuitem" action="editArtistAction" />
+                  <node type="Menuitem" action="deleteArtistAction" />
+                  <node type="Menuitem" action="editMerchandiseAction" />
+                  <node type="Menuitem" action="editGalleryStoreMerchandiseAction" />
+                  <node type="Menuitem" action="manageArtistBalanceAction" />
                 </node>
-                <node type="Menu" action="propertiesAction1">
-                  <node type="Menuitem" action="findAction" />
-                  <node type="Menuitem" action="findAndReplaceAction" />
-                </node>
+                <node type="Menuitem" action="generateBiddingSheetsAction" />
               </node>
               <node type="Menu" action="TreasuryAction">
                 <node type="Menuitem" action="checkSalesAction" />
@@ -610,13 +502,13 @@
               </node>
               <node type="Menu" action="LogAction">
                 <node type="Menuitem" action="checkUserActivitiesAction" />
-                <node type="Menuitem" action="revertToSavedAction3" />
+                <node type="Menuitem" action="checkReceiptsAction" />
               </node>
               <node type="Menu" action="HelpAction">
-                <node type="Menu" action="dialogWarningAction">
-                  <node type="Menuitem" action="dialogQuestionAction" />
-                  <node type="Menuitem" action="dialogQuestionAction1" />
-                  <node type="Menuitem" action="dialogQuestionAction2" />
+                <node type="Menu" action="FAQAction">
+                  <node type="Menuitem" action="whatIsThisAction" />
+                  <node type="Menuitem" action="whatDoIDoAction" />
+                  <node type="Menuitem" action="whyCantIUseAction" />
                 </node>
                 <node type="Menuitem" action="aboutAction" />
               </node>
@@ -635,16 +527,32 @@
             <property name="Spacing">8</property>
             <property name="BorderWidth">16</property>
             <child>
-              <widget class="Gtk.Button" id="btnQuickSale">
+              <widget class="Gtk.Fixed" id="fixedQuickSale">
                 <property name="MemberName" />
-                <property name="WidthRequest">130</property>
-                <property name="HeightRequest">130</property>
-                <property name="CanFocus">True</property>
-                <property name="Type">TextAndIcon</property>
-                <property name="Icon">resource:Momiji.Resources.tag-sale-icon.png</property>
-                <property name="Label">Quick
-Sale</property>
-                <signal name="Clicked" handler="OnBtnQuickSaleClicked" />
+                <property name="HasWindow">False</property>
+                <child>
+                  <widget class="Gtk.Button" id="btnQuickSale">
+                    <property name="MemberName" />
+                    <property name="WidthRequest">130</property>
+                    <property name="HeightRequest">130</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Quick Sale</property>
+                    <property name="UseUnderline">True</property>
+                    <property name="Yalign">1</property>
+                    <signal name="Clicked" handler="OnBtnQuickSaleClicked" />
+                  </widget>
+                </child>
+                <child>
+                  <widget class="Gtk.Image" id="imgQuickSale">
+                    <property name="MemberName" />
+                    <property name="Pixbuf">resource:Momiji.Resources.tag-sale-icon.png</property>
+                  </widget>
+                  <packing>
+                    <property name="X">33</property>
+                    <property name="Y">24</property>
+                  </packing>
+                </child>
               </widget>
               <packing>
                 <property name="Position">0</property>
@@ -654,17 +562,32 @@ Sale</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="btnAuctionSale">
+              <widget class="Gtk.Fixed" id="fixedAuctionSale">
                 <property name="MemberName" />
-                <property name="WidthRequest">130</property>
-                <property name="HeightRequest">130</property>
-                <property name="CanFocus">True</property>
-                <property name="Type">TextAndIcon</property>
-                <property name="Icon">resource:Momiji.Resources.shopping-bag-icon.png</property>
-                <property name="Label" translatable="yes">Auction
-Sale</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnAuctionSaleClicked" />
+                <property name="HasWindow">False</property>
+                <child>
+                  <widget class="Gtk.Button" id="btnAuctionSale">
+                    <property name="MemberName" />
+                    <property name="WidthRequest">130</property>
+                    <property name="HeightRequest">130</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">AuctionSale</property>
+                    <property name="UseUnderline">True</property>
+                    <property name="Yalign">1</property>
+                    <signal name="Clicked" handler="OnBtnAuctionSaleClicked" />
+                  </widget>
+                </child>
+                <child>
+                  <widget class="Gtk.Image" id="imgAuctionSale">
+                    <property name="MemberName" />
+                    <property name="Pixbuf">resource:Momiji.Resources.shopping-bag-icon.png</property>
+                  </widget>
+                  <packing>
+                    <property name="X">33</property>
+                    <property name="Y">24</property>
+                  </packing>
+                </child>
               </widget>
               <packing>
                 <property name="Position">1</property>
@@ -674,18 +597,32 @@ Sale</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="btnGalleryStoreSale">
+              <widget class="Gtk.Fixed" id="fixedGalleryStoreSale">
                 <property name="MemberName" />
-                <property name="WidthRequest">130</property>
-                <property name="HeightRequest">130</property>
-                <property name="CanFocus">True</property>
-                <property name="Type">TextAndIcon</property>
-                <property name="Icon">resource:Momiji.Resources.shopping-basket-icon.png</property>
-                <property name="Label">Gallery
-Store
-Sale</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnGalleryStoreSaleClicked" />
+                <property name="HasWindow">False</property>
+                <child>
+                  <widget class="Gtk.Button" id="btnGalleryStoreSale">
+                    <property name="MemberName" />
+                    <property name="WidthRequest">130</property>
+                    <property name="HeightRequest">130</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Gallery Store Sale</property>
+                    <property name="UseUnderline">True</property>
+                    <property name="Yalign">1</property>
+                    <signal name="Clicked" handler="OnBtnGalleryStoreSaleClicked" />
+                  </widget>
+                </child>
+                <child>
+                  <widget class="Gtk.Image" id="imgGalleryStoreSale">
+                    <property name="MemberName" />
+                    <property name="Pixbuf">resource:Momiji.Resources.shopping-basket-icon.png</property>
+                  </widget>
+                  <packing>
+                    <property name="X">33</property>
+                    <property name="Y">24</property>
+                  </packing>
+                </child>
               </widget>
               <packing>
                 <property name="Position">2</property>
@@ -719,9 +656,7 @@ Sale</property>
               </widget>
               <packing>
                 <property name="Position">0</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
+                <property name="AutoSize">False</property>
               </packing>
             </child>
           </widget>
@@ -3709,14 +3644,6 @@ offer a cheque, and ask for help.</property>
       <placeholder />
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmPricing" design-size="400 300">
-    <property name="MemberName" />
-    <property name="Title" translatable="yes">frmPricing</property>
-    <property name="WindowPosition">CenterOnParent</property>
-    <child>
-      <placeholder />
-    </child>
-  </widget>
   <widget class="Gtk.Window" id="Momiji.frmCheckin" design-size="594 300">
     <property name="MemberName" />
     <property name="Title" translatable="yes">frmCheckin</property>
@@ -3883,14 +3810,6 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmCheckin" design-size="400 300">
-    <property name="MemberName" />
-    <property name="Title" translatable="yes">frmCheckin</property>
-    <property name="WindowPosition">CenterOnParent</property>
-    <child>
-      <placeholder />
-    </child>
-  </widget>
   <widget class="Gtk.Window" id="Momiji.frmLog" design-size="631 497">
     <property name="MemberName" />
     <property name="Title" translatable="yes">frmlog</property>
@@ -3947,14 +3866,6 @@ offer a cheque, and ask for help.</property>
           </packing>
         </child>
       </widget>
-    </child>
-  </widget>
-  <widget class="Gtk.Window" id="Momiji.frmLog" design-size="400 300">
-    <property name="MemberName" />
-    <property name="Title" translatable="yes">frmLog</property>
-    <property name="WindowPosition">CenterOnParent</property>
-    <child>
-      <placeholder />
     </child>
   </widget>
   <widget class="Gtk.Window" id="Momiji.frmSearchArtist" design-size="400 376">

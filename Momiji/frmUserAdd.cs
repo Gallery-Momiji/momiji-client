@@ -29,7 +29,7 @@ namespace Momiji
 		//     GTK Signals     //
 		/////////////////////////
 
-		protected void OnButton1Clicked (object sender, System.EventArgs e)
+		protected void OnButton1Clicked (object sender, EventArgs e)
 		{
 			string userName, password1, password2, userFnameLname, userClass;
 			userName = txtUsername.Text.ToLower ();
@@ -87,27 +87,27 @@ namespace Momiji
 			}
 		}
 
-		protected void OnBtnCancelClicked (object sender, System.EventArgs e)
+		protected void OnBtnCancelClicked (object sender, EventArgs e)
 		{
 			this.Destroy ();
 		}
 
-		protected void OnTxtUsernameActivated (object sender, System.EventArgs e)
+		protected void OnTxtUsernameActivated (object sender, EventArgs e)
 		{
 			txtFirstAndLast.GrabFocus ();
 		}
 
-		protected void OnTxtFirstAndLastActivated (object sender, System.EventArgs e)
+		protected void OnTxtFirstAndLastActivated (object sender, EventArgs e)
 		{
 			txtPassword.GrabFocus ();
 		}
 
-		protected void OnTxtPasswordActivated (object sender, System.EventArgs e)
+		protected void OnTxtPasswordActivated (object sender, EventArgs e)
 		{
 			txtPasswordRetype.GrabFocus ();
 		}
 
-		protected void OnTxtPasswordRetypeActivated (object sender, System.EventArgs e)
+		protected void OnTxtPasswordRetypeActivated (object sender, EventArgs e)
 		{
 			drpRank.GrabFocus ();
 		}

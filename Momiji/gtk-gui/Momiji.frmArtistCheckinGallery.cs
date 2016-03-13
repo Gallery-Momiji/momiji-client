@@ -5,26 +5,45 @@ namespace Momiji
 	public partial class frmArtistCheckinGallery
 	{
 		private global::Gtk.HBox hboxCheckin;
-		private global::Gtk.ScrolledWindow GtkScrolWinMerch;
-		private global::Gtk.NodeView lstMerch;
-		private global::Gtk.VBox vboxInfo;
-		private global::Gtk.HBox hboxArtistInfo;
-		private global::Gtk.Label lblANNo;
-		private global::Gtk.Label lblArtistID;
-		private global::Gtk.Label lblANName;
-		private global::Gtk.Label lblArtistName;
-		private global::Gtk.Label lblMatch;
-		private global::Gtk.CheckButton chkMatch;
-		private global::Gtk.Label lblBinder;
-		private global::Gtk.CheckButton chkBinder;
-		private global::Gtk.Label lblGSCS;
-		private global::Gtk.HBox hboxButtons;
-		private global::Gtk.Table tableButtons;
-		private global::Gtk.Button btnCheckIn;
-		private global::Gtk.Button btnEdit;
-		private global::Gtk.Button btnRefresh;
-		private global::Gtk.CheckButton chkGSCS;
 		
+		private global::Gtk.ScrolledWindow GtkScrolWinMerch;
+		
+		private global::Gtk.NodeView lstMerch;
+		
+		private global::Gtk.VBox vboxInfo;
+		
+		private global::Gtk.HBox hboxArtistInfo;
+		
+		private global::Gtk.Label lblANNo;
+		
+		private global::Gtk.Label lblArtistID;
+		
+		private global::Gtk.Label lblANName;
+		
+		private global::Gtk.Label lblArtistName;
+		
+		private global::Gtk.Label lblMatch;
+		
+		private global::Gtk.CheckButton chkMatch;
+		
+		private global::Gtk.Label lblBinder;
+		
+		private global::Gtk.CheckButton chkBinder;
+		
+		private global::Gtk.Label lblGSCS;
+		
+		private global::Gtk.HBox hboxButtons;
+		
+		private global::Gtk.Table tableButtons;
+		
+		private global::Gtk.Button btnCheckIn;
+		
+		private global::Gtk.Button btnEdit;
+		
+		private global::Gtk.Button btnRefresh;
+		
+		private global::Gtk.CheckButton chkGSCS;
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -168,86 +187,50 @@ namespace Momiji
 			this.btnCheckIn.CanFocus = true;
 			this.btnCheckIn.Name = "btnCheckIn";
 			this.btnCheckIn.UseUnderline = true;
-			// Container child btnCheckIn.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w13 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
-			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w14 = new global::Gtk.HBox ();
-			w14.Spacing = 2;
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w15 = new global::Gtk.Image ();
-			w15.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
-			w14.Add (w15);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w17 = new global::Gtk.Label ();
-			w17.LabelProp = global::Mono.Unix.Catalog.GetString ("Check In Artist");
-			w17.UseUnderline = true;
-			w14.Add (w17);
-			w13.Add (w14);
-			this.btnCheckIn.Add (w13);
+			this.btnCheckIn.Label = global::Mono.Unix.Catalog.GetString ("Check In Artist");
+			global::Gtk.Image w13 = new global::Gtk.Image ();
+			w13.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
+			this.btnCheckIn.Image = w13;
 			this.tableButtons.Add (this.btnCheckIn);
-			global::Gtk.Table.TableChild w21 = ((global::Gtk.Table.TableChild)(this.tableButtons [this.btnCheckIn]));
-			w21.TopAttach = ((uint)(1));
-			w21.BottomAttach = ((uint)(2));
-			w21.LeftAttach = ((uint)(1));
-			w21.RightAttach = ((uint)(2));
-			w21.YPadding = ((uint)(8));
-			w21.XOptions = ((global::Gtk.AttachOptions)(4));
-			w21.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w14 = ((global::Gtk.Table.TableChild)(this.tableButtons [this.btnCheckIn]));
+			w14.TopAttach = ((uint)(1));
+			w14.BottomAttach = ((uint)(2));
+			w14.LeftAttach = ((uint)(1));
+			w14.RightAttach = ((uint)(2));
+			w14.YPadding = ((uint)(8));
+			w14.XOptions = ((global::Gtk.AttachOptions)(4));
+			w14.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child tableButtons.Gtk.Table+TableChild
 			this.btnEdit = new global::Gtk.Button ();
 			this.btnEdit.CanFocus = true;
 			this.btnEdit.Name = "btnEdit";
 			this.btnEdit.UseUnderline = true;
-			// Container child btnEdit.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w22 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
-			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w23 = new global::Gtk.HBox ();
-			w23.Spacing = 2;
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w24 = new global::Gtk.Image ();
-			w24.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-index", global::Gtk.IconSize.Menu);
-			w23.Add (w24);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w26 = new global::Gtk.Label ();
-			w26.LabelProp = global::Mono.Unix.Catalog.GetString ("Manage Merchandise");
-			w26.UseUnderline = true;
-			w23.Add (w26);
-			w22.Add (w23);
-			this.btnEdit.Add (w22);
+			this.btnEdit.Label = global::Mono.Unix.Catalog.GetString ("Manage Merchandise");
+			global::Gtk.Image w15 = new global::Gtk.Image ();
+			w15.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-index", global::Gtk.IconSize.Menu);
+			this.btnEdit.Image = w15;
 			this.tableButtons.Add (this.btnEdit);
-			global::Gtk.Table.TableChild w30 = ((global::Gtk.Table.TableChild)(this.tableButtons [this.btnEdit]));
-			w30.TopAttach = ((uint)(1));
-			w30.BottomAttach = ((uint)(2));
-			w30.YPadding = ((uint)(8));
-			w30.XOptions = ((global::Gtk.AttachOptions)(4));
-			w30.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w16 = ((global::Gtk.Table.TableChild)(this.tableButtons [this.btnEdit]));
+			w16.TopAttach = ((uint)(1));
+			w16.BottomAttach = ((uint)(2));
+			w16.YPadding = ((uint)(8));
+			w16.XOptions = ((global::Gtk.AttachOptions)(4));
+			w16.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child tableButtons.Gtk.Table+TableChild
 			this.btnRefresh = new global::Gtk.Button ();
 			this.btnRefresh.CanFocus = true;
 			this.btnRefresh.Name = "btnRefresh";
 			this.btnRefresh.UseUnderline = true;
-			// Container child btnRefresh.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w31 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
-			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w32 = new global::Gtk.HBox ();
-			w32.Spacing = 2;
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w33 = new global::Gtk.Image ();
-			w33.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-refresh", global::Gtk.IconSize.Menu);
-			w32.Add (w33);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w35 = new global::Gtk.Label ();
-			w35.LabelProp = global::Mono.Unix.Catalog.GetString ("Refresh Info");
-			w35.UseUnderline = true;
-			w32.Add (w35);
-			w31.Add (w32);
-			this.btnRefresh.Add (w31);
+			this.btnRefresh.Label = global::Mono.Unix.Catalog.GetString ("Refresh Info");
+			global::Gtk.Image w17 = new global::Gtk.Image ();
+			w17.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-refresh", global::Gtk.IconSize.Menu);
+			this.btnRefresh.Image = w17;
 			this.tableButtons.Add (this.btnRefresh);
-			global::Gtk.Table.TableChild w39 = ((global::Gtk.Table.TableChild)(this.tableButtons [this.btnRefresh]));
-			w39.LeftAttach = ((uint)(1));
-			w39.RightAttach = ((uint)(2));
-			w39.XOptions = ((global::Gtk.AttachOptions)(4));
-			w39.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w18 = ((global::Gtk.Table.TableChild)(this.tableButtons [this.btnRefresh]));
+			w18.LeftAttach = ((uint)(1));
+			w18.RightAttach = ((uint)(2));
+			w18.XOptions = ((global::Gtk.AttachOptions)(4));
+			w18.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child tableButtons.Gtk.Table+TableChild
 			this.chkGSCS = new global::Gtk.CheckButton ();
 			this.chkGSCS.CanFocus = true;
@@ -256,25 +239,25 @@ namespace Momiji
 			this.chkGSCS.DrawIndicator = true;
 			this.chkGSCS.UseUnderline = true;
 			this.tableButtons.Add (this.chkGSCS);
-			global::Gtk.Table.TableChild w40 = ((global::Gtk.Table.TableChild)(this.tableButtons [this.chkGSCS]));
-			w40.XOptions = ((global::Gtk.AttachOptions)(4));
-			w40.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w19 = ((global::Gtk.Table.TableChild)(this.tableButtons [this.chkGSCS]));
+			w19.XOptions = ((global::Gtk.AttachOptions)(4));
+			w19.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.hboxButtons.Add (this.tableButtons);
-			global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.hboxButtons [this.tableButtons]));
-			w41.Position = 0;
-			w41.Expand = false;
-			w41.Fill = false;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hboxButtons [this.tableButtons]));
+			w20.Position = 0;
+			w20.Expand = false;
+			w20.Fill = false;
 			this.vboxInfo.Add (this.hboxButtons);
-			global::Gtk.Box.BoxChild w42 = ((global::Gtk.Box.BoxChild)(this.vboxInfo [this.hboxButtons]));
-			w42.Position = 6;
-			w42.Expand = false;
-			w42.Fill = false;
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vboxInfo [this.hboxButtons]));
+			w21.Position = 6;
+			w21.Expand = false;
+			w21.Fill = false;
 			this.hboxCheckin.Add (this.vboxInfo);
-			global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.hboxCheckin [this.vboxInfo]));
-			w43.Position = 1;
-			w43.Expand = false;
-			w43.Fill = false;
-			w43.Padding = ((uint)(8));
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hboxCheckin [this.vboxInfo]));
+			w22.Position = 1;
+			w22.Expand = false;
+			w22.Fill = false;
+			w22.Padding = ((uint)(8));
 			this.Add (this.hboxCheckin);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

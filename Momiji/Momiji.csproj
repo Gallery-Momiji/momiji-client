@@ -11,6 +11,7 @@
     <AssemblyName>Momiji</AssemblyName>
     <StartupObject>Momiji.MainClass</StartupObject>
     <ApplicationIcon>Resources\Crystal-Star-256.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>

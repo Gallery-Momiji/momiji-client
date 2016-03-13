@@ -5,14 +5,21 @@ namespace Momiji
 	public partial class frmSearchArtist
 	{
 		private global::Gtk.VBox vbox1;
-		private global::Gtk.HBox hbox1;
-		private global::Gtk.VBox vbox4;
-		private global::Gtk.Label lblSearch;
-		private global::Gtk.Entry txtSearch;
-		private global::Gtk.Button btnSearch;
-		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-		private global::Gtk.NodeView lstMerch;
 		
+		private global::Gtk.HBox hbox1;
+		
+		private global::Gtk.VBox vbox4;
+		
+		private global::Gtk.Label lblSearch;
+		
+		private global::Gtk.Entry txtSearch;
+		
+		private global::Gtk.Button btnSearch;
+		
+		private global::Gtk.ScrolledWindow GtkScrolledWindow;
+		
+		private global::Gtk.NodeView lstMerch;
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -63,30 +70,18 @@ namespace Momiji
 			this.btnSearch.CanFocus = true;
 			this.btnSearch.Name = "btnSearch";
 			this.btnSearch.UseUnderline = true;
-			// Container child btnSearch.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w4 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
-			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w5 = new global::Gtk.HBox ();
-			w5.Spacing = 2;
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w6 = new global::Gtk.Image ();
-			w6.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-find", global::Gtk.IconSize.Menu);
-			w5.Add (w6);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w8 = new global::Gtk.Label ();
-			w8.LabelProp = global::Mono.Unix.Catalog.GetString ("Search");
-			w8.UseUnderline = true;
-			w5.Add (w8);
-			w4.Add (w5);
-			this.btnSearch.Add (w4);
+			this.btnSearch.Label = "Search";
+			global::Gtk.Image w4 = new global::Gtk.Image ();
+			w4.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-find", global::Gtk.IconSize.Menu);
+			this.btnSearch.Image = w4;
 			this.hbox1.Add (this.btnSearch);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnSearch]));
-			w12.Position = 1;
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnSearch]));
+			w5.Position = 1;
 			this.vbox1.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
-			w13.Position = 0;
-			w13.Expand = false;
-			w13.Fill = false;
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
+			w6.Position = 0;
+			w6.Expand = false;
+			w6.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -98,9 +93,9 @@ namespace Momiji
 			this.lstMerch.EnableSearch = false;
 			this.GtkScrolledWindow.Add (this.lstMerch);
 			this.vbox1.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
-			w15.Position = 1;
-			w15.Padding = ((uint)(6));
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
+			w8.Position = 1;
+			w8.Padding = ((uint)(6));
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

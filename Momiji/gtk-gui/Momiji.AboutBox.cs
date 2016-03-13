@@ -5,16 +5,25 @@ namespace Momiji
 	public partial class AboutBox
 	{
 		private global::Gtk.HBox hboxAbout;
-		private global::Gtk.Image imgLogo;
-		private global::Gtk.VBox vboxAbout;
-		private global::Gtk.Label lblProduct;
-		private global::Gtk.Label lblVersion;
-		private global::Gtk.Label lblCRLicense;
-		private global::Gtk.ScrolledWindow scrolledwindowAbout;
-		private global::Gtk.Label lblCopyright;
-		private global::Gtk.Label lblCompany;
-		private global::Gtk.Button btnClose;
 		
+		private global::Gtk.Image imgLogo;
+		
+		private global::Gtk.VBox vboxAbout;
+		
+		private global::Gtk.Label lblProduct;
+		
+		private global::Gtk.Label lblVersion;
+		
+		private global::Gtk.Label lblCRLicense;
+		
+		private global::Gtk.ScrolledWindow scrolledwindowAbout;
+		
+		private global::Gtk.Label lblCopyright;
+		
+		private global::Gtk.Label lblCompany;
+		
+		private global::Gtk.Button btnClose;
+
 		protected virtual void Build ()
 		{
 			global::Stetic.Gui.Initialize (this);
@@ -101,32 +110,20 @@ namespace Momiji
 			this.btnClose.CanFocus = true;
 			this.btnClose.Name = "btnClose";
 			this.btnClose.UseUnderline = true;
-			// Container child btnClose.Gtk.Container+ContainerChild
-			global::Gtk.Alignment w10 = new global::Gtk.Alignment (0.5F, 0.5F, 0F, 0F);
-			// Container child GtkAlignment.Gtk.Container+ContainerChild
-			global::Gtk.HBox w11 = new global::Gtk.HBox ();
-			w11.Spacing = 2;
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Image w12 = new global::Gtk.Image ();
-			w12.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Menu);
-			w11.Add (w12);
-			// Container child GtkHBox.Gtk.Container+ContainerChild
-			global::Gtk.Label w14 = new global::Gtk.Label ();
-			w14.LabelProp = global::Mono.Unix.Catalog.GetString ("Close");
-			w14.UseUnderline = true;
-			w11.Add (w14);
-			w10.Add (w11);
-			this.btnClose.Add (w10);
+			this.btnClose.Label = global::Mono.Unix.Catalog.GetString ("Close");
+			global::Gtk.Image w10 = new global::Gtk.Image ();
+			w10.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Menu);
+			this.btnClose.Image = w10;
 			this.vboxAbout.Add (this.btnClose);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vboxAbout [this.btnClose]));
-			w18.Position = 5;
-			w18.Expand = false;
-			w18.Fill = false;
-			w18.Padding = ((uint)(8));
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vboxAbout [this.btnClose]));
+			w11.Position = 5;
+			w11.Expand = false;
+			w11.Fill = false;
+			w11.Padding = ((uint)(8));
 			this.hboxAbout.Add (this.vboxAbout);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hboxAbout [this.vboxAbout]));
-			w19.Position = 1;
-			w19.Padding = ((uint)(8));
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hboxAbout [this.vboxAbout]));
+			w12.Position = 1;
+			w12.Padding = ((uint)(8));
 			this.Add (this.hboxAbout);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

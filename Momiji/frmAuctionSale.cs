@@ -78,12 +78,12 @@ namespace Momiji
 			parent.CleanupAuctionSale ();
 		}
 
-		protected void OnTxtBarcodeActivated (object sender, System.EventArgs e)
+		protected void OnTxtBarcodeActivated (object sender, EventArgs e)
 		{
 			txtPrice.GrabFocus ();
 		}
 
-		protected void OnBtnAddToListClicked (object sender, System.EventArgs e)
+		protected void OnBtnAddToListClicked (object sender, EventArgs e)
 		{
 			//Wildcards are considered null characters
 			txtBarcode.Text = txtBarcode.Text.Replace ("*", "").ToUpper ();
@@ -205,26 +205,26 @@ namespace Momiji
 			}
 		}
 
-		protected void OnTxtPriceActivated (object sender, System.EventArgs e)
+		protected void OnTxtPriceActivated (object sender, EventArgs e)
 		{
 			OnBtnAddToListClicked (sender, e);
 		}
 
-		protected void OnBtnClearClicked (object sender, System.EventArgs e)
+		protected void OnBtnClearClicked (object sender, EventArgs e)
 		{
 			txtBarcode.Text = "";
 			txtPrice.Text = "";
 			txtBarcode.GrabFocus ();
 		}
 
-		protected void OnBtnCancelClicked (object sender, System.EventArgs e)
+		protected void OnBtnCancelClicked (object sender, EventArgs e)
 		{
 			MerchNode.clearTable (ref lstMerch, ref merchStore);
 
 			ResetForm ();
 		}
 
-		protected void OnBtnPayClicked (object sender, System.EventArgs e)
+		protected void OnBtnPayClicked (object sender, EventArgs e)
 		{
 			//TODO mark items as sold and tag receipt
 			if (txtPaid.Text == "") {
@@ -293,7 +293,7 @@ namespace Momiji
 			}
 		}
 
-		protected void OnTxtPaidActivated (object sender, System.EventArgs e)
+		protected void OnTxtPaidActivated (object sender, EventArgs e)
 		{
 			OnBtnPayClicked (sender, e);
 		}

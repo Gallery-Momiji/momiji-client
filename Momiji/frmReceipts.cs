@@ -49,7 +49,7 @@ namespace Momiji
 		//     GTK Signals     //
 		/////////////////////////
 
-		protected void OnBtnPrintClicked (object sender, System.EventArgs e)
+		protected void OnBtnPrintClicked (object sender, EventArgs e)
 		{
 			if (drpTransaction.Active < 0) {
 				MessageBox.Show (this, MessageType.Info, "Please select a transaction");
