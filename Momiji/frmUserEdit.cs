@@ -138,7 +138,7 @@ namespace Momiji
 				SQLConnection.LogAction ("Deleted user " + userID, parent.currentUser);
 				MessageBox.Show (this, MessageType.Info, "User deleted successfully");
 			} else {
-				MessageBox.Show (this, MessageType.Error, "Could not update user.\nPlease contact your administrator.");
+				MessageBox.Show (this, MessageType.Error, "Could not delete user.\nPlease contact your administrator.");
 			}
 
 			drpUsers.Active = -1;
