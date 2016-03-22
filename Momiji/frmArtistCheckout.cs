@@ -1,6 +1,7 @@
 using System;
 using Gtk;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace Momiji
 {
@@ -23,6 +24,27 @@ namespace Momiji
 			this.parent = parent;
 			this.artistID = artistID;
 			this.Build ();
+
+			SQL SQLConnection = parent.currentSQLConnection;
+			MySqlCommand query = new MySqlCommand("SELECT ArtistID, ArtistName,ArtistCheckedOut FROM `artists` WHERE `ArtistID` = @ID;", SQLConnection.GetConnection());
+			query.Prepare();
+			query.Parameters.AddWithValue("@ID", this.artistID);
+
+			SQLResult results = this.SQLConnection.Query(query);
+			if (results.successful()) {
+				if (results.getCellInt("ArtistCheckedOut", 0) == 1) {
+					button6.Sensitive = false;
+					MessageBox.Show (this, MessageType.Warning,
+											"Artist already marked as Checked Out.");
+				}
+
+				lblArtistID.Text = results.getCell("ArtistID", 0);
+				lblArtistName.Text = results.getCell("ArtistName", 0);
+			} else {
+				MessageBox.Show (this, MessageType.Error,
+											"An error occured finding this Artists' details!", "Error");
+				this.Destroy();
+			}
 		}
 
 		/////////////////////////
@@ -31,17 +53,34 @@ namespace Momiji
 
 		protected void OnBtnGenSaleSumClicked (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			Process.Start("http://" + parent.currentSQLConnection.getHost() + "/momiji/checkout.php?id=" + ID);
 		}
 
+		//TODO Fix the button name//
 		protected void OnButton6Clicked (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			if (chkStep1.Active && chkStep2.Active && chkStep3.Active) {
+				SQL SQLConnection = parent.currentSQLConnection;
+				MySqlCommand checkinQuery = new MySqlCommand("UPDATE `artists` SET `ArtistCheckedOut`=1 WHERE  `ArtistID`=@ID;", SQLConnection.GetConnection());
+				checkinQuery.Prepare();
+				checkinQuery.Parameters.AddWithValue("@ID", this.ID);
+				SQLResult checkinQueryResults = this.SQLConnection.Query(checkinQuery);
+
+				if (checkinQueryResults.successful()) {
+					MessageBox.Show (this, MessageType.Info, "Artist successfully checked out");
+					this.Destroy();
+				} else {
+					MessageBox.Show (this, MessageType.Error, "Error Checking Out artist.\nPlease try again, and if this issue persists, contact your administrator.");
+				}
+			} else {
+				MessageBox.Show (this, MessageType.Error, "Please make sure you followed all steps and checked each box after completing each action.");
+			}
 		}
 
+		//TODO Fix the button name//
 		protected void OnButtonCancelClicked (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			this.Destroy();
 		}
 	}
 }
