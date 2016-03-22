@@ -30,7 +30,7 @@ namespace Momiji
 			query.Prepare();
 			query.Parameters.AddWithValue("@ID", this.artistID);
 
-			SQLResult results = this.SQLConnection.Query(query);
+			SQLResult results = SQLConnection.Query(query);
 			if (results.successful()) {
 				if (results.getCellInt("ArtistCheckedOut", 0) == 1) {
 					button6.Sensitive = false;
@@ -42,7 +42,7 @@ namespace Momiji
 				lblArtistName.Text = results.getCell("ArtistName", 0);
 			} else {
 				MessageBox.Show (this, MessageType.Error,
-											"An error occured finding this Artists' details!", "Error");
+											"An error occured finding this Artists' details!");
 				this.Destroy();
 			}
 		}
@@ -53,7 +53,7 @@ namespace Momiji
 
 		protected void OnBtnGenSaleSumClicked (object sender, EventArgs e)
 		{
-			Process.Start("http://" + parent.currentSQLConnection.getHost() + "/momiji/checkout.php?id=" + ID);
+			Process.Start("http://" + parent.currentSQLConnection.getHost() + "/momiji/checkout.php?id=" + artistID);
 		}
 
 		//TODO Fix the button name//
@@ -63,8 +63,8 @@ namespace Momiji
 				SQL SQLConnection = parent.currentSQLConnection;
 				MySqlCommand checkinQuery = new MySqlCommand("UPDATE `artists` SET `ArtistCheckedOut`=1 WHERE  `ArtistID`=@ID;", SQLConnection.GetConnection());
 				checkinQuery.Prepare();
-				checkinQuery.Parameters.AddWithValue("@ID", this.ID);
-				SQLResult checkinQueryResults = this.SQLConnection.Query(checkinQuery);
+				checkinQuery.Parameters.AddWithValue("@ID", this.artistID);
+				SQLResult checkinQueryResults = SQLConnection.Query(checkinQuery);
 
 				if (checkinQueryResults.successful()) {
 					MessageBox.Show (this, MessageType.Info, "Artist successfully checked out");

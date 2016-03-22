@@ -146,7 +146,7 @@ namespace Momiji
 			case Operations.GenerateBiddingSheets:
 				break;
 			case Operations.EditArtist:
-				new frmArtistAdd (selectednode.ArtistID, false, parent);
+				new frmArtistAdd (selectednode.ArtistID, parent);
 				break;
 			case Operations.EditMerchandise:
 				new frmMerchEditor (selectednode.ArtistID, parent);
