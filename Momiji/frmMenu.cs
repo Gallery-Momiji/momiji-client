@@ -1,6 +1,12 @@
 using System;
 using Gtk;
 
+///////////////////////////////////////////////////////////////////////////
+// WARNING: Please do not edit this form in the monodevelop form editor! //
+//     It seems this form must be edited manually due to a bug with      //
+//     monodevelop and the menu widget                                   //
+///////////////////////////////////////////////////////////////////////////
+
 namespace Momiji
 {
 	public partial class frmMenu : Gtk.Window

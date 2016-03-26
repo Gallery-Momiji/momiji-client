@@ -185,8 +185,10 @@ namespace Momiji
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "Momiji.frmMenu";
-			this.Title = global::Mono.Unix.Catalog.GetString ("frmMenu");
-			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.Title = global::Mono.Unix.Catalog.GetString ("Gallery Momiji Point-Of-Sale");
+			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
+			this.Resizable = false;
+			this.AllowGrow = false;
 			// Container child Momiji.frmMenu.Gtk.Container+ContainerChild
 			this.vbox2 = new global::Gtk.VBox ();
 			this.vbox2.Name = "vbox2";
@@ -327,13 +329,34 @@ namespace Momiji
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 573;
-			this.DefaultHeight = 320;
+			this.DefaultWidth = 438;
+			this.DefaultHeight = 312;
 			this.Show ();
 			this.btnQuickSale.Clicked += new global::System.EventHandler (this.OnBtnQuickSaleClicked);
 			this.btnAuctionSale.Clicked += new global::System.EventHandler (this.OnBtnAuctionSaleClicked);
 			this.btnGalleryStoreSale.Clicked += new global::System.EventHandler (this.OnBtnGalleryStoreSaleClicked);
 			this.btnLogout.Clicked += new global::System.EventHandler (this.OnBtnLogoutClicked);
+            this.aboutAction.Activated += new global::System.EventHandler (OnAboutActionActivated);
+            this.closeAction.Activated += new global::System.EventHandler (OnCloseActionActivated);
+            this.quitAction.Activated += new global::System.EventHandler (OnQuitActionActivated);
+            this.checkInAction.Activated += new global::System.EventHandler (OnCheckInActionActivated);
+            this.checkOutAction.Activated += new global::System.EventHandler (OnCheckOutActionActivated);
+            this.addArtistAction.Activated += new global::System.EventHandler (OnAddArtistActionActivated);
+            this.editArtistAction.Activated += new global::System.EventHandler (OnEditArtistActionActivated);
+            this.editMerchandiseAction.Activated += new global::System.EventHandler (OnEditMerchandiseActionActivated);
+            this.editGalleryStoreMerchandiseAction.Activated += new global::System.EventHandler (OnEditGalleryStoreMerchandiseActionActivated);
+            this.manageArtistBalanceAction.Activated += new global::System.EventHandler (OnManageArtistBalanceActionActivated);
+            this.checkSalesAction.Activated += new global::System.EventHandler (OnCheckSalesActionActivated);
+            this.refundAction.Activated += new global::System.EventHandler (OnRefundActionActivated);
+            this.reprintReceiptAction.Activated += new global::System.EventHandler (OnReprintReceiptActionActivated);
+            this.checkReceiptsAction.Activated += new global::System.EventHandler (OnCheckReceiptsActionActivated);
+            this.checkUserActivitiesAction.Activated += new global::System.EventHandler (OnCheckUserActivitiesActionActivated);
+            this.generateBiddingSheetsAction.Activated += new global::System.EventHandler (OnGenerateBiddingSheetsActionActivated);
+            this.userPreferencesAction.Activated += new global::System.EventHandler (OnUserPreferencesActionActivated);
+            this.pricingAction.Activated += new global::System.EventHandler (OnPricingActionActivated);
+            this.biddersAction.Activated += new global::System.EventHandler (OnBiddersActionActivated);
+            this.addUserAction.Activated += new global::System.EventHandler (OnAddUserActionActivated);
+            this.editUserAction.Activated += new global::System.EventHandler (OnEditUserActionActivated);
 		}
 	}
 }

@@ -4706,30 +4706,35 @@ offer a cheque, and ask for help.</property>
         <property name="Label" translatable="yes">About</property>
         <property name="ShortLabel" translatable="yes">About</property>
         <property name="StockId">gtk-about</property>
+        <signal name="Activated" handler="OnAboutActionActivated" />
       </action>
       <action id="closeAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Logout</property>
         <property name="ShortLabel" translatable="yes">Logout</property>
         <property name="StockId">gtk-close</property>
+        <signal name="Activated" handler="OnCloseActionActivated" />
       </action>
       <action id="quitAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Quit</property>
         <property name="ShortLabel" translatable="yes">Quit</property>
         <property name="StockId">gtk-quit</property>
+        <signal name="Activated" handler="OnQuitActionActivated" />
       </action>
       <action id="checkInAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Check In</property>
         <property name="ShortLabel" translatable="yes">Check In</property>
         <property name="StockId">gtk-yes</property>
+        <signal name="Activated" handler="OnCheckInActionActivated" />
       </action>
       <action id="checkOutAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Check Out</property>
         <property name="ShortLabel" translatable="yes">Check Out</property>
         <property name="StockId">gtk-no</property>
+        <signal name="Activated" handler="OnCheckOutActionActivated" />
       </action>
       <action id="manageArtistAction">
         <property name="Type">Action</property>
@@ -4742,84 +4747,98 @@ offer a cheque, and ask for help.</property>
         <property name="Label" translatable="yes">Add Artist</property>
         <property name="ShortLabel" translatable="yes">Add Artist</property>
         <property name="StockId">gtk-add</property>
+        <signal name="Activated" handler="OnAddArtistActionActivated" />
       </action>
       <action id="editArtistAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Edit Artist</property>
         <property name="ShortLabel" translatable="yes">Edit Artist</property>
         <property name="StockId">gtk-preferences</property>
+        <signal name="Activated" handler="OnEditArtistActionActivated" />
       </action>
       <action id="editMerchandiseAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Edit Merchandise</property>
         <property name="ShortLabel" translatable="yes">Edit Merchandise</property>
         <property name="StockId">gtk-dnd</property>
+        <signal name="Activated" handler="OnEditMerchandiseActionActivated" />
       </action>
       <action id="editGalleryStoreMerchandiseAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Edit Gallery Store Merchandise</property>
         <property name="ShortLabel" translatable="yes">Edit Gallery Store Merchandise</property>
         <property name="StockId">gtk-dnd-multiple</property>
+        <signal name="Activated" handler="OnEditGalleryStoreMerchandiseActionActivated" />
       </action>
       <action id="manageArtistBalanceAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Manage Artist Balance</property>
         <property name="ShortLabel" translatable="yes">Manage Artist Balance</property>
         <property name="StockId">gtk-convert</property>
+        <signal name="Activated" handler="OnManageArtistBalanceActionActivated" />
       </action>
       <action id="checkSalesAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Check Sales</property>
         <property name="ShortLabel" translatable="yes">Check Sales</property>
         <property name="StockId">gtk-file</property>
+        <signal name="Activated" handler="OnCheckSalesActionActivated" />
       </action>
       <action id="refundAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Refund</property>
         <property name="ShortLabel" translatable="yes">Refund</property>
         <property name="StockId">gtk-undo</property>
+        <signal name="Activated" handler="OnRefundActionActivated" />
       </action>
       <action id="reprintReceiptAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Reprint Receipt</property>
         <property name="ShortLabel" translatable="yes">Reprint Receipt</property>
         <property name="StockId">gtk-print</property>
+        <signal name="Activated" handler="OnReprintReceiptActionActivated" />
       </action>
       <action id="checkReceiptsAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Check Receipts</property>
         <property name="ShortLabel" translatable="yes">Check Receipts</property>
         <property name="StockId">gtk-print-preview</property>
+        <signal name="Activated" handler="OnCheckReceiptsActionActivated" />
       </action>
       <action id="checkUserActivitiesAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Check User Activities</property>
         <property name="ShortLabel" translatable="yes">Check User Activities</property>
         <property name="StockId">gtk-revert-to-saved</property>
+        <signal name="Activated" handler="OnCheckUserActivitiesActionActivated" />
       </action>
       <action id="generateBiddingSheetsAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Generate Bidding Sheets</property>
         <property name="ShortLabel" translatable="yes">Generate Bidding Sheets</property>
         <property name="StockId">gtk-properties</property>
+        <signal name="Activated" handler="OnGenerateBiddingSheetsActionActivated" />
       </action>
       <action id="userPreferencesAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">User Preferences</property>
         <property name="ShortLabel" translatable="yes">User Preferences</property>
         <property name="StockId">gtk-preferences</property>
+        <signal name="Activated" handler="OnUserPreferencesActionActivated" />
       </action>
       <action id="pricingAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Pricing</property>
         <property name="ShortLabel" translatable="yes">Pricing</property>
         <property name="StockId">gtk-properties</property>
+        <signal name="Activated" handler="OnPricingActionActivated" />
       </action>
       <action id="biddersAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Bidders</property>
         <property name="ShortLabel" translatable="yes">Bidders</property>
         <property name="StockId">gtk-select-color</property>
+        <signal name="Activated" handler="OnBiddersActionActivated" />
       </action>
       <action id="usersPrefAction">
         <property name="Type">Action</property>
@@ -4832,18 +4851,21 @@ offer a cheque, and ask for help.</property>
         <property name="Label" translatable="yes">Add User</property>
         <property name="ShortLabel" translatable="yes">Add User</property>
         <property name="StockId">gtk-add</property>
+        <signal name="Activated" handler="OnAddUserActionActivated" />
       </action>
       <action id="editUserAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Edit User</property>
         <property name="ShortLabel" translatable="yes">Edit User</property>
         <property name="StockId">gtk-preferences</property>
+        <signal name="Activated" handler="OnEditUserActionActivated" />
       </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">Gallery Momiji Point-Of-Sale</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
     <child>
       <widget class="Gtk.VBox" id="vbox2">
         <property name="MemberName" />
