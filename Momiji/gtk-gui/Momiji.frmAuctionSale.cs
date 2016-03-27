@@ -36,7 +36,11 @@ namespace Momiji
 		
 		private global::Gtk.Entry txtTotal;
 		
+		private global::Gtk.Fixed fixedPay;
+		
 		private global::Gtk.Button btnPay;
+		
+		private global::Gtk.Image imgPay;
 		
 		private global::Gtk.HBox hbox3;
 		
@@ -53,6 +57,7 @@ namespace Momiji
 			this.WidthRequest = 800;
 			this.Name = "Momiji.frmAuctionSale";
 			this.Title = global::Mono.Unix.Catalog.GetString ("Auction Sale");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.shopping-bag-icon.png");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child Momiji.frmAuctionSale.Gtk.Container+ContainerChild
 			this.hboxCheckin = new global::Gtk.HBox ();
@@ -210,19 +215,34 @@ namespace Momiji
 			w16.Expand = false;
 			w16.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
+			this.fixedPay = new global::Gtk.Fixed ();
+			this.fixedPay.WidthRequest = 256;
+			this.fixedPay.HeightRequest = 96;
+			this.fixedPay.Name = "fixedPay";
+			this.fixedPay.HasWindow = false;
+			// Container child fixedPay.Gtk.Fixed+FixedChild
 			this.btnPay = new global::Gtk.Button ();
+			this.btnPay.WidthRequest = 256;
+			this.btnPay.HeightRequest = 96;
 			this.btnPay.CanFocus = true;
 			this.btnPay.Name = "btnPay";
 			this.btnPay.UseUnderline = true;
-			this.btnPay.Label = "Mark as Paid";
-			global::Gtk.Image w17 = new global::Gtk.Image ();
-			w17.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.shopping-bag-icon.png");
-			this.btnPay.Image = w17;
-			this.vbox2.Add (this.btnPay);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.btnPay]));
-			w18.Position = 6;
-			w18.Expand = false;
-			w18.Fill = false;
+			this.btnPay.Xalign = 0.75F;
+			this.btnPay.Label = global::Mono.Unix.Catalog.GetString ("Mark as Paid");
+			this.fixedPay.Add (this.btnPay);
+			// Container child fixedPay.Gtk.Fixed+FixedChild
+			this.imgPay = new global::Gtk.Image ();
+			this.imgPay.Name = "imgPay";
+			this.imgPay.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.shopping-bag-icon.png");
+			this.fixedPay.Add (this.imgPay);
+			global::Gtk.Fixed.FixedChild w18 = ((global::Gtk.Fixed.FixedChild)(this.fixedPay [this.imgPay]));
+			w18.X = 32;
+			w18.Y = 16;
+			this.vbox2.Add (this.fixedPay);
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.fixedPay]));
+			w19.Position = 6;
+			w19.Expand = false;
+			w19.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.hbox3 = new global::Gtk.HBox ();
 			this.hbox3.Name = "hbox3";
@@ -233,10 +253,10 @@ namespace Momiji
 			this.lblChange.LabelProp = global::Mono.Unix.Catalog.GetString ("Change: <b>$</b>");
 			this.lblChange.UseMarkup = true;
 			this.hbox3.Add (this.lblChange);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.lblChange]));
-			w19.Position = 0;
-			w19.Expand = false;
-			w19.Fill = false;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.lblChange]));
+			w20.Position = 0;
+			w20.Expand = false;
+			w20.Fill = false;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.txtChange = new global::Gtk.Entry ();
 			this.txtChange.Sensitive = false;
@@ -245,40 +265,40 @@ namespace Momiji
 			this.txtChange.IsEditable = false;
 			this.txtChange.InvisibleChar = '●';
 			this.hbox3.Add (this.txtChange);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.txtChange]));
-			w20.Position = 1;
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.txtChange]));
+			w21.Position = 1;
 			this.vbox2.Add (this.hbox3);
-			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox3]));
-			w21.Position = 7;
-			w21.Expand = false;
-			w21.Fill = false;
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox3]));
+			w22.Position = 7;
+			w22.Expand = false;
+			w22.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.btnCancel = new global::Gtk.Button ();
 			this.btnCancel.CanFocus = true;
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.UseUnderline = true;
 			this.btnCancel.Label = global::Mono.Unix.Catalog.GetString ("Clear Transaction");
-			global::Gtk.Image w22 = new global::Gtk.Image ();
-			w22.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-cancel", global::Gtk.IconSize.Menu);
-			this.btnCancel.Image = w22;
+			global::Gtk.Image w23 = new global::Gtk.Image ();
+			w23.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-cancel", global::Gtk.IconSize.Menu);
+			this.btnCancel.Image = w23;
 			this.vbox2.Add (this.btnCancel);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.btnCancel]));
-			w23.Position = 8;
-			w23.Expand = false;
-			w23.Fill = false;
-			w23.Padding = ((uint)(8));
-			this.hboxCheckin.Add (this.vbox2);
-			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hboxCheckin [this.vbox2]));
-			w24.Position = 1;
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.btnCancel]));
+			w24.Position = 8;
 			w24.Expand = false;
 			w24.Fill = false;
 			w24.Padding = ((uint)(8));
+			this.hboxCheckin.Add (this.vbox2);
+			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hboxCheckin [this.vbox2]));
+			w25.Position = 1;
+			w25.Expand = false;
+			w25.Fill = false;
+			w25.Padding = ((uint)(8));
 			this.Add (this.hboxCheckin);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 800;
-			this.DefaultHeight = 435;
+			this.DefaultHeight = 446;
 			this.Show ();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.txtBarcode.Activated += new global::System.EventHandler (this.OnTxtBarcodeActivated);

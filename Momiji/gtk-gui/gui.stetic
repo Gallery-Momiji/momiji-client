@@ -1216,10 +1216,11 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmAuctionSale" design-size="800 435">
+  <widget class="Gtk.Window" id="Momiji.frmAuctionSale" design-size="800 446">
     <property name="MemberName" />
     <property name="WidthRequest">800</property>
     <property name="Title" translatable="yes">Auction Sale</property>
+    <property name="Icon">resource:Momiji.Resources.shopping-bag-icon.png</property>
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
@@ -1448,14 +1449,34 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="btnPay">
+              <widget class="Gtk.Fixed" id="fixedPay">
                 <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextAndIcon</property>
-                <property name="Icon">resource:Momiji.Resources.shopping-bag-icon.png</property>
-                <property name="Label">Mark as Paid</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnPayClicked" />
+                <property name="WidthRequest">256</property>
+                <property name="HeightRequest">96</property>
+                <property name="HasWindow">False</property>
+                <child>
+                  <widget class="Gtk.Button" id="btnPay">
+                    <property name="MemberName" />
+                    <property name="WidthRequest">256</property>
+                    <property name="HeightRequest">96</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Mark as Paid</property>
+                    <property name="UseUnderline">True</property>
+                    <property name="Xalign">0.75</property>
+                    <signal name="Clicked" handler="OnBtnPayClicked" />
+                  </widget>
+                </child>
+                <child>
+                  <widget class="Gtk.Image" id="imgPay">
+                    <property name="MemberName" />
+                    <property name="Pixbuf">resource:Momiji.Resources.shopping-bag-icon.png</property>
+                  </widget>
+                  <packing>
+                    <property name="X">32</property>
+                    <property name="Y">16</property>
+                  </packing>
+                </child>
               </widget>
               <packing>
                 <property name="Position">6</property>
@@ -1532,10 +1553,11 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmGSSale" design-size="800 330">
+  <widget class="Gtk.Window" id="Momiji.frmGSSale" design-size="800 344">
     <property name="MemberName" />
     <property name="WidthRequest">800</property>
-    <property name="Title" translatable="yes">GS Sale</property>
+    <property name="Title" translatable="yes">Gallery Store Sale</property>
+    <property name="Icon">resource:Momiji.Resources.shopping-basket-icon.png</property>
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
@@ -1692,14 +1714,34 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="btnPay">
+              <widget class="Gtk.Fixed" id="fixedPay">
                 <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextAndIcon</property>
-                <property name="Icon">resource:Momiji.Resources.shopping-basket-icon.png</property>
-                <property name="Label">Mark as Paid</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnPayClicked" />
+                <property name="WidthRequest">256</property>
+                <property name="HeightRequest">96</property>
+                <property name="HasWindow">False</property>
+                <child>
+                  <widget class="Gtk.Button" id="btnPay">
+                    <property name="MemberName" />
+                    <property name="WidthRequest">256</property>
+                    <property name="HeightRequest">96</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Mark as Paid</property>
+                    <property name="UseUnderline">True</property>
+                    <property name="Xalign">0.75</property>
+                    <signal name="Clicked" handler="OnBtnPayClicked" />
+                  </widget>
+                </child>
+                <child>
+                  <widget class="Gtk.Image" id="imgPay">
+                    <property name="MemberName" />
+                    <property name="Pixbuf">resource:Momiji.Resources.shopping-basket-icon.png</property>
+                  </widget>
+                  <packing>
+                    <property name="X">32</property>
+                    <property name="Y">16</property>
+                  </packing>
+                </child>
               </widget>
               <packing>
                 <property name="Position">3</property>
@@ -1776,10 +1818,11 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmQuickSale" design-size="800 331">
+  <widget class="Gtk.Window" id="Momiji.frmQuickSale" design-size="800 344">
     <property name="MemberName" />
     <property name="WidthRequest">800</property>
     <property name="Title" translatable="yes">Quick Sale</property>
+    <property name="Icon">resource:Momiji.Resources.tag-sale-icon.png</property>
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
@@ -1936,14 +1979,34 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="btnPay">
+              <widget class="Gtk.Fixed" id="fixedPay">
                 <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextAndIcon</property>
-                <property name="Icon">resource:Momiji.Resources.tag-sale-icon.png</property>
-                <property name="Label">Mark as Paid</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnPayClicked" />
+                <property name="WidthRequest">256</property>
+                <property name="HeightRequest">96</property>
+                <property name="HasWindow">False</property>
+                <child>
+                  <widget class="Gtk.Button" id="btnPay">
+                    <property name="MemberName" />
+                    <property name="WidthRequest">256</property>
+                    <property name="HeightRequest">96</property>
+                    <property name="CanFocus">True</property>
+                    <property name="Type">TextOnly</property>
+                    <property name="Label" translatable="yes">Mark as Paid</property>
+                    <property name="UseUnderline">True</property>
+                    <property name="Xalign">0.75</property>
+                    <signal name="Clicked" handler="OnBtnPayClicked" />
+                  </widget>
+                </child>
+                <child>
+                  <widget class="Gtk.Image" id="imgPay">
+                    <property name="MemberName" />
+                    <property name="Pixbuf">resource:Momiji.Resources.tag-sale-icon.png</property>
+                  </widget>
+                  <packing>
+                    <property name="X">32</property>
+                    <property name="Y">16</property>
+                  </packing>
+                </child>
               </widget>
               <packing>
                 <property name="Position">3</property>
@@ -4863,9 +4926,11 @@ offer a cheque, and ask for help.</property>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">Gallery Momiji Point-Of-Sale</property>
+    <property name="Icon">resource:Momiji.Resources.Crystal-Star-256.ico</property>
     <property name="WindowPosition">CenterAlways</property>
     <property name="Resizable">False</property>
     <property name="AllowGrow">False</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox2">
         <property name="MemberName" />
