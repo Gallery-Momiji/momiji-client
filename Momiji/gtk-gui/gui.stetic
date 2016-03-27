@@ -323,14 +323,9 @@ license files necessary as described below.
 
 All code listed in this project is licensed as GPL 3.0 or later, with two
 exceptions. First, any BUNDLED CODE (i.e. code not derived from this project)
-maybe licensed differently, in which it would be otherwise specified within
-the file or directory. Second, any code that requires linking of GPL
-incompatible libraries can be distributed as LGPL 3.0 or later, BUT ONLY IF
-ABSOLUTELY NECESSARY FOR THE FUNCTION OF THE CODE. If any code no longer
-requires this exception, it shall ONLY BE DISTRIBUTED WITH GPL 3.0 or LATER.
-The goal of this project is to use LGPL sparingly and in the event that LGPL
-is no longer necessary, this warning and the LGPL license file shall be
-removed from this project.
+maybe licensed differently, in which it should be placed in the Extern folder
+and needs to be GPL compatible. Second, LGPL 3.0 or later can be used ONLY if
+required for compiling and or running with .NET for Windows platforms.
 
 All logos and pictures showing Gallery Momiji or Anime North logos, text or
 trademarks are owned and copyrighted by either Gallery Momiji or Anime North,
