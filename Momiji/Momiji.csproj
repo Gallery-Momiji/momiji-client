@@ -66,8 +66,6 @@
     <Compile Include="frmMenu.cs" />
     <Compile Include="AboutBox.cs" />
     <Compile Include="gtk-gui\Momiji.AboutBox.cs" />
-    <Compile Include="frmArtistCheckinGallery.cs" />
-    <Compile Include="gtk-gui\Momiji.frmArtistCheckinGallery.cs" />
     <Compile Include="frmArtistCheckout.cs" />
     <Compile Include="gtk-gui\Momiji.frmArtistCheckout.cs" />
     <Compile Include="frmAuctionSale.cs" />

@@ -33,11 +33,32 @@ namespace Momiji
 			this.operation = operation;
 			this.parent = parent;
 			this.Build ();
+
+			//Set Window title
+			switch (operation) {
+			case Operations.CheckSales:
+				this.Title = "Sales by date";
+				break;
+			case Operations.Refund:
+				this.Title = "Sales available for refund by date";
+				break;
+			case Operations.CheckReceipts:
+				this.Title = "Receipts by date";
+				break;
+			case Operations.CheckUserActivities:
+				this.Title = "User activities by date";
+				break;
+			}
 		}
 
 		/////////////////////////
 		//     GTK Signals     //
 		/////////////////////////
+
+		protected void OnDeleteEvent (object sender, EventArgs e)
+		{
+			parent.CleanupSearchDate();
+		}
 
 		protected void OnDrpDateChanged (object sender, EventArgs e)
 		{
