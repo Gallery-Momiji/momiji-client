@@ -24,7 +24,7 @@ namespace Momiji
 		
 		private global::Gtk.HBox hboxArtistInfoButton;
 		
-		private global::Gtk.Button buttonCancel;
+		private global::Gtk.Button btnCancel;
 		
 		private global::Gtk.Label GtkLabel6;
 		
@@ -52,7 +52,7 @@ namespace Momiji
 		
 		private global::Gtk.CheckButton chkStep3;
 		
-		private global::Gtk.Button button6;
+		private global::Gtk.Button btnMarkCheckout;
 		
 		private global::Gtk.Label lblStep4;
 		
@@ -167,16 +167,16 @@ namespace Momiji
 			this.hboxArtistInfoButton.Name = "hboxArtistInfoButton";
 			this.hboxArtistInfoButton.Spacing = 6;
 			// Container child hboxArtistInfoButton.Gtk.Box+BoxChild
-			this.buttonCancel = new global::Gtk.Button ();
-			this.buttonCancel.CanFocus = true;
-			this.buttonCancel.Name = "buttonCancel";
-			this.buttonCancel.UseUnderline = true;
-			this.buttonCancel.Label = global::Mono.Unix.Catalog.GetString ("Cancel");
+			this.btnCancel = new global::Gtk.Button ();
+			this.btnCancel.CanFocus = true;
+			this.btnCancel.Name = "btnCancel";
+			this.btnCancel.UseUnderline = true;
+			this.btnCancel.Label = global::Mono.Unix.Catalog.GetString ("Cancel");
 			global::Gtk.Image w6 = new global::Gtk.Image ();
 			w6.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-cancel", global::Gtk.IconSize.Menu);
-			this.buttonCancel.Image = w6;
-			this.hboxArtistInfoButton.Add (this.buttonCancel);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hboxArtistInfoButton [this.buttonCancel]));
+			this.btnCancel.Image = w6;
+			this.hboxArtistInfoButton.Add (this.btnCancel);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hboxArtistInfoButton [this.btnCancel]));
 			w7.Position = 1;
 			w7.Expand = false;
 			w7.Fill = false;
@@ -300,16 +300,16 @@ namespace Momiji
 			w20.Expand = false;
 			w20.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
-			this.button6 = new global::Gtk.Button ();
-			this.button6.CanFocus = true;
-			this.button6.Name = "button6";
-			this.button6.UseUnderline = true;
-			this.button6.Label = global::Mono.Unix.Catalog.GetString ("Mark Artist as Checked out");
+			this.btnMarkCheckout = new global::Gtk.Button ();
+			this.btnMarkCheckout.CanFocus = true;
+			this.btnMarkCheckout.Name = "btnMarkCheckout";
+			this.btnMarkCheckout.UseUnderline = true;
+			this.btnMarkCheckout.Label = global::Mono.Unix.Catalog.GetString ("Mark Artist as Checked out");
 			global::Gtk.Image w21 = new global::Gtk.Image ();
 			w21.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-ok", global::Gtk.IconSize.Menu);
-			this.button6.Image = w21;
-			this.vbox4.Add (this.button6);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.button6]));
+			this.btnMarkCheckout.Image = w21;
+			this.vbox4.Add (this.btnMarkCheckout);
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.btnMarkCheckout]));
 			w22.Position = 3;
 			w22.Expand = false;
 			w22.Fill = false;
@@ -435,9 +435,9 @@ namespace Momiji
 			this.DefaultWidth = 829;
 			this.DefaultHeight = 360;
 			this.Show ();
-			this.button6.Clicked += new global::System.EventHandler (this.OnButton6Clicked);
+			this.btnMarkCheckout.Clicked += new global::System.EventHandler (this.OnBtnMarkCheckoutClicked);
 			this.btnGenSaleSum.Clicked += new global::System.EventHandler (this.OnBtnGenSaleSumClicked);
-			this.buttonCancel.Clicked += new global::System.EventHandler (this.OnButtonCancelClicked);
+			this.btnCancel.Clicked += new global::System.EventHandler (this.OnBtnCancelClicked);
 		}
 	}
 }

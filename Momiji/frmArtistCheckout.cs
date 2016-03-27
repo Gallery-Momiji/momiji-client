@@ -33,7 +33,7 @@ namespace Momiji
 			SQLResult results = SQLConnection.Query(query);
 			if (results.successful()) {
 				if (results.getCellInt("ArtistCheckedOut", 0) == 1) {
-					button6.Sensitive = false;
+					btnMarkCheckout.Sensitive = false;
 					MessageBox.Show (this, MessageType.Warning,
 											"Artist already marked as Checked Out.");
 				}
@@ -56,8 +56,7 @@ namespace Momiji
 			Process.Start("http://" + parent.currentSQLConnection.getHost() + "/momiji/checkout.php?id=" + artistID);
 		}
 
-		//TODO Fix the button name//
-		protected void OnButton6Clicked (object sender, EventArgs e)
+		protected void OnBtnMarkCheckoutClicked (object sender, EventArgs e)
 		{
 			if (chkStep1.Active && chkStep2.Active && chkStep3.Active) {
 				SQL SQLConnection = parent.currentSQLConnection;
@@ -77,8 +76,7 @@ namespace Momiji
 			}
 		}
 
-		//TODO Fix the button name//
-		protected void OnButtonCancelClicked (object sender, EventArgs e)
+		protected void OnBtnCancelClicked (object sender, EventArgs e)
 		{
 			this.Destroy();
 		}

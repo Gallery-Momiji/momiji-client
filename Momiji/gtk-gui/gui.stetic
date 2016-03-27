@@ -814,14 +814,14 @@ Store Control Sheet?&lt;/b&gt;</property>
                           <placeholder />
                         </child>
                         <child>
-                          <widget class="Gtk.Button" id="buttonCancel">
+                          <widget class="Gtk.Button" id="btnCancel">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Type">TextAndIcon</property>
                             <property name="Icon">stock:gtk-cancel Menu</property>
                             <property name="Label" translatable="yes">Cancel</property>
                             <property name="UseUnderline">True</property>
-                            <signal name="Clicked" handler="OnButtonCancelClicked" />
+                            <signal name="Clicked" handler="OnBtnCancelClicked" />
                           </widget>
                           <packing>
                             <property name="Position">1</property>
@@ -1010,14 +1010,14 @@ displaying the artists' sales summary
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Button" id="button6">
+                      <widget class="Gtk.Button" id="btnMarkCheckout">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Type">TextAndIcon</property>
                         <property name="Icon">stock:gtk-ok Menu</property>
                         <property name="Label" translatable="yes">Mark Artist as Checked out</property>
                         <property name="UseUnderline">True</property>
-                        <signal name="Clicked" handler="OnButton6Clicked" />
+                        <signal name="Clicked" handler="OnBtnMarkCheckoutClicked" />
                       </widget>
                       <packing>
                         <property name="Position">3</property>
