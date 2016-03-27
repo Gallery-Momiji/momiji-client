@@ -152,9 +152,9 @@ namespace Momiji
 			this.fixedPay = new global::Gtk.Fixed ();
 			this.fixedPay.WidthRequest = 256;
 			this.fixedPay.HeightRequest = 96;
-			this.fixedPay.Name = "fixed5";
+			this.fixedPay.Name = "fixedPay";
 			this.fixedPay.HasWindow = false;
-			// Container child fixed5.Gtk.Fixed+FixedChild
+			// Container child fixedPay.Gtk.Fixed+FixedChild
 			this.btnPay = new global::Gtk.Button ();
 			this.btnPay.WidthRequest = 256;
 			this.btnPay.HeightRequest = 96;
@@ -164,9 +164,9 @@ namespace Momiji
 			this.btnPay.Xalign = 0.75F;
 			this.btnPay.Label = global::Mono.Unix.Catalog.GetString ("Mark as Paid");
 			this.fixedPay.Add (this.btnPay);
-			// Container child fixed5.Gtk.Fixed+FixedChild
+			// Container child fixedPay.Gtk.Fixed+FixedChild
 			this.imgPay = new global::Gtk.Image ();
-			this.imgPay.Name = "image172";
+			this.imgPay.Name = "imgPay";
 			this.imgPay.Pixbuf = global::Gdk.Pixbuf.LoadFromResource ("Momiji.Resources.shopping-basket-icon.png");
 			this.fixedPay.Add (this.imgPay);
 			global::Gtk.Fixed.FixedChild w11 = ((global::Gtk.Fixed.FixedChild)(this.fixedPay [this.imgPay]));

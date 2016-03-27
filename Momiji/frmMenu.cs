@@ -20,6 +20,7 @@ namespace Momiji
 		private frmQuickSale QuickSaleForm;
 		private frmAuctionSale AuctionSaleForm;
 		private frmSearchArtist SearchArtistForm;
+		private frmSearchDate SearchDateForm;
 		private SQL SQLConnection;
 		private SQLResult User;
 
@@ -69,6 +70,14 @@ namespace Momiji
 		public void CleanupAuctionSale ()
 		{
 			AuctionSaleForm = null;
+		}
+
+		/// <summary>
+		/// This should be called when the user closes frmSearchArtist.
+		/// </summary>
+		public void CleanupSearchDate ()
+		{
+			SearchDateForm = null;
 		}
 
 		/// <summary>
@@ -148,14 +157,15 @@ namespace Momiji
 			checkInAction.Sensitive = userClass >= 5 ? true : false;
 			checkOutAction.Sensitive = userClass >= 6 ? true : false;
 			generateBiddingSheetsAction.Sensitive = userClass >= 6 ? true : false;
-			biddersAction.Sensitive = userClass >= 6 ? true : false;
 			manageArtistAction.Sensitive = userClass >= 7 ? true : false;
 			checkUserActivitiesAction.Sensitive = userClass >= 8 ? true : false;
 			checkReceiptsAction.Sensitive = userClass >= 9 ? true : false;
 			checkSalesAction.Sensitive = userClass >= 9 ? true : false;
 			refundAction.Sensitive = userClass >= 10 ? true : false;
-			pricingAction.Sensitive = userClass >= 11 ? true : false;
 			usersPrefAction.Sensitive = userClass >= 11 ? true : false;
+			//TODO will be unimplemented (not in scope for next version)
+			pricingAction.Sensitive = false;//userClass >= 11 ? true : false;
+			biddersAction.Sensitive = false;//userClass >= 6 ? true : false;
 		}
 
 		/////////////////////////
@@ -212,7 +222,8 @@ namespace Momiji
 
 		protected void OnAddArtistActionActivated (object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException ();
+			//Negative ID means to make a new artist
+			new frmArtistAdd (this);
 		}
 
 		protected void OnEditArtistActionActivated (object sender, EventArgs e)
@@ -247,12 +258,16 @@ namespace Momiji
 
 		protected void OnCheckSalesActionActivated (object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException ();
+			if(SearchDateForm != null)
+				SearchDateForm.Destroy();
+			SearchDateForm = new frmSearchDate (frmSearchDate.Operations.CheckSales, this);
 		}
 
 		protected void OnRefundActionActivated (object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException ();
+			if(SearchDateForm != null)
+				SearchDateForm.Destroy();
+			SearchDateForm = new frmSearchDate (frmSearchDate.Operations.Refund, this);
 		}
 
 		protected void OnReprintReceiptActionActivated (object sender, EventArgs e)
@@ -262,12 +277,16 @@ namespace Momiji
 
 		protected void OnCheckReceiptsActionActivated (object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException ();
+			if(SearchDateForm != null)
+				SearchDateForm.Destroy();
+			SearchDateForm = new frmSearchDate (frmSearchDate.Operations.CheckReceipts, this);
 		}
 
 		protected void OnCheckUserActivitiesActionActivated (object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException ();
+			if(SearchDateForm != null)
+				SearchDateForm.Destroy();
+			SearchDateForm = new frmSearchDate (frmSearchDate.Operations.CheckUserActivities, this);
 		}
 
 		protected void OnGenerateBiddingSheetsActionActivated (object sender, EventArgs e)
@@ -281,17 +300,17 @@ namespace Momiji
 
 		protected void OnUserPreferencesActionActivated (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			new frmUserEdit(User.getCellInt ("id", 0), this);
 		}
 
 		protected void OnPricingActionActivated (object sender, EventArgs e)
 		{
-			throw new System.NotImplementedException ();
+			new frmPricing(this);
 		}
 
 		protected void OnBiddersActionActivated (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			new frmBidders(this);
 		}
 
 		//Preferences > Users

@@ -36,13 +36,16 @@ namespace Momiji
 					txtName.Text = results.getCell ("name", 0);
 					txtUsername.Text = results.getCell ("username", 0);
 					drpRank.Active = results.getCellInt ("class", 0);
+					bool isadmin = (parent.currentUser.getCellInt ("class", 0) >= 11);
+					drpUsers.Sensitive = isadmin;
+					drpRank.Sensitive = isadmin;
+					lblChooseUser.Sensitive = isadmin;
+					btnCancel.Sensitive = isadmin;
+					btnDelete.Sensitive = isadmin;
 					txtUsername.Sensitive = true;
 					txtName.Sensitive = true;
-					drpRank.Sensitive = true;
 					txtPass.Sensitive = true;
-					btnDelete.Sensitive = true;
 					btnUpdate.Sensitive = true;
-					btnCancel.Sensitive = true;
 					txtPassRepeat.Sensitive = true;
 				} else {
 					MessageBox.Show (this, MessageType.Error, "Could not load user.\nPlease contact your administrator.");
@@ -83,7 +86,7 @@ namespace Momiji
 				ListStore ClearList = new ListStore (typeof(string), typeof(string));
 				drpUsers.Model = ClearList;
 				userids = new int[results.GetNumberOfRows ()];
-				for (int i = 0; i < results.GetNumberOfRows(); i++) {
+				for (int i = 0; i < results.GetNumberOfRows (); i++) {
 					userids [i] = results.getCellInt ("id", i);
 					string temp;
 					temp = results.getCell ("username", i);
@@ -101,13 +104,33 @@ namespace Momiji
 		/////////////////////////
 
 		public frmUserEdit (frmMenu parent) :
-				base(Gtk.WindowType.Toplevel)
+			base (Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
 			this.Build ();
 			drpUsers.Active = -1;
 			loadUserData ();
 			loadUserList ();
+		}
+
+		public frmUserEdit (int id, frmMenu parent) :
+			base (Gtk.WindowType.Toplevel)
+		{
+			this.parent = parent;
+			this.Build ();
+			drpUsers.Active = -1;
+			loadUserData ();
+			loadUserList ();
+			int i;
+			for (i = 0; i < userids.Length; i++)
+				if (userids [i] == id)
+					break;
+			if (i < userids.Length) {
+				drpUsers.Active = i;
+			} else {
+				MessageBox.Show (this, MessageType.Error, "Could not find user data.\nTry again or please contact your administrator.");
+				this.Destroy ();
+			} 
 		}
 
 		/////////////////////////
@@ -158,7 +181,7 @@ namespace Momiji
 			userID = userids [drpUsers.Active].ToString ();
 
 			if (userName.Length == 0 || userFnameLname.Length == 0 ||
-				drpRank.Active < 0) {
+			    drpRank.Active < 0) {
 				MessageBox.Show (this, MessageType.Info, "All fields, except password, are required");
 				return;
 			}
