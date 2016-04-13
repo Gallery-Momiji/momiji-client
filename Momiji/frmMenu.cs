@@ -152,18 +152,40 @@ namespace Momiji
 
 			//Advanced Functionality:
 			reprintReceiptAction.Sensitive = userClass >= 4 ? true : false;
-			checkInAction.Sensitive = userClass >= 5 ? true : false;
 			checkOutAction.Sensitive = userClass >= 6 ? true : false;
-			generateBiddingSheetsAction.Sensitive = userClass >= 6 ? true : false;
 			manageArtistAction.Sensitive = userClass >= 7 ? true : false;
+			usersPrefAction.Sensitive = userClass >= 11 ? true : false;
+			//NOTE! unimplemented options should be DEBUG ONLY
+			#if DEBUG
+			checkInAction.Sensitive = userClass >= 5 ? true : false;
+			biddersAction.Sensitive = userClass >= 6 ? true : false;
+			generateBiddingSheetsAction.Sensitive = userClass >= 6 ? true : false;
 			checkUserActivitiesAction.Sensitive = userClass >= 8 ? true : false;
 			checkReceiptsAction.Sensitive = userClass >= 9 ? true : false;
 			checkSalesAction.Sensitive = userClass >= 9 ? true : false;
 			refundAction.Sensitive = userClass >= 10 ? true : false;
-			usersPrefAction.Sensitive = userClass >= 11 ? true : false;
-			//TODO will be unimplemented (not in scope for next version)
-			pricingAction.Sensitive = false;//userClass >= 11 ? true : false;
-			biddersAction.Sensitive = false;//userClass >= 6 ? true : false;
+			manageArtistBalanceAction = userClass >= 10 ? true : false;
+			pricingAction.Sensitive = userClass >= 11 ? true : false;
+			#else
+			//TODO//Unimplemented frmGSManager
+			editGalleryStoreMerchandiseAction.Sensitive = false;
+			//TODO//Unimplemented frmMerchEditor
+			editMerchandiseAction.Sensitive = false;
+			//TODO//Unimplemented frmcheckin
+			checkInAction.Sensitive = false;
+			//TODO//Unimplemented frmbidder
+			biddersAction.Sensitive = false;
+			//TODO//missing functionality in frmSearchArtist
+			generateBiddingSheetsAction.Sensitive = false;
+			manageArtistBalanceAction = false;
+			//TODO//Unimplemented frmSearchDate
+			checkUserActivitiesAction.Sensitive = false;
+			checkReceiptsAction.Sensitive = false;
+			checkSalesAction.Sensitive = false;
+			refundAction.Sensitive = false;
+			//TODO//frmpricing
+			pricingAction.Sensitive = false;
+			#endif
 		}
 
 		/////////////////////////

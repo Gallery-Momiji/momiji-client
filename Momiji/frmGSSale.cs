@@ -96,6 +96,7 @@ namespace Momiji
 
 			//Catch an invalid barcode, should be PN###-###
 			int ArtistID, PieceID;
+			//TODO//Use int.TryParse instead of a try/catch
 			try {
 				ArtistID = Int32.Parse (txtBarcode.Text.Substring (2, 3));
 				PieceID = Int32.Parse (txtBarcode.Text.Substring (6, 3));
@@ -106,6 +107,7 @@ namespace Momiji
 				return;
 			}
 
+			//TODO//Should this whole thing be wrapped in a try/catch?
 			try {
 				SQL SQLConnection = parent.currentSQLConnection;
 

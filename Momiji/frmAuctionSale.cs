@@ -117,6 +117,7 @@ namespace Momiji
 
 			//Catch an invalid barcode, should be AN###-###
 			int ArtistID, MerchID;
+			//TODO//Use int.TryParse instead of a try/catch
 			try {
 				ArtistID = Int32.Parse (txtBarcode.Text.Substring (2, 3));
 				MerchID = Int32.Parse (txtBarcode.Text.Substring (6, 3));
@@ -131,6 +132,7 @@ namespace Momiji
 
 			//Catch an invalid price
 			int Price;
+			//TODO//Use int.TryParse instead of a try/catch
 			try {
 				Price = Int32.Parse (txtPrice.Text);
 			} catch {
@@ -142,6 +144,7 @@ namespace Momiji
 				return;
 			}
 
+			//TODO//Should this whole thing be wrapped in a try/catch?
 			try {
 				SQL SQLConnection = parent.currentSQLConnection;
 				MySqlCommand query = new MySqlCommand ("SELECT * FROM `merchandise` WHERE `ArtistID` = @AID AND `MerchID` = @MID;", SQLConnection.GetConnection ());

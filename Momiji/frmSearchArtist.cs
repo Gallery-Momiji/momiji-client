@@ -144,6 +144,8 @@ namespace Momiji
 				new frmArtistCheckout (selectednode.ArtistID, parent);
 				break;
 			case Operations.GenerateBiddingSheets:
+				//TODO//
+				throw new System.NotImplementedException ();
 				break;
 			case Operations.EditArtist:
 				new frmArtistAdd (selectednode.ArtistID, parent);
@@ -155,6 +157,7 @@ namespace Momiji
 				new frmGSManager (selectednode.ArtistID, parent);
 				break;
 			case Operations.ManageArtistBalance:
+				//TODO//
 				throw new System.NotImplementedException ();
 			}
 		}

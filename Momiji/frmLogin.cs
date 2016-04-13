@@ -53,15 +53,15 @@ namespace Momiji
 				db_name = config.GetSetting ("ROOT", "db_name");
 				db_host = config.GetSetting ("ROOT", "db_host");
 				db_port = config.GetSetting ("ROOT", "db_port");
-
-				this.Build ();
-
 			} catch (Exception ex) {
 				MessageBox.Show (this, MessageType.Error,
 										ex.Message);
 
 				this.Destroy ();
+				return;
 			}
+
+			this.Build ();
 
 			TestConnect ();
 
