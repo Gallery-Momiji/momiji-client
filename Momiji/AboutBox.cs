@@ -45,8 +45,11 @@ namespace Momiji
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
-
+#if DEBUG
+			this.lblVersion.Text = String.Format("Version {0}-debug",
+#else
 			this.lblVersion.Text = String.Format("Version {0}",
+#endif
 				Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
 			this.lblProduct.Text = AssemblyProduct;

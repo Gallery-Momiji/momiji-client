@@ -64,12 +64,16 @@ namespace Momiji
 
 		protected void OnDrpDateChanged (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+#if DEBUG
+			throw new System.NotImplementedException ();
+#endif
 		}
 
 		protected void OnLstLogRowActivated (object o, Gtk.RowActivatedArgs args)
 		{
-			throw new NotImplementedException ();
+#if DEBUG
+			throw new System.NotImplementedException ();
+#endif
 		}
 	}
 }

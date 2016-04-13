@@ -45,14 +45,9 @@ namespace Momiji
 		public frmLogin () :
 				base(Gtk.WindowType.Toplevel)
 		{
+			IniParser config;
 			try {
-				IniParser config = new IniParser ("config.ini");
-
-				db_pass = config.GetSetting ("ROOT", "db_pass");
-				db_user = config.GetSetting ("ROOT", "db_user");
-				db_name = config.GetSetting ("ROOT", "db_name");
-				db_host = config.GetSetting ("ROOT", "db_host");
-				db_port = config.GetSetting ("ROOT", "db_port");
+				config = new IniParser ("config.ini");
 			} catch (Exception ex) {
 				MessageBox.Show (this, MessageType.Error,
 										ex.Message);
@@ -60,6 +55,11 @@ namespace Momiji
 				this.Destroy ();
 				return;
 			}
+			db_pass = config.GetSetting ("ROOT", "db_pass");
+			db_user = config.GetSetting ("ROOT", "db_user");
+			db_name = config.GetSetting ("ROOT", "db_name");
+			db_host = config.GetSetting ("ROOT", "db_host");
+			db_port = config.GetSetting ("ROOT", "db_port");
 
 			this.Build ();
 

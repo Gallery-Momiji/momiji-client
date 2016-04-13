@@ -31,22 +31,30 @@ namespace Momiji
 
 		protected void OnBtnCancelClicked (object sender, EventArgs e)
 		{
+#if DEBUG
 			throw new System.NotImplementedException ();
+#endif
 		}
 
 		protected void OnBtnEditArtistClicked (object sender, EventArgs e)
 		{
+#if DEBUG
 			throw new System.NotImplementedException ();
+#endif
 		}
 
 		protected void OnBtnReloadClicked (object sender, EventArgs e)
 		{
+#if DEBUG
 			throw new System.NotImplementedException ();
+#endif
 		}
 
 		protected void OnBtnCheckInClicked (object sender, EventArgs e)
 		{
+#if DEBUG
 			throw new System.NotImplementedException ();
+#endif
 		}
 	}
 }

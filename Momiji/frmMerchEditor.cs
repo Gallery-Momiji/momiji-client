@@ -31,42 +31,58 @@ namespace Momiji
 
 		protected void OnBtnGenIDClicked (object sender, EventArgs e)
 		{
+#if DEBUG
 			throw new System.NotImplementedException ();
+#endif
 		}
 
 		protected void OnBtnUpdateClicked (object sender, EventArgs e)
 		{
+#if DEBUG
 			throw new System.NotImplementedException ();
+#endif
 		}
 
 		protected void OnBtnAddClicked (object sender, EventArgs e)
 		{
+#if DEBUG
 			throw new System.NotImplementedException ();
+#endif
 		}
 
 		protected void OnBtnClearClicked (object sender, EventArgs e)
 		{
+#if DEBUG
 			throw new System.NotImplementedException ();
+#endif
 		}
 
 		protected void OnBtnDeleteClicked (object sender, EventArgs e)
 		{
+#if DEBUG
 			throw new System.NotImplementedException ();
+#endif
 		}
 
 		protected void OnBtnCreateSheetClicked (object sender, EventArgs e)
 		{
+#if DEBUG
 			throw new System.NotImplementedException ();
+#endif
 		}
 
 		protected void OnBtnGenCSClicked (object sender, EventArgs e)
 		{
+#if DEBUG
 			throw new System.NotImplementedException ();
+#endif
 		}
 
 		protected void OnBtnCancelClicked (object sender, EventArgs e)
 		{
+#if DEBUG
 			throw new System.NotImplementedException ();
+#endif
 		}
 	}
 }
