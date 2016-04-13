@@ -96,11 +96,8 @@ namespace Momiji
 
 			//Catch an invalid barcode, should be PN###-###
 			int ArtistID, PieceID;
-			//TODO//Use int.TryParse instead of a try/catch
-			try {
-				ArtistID = Int32.Parse (txtBarcode.Text.Substring (2, 3));
-				PieceID = Int32.Parse (txtBarcode.Text.Substring (6, 3));
-			} catch {
+			if (!int.TryParse (txtBarcode.Text.Substring (2, 3), out ArtistID) ||
+				!int.TryParse (txtBarcode.Text.Substring (6, 3), out PieceID)) {
 				MessageBox.Show (this, MessageType.Error,
 										"Invalid barcode format");
 				txtBarcode.Text = "";
@@ -176,10 +173,7 @@ namespace Momiji
 			}
 
 			float paid;
-
-			try {
-				paid = float.Parse (txtPaid.Text);
-			} catch {
+			if(!float.TryParse (txtPaid.Text, out paid)) {
 				MessageBox.Show (this, MessageType.Info,
 										"Please enter a valid number in the paid box");
 				return;
