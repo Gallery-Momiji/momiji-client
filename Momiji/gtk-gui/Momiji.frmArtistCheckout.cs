@@ -216,7 +216,8 @@ namespace Momiji
 			// Container child vboxStep1.Gtk.Box+BoxChild
 			this.lblGenSaleSum = new global::Gtk.Label ();
 			this.lblGenSaleSum.Name = "lblGenSaleSum";
-			this.lblGenSaleSum.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>First, let's show the artist their earnings. \nClick the button below for a page \ndisplaying the artists' sales summary \n(make sure you print it!)</b>");
+			this.lblGenSaleSum.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>First, let\'s show the artist their earnings. \r\nClick the button below for a pa" +
+			"ge \r\ndisplaying the artists\' sales summary \r\n(make sure you print it!)</b>");
 			this.lblGenSaleSum.UseMarkup = true;
 			this.vboxStep1.Add (this.lblGenSaleSum);
 			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vboxStep1 [this.lblGenSaleSum]));
@@ -358,7 +359,8 @@ namespace Momiji
 			// Container child vboxStep2.Gtk.Box+BoxChild
 			this.lblIMPORTANTDetails = new global::Gtk.Label ();
 			this.lblIMPORTANTDetails.Name = "lblIMPORTANTDetails";
-			this.lblIMPORTANTDetails.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Once you go over the artists' sales\nsummary, make sure the artist has \ncollected all of his/her art work, \nwhere applicable.</b>");
+			this.lblIMPORTANTDetails.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Once you go over the artists\' sales\r\nsummary, make sure the artist has \r\ncolle" +
+			"cted all of his/her art work, \r\nwhere applicable.</b>");
 			this.lblIMPORTANTDetails.UseMarkup = true;
 			this.vboxStep2.Add (this.lblIMPORTANTDetails);
 			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.vboxStep2 [this.lblIMPORTANTDetails]));
@@ -395,7 +397,8 @@ namespace Momiji
 			// Container child vboxStep3.Gtk.Box+BoxChild
 			this.lblStep3a = new global::Gtk.Label ();
 			this.lblStep3a.Name = "lblStep3a";
-			this.lblStep3a.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Make sure to pay the artist in\nan envelope, as well as including\ntheir copy of the sales summary.</b>");
+			this.lblStep3a.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Make sure to pay the artist in\r\nan envelope, as well as including\r\ntheir copy " +
+			"of the sales summary.</b>");
 			this.lblStep3a.UseMarkup = true;
 			this.vboxStep3.Add (this.lblStep3a);
 			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vboxStep3 [this.lblStep3a]));
@@ -405,7 +408,7 @@ namespace Momiji
 			// Container child vboxStep3.Gtk.Box+BoxChild
 			this.lblStep3b = new global::Gtk.Label ();
 			this.lblStep3b.Name = "lblStep3b";
-			this.lblStep3b.LabelProp = global::Mono.Unix.Catalog.GetString ("If their earnings are $500 or more,\noffer a cheque, and ask for help.");
+			this.lblStep3b.LabelProp = global::Mono.Unix.Catalog.GetString ("If their earnings are $500 or more,\r\noffer a cheque, and ask for help.");
 			this.vboxStep3.Add (this.lblStep3b);
 			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.vboxStep3 [this.lblStep3b]));
 			w32.Position = 1;

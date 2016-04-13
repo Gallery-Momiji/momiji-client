@@ -195,7 +195,29 @@ namespace Momiji
 			this.vbox2.Name = "vbox2";
 			this.vbox2.Spacing = 8;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><menubar name='mainMenubar'><menu name='FileAction' action='FileAction'><menuitem name='closeAction' action='closeAction'/><menuitem name='quitAction' action='quitAction'/></menu><menu name='ArtistsAction' action='ArtistsAction'><menuitem name='checkInAction' action='checkInAction'/><menuitem name='checkOutAction' action='checkOutAction'/><menu name='manageArtistAction' action='manageArtistAction'><menuitem name='addArtistAction' action='addArtistAction'/><menuitem name='editArtistAction' action='editArtistAction'/><menuitem name='editMerchandiseAction' action='editMerchandiseAction'/><menuitem name='editGalleryStoreMerchandiseAction' action='editGalleryStoreMerchandiseAction'/><menuitem name='manageArtistBalanceAction' action='manageArtistBalanceAction'/></menu></menu><menu name='ToolsAction' action='ToolsAction'><menuitem name='checkSalesAction' action='checkSalesAction'/><menuitem name='refundAction' action='refundAction'/><menuitem name='reprintReceiptAction' action='reprintReceiptAction'/><menuitem name='checkReceiptsAction' action='checkReceiptsAction'/><menuitem name='checkUserActivitiesAction' action='checkUserActivitiesAction'/><menuitem name='generateBiddingSheetsAction' action='generateBiddingSheetsAction'/></menu><menu name='PreferencesAction' action='PreferencesAction'><menuitem name='userPreferencesAction' action='userPreferencesAction'/><menuitem name='pricingAction' action='pricingAction'/><menuitem name='biddersAction' action='biddersAction'/><menu name='usersPrefAction' action='usersPrefAction'><menuitem name='addUserAction' action='addUserAction'/><menuitem name='editUserAction' action='editUserAction'/></menu></menu><menu name='HelpAction' action='HelpAction'><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
+			this.UIManager.AddUiFromString ("<ui><menubar name=\'mainMenubar\'><menu name=\'FileAction\' action=\'FileAction\'><menu" +
+			"item name=\'closeAction\' action=\'closeAction\'/><menuitem name=\'quitAction\' action" +
+			"=\'quitAction\'/></menu><menu name=\'ArtistsAction\' action=\'ArtistsAction\'><menuite" +
+			"m name=\'checkInAction\' action=\'checkInAction\'/><menuitem name=\'checkOutAction\' a" +
+			"ction=\'checkOutAction\'/><menu name=\'manageArtistAction\' action=\'manageArtistActi" +
+			"on\'><menuitem name=\'addArtistAction\' action=\'addArtistAction\'/><menuitem name=\'e" +
+			"ditArtistAction\' action=\'editArtistAction\'/><menuitem name=\'editMerchandiseActio" +
+			"n\' action=\'editMerchandiseAction\'/><menuitem name=\'editGalleryStoreMerchandiseAc" +
+			"tion\' action=\'editGalleryStoreMerchandiseAction\'/><menuitem name=\'manageArtistBa" +
+			"lanceAction\' action=\'manageArtistBalanceAction\'/></menu></menu><menu name=\'Tools" +
+			"Action\' action=\'ToolsAction\'><menuitem name=\'checkSalesAction\' action=\'checkSale" +
+			"sAction\'/><menuitem name=\'refundAction\' action=\'refundAction\'/><menuitem name=\'r" +
+			"eprintReceiptAction\' action=\'reprintReceiptAction\'/><menuitem name=\'checkReceipt" +
+			"sAction\' action=\'checkReceiptsAction\'/><menuitem name=\'checkUserActivitiesAction" +
+			"\' action=\'checkUserActivitiesAction\'/><menuitem name=\'generateBiddingSheetsActio" +
+			"n\' action=\'generateBiddingSheetsAction\'/></menu><menu name=\'PreferencesAction\' a" +
+			"ction=\'PreferencesAction\'><menuitem name=\'userPreferencesAction\' action=\'userPre" +
+			"ferencesAction\'/><menuitem name=\'pricingAction\' action=\'pricingAction\'/><menuite" +
+			"m name=\'biddersAction\' action=\'biddersAction\'/><menu name=\'usersPrefAction\' acti" +
+			"on=\'usersPrefAction\'><menuitem name=\'addUserAction\' action=\'addUserAction\'/><men" +
+			"uitem name=\'editUserAction\' action=\'editUserAction\'/></menu></menu><menu name=\'H" +
+			"elpAction\' action=\'HelpAction\'><menuitem name=\'aboutAction\' action=\'aboutAction\'" +
+			"/></menu></menubar></ui>");
 			this.mainMenubar = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/mainMenubar")));
 			this.mainMenubar.Name = "mainMenubar";
 			this.vbox2.Add (this.mainMenubar);
