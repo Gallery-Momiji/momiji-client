@@ -10,7 +10,7 @@ license files necessary as described below.
 
 All code listed in this project is licensed as GPL 3.0 or later, with two
 exceptions. First, any BUNDLED CODE (i.e. code not derived from this project)
-maybe licensed differently, in which it should be placed in the Extern folder
+maybe licensed differently, in which it should be placed in a separate folder
 and needs to be GPL compatible. Second, LGPL 3.0 or later can be used ONLY if
 required for compiling and or running with .NET for Windows platforms.
 
