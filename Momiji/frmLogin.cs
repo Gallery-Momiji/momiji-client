@@ -43,14 +43,14 @@ namespace Momiji
 		/////////////////////////
 
 		public frmLogin () :
-				base(Gtk.WindowType.Toplevel)
+			base (Gtk.WindowType.Toplevel)
 		{
 			IniParser config;
 			try {
 				config = new IniParser ("config.ini");
 			} catch (Exception ex) {
 				MessageBox.Show (this, MessageType.Error,
-										ex.Message);
+					ex.Message);
 
 				this.Destroy ();
 				return;
@@ -81,18 +81,18 @@ namespace Momiji
 		protected void OnBtnLoginClicked (object sender, EventArgs e)
 		{
 			string pass = txtPassword.Text;
-			string user = txtUsername.Text.ToLower();
+			string user = txtUsername.Text.ToLower ();
 
 			//Check for 0 length entry
 			if (user.Length == 0) {
 				MessageBox.Show (this, MessageType.Error,
-											"Please enter a username");
+					"Please enter a username");
 
 				txtUsername.GrabFocus ();
 				return;
 			} else if (pass.Length == 0) {
 				MessageBox.Show (this, MessageType.Error,
-											"Please enter a password");
+					"Please enter a password");
 
 				txtPassword.GrabFocus ();
 				return;
@@ -133,7 +133,7 @@ namespace Momiji
 				menuInstance.Show ();
 			} else {
 				MessageBox.Show (this, MessageType.Error,
-										"Incorrect password or username. Please try again.");
+					"Incorrect password or username. Please try again.");
 
 				txtPassword.Text = "";
 				txtPassword.GrabFocus ();

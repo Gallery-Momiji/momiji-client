@@ -17,7 +17,7 @@ namespace Momiji
 		/////////////////////////
 
 		public frmUserAdd (frmMenu parent) :
-				base(Gtk.WindowType.Toplevel)
+			base (Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
 			this.Build ();
@@ -39,8 +39,8 @@ namespace Momiji
 			SQL SQLConnection = parent.currentSQLConnection;
 
 			if (userName.Length == 0 || password1.Length == 0 ||
-				password2.Length == 0 || userFnameLname.Length == 0 ||
-				drpRank.Active < 0) {
+			    password2.Length == 0 || userFnameLname.Length == 0 ||
+			    drpRank.Active < 0) {
 				MessageBox.Show (this, MessageType.Info, "All fields are required");
 				return;
 			}

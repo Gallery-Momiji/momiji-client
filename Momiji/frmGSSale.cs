@@ -42,10 +42,8 @@ namespace Momiji
 			int count = 0;
 
 			while (temp.Length >= 10) {
-
 				if (temp.Substring (0, 9) == barcode)
 					count++;
-
 				temp = temp.Substring (10);
 			}
 
@@ -57,7 +55,7 @@ namespace Momiji
 		/////////////////////////
 
 		public frmGSSale (frmMenu parent) :
-				base(Gtk.WindowType.Toplevel)
+			base (Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
 			this.Build ();
@@ -87,9 +85,9 @@ namespace Momiji
 
 			//Catch for format, PN###-###
 			if (txtBarcode.Text.Substring (0, 2) != "PN" ||
-				txtBarcode.Text.Substring (5, 1) != "-") {
+			    txtBarcode.Text.Substring (5, 1) != "-") {
 				MessageBox.Show (this, MessageType.Error,
-									"Invalid Gallery Store barcode");
+					"Invalid Gallery Store barcode");
 				txtBarcode.Text = "";
 				return;
 			}
@@ -97,16 +95,16 @@ namespace Momiji
 			//Catch an invalid barcode, should be PN###-###
 			int ArtistID, PieceID;
 			if (!int.TryParse (txtBarcode.Text.Substring (2, 3), out ArtistID) ||
-				!int.TryParse (txtBarcode.Text.Substring (6, 3), out PieceID)) {
+			    !int.TryParse (txtBarcode.Text.Substring (6, 3), out PieceID)) {
 				MessageBox.Show (this, MessageType.Error,
-									"Invalid barcode format");
+					"Invalid barcode format");
 				txtBarcode.Text = "";
 				return;
 			}
 
 			SQL SQLConnection = parent.currentSQLConnection;
 			MySqlCommand query = new MySqlCommand ("SELECT * FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
-													SQLConnection.GetConnection ());
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@AID", ArtistID);
 			query.Parameters.AddWithValue ("@PID", PieceID);
@@ -117,14 +115,14 @@ namespace Momiji
 				int count = countInList (txtBarcode.Text);
 				if (results.getCellInt ("PieceStock", 0) <= count) {
 					MessageBox.Show (this, MessageType.Error,
-										"This is item is out of stock.");
+						"This is item is out of stock.");
 				} else {
 					merchStore.AddNode (new MerchNode (ArtistID,
-										PieceID,
-										results.getCell ("PieceTitle", 0),
-										"$" + String.Format ("{0:0.00}",
-										float.Parse (results.getCell ("PiecePrice", 0)))
-										));
+						PieceID,
+						results.getCell ("PieceTitle", 0),
+						"$" + String.Format ("{0:0.00}",
+							float.Parse (results.getCell ("PiecePrice", 0)))
+					));
 
 					total = total + float.Parse (results.getCell ("PiecePrice", 0));
 					txtTotal.Text = String.Format ("{0:0.00}", total);
@@ -138,7 +136,7 @@ namespace Momiji
 				}
 			} else {
 				MessageBox.Show (this, MessageType.Error,
-									"Could not find piece in the database");
+					"Could not find piece in the database");
 			}
 
 			txtBarcode.Text = "";
@@ -155,20 +153,20 @@ namespace Momiji
 		{
 			if (txtPaid.Text == "") {
 				MessageBox.Show (this, MessageType.Info,
-									"Please specify the amount that the customer has paid");
+					"Please specify the amount that the customer has paid");
 				return;
 			}
 
 			float paid;
-			if(!float.TryParse (txtPaid.Text, out paid)) {
+			if (!float.TryParse (txtPaid.Text, out paid)) {
 				MessageBox.Show (this, MessageType.Info,
-									"Please enter a valid number in the paid box");
+					"Please enter a valid number in the paid box");
 				return;
 			}
 
 			if (total > paid) {
 				MessageBox.Show (this, MessageType.Info,
-									"Paid amount is too small");
+					"Paid amount is too small");
 				return;
 			}
 
@@ -176,7 +174,7 @@ namespace Momiji
 			SQLResult User = parent.currentUser;
 
 			MySqlCommand query = new MySqlCommand ("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isGalleryStoreSale`, `itemArray`, `priceArray`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES);",
-													SQLConnection.GetConnection ());
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
 			query.Parameters.AddWithValue ("@TOTAL", total);
@@ -189,7 +187,7 @@ namespace Momiji
 				//Get receiptid
 				//TODO// Possible redundant code
 				query = new MySqlCommand ("SELECT `id` FROM `receipts` WHERE `userID` = @UID AND `itemArray` = @ITEMS AND `priceArray` = @PRICES AND `isGalleryStoreSale` = 1 ORDER BY `id` DESC LIMIT 0,1;",
-											SQLConnection.GetConnection ());
+					SQLConnection.GetConnection ());
 				query.Prepare ();
 				query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
 				query.Parameters.AddWithValue ("@TOTAL", total);
@@ -215,13 +213,13 @@ namespace Momiji
 				}
 
 				MessageBox.Show (this, MessageType.Info,
-									"Receipt processed, please give the following change: "
-									+ txtChange.Text +
-									"\n\nPlease check the receipt printer.\nThis was transaction ID #"
-									+ receiptID);
+					"Receipt processed, please give the following change: "
+					+ txtChange.Text +
+					"\n\nPlease check the receipt printer.\nThis was transaction ID #"
+					+ receiptID);
 
-				SQLConnection.LogAction ("Made a gallery store sale with receipt #"
-											+ receiptID, User);
+				SQLConnection.LogAction ("Made a gallery store sale with receipt #" + receiptID,
+					User);
 				btnPay.Sensitive = false;
 				txtPaid.Sensitive = false;
 				txtBarcode.Sensitive = false;
@@ -229,7 +227,7 @@ namespace Momiji
 
 			} else {
 				MessageBox.Show (this, MessageType.Error,
-									"Connection Error, please close and try again.");
+					"Connection Error, please close and try again.");
 			}
 		}
 

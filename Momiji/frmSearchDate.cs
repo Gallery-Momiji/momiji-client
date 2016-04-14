@@ -57,7 +57,7 @@ namespace Momiji
 
 		protected void OnDeleteEvent (object sender, EventArgs e)
 		{
-			parent.CleanupSearchDate();
+			parent.CleanupSearchDate ();
 		}
 
 		//TODO//

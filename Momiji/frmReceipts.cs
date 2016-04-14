@@ -17,8 +17,8 @@ namespace Momiji
 		//     Contructor      //
 		/////////////////////////
 
-		public frmReceipts (frmMenu parent) : 
-				base(Gtk.WindowType.Toplevel)
+		public frmReceipts (frmMenu parent) :
+			base (Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
 			this.Build ();
@@ -34,7 +34,7 @@ namespace Momiji
 			SQLResult results = SQLConnection.Query (query);
 			if (results.GetNumberOfRows () > 0) {
 				idnumbers = new int[results.GetNumberOfRows ()];
-				for (int i = 0; i < results.GetNumberOfRows(); i++) {
+				for (int i = 0; i < results.GetNumberOfRows (); i++) {
 					idnumbers [i] = results.getCellInt ("id", i);
 					string temp;
 					temp = "Receipt ID " + results.getCell ("id", i);
@@ -65,7 +65,7 @@ namespace Momiji
 			SQLResult result = SQLConnection.Query (reprint);
 
 			if (result.successful ())
-				MessageBox.Show (this, MessageType.Info, "The follow receipt has been requested to be reprinted:\n" + drpTransaction.ActiveText +"\nPlease check receipt printer.");
+				MessageBox.Show (this, MessageType.Info, "The follow receipt has been requested to be reprinted:\n" + drpTransaction.ActiveText + "\nPlease check receipt printer.");
 			else
 				MessageBox.Show (this, MessageType.Error, "Could not reprint receipt.\nPlease contact your administrator.");
 		}

@@ -11,11 +11,11 @@ namespace Momiji
 			this.ArtistShowName = ArtistShowName;
 		}
 
-		[Gtk.TreeNodeValue (Column=0)]
+		[Gtk.TreeNodeValue (Column = 0)]
 		public int ArtistID;
-		[Gtk.TreeNodeValue (Column=1)]
+		[Gtk.TreeNodeValue (Column = 1)]
 		public string ArtistName;
-		[Gtk.TreeNodeValue (Column=2)]
+		[Gtk.TreeNodeValue (Column = 2)]
 		public string ArtistShowName;
 
 		/// <summary>

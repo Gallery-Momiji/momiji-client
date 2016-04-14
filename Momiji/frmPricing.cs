@@ -16,8 +16,8 @@ namespace Momiji
 		//     Contructor      //
 		/////////////////////////
 
-		public frmPricing (frmMenu parent) : 
-				base(Gtk.WindowType.Toplevel)
+		public frmPricing (frmMenu parent) :
+			base (Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
 			this.Build ();

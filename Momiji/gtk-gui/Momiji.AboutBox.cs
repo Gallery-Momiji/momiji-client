@@ -90,28 +90,28 @@ namespace Momiji
 			// Container child GtkViewport.Gtk.Container+ContainerChild
 			this.lblCopyright = new global::Gtk.Label ();
 			this.lblCopyright.Name = "lblCopyright";
-			this.lblCopyright.LabelProp = global::Mono.Unix.Catalog.GetString ("Copyright 2012-2015 Tiago Rogue Medeiros (medeirosT)\r\nCopyright 2014-2016 Alexand" +
-			"er Jeremy Newton (mystro256)\r\nSpecial thanks to all the testers and users of thi" +
-			"s program!\r\n\r\nThis code is open source!\r\nView the code here:\r\nhttps://github.com" +
-			"/Gallery-Momiji/momiji-client\r\nReport issues and bugs here:\r\nhttps://github.com/" +
-			"Gallery-Momiji/momiji-client/issues\r\n\r\nThe open source license(s) can be found o" +
-			"nline here:\r\nhttp://www.gnu.org/licenses/gpl-3.0.html\r\nhttp://www.gnu.org/licens" +
-			"es/lgpl-3.0.html\r\n\r\nAll credit shall be provided to the copyright holders above," +
-			" and these names\r\nshall not be removed from this notice without written consent " +
-			"from such\r\nindividuals, although names of contributors may be added at the digre" +
-			"ssion of\r\nsuch individual. This notice must be provided with any redistribution " +
-			"of this\r\ncode, along with a copy of the GPL 3.0 or later and any other applicabl" +
-			"e\r\nlicense files necessary as described below.\r\n\r\nAll code listed in this projec" +
-			"t is licensed as GPL 3.0 or later, with two\r\nexceptions. First, any BUNDLED CODE" +
-			" (i.e. code not derived from this project)\r\nmaybe licensed differently, in which" +
-			" it should be placed in the Extern folder\r\nand needs to be GPL compatible. Secon" +
-			"d, LGPL 3.0 or later can be used ONLY if\r\nrequired for compiling and or running " +
-			"with .NET for Windows platforms.\r\n\r\nAll logos and pictures showing Gallery Momij" +
-			"i or Anime North logos, text or\r\ntrademarks are owned and copyrighted by either " +
-			"Gallery Momiji or Anime North,\r\nwhich have been used with permission. If this co" +
-			"de is redistributed, these\r\nlogos must be removed, or require written permission" +
-			", unless otherwise\r\nspecified by the authors.\r\nAnime North is a non-profit organ" +
-			"ization.\r\nLearn more at http://www.animenorth.com");
+			this.lblCopyright.LabelProp = global::Mono.Unix.Catalog.GetString ("Copyright 2012-2015 Tiago Rogue Medeiros (medeirosT)\nCopyright 2014-2016 Alexande" +
+			"r Jeremy Newton (mystro256)\nSpecial thanks to all the testers and users of this " +
+			"program!\n\nThis code is open source!\nView the code here:\nhttps://github.com/Galle" +
+			"ry-Momiji/momiji-client\nReport issues and bugs here:\nhttps://github.com/Gallery-" +
+			"Momiji/momiji-client/issues\n\nThe open source license(s) can be found online here" +
+			":\nhttp://www.gnu.org/licenses/gpl-3.0.html\nhttp://www.gnu.org/licenses/lgpl-3.0." +
+			"html\n\nAll credit shall be provided to the copyright holders above, and these nam" +
+			"es\nshall not be removed from this notice without written consent from such\nindiv" +
+			"iduals, although names of contributors may be added at the digression of\nsuch in" +
+			"dividual. This notice must be provided with any redistribution of this\ncode, alo" +
+			"ng with a copy of the GPL 3.0 or later and any other applicable\nlicense files ne" +
+			"cessary as described below.\n\nAll code listed in this project is licensed as GPL " +
+			"3.0 or later, with two\nexceptions. First, any BUNDLED CODE (i.e. code not derive" +
+			"d from this project)\nmaybe licensed differently, in which it should be placed in" +
+			" the Extern folder\nand needs to be GPL compatible. Second, LGPL 3.0 or later can" +
+			" be used ONLY if\nrequired for compiling and or running with .NET for Windows pla" +
+			"tforms.\n\nAll logos and pictures showing Gallery Momiji or Anime North logos, tex" +
+			"t or\ntrademarks are owned and copyrighted by either Gallery Momiji or Anime Nort" +
+			"h,\nwhich have been used with permission. If this code is redistributed, these\nlo" +
+			"gos must be removed, or require written permission, unless otherwise\nspecified b" +
+			"y the authors.\nAnime North is a non-profit organization.\nLearn more at http://ww" +
+			"w.animenorth.com");
 			w5.Add (this.lblCopyright);
 			this.scrolledwindowAbout.Add (w5);
 			this.vboxAbout.Add (this.scrolledwindowAbout);

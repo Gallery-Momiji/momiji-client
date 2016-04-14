@@ -41,10 +41,8 @@ namespace Momiji
 			string temp = items;
 
 			while (temp.Length >= 10) {
-
 				if (temp.Substring (0, 9) == barcode)
 					return true;
-
 				temp = temp.Substring (10);
 			}
 
@@ -56,7 +54,7 @@ namespace Momiji
 		/////////////////////////
 
 		public frmQuickSale (frmMenu parent) :
-				base(Gtk.WindowType.Toplevel)
+			base (Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
 			this.Build ();
@@ -86,9 +84,9 @@ namespace Momiji
 
 			//Catch for format, AN###-###
 			if (txtBarcode.Text.Substring (0, 2) != "AN" ||
-				txtBarcode.Text.Substring (5, 1) != "-") {
+			    txtBarcode.Text.Substring (5, 1) != "-") {
 				MessageBox.Show (this, MessageType.Error,
-									"Invalid merchandise barcode");
+					"Invalid merchandise barcode");
 
 				txtBarcode.Text = "";
 				return;
@@ -96,7 +94,7 @@ namespace Momiji
 
 			if (existsInList (txtBarcode.Text)) {
 				MessageBox.Show (this, MessageType.Info,
-									"Item already scanned");
+					"Item already scanned");
 
 				txtBarcode.Text = "";
 				return;
@@ -105,9 +103,9 @@ namespace Momiji
 			//Catch an invalid barcode, should be AN###-###
 			int ArtistID, MerchID;
 			if (!int.TryParse (txtBarcode.Text.Substring (2, 3), out ArtistID) ||
-				!int.TryParse (txtBarcode.Text.Substring (6, 3), out MerchID)) {
+			    !int.TryParse (txtBarcode.Text.Substring (6, 3), out MerchID)) {
 				MessageBox.Show (this, MessageType.Error,
-									"Invalid barcode format");
+					"Invalid barcode format");
 
 				txtBarcode.Text = "";
 				return;
@@ -115,7 +113,7 @@ namespace Momiji
 
 			SQL SQLConnection = parent.currentSQLConnection;
 			MySqlCommand query = new MySqlCommand ("SELECT * FROM `merchandise` WHERE `ArtistID` = @AID AND `MerchID` = @MID;",
-													SQLConnection.GetConnection ());
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@AID", ArtistID);
 			query.Parameters.AddWithValue ("@MID", MerchID);
@@ -124,25 +122,24 @@ namespace Momiji
 			if (results.GetNumberOfRows () == 1) {
 				if (results.getCell ("MerchQuickSale", 0) == "0") {
 					MessageBox.Show (this, MessageType.Error,
-										"This item cannot be sold as quicksale. This will be reported.");
+						"This item cannot be sold as quicksale. This will be reported.");
 
-					SQLConnection.LogAction ("Attempted to quick sell a non quick sellable item ("
-												+ txtBarcode.Text + ")",
-												parent.currentUser);
+					SQLConnection.LogAction ("Attempted to quick sell a non quick sellable item (" + txtBarcode.Text + ")",
+						parent.currentUser);
 				} else if (results.getCell ("MerchSold", 0) == "1") {
 					MessageBox.Show (this, MessageType.Error,
-										"This item has already been sold. This will be reported.");
+						"This item has already been sold. This will be reported.");
 
 					SQLConnection.LogAction ("Attempted to quick sell an already sold item (" +
-												txtBarcode.Text + ")",
-												parent.currentUser);
+					txtBarcode.Text + ")",
+						parent.currentUser);
 				} else {
 					merchStore.AddNode (new MerchNode (ArtistID,
-										MerchID,
-										results.getCell ("MerchTitle", 0),
-										"$" + String.Format ("{0:0.00}",
-										float.Parse (results.getCell ("MerchQuickSale", 0)))
-										));
+						MerchID,
+						results.getCell ("MerchTitle", 0),
+						"$" + String.Format ("{0:0.00}",
+							float.Parse (results.getCell ("MerchQuickSale", 0)))
+					));
 
 					total = total + float.Parse (results.getCell ("MerchQuickSale", 0));
 					txtTotal.Text = String.Format ("{0:0.00}", total);
@@ -156,7 +153,7 @@ namespace Momiji
 				}
 			} else {
 				MessageBox.Show (this, MessageType.Error,
-									"Could not find merchandise in the database");
+					"Could not find merchandise in the database");
 			}
 
 			txtBarcode.Text = "";
@@ -173,20 +170,20 @@ namespace Momiji
 		{
 			if (txtPaid.Text == "") {
 				MessageBox.Show (this, MessageType.Info,
-									"Please specify the amount that the customer has paid");
+					"Please specify the amount that the customer has paid");
 				return;
 			}
 
 			float paid;
-			if(!float.TryParse (txtPaid.Text, out paid)) {
+			if (!float.TryParse (txtPaid.Text, out paid)) {
 				MessageBox.Show (this, MessageType.Info,
-									"Please enter a valid number in the paid box");
+					"Please enter a valid number in the paid box");
 				return;
 			}
 
 			if (total > paid) {
 				MessageBox.Show (this, MessageType.Info,
-									"Paid amount is too small");
+					"Paid amount is too small");
 				return;
 			}
 
@@ -194,7 +191,7 @@ namespace Momiji
 			SQLResult User = parent.currentUser;
 
 			MySqlCommand query = new MySqlCommand ("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isQuickSale`, `itemArray`, `priceArray`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES);",
-													SQLConnection.GetConnection ());
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
 			query.Parameters.AddWithValue ("@TOTAL", total);
@@ -207,7 +204,7 @@ namespace Momiji
 				//Get receiptid
 				//TODO// Possible redundant code
 				query = new MySqlCommand ("SELECT `id` FROM `receipts` WHERE `userID` = @UID AND `itemArray` = @ITEMS AND `priceArray` = @PRICES AND `isQuickSale` = 1 ORDER BY `id` DESC LIMIT 0,1;",
-											SQLConnection.GetConnection ());
+					SQLConnection.GetConnection ());
 				query.Prepare ();
 				query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
 				query.Parameters.AddWithValue ("@TOTAL", total);
@@ -221,28 +218,28 @@ namespace Momiji
 
 				//Mark items as sold
 				//TODO// Test me!
-				query = new MySqlCommand("UPDATE `merchandise` SET `MerchSold`=1, `ReceiptID`=@RECEIPTID WHERE  LOCATE(`ArtistID`+'-'+`MerchID`,@ITEMS)>0",
-											SQLConnection.GetConnection());
-				query.Prepare();
-				query.Parameters.AddWithValue("@RECEIPTID", receiptID);
+				query = new MySqlCommand ("UPDATE `merchandise` SET `MerchSold`=1, `ReceiptID`=@RECEIPTID WHERE  LOCATE(`ArtistID`+'-'+`MerchID`,@ITEMS)>0",
+					SQLConnection.GetConnection ());
+				query.Prepare ();
+				query.Parameters.AddWithValue ("@RECEIPTID", receiptID);
 				query.Parameters.AddWithValue ("@ITEMS", items);
-				results = SQLConnection.Query(query);
+				results = SQLConnection.Query (query);
 
 				MessageBox.Show (this, MessageType.Info,
-									"Receipt processed, please give the following change: "
-									+ txtChange.Text +
-									"\n\nPlease check the receipt printer.\nThis was transaction ID #"
-									+ receiptID);
+					"Receipt processed, please give the following change: "
+					+ txtChange.Text +
+					"\n\nPlease check the receipt printer.\nThis was transaction ID #"
+					+ receiptID);
 
-				SQLConnection.LogAction ("Made a quick sale with receipt #"
-											+ receiptID, User);
+				SQLConnection.LogAction ("Made a quick sale with receipt #" + receiptID,
+					User);
 				btnPay.Sensitive = false;
 				txtPaid.Sensitive = false;
 				txtBarcode.Sensitive = false;
 				btnCancel.GrabFocus ();
 			} else {
 				MessageBox.Show (this, MessageType.Error,
-									"Connection Error, please close and try again.");
+					"Connection Error, please close and try again.");
 			}
 		}
 

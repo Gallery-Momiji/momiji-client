@@ -22,20 +22,20 @@ namespace Momiji
 			this.PieceStock = PieceStock;
 			this.PieceSDC = PieceSDC;
 		}
- 
-		[Gtk.TreeNodeValue (Column=0)]
+
+		[Gtk.TreeNodeValue (Column = 0)]
 		public int ArtistID;
-		[Gtk.TreeNodeValue (Column=1)]
+		[Gtk.TreeNodeValue (Column = 1)]
 		public int PieceID;
-		[Gtk.TreeNodeValue (Column=2)]
+		[Gtk.TreeNodeValue (Column = 2)]
 		public string PieceTitle;
-		[Gtk.TreeNodeValue (Column=3)]
+		[Gtk.TreeNodeValue (Column = 3)]
 		public string PiecePrice;
-		[Gtk.TreeNodeValue (Column=4)]
+		[Gtk.TreeNodeValue (Column = 4)]
 		public int PieceInitialStock;
-		[Gtk.TreeNodeValue (Column=5)]
+		[Gtk.TreeNodeValue (Column = 5)]
 		public int PieceStock;
-		[Gtk.TreeNodeValue (Column=6)]
+		[Gtk.TreeNodeValue (Column = 6)]
 		public bool PieceSDC;
 
 		/// <summary>

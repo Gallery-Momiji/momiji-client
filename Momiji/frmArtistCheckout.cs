@@ -26,24 +26,24 @@ namespace Momiji
 			this.Build ();
 
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand("SELECT ArtistID, ArtistName,ArtistCheckedOut FROM `artists` WHERE `ArtistID` = @ID;", SQLConnection.GetConnection());
-			query.Prepare();
-			query.Parameters.AddWithValue("@ID", this.artistID);
+			MySqlCommand query = new MySqlCommand ("SELECT ArtistID, ArtistName,ArtistCheckedOut FROM `artists` WHERE `ArtistID` = @ID;", SQLConnection.GetConnection ());
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@ID", this.artistID);
 
-			SQLResult results = SQLConnection.Query(query);
-			if (results.successful()) {
-				if (results.getCellInt("ArtistCheckedOut", 0) == 1) {
+			SQLResult results = SQLConnection.Query (query);
+			if (results.successful ()) {
+				if (results.getCellInt ("ArtistCheckedOut", 0) == 1) {
 					btnMarkCheckout.Sensitive = false;
 					MessageBox.Show (this, MessageType.Warning,
-											"Artist already marked as Checked Out.");
+						"Artist already marked as Checked Out.");
 				}
 
-				lblArtistID.Text = results.getCell("ArtistID", 0);
-				lblArtistName.Text = results.getCell("ArtistName", 0);
+				lblArtistID.Text = results.getCell ("ArtistID", 0);
+				lblArtistName.Text = results.getCell ("ArtistName", 0);
 			} else {
 				MessageBox.Show (this, MessageType.Error,
-											"An error occured finding this Artists' details!");
-				this.Destroy();
+					"An error occured finding this Artists' details!");
+				this.Destroy ();
 			}
 		}
 
@@ -53,21 +53,21 @@ namespace Momiji
 
 		protected void OnBtnGenSaleSumClicked (object sender, EventArgs e)
 		{
-			Process.Start("http://" + parent.currentSQLConnection.getHost() + "/momiji/checkout.php?id=" + artistID);
+			Process.Start ("http://" + parent.currentSQLConnection.getHost () + "/momiji/checkout.php?id=" + artistID);
 		}
 
 		protected void OnBtnMarkCheckoutClicked (object sender, EventArgs e)
 		{
 			if (chkStep1.Active && chkStep2.Active && chkStep3.Active) {
 				SQL SQLConnection = parent.currentSQLConnection;
-				MySqlCommand checkinQuery = new MySqlCommand("UPDATE `artists` SET `ArtistCheckedOut`=1 WHERE  `ArtistID`=@ID;", SQLConnection.GetConnection());
-				checkinQuery.Prepare();
-				checkinQuery.Parameters.AddWithValue("@ID", this.artistID);
-				SQLResult checkinQueryResults = SQLConnection.Query(checkinQuery);
+				MySqlCommand checkinQuery = new MySqlCommand ("UPDATE `artists` SET `ArtistCheckedOut`=1 WHERE  `ArtistID`=@ID;", SQLConnection.GetConnection ());
+				checkinQuery.Prepare ();
+				checkinQuery.Parameters.AddWithValue ("@ID", this.artistID);
+				SQLResult checkinQueryResults = SQLConnection.Query (checkinQuery);
 
-				if (checkinQueryResults.successful()) {
+				if (checkinQueryResults.successful ()) {
 					MessageBox.Show (this, MessageType.Info, "Artist successfully checked out");
-					this.Destroy();
+					this.Destroy ();
 				} else {
 					MessageBox.Show (this, MessageType.Error, "Error Checking Out artist.\nPlease try again, and if this issue persists, contact your administrator.");
 				}
@@ -78,7 +78,7 @@ namespace Momiji
 
 		protected void OnBtnCancelClicked (object sender, EventArgs e)
 		{
-			this.Destroy();
+			this.Destroy ();
 		}
 	}
 }

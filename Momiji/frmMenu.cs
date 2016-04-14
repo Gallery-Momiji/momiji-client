@@ -103,7 +103,7 @@ namespace Momiji
 		/////////////////////////
 
 		public frmMenu (SQL SQLConnection, SQLResult results, frmLogin parent) :
-				base (Gtk.WindowType.Toplevel)
+			base (Gtk.WindowType.Toplevel)
 		{
 			this.LoginForm = parent;
 			this.SQLConnection = SQLConnection;
@@ -141,8 +141,7 @@ namespace Momiji
 				userRank += " (Basic User)";
 			else
 				userRank += " (No privileges)";
-			lblGreeting.Text = "Welcome " + User.getCell ("name", 0) +
-								", Your Rank is " + userRank;
+			lblGreeting.Text = "Welcome " + User.getCell ("name", 0) + ", Your Rank is " + userRank;
 
 			//Basic Functionality:
 			btnGalleryStoreSale.Sensitive = userClass >= 1 ? true : false;
@@ -215,8 +214,8 @@ namespace Momiji
 				AuctionSaleForm.Destroy ();
 			if (GSSaleForm != null)
 				GSSaleForm.Destroy ();
-			if(SearchArtistForm != null)
-				SearchArtistForm.Destroy();
+			if (SearchArtistForm != null)
+				SearchArtistForm.Destroy ();
 			LoginForm.Destroy ();
 			this.Destroy ();
 			Application.Quit ();
@@ -226,15 +225,15 @@ namespace Momiji
 
 		protected void OnCheckInActionActivated (object sender, EventArgs e)
 		{
-			if(SearchArtistForm != null)
-				SearchArtistForm.Destroy();
+			if (SearchArtistForm != null)
+				SearchArtistForm.Destroy ();
 			SearchArtistForm = new frmSearchArtist (frmSearchArtist.Operations.ArtistCheckin, this);
 		}
 
 		protected void OnCheckOutActionActivated (object sender, EventArgs e)
 		{
-			if(SearchArtistForm != null)
-				SearchArtistForm.Destroy();
+			if (SearchArtistForm != null)
+				SearchArtistForm.Destroy ();
 			new frmSearchArtist (frmSearchArtist.Operations.ArtistCheckout, this);
 		}
 
@@ -248,29 +247,29 @@ namespace Momiji
 
 		protected void OnEditArtistActionActivated (object sender, EventArgs e)
 		{
-			if(SearchArtistForm != null)
-				SearchArtistForm.Destroy();
+			if (SearchArtistForm != null)
+				SearchArtistForm.Destroy ();
 			new frmSearchArtist (frmSearchArtist.Operations.EditArtist, this);
 		}
 
 		protected void OnEditMerchandiseActionActivated (object sender, EventArgs e)
 		{
-			if(SearchArtistForm != null)
-				SearchArtistForm.Destroy();
+			if (SearchArtistForm != null)
+				SearchArtistForm.Destroy ();
 			new frmSearchArtist (frmSearchArtist.Operations.EditMerchandise, this);
 		}
 
 		protected void OnEditGalleryStoreMerchandiseActionActivated (object sender, EventArgs e)
 		{
-			if(SearchArtistForm != null)
-				SearchArtistForm.Destroy();
+			if (SearchArtistForm != null)
+				SearchArtistForm.Destroy ();
 			new frmSearchArtist (frmSearchArtist.Operations.EditGalleryStore, this);
 		}
 
 		protected void OnManageArtistBalanceActionActivated (object sender, EventArgs e)
 		{
-			if(SearchArtistForm != null)
-				SearchArtistForm.Destroy();
+			if (SearchArtistForm != null)
+				SearchArtistForm.Destroy ();
 			new frmSearchArtist (frmSearchArtist.Operations.ManageArtistBalance, this);
 		}
 
@@ -278,15 +277,15 @@ namespace Momiji
 
 		protected void OnCheckSalesActionActivated (object sender, EventArgs e)
 		{
-			if(SearchDateForm != null)
-				SearchDateForm.Destroy();
+			if (SearchDateForm != null)
+				SearchDateForm.Destroy ();
 			SearchDateForm = new frmSearchDate (frmSearchDate.Operations.CheckSales, this);
 		}
 
 		protected void OnRefundActionActivated (object sender, EventArgs e)
 		{
-			if(SearchDateForm != null)
-				SearchDateForm.Destroy();
+			if (SearchDateForm != null)
+				SearchDateForm.Destroy ();
 			SearchDateForm = new frmSearchDate (frmSearchDate.Operations.Refund, this);
 		}
 
@@ -297,22 +296,22 @@ namespace Momiji
 
 		protected void OnCheckReceiptsActionActivated (object sender, EventArgs e)
 		{
-			if(SearchDateForm != null)
-				SearchDateForm.Destroy();
+			if (SearchDateForm != null)
+				SearchDateForm.Destroy ();
 			SearchDateForm = new frmSearchDate (frmSearchDate.Operations.CheckReceipts, this);
 		}
 
 		protected void OnCheckUserActivitiesActionActivated (object sender, EventArgs e)
 		{
-			if(SearchDateForm != null)
-				SearchDateForm.Destroy();
+			if (SearchDateForm != null)
+				SearchDateForm.Destroy ();
 			SearchDateForm = new frmSearchDate (frmSearchDate.Operations.CheckUserActivities, this);
 		}
 
 		protected void OnGenerateBiddingSheetsActionActivated (object sender, EventArgs e)
 		{
-			if(SearchArtistForm != null)
-				SearchArtistForm.Destroy();
+			if (SearchArtistForm != null)
+				SearchArtistForm.Destroy ();
 			new frmSearchArtist (frmSearchArtist.Operations.GenerateBiddingSheets, this);
 		}
 
@@ -320,17 +319,17 @@ namespace Momiji
 
 		protected void OnUserPreferencesActionActivated (object sender, EventArgs e)
 		{
-			new frmUserEdit(User.getCellInt ("id", 0), this);
+			new frmUserEdit (User.getCellInt ("id", 0), this);
 		}
 
 		protected void OnPricingActionActivated (object sender, EventArgs e)
 		{
-			new frmPricing(this);
+			new frmPricing (this);
 		}
 
 		protected void OnBiddersActionActivated (object sender, EventArgs e)
 		{
-			new frmBidders(this);
+			new frmBidders (this);
 		}
 
 		//Preferences > Users
