@@ -89,7 +89,7 @@ namespace Momiji
 			if (txtBarcode.Text.Substring (0, 2) != "PN" ||
 				txtBarcode.Text.Substring (5, 1) != "-") {
 				MessageBox.Show (this, MessageType.Error,
-										"Invalid Gallery Store barcode");
+									"Invalid Gallery Store barcode");
 				txtBarcode.Text = "";
 				return;
 			}
@@ -99,30 +99,26 @@ namespace Momiji
 			if (!int.TryParse (txtBarcode.Text.Substring (2, 3), out ArtistID) ||
 				!int.TryParse (txtBarcode.Text.Substring (6, 3), out PieceID)) {
 				MessageBox.Show (this, MessageType.Error,
-										"Invalid barcode format");
+									"Invalid barcode format");
 				txtBarcode.Text = "";
 				return;
 			}
 
-			//TODO//Should this whole thing be wrapped in a try/catch?
-			try {
-				SQL SQLConnection = parent.currentSQLConnection;
+			SQL SQLConnection = parent.currentSQLConnection;
+			MySqlCommand query = new MySqlCommand ("SELECT * FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
+													SQLConnection.GetConnection ());
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@AID", ArtistID);
+			query.Parameters.AddWithValue ("@PID", PieceID);
+			SQLResult results = SQLConnection.Query (query);
 
-				MySqlCommand query = new MySqlCommand ("SELECT * FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;", SQLConnection.GetConnection ());
-				query.Prepare ();
-				query.Parameters.AddWithValue ("@AID", ArtistID);
-				query.Parameters.AddWithValue ("@PID", PieceID);
-				SQLResult results = SQLConnection.Query (query);
+			if (results.GetNumberOfRows () == 1) {
 
-				if (results.GetNumberOfRows () == 1) {
-
-					int count = countInList (txtBarcode.Text.ToUpper ());
-					if (results.getCellInt ("PieceStock", 0) <= count) {
-						MessageBox.Show (this, MessageType.Error,
+				int count = countInList (txtBarcode.Text);
+				if (results.getCellInt ("PieceStock", 0) <= count) {
+					MessageBox.Show (this, MessageType.Error,
 										"This is item is out of stock.");
-						return;
-					}
-
+				} else {
 					merchStore.AddNode (new MerchNode (ArtistID,
 										PieceID,
 										results.getCell ("PieceTitle", 0),
@@ -133,27 +129,19 @@ namespace Momiji
 					total = total + float.Parse (results.getCell ("PiecePrice", 0));
 					txtTotal.Text = String.Format ("{0:0.00}", total);
 
-					items = items + txtBarcode.Text.ToUpper () + "#";
+					items = items + txtBarcode.Text + "#";
 					prices = prices + results.getCell ("PiecePrice", 0) + "#";
 
-					txtBarcode.Text = "";
 					btnPay.Sensitive = true;
 					txtPaid.Sensitive = true;
 					btnCancel.Sensitive = true;
-				} else {
-					MessageBox.Show (this, MessageType.Error,
-											"Could not find piece in the database");
-
-					txtBarcode.Text = "";
 				}
-			} catch (Exception d) {
+			} else {
 				MessageBox.Show (this, MessageType.Error,
-										"Error, please show this to your administrator:\n"
-										+ d.ToString ());
-
-				txtBarcode.Text = "";
-				return;
+									"Could not find piece in the database");
 			}
+
+			txtBarcode.Text = "";
 		}
 
 		protected void OnBtnCancelClicked (object sender, EventArgs e)
@@ -168,27 +156,28 @@ namespace Momiji
 			//TODO decrease stock count and tag receipt
 			if (txtPaid.Text == "") {
 				MessageBox.Show (this, MessageType.Info,
-										"Please specify the amount that the customer has paid");
+									"Please specify the amount that the customer has paid");
 				return;
 			}
 
 			float paid;
 			if(!float.TryParse (txtPaid.Text, out paid)) {
 				MessageBox.Show (this, MessageType.Info,
-										"Please enter a valid number in the paid box");
+									"Please enter a valid number in the paid box");
 				return;
 			}
 
 			if (total > paid) {
 				MessageBox.Show (this, MessageType.Info,
-										"Paid amount is too small");
+									"Paid amount is too small");
 				return;
 			}
 
 			SQL SQLConnection = parent.currentSQLConnection;
 			SQLResult User = parent.currentUser;
 
-			MySqlCommand query = new MySqlCommand ("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isGalleryStoreSale`, `itemArray`, `priceArray`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES);", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isGalleryStoreSale`, `itemArray`, `priceArray`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES);",
+													SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
 			query.Parameters.AddWithValue ("@TOTAL", total);
@@ -198,7 +187,8 @@ namespace Momiji
 			SQLResult results = SQLConnection.Query (query);
 
 			if (results.successful ()) {
-				query = new MySqlCommand ("SELECT `id` FROM `receipts` WHERE `userID` = @UID AND `itemArray` = @ITEMS AND `priceArray` = @PRICES AND `isGalleryStoreSale` = 1 ORDER BY `id` DESC LIMIT 0,1;", SQLConnection.GetConnection ());
+				query = new MySqlCommand ("SELECT `id` FROM `receipts` WHERE `userID` = @UID AND `itemArray` = @ITEMS AND `priceArray` = @PRICES AND `isGalleryStoreSale` = 1 ORDER BY `id` DESC LIMIT 0,1;",
+											SQLConnection.GetConnection ());
 				query.Prepare ();
 				query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
 				query.Parameters.AddWithValue ("@TOTAL", total);
@@ -209,12 +199,13 @@ namespace Momiji
 				txtChange.Text = String.Format ("{0:0.00}", (paid - total));
 
 				MessageBox.Show (this, MessageType.Info,
-										"Receipt processed, please give the following change: "
-										+ txtChange.Text +
-										"\n\nPlease check the receipt printer.\nThis was transaction ID #"
-										+ results.getCell ("id", 0));
+									"Receipt processed, please give the following change: "
+									+ txtChange.Text +
+									"\n\nPlease check the receipt printer.\nThis was transaction ID #"
+									+ results.getCell ("id", 0));
 
-				SQLConnection.LogAction ("Made a gallery store sale with receipt #" + results.getCell ("id", 0), User);
+				SQLConnection.LogAction ("Made a gallery store sale with receipt #"
+											+ results.getCell ("id", 0), User);
 				btnPay.Sensitive = false;
 				txtPaid.Sensitive = false;
 				txtBarcode.Sensitive = false;
@@ -222,7 +213,7 @@ namespace Momiji
 
 			} else {
 				MessageBox.Show (this, MessageType.Error,
-										"Connection Error, please close and try again.");
+									"Connection Error, please close and try again.");
 			}
 		}
 
