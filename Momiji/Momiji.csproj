@@ -101,15 +101,16 @@
     <Compile Include="Forms\frmSearchDate.cs" />
     <Compile Include="Forms\frmUserAdd.cs" />
     <Compile Include="Forms\frmUserEdit.cs" />
-    <Compile Include="Misc\INI.cs" />
     <Compile Include="Misc\MD5.cs" />
     <Compile Include="Misc\SQL.cs" />
     <Compile Include="Misc\SQLResult.cs" />
+    <Compile Include="Extern\INI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Misc\" />
     <Folder Include="Forms\" />
+    <Folder Include="Extern\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.ini">
