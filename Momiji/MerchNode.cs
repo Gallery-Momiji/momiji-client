@@ -1,8 +1,9 @@
 using System;
+using Gtk;
 
 namespace Momiji
 {
-	public class MerchNode : Gtk.TreeNode
+	public class MerchNode : TreeNode
 	{
 		public MerchNode (int ArtistID, int PieceID, string PieceTitle, string PiecePrice)
 		{
@@ -23,19 +24,19 @@ namespace Momiji
 			this.PieceSDC = PieceSDC;
 		}
 
-		[Gtk.TreeNodeValue (Column = 0)]
+		[TreeNodeValue (Column = 0)]
 		public int ArtistID;
-		[Gtk.TreeNodeValue (Column = 1)]
+		[TreeNodeValue (Column = 1)]
 		public int PieceID;
-		[Gtk.TreeNodeValue (Column = 2)]
+		[TreeNodeValue (Column = 2)]
 		public string PieceTitle;
-		[Gtk.TreeNodeValue (Column = 3)]
+		[TreeNodeValue (Column = 3)]
 		public string PiecePrice;
-		[Gtk.TreeNodeValue (Column = 4)]
+		[TreeNodeValue (Column = 4)]
 		public int PieceInitialStock;
-		[Gtk.TreeNodeValue (Column = 5)]
+		[TreeNodeValue (Column = 5)]
 		public int PieceStock;
-		[Gtk.TreeNodeValue (Column = 6)]
+		[TreeNodeValue (Column = 6)]
 		public bool PieceSDC;
 
 		/// <summary>
@@ -48,14 +49,14 @@ namespace Momiji
 		/// <param name='store'>
 		/// NodeStore for holding the MerchNodes.
 		/// </param>
-		public static void buildTable (ref Gtk.NodeView view, ref Gtk.NodeStore store)
+		public static void buildTable (ref NodeView view, ref NodeStore store)
 		{
-			store = new Gtk.NodeStore (typeof(MerchNode));
+			store = new NodeStore (typeof(MerchNode));
 			view.NodeStore = store;
-			view.AppendColumn ("Artist ID", new Gtk.CellRendererText (), "text", 0);
-			view.AppendColumn ("Piece ID", new Gtk.CellRendererText (), "text", 1);
-			view.AppendColumn ("Piece Title", new Gtk.CellRendererText (), "text", 2);
-			view.AppendColumn ("Piece Price", new Gtk.CellRendererText (), "text", 3);
+			view.AppendColumn ("Artist ID", new CellRendererText (), "text", 0);
+			view.AppendColumn ("Piece ID", new CellRendererText (), "text", 1);
+			view.AppendColumn ("Piece Title", new CellRendererText (), "text", 2);
+			view.AppendColumn ("Piece Price", new CellRendererText (), "text", 3);
 		}
 
 		/// <summary>
@@ -68,14 +69,14 @@ namespace Momiji
 		/// <param name='store'>
 		/// NodeStore for holding the MerchNodes.
 		/// </param>
-		public static void buildTableStock (ref Gtk.NodeView view, ref Gtk.NodeStore store)
+		public static void buildTableStock (ref NodeView view, ref NodeStore store)
 		{
-			store = new Gtk.NodeStore (typeof(MerchNode));
+			store = new NodeStore (typeof(MerchNode));
 			view.NodeStore = store;
-			view.AppendColumn ("Artist ID", new Gtk.CellRendererText (), "text", 0);
-			view.AppendColumn ("Piece ID", new Gtk.CellRendererText (), "text", 1);
-			view.AppendColumn ("Piece Title", new Gtk.CellRendererText (), "text", 2);
-			view.AppendColumn ("Piece Price", new Gtk.CellRendererText (), "text", 3);
+			view.AppendColumn ("Artist ID", new CellRendererText (), "text", 0);
+			view.AppendColumn ("Piece ID", new CellRendererText (), "text", 1);
+			view.AppendColumn ("Piece Title", new CellRendererText (), "text", 2);
+			view.AppendColumn ("Piece Price", new CellRendererText (), "text", 3);
 		}
 
 		/// <summary>
@@ -87,11 +88,11 @@ namespace Momiji
 		/// <param name='store'>
 		/// NodeStore for holding the MerchNodes.
 		/// </param>
-		public static void clearTable (ref Gtk.NodeView view, ref Gtk.NodeStore store)
+		public static void clearTable (ref NodeView view, ref NodeStore store)
 		{
 			store = null;
 			view.NodeStore = null;
-			store = new Gtk.NodeStore (typeof(MerchNode));
+			store = new NodeStore (typeof(MerchNode));
 			view.NodeStore = store;
 		}
 	}

@@ -104,6 +104,7 @@
     <Compile Include="gtk-gui\Momiji.frmMenu.cs" />
     <Compile Include="frmSearchDate.cs" />
     <Compile Include="gtk-gui\Momiji.frmSearchDate.cs" />
+    <Compile Include="Extern\SaveFileDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

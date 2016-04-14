@@ -1,8 +1,9 @@
 ﻿using System;
+using Gtk;
 
 namespace Momiji
 {
-	public class ArtistNode : Gtk.TreeNode
+	public class ArtistNode : TreeNode
 	{
 		public ArtistNode (int ArtistID, string ArtistName, string ArtistShowName)
 		{
@@ -11,11 +12,11 @@ namespace Momiji
 			this.ArtistShowName = ArtistShowName;
 		}
 
-		[Gtk.TreeNodeValue (Column = 0)]
+		[TreeNodeValue (Column = 0)]
 		public int ArtistID;
-		[Gtk.TreeNodeValue (Column = 1)]
+		[TreeNodeValue (Column = 1)]
 		public string ArtistName;
-		[Gtk.TreeNodeValue (Column = 2)]
+		[TreeNodeValue (Column = 2)]
 		public string ArtistShowName;
 
 		/// <summary>
@@ -27,13 +28,13 @@ namespace Momiji
 		/// <param name='store'>
 		/// NodeStore for holding the ArtistNodes.
 		/// </param>
-		public static void buildTable (ref Gtk.NodeView view, ref Gtk.NodeStore store)
+		public static void buildTable (ref NodeView view, ref NodeStore store)
 		{
-			store = new Gtk.NodeStore (typeof(ArtistNode));
+			store = new NodeStore (typeof(ArtistNode));
 			view.NodeStore = store;
-			view.AppendColumn ("Artist ID", new Gtk.CellRendererText (), "text", 0);
-			view.AppendColumn ("Artist Name", new Gtk.CellRendererText (), "text", 1);
-			view.AppendColumn ("Show Name", new Gtk.CellRendererText (), "text", 2);
+			view.AppendColumn ("Artist ID", new CellRendererText (), "text", 0);
+			view.AppendColumn ("Artist Name", new CellRendererText (), "text", 1);
+			view.AppendColumn ("Show Name", new CellRendererText (), "text", 2);
 		}
 
 		/// <summary>
@@ -45,11 +46,11 @@ namespace Momiji
 		/// <param name='store'>
 		/// NodeStore for holding the ArtistNodes.
 		/// </param>
-		public static void clearTable (ref Gtk.NodeView view, ref Gtk.NodeStore store)
+		public static void clearTable (ref NodeView view, ref NodeStore store)
 		{
 			store = null;
 			view.NodeStore = null;
-			store = new Gtk.NodeStore (typeof(ArtistNode));
+			store = new NodeStore (typeof(ArtistNode));
 			view.NodeStore = store;
 		}
 	}
