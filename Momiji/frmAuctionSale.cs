@@ -207,7 +207,6 @@ namespace Momiji
 
 		protected void OnBtnPayClicked (object sender, EventArgs e)
 		{
-			//TODO mark items as sold and tag receipt
 			if (txtPaid.Text == "") {
 				MessageBox.Show (this, MessageType.Info,
 									"Please specify the amount that the customer has paid");
@@ -241,6 +240,8 @@ namespace Momiji
 			SQLResult results = SQLConnection.Query (query);
 
 			if (results.successful ()) {
+				//Get receiptid
+				//TODO// Possible redundant code
 				query = new MySqlCommand ("SELECT `id` FROM `receipts` WHERE `userID` = @UID AND `itemArray` = @ITEMS AND `priceArray` = @PRICES AND `isQuickSale` = 1 ORDER BY `id` DESC LIMIT 0,1;",
 											SQLConnection.GetConnection ());
 				query.Prepare ();
@@ -251,15 +252,26 @@ namespace Momiji
 				query.Parameters.AddWithValue ("@PRICES", prices);
 				results = SQLConnection.Query (query);
 				txtChange.Text = String.Format ("{0:0.00}", (paid - total));
+				//End of possible redundant code//
+				int receiptID = results.getCellInt ("id", 0);
+
+				//Mark items as sold
+				//TODO// Test me!
+				query = new MySqlCommand("UPDATE `merchandise` SET `MerchSold`=1, `ReceiptID`=@RECEIPTID WHERE  LOCATE(`ArtistID`+'-'+`MerchID`,@ITEMS)>0",
+											SQLConnection.GetConnection());
+				query.Prepare();
+				query.Parameters.AddWithValue("@RECEIPTID", receiptID);
+				query.Parameters.AddWithValue ("@ITEMS", items);
+				results = SQLConnection.Query(query);
 
 				MessageBox.Show (this, MessageType.Info,
 									"Receipt processed, please give the following change: "
 									+ txtChange.Text +
 									"\n\nPlease check the receipt printer.\nThis was transaction ID #"
-									+ results.getCell ("id", 0));
+									+ receiptID);
 
 				SQLConnection.LogAction ("Made a quick sale with receipt #"
-											+ results.getCell ("id", 0), User);
+											+ receiptID, User);
 				btnPay.Sensitive = false;
 				txtPaid.Sensitive = false;
 				txtBarcode.Sensitive = false;

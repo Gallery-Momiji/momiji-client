@@ -153,7 +153,6 @@ namespace Momiji
 
 		protected void OnBtnPayClicked (object sender, EventArgs e)
 		{
-			//TODO decrease stock count and tag receipt
 			if (txtPaid.Text == "") {
 				MessageBox.Show (this, MessageType.Info,
 									"Please specify the amount that the customer has paid");
@@ -187,6 +186,8 @@ namespace Momiji
 			SQLResult results = SQLConnection.Query (query);
 
 			if (results.successful ()) {
+				//Get receiptid
+				//TODO// Possible redundant code
 				query = new MySqlCommand ("SELECT `id` FROM `receipts` WHERE `userID` = @UID AND `itemArray` = @ITEMS AND `priceArray` = @PRICES AND `isGalleryStoreSale` = 1 ORDER BY `id` DESC LIMIT 0,1;",
 											SQLConnection.GetConnection ());
 				query.Prepare ();
@@ -197,15 +198,30 @@ namespace Momiji
 				query.Parameters.AddWithValue ("@PRICES", prices);
 				results = SQLConnection.Query (query);
 				txtChange.Text = String.Format ("{0:0.00}", (paid - total));
+				//End of possible redundant code//
+				int receiptID = results.getCellInt ("id", 0);
+
+				//Readjust the stock counts
+				//TODO// Test me!
+				string temp = items;
+				while (temp.Length >= 10) {
+					query = new MySqlCommand ("UPDATE `gsmerchandise` SET `PieceStock`=`PieceStock`-1 WHERE  `ArtistID`=@ARTISTID AND `MerchID`=@MERCHID LIMIT 1;",
+						SQLConnection.GetConnection ());
+					query.Prepare ();
+					query.Parameters.AddWithValue ("@ARTISTID", temp.Substring (2, 3));
+					query.Parameters.AddWithValue ("@MERCHID", temp.Substring (6, 3));
+					results = SQLConnection.Query (query);
+					temp = temp.Substring (10);
+				}
 
 				MessageBox.Show (this, MessageType.Info,
 									"Receipt processed, please give the following change: "
 									+ txtChange.Text +
 									"\n\nPlease check the receipt printer.\nThis was transaction ID #"
-									+ results.getCell ("id", 0));
+									+ receiptID);
 
 				SQLConnection.LogAction ("Made a gallery store sale with receipt #"
-											+ results.getCell ("id", 0), User);
+											+ receiptID, User);
 				btnPay.Sensitive = false;
 				txtPaid.Sensitive = false;
 				txtBarcode.Sensitive = false;
