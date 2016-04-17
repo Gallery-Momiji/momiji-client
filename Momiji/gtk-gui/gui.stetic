@@ -2957,7 +2957,19 @@ offer a cheque, and ask for help.</property>
           <widget class="Gtk.Notebook" id="tabControlMerch">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">0</property>
+            <property name="CurrentPage">1</property>
+            <child>
+              <placeholder />
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="lblArtistInfo">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">Artist Info</property>
+              </widget>
+              <packing>
+                <property name="type">tab</property>
+              </packing>
+            </child>
             <child>
               <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow1">
                 <property name="MemberName" />
@@ -2971,6 +2983,9 @@ offer a cheque, and ask for help.</property>
                   </widget>
                 </child>
               </widget>
+              <packing>
+                <property name="Position">1</property>
+              </packing>
             </child>
             <child>
               <widget class="Gtk.Label" id="lblControlSheet">
@@ -2995,7 +3010,7 @@ offer a cheque, and ask for help.</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">1</property>
+                <property name="Position">2</property>
               </packing>
             </child>
             <child>

@@ -11,6 +11,8 @@ namespace Momiji
 		/////////////////////////
 
 		private frmMenu parent;
+		private Gtk.NodeStore merchStore;
+		private Gtk.NodeStore gsmerchStore;
 		private int artistID;
 
 		/////////////////////////
@@ -35,7 +37,6 @@ namespace Momiji
 			}
 
 			//TODO// Load info into form
-
 			MySqlCommand merchData = new MySqlCommand ("SELECT * FROM `merchandise` WHERE `ArtistID` = @ID;",
 				                         SQLConnection.GetConnection ());
 			merchData.Prepare ();
@@ -43,7 +44,14 @@ namespace Momiji
 
 			SQLResult merchResults = SQLConnection.Query (merchData);
 			if (merchResults.GetNumberOfRows () > 0) {
-				//TODO// Load merch into form
+				for (int i = 0; i < merchResults.GetNumberOfRows(); i++)
+				{
+					merchStore.AddNode (new StockNode (
+						merchResults.getCellInt("MerchID", i),
+						merchResults.getCell("MerchTitle", i),
+						"$"+merchResults.getCell("MerchQuickSale", i),1,"")//TODO//
+					);
+				}
 			}
 
 			MySqlCommand GSmerchData = new MySqlCommand ("SELECT * FROM `GSmerchandise` WHERE `ArtistID` = @ID;",
@@ -53,7 +61,16 @@ namespace Momiji
 
 			SQLResult GSmerchResults = SQLConnection.Query (GSmerchData);
 			if (GSmerchResults.GetNumberOfRows () > 0) {
-				//TODO// Load gsmerch into form
+				for (int i = 0; i < merchResults.GetNumberOfRows(); i++)
+				{
+					merchStore.AddNode (new StockNode (
+						merchResults.getCellInt("PieceID", i),
+						merchResults.getCell("PieceTitle", i),
+						"$"+merchResults.getCell("PiecePrice", i),
+						merchResults.getCellInt("PieceStock", i),
+						merchResults.getCellInt("PieceStock", i)==1?"Yes":"No")
+					);
+				}
 			}
 		}
 
@@ -67,6 +84,8 @@ namespace Momiji
 			this.parent = parent;
 			this.artistID = artistID;
 			this.Build ();
+			StockNode.buildTable (ref lstMerch, ref merchStore);
+			StockNode.buildTable (ref lstGSMerch, ref gsmerchStore);
 
 			RefreshInfo ();
 		}
