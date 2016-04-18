@@ -11,7 +11,7 @@ namespace Momiji
 		/////////////////////////
 
 		private Operations operation;
-		private Gtk.NodeStore artistStore;
+		private NodeStore artistStore;
 		private frmMenu parent;
 
 		/////////////////////////

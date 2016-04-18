@@ -94,7 +94,7 @@ namespace Momiji
 					drpUsers.AppendText (temp);
 				}
 			} else {
-				MessageBox.Show (this, MessageType.Error, "Could not find any registered users.\nTry again or please contact your administrator.");
+				MessageBox.Show (this, MessageType.Error, "Could not find any registered users.\nPlease try again, and if this issue persists, please contact your administrator.");
 				this.Destroy ();
 			}
 		}

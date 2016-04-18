@@ -151,12 +151,12 @@ namespace Momiji
 
 			//Advanced Functionality:
 			reprintReceiptAction.Sensitive = userClass >= 4 ? true : false;
+			checkInAction.Sensitive = userClass >= 5 ? true : false;
 			checkOutAction.Sensitive = userClass >= 6 ? true : false;
 			manageArtistAction.Sensitive = userClass >= 7 ? true : false;
 			usersPrefAction.Sensitive = userClass >= 11 ? true : false;
 			//NOTE! unimplemented options should be DEBUG ONLY
 #if DEBUG
-			checkInAction.Sensitive = userClass >= 5 ? true : false;
 			biddersAction.Sensitive = userClass >= 6 ? true : false;
 			generateBiddingSheetsAction.Sensitive = userClass >= 6 ? true : false;
 			checkUserActivitiesAction.Sensitive = userClass >= 8 ? true : false;
@@ -170,8 +170,6 @@ namespace Momiji
 			editGalleryStoreMerchandiseAction.Sensitive = false;
 			//TODO//Unimplemented frmMerchEditor
 			editMerchandiseAction.Sensitive = false;
-			//TODO//Unimplemented frmcheckin
-			checkInAction.Sensitive = false;
 			//TODO//Unimplemented frmbidder
 			biddersAction.Sensitive = false;
 			//TODO//missing functionality in frmSearchArtist

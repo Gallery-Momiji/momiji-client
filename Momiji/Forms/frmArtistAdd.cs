@@ -62,7 +62,7 @@ namespace Momiji
 				txtArtistShowName.Text = results.getCell ("ArtistShowName", 0);
 			} else {
 				MessageBox.Show (this, MessageType.Error,
-					"Unable to load artist information.\nPlease try again, and if this issue persists, contact your administrator.");
+					"Unable to load artist information.\nPlease try again, and if this issue persists, please contact your administrator.");
 				this.Destroy ();
 			}
 		}

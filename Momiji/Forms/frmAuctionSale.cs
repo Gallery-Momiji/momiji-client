@@ -11,7 +11,7 @@ namespace Momiji
 		/////////////////////////
 
 		private frmMenu parent;
-		private Gtk.NodeStore merchStore;
+		private NodeStore merchStore;
 		private float total = 0;
 		public string items = "";
 		public string prices = "";

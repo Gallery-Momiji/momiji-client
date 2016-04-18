@@ -69,7 +69,7 @@ namespace Momiji
 					MessageBox.Show (this, MessageType.Info, "Artist successfully checked out");
 					this.Destroy ();
 				} else {
-					MessageBox.Show (this, MessageType.Error, "Error Checking Out artist.\nPlease try again, and if this issue persists, contact your administrator.");
+					MessageBox.Show (this, MessageType.Error, "Error Checking Out artist.\nPlease try again, and if this issue persists, please contact your administrator.");
 				}
 			} else {
 				MessageBox.Show (this, MessageType.Error, "Please make sure you followed all steps and checked each box after completing each action.");

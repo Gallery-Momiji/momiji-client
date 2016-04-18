@@ -40,8 +40,10 @@ namespace Momiji
 					"Warning, this artist is already checked in.");
 				btnCheckIn.Sensitive = false;
 			}
+#if !DEBUG
 			//TODO load artist info, hide this for now:
 			tabControlMerch.GetNthPage(1).Hide();
+#endif
 
 			MySqlCommand merchData = new MySqlCommand ("SELECT `MerchID`,`MerchTitle`,`MerchMinBid`,`MerchQuickSale`,`MerchAAMB` FROM `merchandise` WHERE `ArtistID` = @ID;",
 				                         SQLConnection.GetConnection ());
@@ -102,6 +104,10 @@ namespace Momiji
 			StockNode.buildTableGSMerch (ref lstGSMerch, ref gsmerchStore);
 
 			RefreshInfo ();
+#if !DEBUG
+			//TODO// Child forms aren't done
+			btnEditArtist.Sensitive = false;
+#endif
 		}
 
 		/////////////////////////
