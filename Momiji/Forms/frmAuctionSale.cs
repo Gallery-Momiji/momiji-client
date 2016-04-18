@@ -126,8 +126,8 @@ namespace Momiji
 			}
 
 			//Catch an invalid price
-			int Price;
-			if (!int.TryParse (txtPrice.Text, out Price)) {
+			float Price;
+			if (!float.TryParse (txtPrice.Text, out Price)) {
 				MessageBox.Show (this, MessageType.Error,
 					"Invalid Price");
 
@@ -137,7 +137,7 @@ namespace Momiji
 			}
 
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand ("SELECT * FROM `merchandise` WHERE `ArtistID` = @AID AND `MerchID` = @MID;",
+			MySqlCommand query = new MySqlCommand ("SELECT `MerchTitle`,`MerchMinBid`,`MerchSold` FROM `merchandise` WHERE `ArtistID` = @AID AND `MerchID` = @MID;",
 				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@AID", ArtistID);
@@ -145,11 +145,11 @@ namespace Momiji
 			SQLResult results = SQLConnection.Query (query);
 
 			if (results.GetNumberOfRows () == 1) {
-				if (float.Parse (results.getCell ("MerchMinBid", 0)) > Price) {
+				float minbid = float.Parse (results.getCell ("MerchMinBid", 0));
+				if (minbid > Price) {
 					MessageBox.Show (this, MessageType.Error,
 						"Price is too low.\nThis item has a minimum bid of $" +
-						String.Format ("{0:0.00}",
-							float.Parse (results.getCell ("MerchMinBid", 0))));
+						String.Format ("{0:0.00}", minbid));
 				} else if (results.getCell ("MerchSold", 0) == "1") {
 					MessageBox.Show (this, MessageType.Error,
 						"This item has already been sold. This will be reported.");

@@ -25,7 +25,7 @@ namespace Momiji
 				SQLResult User = parent.currentUser;
 				string userID = userids [drpUsers.Active].ToString ();
 
-				MySqlCommand query = new MySqlCommand ("SELECT * FROM `users` WHERE `id` = @ID;", SQLConnection.GetConnection ());
+				MySqlCommand query = new MySqlCommand ("SELECT `name`,`username`,`class` FROM `users` WHERE `id` = @ID;", SQLConnection.GetConnection ());
 				query.Prepare ();
 				query.Parameters.AddWithValue ("@ID", userID);
 				SQLConnection.LogAction ("Queried DB for users", User);

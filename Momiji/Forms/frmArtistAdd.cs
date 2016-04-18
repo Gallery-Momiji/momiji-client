@@ -44,7 +44,7 @@ namespace Momiji
 			//Load existing data
 			SQL SQLConnection = parent.currentSQLConnection;
 
-			MySqlCommand query = new MySqlCommand ("SELECT * FROM `artists` WHERE `ArtistID` = @AID;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT `ArtistName`,`ArtistEmail`,`ArtistAddress`,`ArtistUrl`,`ArtistAgentName`,`ArtistAgentPhone`,`ArtistPhone`,`ArtistAgentAddress`,`ArtistAgentEmail`,`ArtistShowName` FROM `artists` WHERE `ArtistID` = @AID;", SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@AID", artistID);
 			SQLResult results = SQLConnection.Query (query);
@@ -55,6 +55,7 @@ namespace Momiji
 				txtArtistPhone.Text = results.getCell ("ArtistPhone", 0);
 				txtArtistWebsite.Text = results.getCell ("ArtistUrl", 0);
 				txtEmail.Text = results.getCell ("ArtistEmail", 0);
+				txtArtistAddress.Buffer.Text = results.getCell ("ArtistAddress", 0);
 				txtAgentAddress.Buffer.Text = results.getCell ("ArtistAgentAddress", 0);
 				txtAgentEmail.Text = results.getCell ("ArtistAgentEmail", 0);
 				txtAgentName.Text = results.getCell ("ArtistAgentName", 0);

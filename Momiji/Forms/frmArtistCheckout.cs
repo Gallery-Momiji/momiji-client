@@ -26,7 +26,7 @@ namespace Momiji
 			this.Build ();
 
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand ("SELECT ArtistID, ArtistName,ArtistCheckedOut FROM `artists` WHERE `ArtistID` = @ID;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT `ArtistName`,`ArtistCheckedOut` FROM `artists` WHERE `ArtistID` = @ID;", SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@ID", this.artistID);
 
@@ -38,7 +38,7 @@ namespace Momiji
 						"Artist already marked as Checked Out.");
 				}
 
-				lblArtistID.Text = results.getCell ("ArtistID", 0);
+				lblArtistID.Text = artistID.ToString();
 				lblArtistName.Text = results.getCell ("ArtistName", 0);
 			} else {
 				MessageBox.Show (this, MessageType.Error,

@@ -112,7 +112,7 @@ namespace Momiji
 			}
 
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand ("SELECT * FROM `merchandise` WHERE `ArtistID` = @AID AND `MerchID` = @MID;",
+			MySqlCommand query = new MySqlCommand ("SELECT `MerchTitle`,`MerchQuickSale`,`MerchSold` FROM `merchandise` WHERE `ArtistID` = @AID AND `MerchID` = @MID;",
 				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@AID", ArtistID);
@@ -134,14 +134,15 @@ namespace Momiji
 					txtBarcode.Text + ")",
 						parent.currentUser);
 				} else {
+					float price = float.Parse (results.getCell ("MerchQuickSale", 0));
 					merchStore.AddNode (new MerchNode (ArtistID,
 						MerchID,
 						results.getCell ("MerchTitle", 0),
 						"$" + String.Format ("{0:0.00}",
-							float.Parse (results.getCell ("MerchQuickSale", 0)))
+							price)
 					));
 
-					total = total + float.Parse (results.getCell ("MerchQuickSale", 0));
+					total = total + price;
 					txtTotal.Text = String.Format ("{0:0.00}", total);
 
 					items = items + txtBarcode.Text + "#";

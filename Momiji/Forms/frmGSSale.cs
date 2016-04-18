@@ -103,7 +103,7 @@ namespace Momiji
 			}
 
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand ("SELECT * FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
+			MySqlCommand query = new MySqlCommand ("SELECT `PieceTitle`,`PiecePrice`,`PieceStock` FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
 				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@AID", ArtistID);
