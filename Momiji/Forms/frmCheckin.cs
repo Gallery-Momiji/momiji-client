@@ -11,8 +11,8 @@ namespace Momiji
 		/////////////////////////
 
 		private frmMenu parent;
-		private Gtk.NodeStore merchStore;
-		private Gtk.NodeStore gsmerchStore;
+		private NodeStore merchStore;
+		private NodeStore gsmerchStore;
 		private int artistID;
 
 		/////////////////////////
@@ -21,23 +21,29 @@ namespace Momiji
 
 		private void RefreshInfo ()
 		{
-			//TODO// Clear tables, create tables, nodes
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand info = new MySqlCommand ("SELECT * FROM `artists` WHERE `ArtistID`=@ID",
+			MySqlCommand info = new MySqlCommand ("SELECT `ArtistCheckIn` FROM `artists` WHERE `ArtistID`=@ID",
 				                    SQLConnection.GetConnection ());
 			info.Prepare ();
 			info.Parameters.AddWithValue ("@ID", artistID);
 
 			SQLResult result = SQLConnection.Query (info);
 
+			if (result.GetNumberOfRows () == 0) {
+				MessageBox.Show (this, MessageType.Error,
+					"Could not load artist information.\nPlease try again, and if this issue persists, please contact your administrator.");
+				return;
+			}
+
 			if (result.getCell ("ArtistCheckIn", 0) == "True") {
 				MessageBox.Show (this, MessageType.Warning,
 					"Warning, this artist is already checked in.");
 				btnCheckIn.Sensitive = false;
 			}
+			//TODO load artist info, hide this for now:
+			tabControlMerch.GetNthPage(1).Hide();
 
-			//TODO// Load info into form
-			MySqlCommand merchData = new MySqlCommand ("SELECT * FROM `merchandise` WHERE `ArtistID` = @ID;",
+			MySqlCommand merchData = new MySqlCommand ("SELECT `MerchID`,`MerchTitle`,`MerchMinBid`,`MerchQuickSale`,`MerchAAMB` FROM `merchandise` WHERE `ArtistID` = @ID;",
 				                         SQLConnection.GetConnection ());
 			merchData.Prepare ();
 			merchData.Parameters.AddWithValue ("@ID", artistID);
@@ -49,12 +55,17 @@ namespace Momiji
 					merchStore.AddNode (new StockNode (
 						merchResults.getCellInt("MerchID", i),
 						merchResults.getCell("MerchTitle", i),
-						"$"+merchResults.getCell("MerchQuickSale", i),1,"")//TODO//
+						merchResults.getCell("MerchMinBid", i),
+						merchResults.getCell("MerchQuickSale", i),
+						merchResults.getCellInt("MerchAAMB", i))
 					);
 				}
+				tabControlMerch.GetNthPage(2).Show();
+			} else {
+				tabControlMerch.GetNthPage(2).Hide();
 			}
 
-			MySqlCommand GSmerchData = new MySqlCommand ("SELECT * FROM `GSmerchandise` WHERE `ArtistID` = @ID;",
+			MySqlCommand GSmerchData = new MySqlCommand ("SELECT `PieceID`,`PieceTitle`,`PiecePrice`,`PieceStock`,`PieceSDC` FROM `GSmerchandise` WHERE `ArtistID` = @ID;",
 				                           SQLConnection.GetConnection ());
 			GSmerchData.Prepare ();
 			GSmerchData.Parameters.AddWithValue ("@ID", artistID);
@@ -66,11 +77,14 @@ namespace Momiji
 					merchStore.AddNode (new StockNode (
 						merchResults.getCellInt("PieceID", i),
 						merchResults.getCell("PieceTitle", i),
-						"$"+merchResults.getCell("PiecePrice", i),
+						merchResults.getCell("PiecePrice", i),
 						merchResults.getCellInt("PieceStock", i),
-						merchResults.getCellInt("PieceStock", i)==1?"Yes":"No")
+						merchResults.getCellInt("PieceSDC", i))
 					);
 				}
+				tabControlMerch.GetNthPage(3).Show();
+			} else {
+				tabControlMerch.GetNthPage(3).Hide();
 			}
 		}
 
@@ -84,8 +98,8 @@ namespace Momiji
 			this.parent = parent;
 			this.artistID = artistID;
 			this.Build ();
-			StockNode.buildTable (ref lstMerch, ref merchStore);
-			StockNode.buildTable (ref lstGSMerch, ref gsmerchStore);
+			StockNode.buildTableMerch (ref lstMerch, ref merchStore);
+			StockNode.buildTableGSMerch (ref lstGSMerch, ref gsmerchStore);
 
 			RefreshInfo ();
 		}
@@ -110,6 +124,9 @@ namespace Momiji
 		protected void OnBtnReloadClicked (object sender, EventArgs e)
 		{
 			//TODO// This should be done automatically
+			StockNode.clearTable (ref lstMerch, ref merchStore);
+			StockNode.clearTable (ref lstGSMerch, ref gsmerchStore);
+
 			RefreshInfo ();
 		}
 
@@ -123,7 +140,7 @@ namespace Momiji
 
 			SQLResult result = SQLConnection.Query (update);
 			if (result.successful ())
-				MessageBox.Show (this, MessageType.Error,
+				MessageBox.Show (this, MessageType.Info,
 					"Artist checked in!");
 			else
 				MessageBox.Show (this, MessageType.Error,
