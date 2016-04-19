@@ -14,6 +14,13 @@ namespace Momiji
 		private NodeStore merchStore;
 		private NodeStore gsmerchStore;
 		private int artistID;
+		//Cached data:
+#if DEBUG
+		//TODO artist info tab unfinished
+		SQLResult infoCache, merchCache, GSmerchCache;
+#else
+		SQLResult merchCache, GSmerchCache;
+#endif
 
 		/////////////////////////
 		//  Private Functions  //
@@ -22,27 +29,37 @@ namespace Momiji
 		private void RefreshInfo ()
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand info = new MySqlCommand ("SELECT `ArtistCheckIn` FROM `artists` WHERE `ArtistID`=@ID",
-				                    SQLConnection.GetConnection ());
+#if DEBUG
+			//TODO load artist info tab unfinished
+			MySqlCommand info = new MySqlCommand ("SELECT `ArtistCheckIn`,`ArtistName`,`ArtistEmail`,`ArtistAddress`,`ArtistUrl`,`ArtistAgentName`,`ArtistAgentPhone`,`ArtistPhone`,`ArtistAgentAddress`,`ArtistAgentEmail`,`ArtistShowName` FROM `artists` WHERE `ArtistID` = @AID;",
+				SQLConnection.GetConnection ());
+#else
+			//Load minimal data for now
+			MySqlCommand info = new MySqlCommand ("SELECT `ArtistCheckIn` FROM `artists` WHERE `ArtistID` = @AID;",
+				SQLConnection.GetConnection ());
+			//Hide tab as it's unfinished for now
+			tabControlMerch.GetNthPage(0).Hide();
+#endif
 			info.Prepare ();
 			info.Parameters.AddWithValue ("@ID", artistID);
 
-			SQLResult result = SQLConnection.Query (info);
+			SQLResult temp = SQLConnection.Query (info);
 
-			if (result.GetNumberOfRows () == 0) {
+			if (!(temp.successful ()) || temp.GetNumberOfRows () == 0) {
 				MessageBox.Show (this, MessageType.Error,
 					"Could not load artist information.\nPlease try again, and if this issue persists, please contact your administrator.");
 				return;
 			}
 
-			if (result.getCell ("ArtistCheckIn", 0) == "True") {
+			if (temp.getCell ("ArtistCheckIn", 0) == "True") {
 				MessageBox.Show (this, MessageType.Warning,
 					"Warning, this artist is already checked in.");
 				btnCheckIn.Sensitive = false;
 			}
-#if !DEBUG
-			//TODO load artist info, hide this for now:
-			tabControlMerch.GetNthPage(1).Hide();
+#if DEBUG
+			//Overwriting only if successful request
+			infoCache = temp;
+			//TODO load data into form
 #endif
 
 			MySqlCommand merchData = new MySqlCommand ("SELECT `MerchID`,`MerchTitle`,`MerchMinBid`,`MerchQuickSale`,`MerchAAMB` FROM `merchandise` WHERE `ArtistID` = @ID;",
@@ -50,21 +67,20 @@ namespace Momiji
 			merchData.Prepare ();
 			merchData.Parameters.AddWithValue ("@ID", artistID);
 
-			SQLResult merchResults = SQLConnection.Query (merchData);
-			if (merchResults.GetNumberOfRows () > 0) {
-				for (int i = 0; i < merchResults.GetNumberOfRows(); i++)
-				{
+			merchCache = SQLConnection.Query (merchData);
+			if (merchCache.GetNumberOfRows () > 0) {
+				for (int i = 0; i < merchCache.GetNumberOfRows (); i++) {
 					merchStore.AddNode (new StockNode (
-						merchResults.getCellInt("MerchID", i),
-						merchResults.getCell("MerchTitle", i),
-						merchResults.getCell("MerchMinBid", i),
-						merchResults.getCell("MerchQuickSale", i),
-						merchResults.getCellInt("MerchAAMB", i))
+						merchCache.getCellInt ("MerchID", i),
+						merchCache.getCell ("MerchTitle", i),
+						merchCache.getCell ("MerchMinBid", i),
+						merchCache.getCell ("MerchQuickSale", i),
+						merchCache.getCellInt ("MerchAAMB", i))
 					);
 				}
-				tabControlMerch.GetNthPage(2).Show();
+				tabControlMerch.GetNthPage (1).Show ();
 			} else {
-				tabControlMerch.GetNthPage(2).Hide();
+				tabControlMerch.GetNthPage (1).Hide ();
 			}
 
 			MySqlCommand GSmerchData = new MySqlCommand ("SELECT `PieceID`,`PieceTitle`,`PiecePrice`,`PieceStock`,`PieceSDC` FROM `GSmerchandise` WHERE `ArtistID` = @ID;",
@@ -72,21 +88,20 @@ namespace Momiji
 			GSmerchData.Prepare ();
 			GSmerchData.Parameters.AddWithValue ("@ID", artistID);
 
-			SQLResult GSmerchResults = SQLConnection.Query (GSmerchData);
-			if (GSmerchResults.GetNumberOfRows () > 0) {
-				for (int i = 0; i < merchResults.GetNumberOfRows(); i++)
-				{
-					merchStore.AddNode (new StockNode (
-						merchResults.getCellInt("PieceID", i),
-						merchResults.getCell("PieceTitle", i),
-						merchResults.getCell("PiecePrice", i),
-						merchResults.getCellInt("PieceStock", i),
-						merchResults.getCellInt("PieceSDC", i))
+			GSmerchCache = SQLConnection.Query (GSmerchData);
+			if (GSmerchCache.GetNumberOfRows () > 0) {
+				for (int i = 0; i < GSmerchCache.GetNumberOfRows (); i++) {
+					gsmerchStore.AddNode (new StockNode (
+						GSmerchCache.getCellInt ("PieceID", i),
+						GSmerchCache.getCell ("PieceTitle", i),
+						GSmerchCache.getCell ("PiecePrice", i),
+						GSmerchCache.getCellInt ("PieceStock", i),
+						GSmerchCache.getCellInt ("PieceSDC", i))
 					);
 				}
-				tabControlMerch.GetNthPage(3).Show();
+				tabControlMerch.GetNthPage (2).Show ();
 			} else {
-				tabControlMerch.GetNthPage(3).Hide();
+				tabControlMerch.GetNthPage (2).Hide ();
 			}
 		}
 
@@ -104,10 +119,6 @@ namespace Momiji
 			StockNode.buildTableGSMerch (ref lstGSMerch, ref gsmerchStore);
 
 			RefreshInfo ();
-#if !DEBUG
-			//TODO// Child forms aren't done
-			btnEditArtist.Sensitive = false;
-#endif
 		}
 
 		/////////////////////////
@@ -121,10 +132,20 @@ namespace Momiji
 
 		protected void OnBtnEditArtistClicked (object sender, EventArgs e)
 		{
+			switch (tabControlMerch.CurrentPage) {
 #if DEBUG
-			//TODO// Child forms aren't done
-			throw new System.NotImplementedException ();
+		//TODO artist info tab unfinished
+			case 0:
+				new frmArtistAdd (artistID, parent, infoCache);
+				break;
 #endif
+			case 1:
+				new frmMerchEditor (artistID, parent, merchCache);
+				break;
+			case 2:
+				new frmGSManager (artistID, parent, GSmerchCache);
+				break;
+			}
 		}
 
 		protected void OnBtnReloadClicked (object sender, EventArgs e)

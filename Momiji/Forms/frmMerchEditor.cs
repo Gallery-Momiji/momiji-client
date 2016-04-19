@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 using Gtk;
 using MySql.Data.MySqlClient;
 
@@ -12,18 +11,55 @@ namespace Momiji
 		/////////////////////////
 
 		private frmMenu parent;
+		private NodeStore merchStore;
 		private int artistID;
 
 		/////////////////////////
-		//     Contructor      //
+		//  Private Functions  //
 		/////////////////////////
 
+		private void LoadInfo (int ID, frmMenu parent, SQLResult merch)
+		{
+			this.parent = parent;
+			this.artistID = ID;
+			this.Build ();
+			StockNode.buildTableMerch (ref lstMerch, ref merchStore);
+
+			if (merch.GetNumberOfRows () > 0) {
+				for (int i = 0; i < merch.GetNumberOfRows (); i++) {
+					merchStore.AddNode (new StockNode (
+						merch.getCellInt ("MerchID", i),
+						merch.getCell ("MerchTitle", i),
+						merch.getCell ("MerchMinBid", i),
+						merch.getCell ("MerchQuickSale", i),
+						merch.getCellInt ("MerchAAMB", i))
+					);
+				}
+			}
+		}
+
+		/////////////////////////
+		//     Contructors     //
+		/////////////////////////
+
+		//This pulls fresh data
 		public frmMerchEditor (int artistID, frmMenu parent) :
 			base (Gtk.WindowType.Toplevel)
 		{
-			this.parent = parent;
-			this.artistID = artistID;
-			this.Build ();
+			SQL SQLConnection = parent.currentSQLConnection;
+			MySqlCommand merchData = new MySqlCommand ("SELECT `MerchID`,`MerchTitle`,`MerchMinBid`,`MerchQuickSale`,`MerchAAMB` FROM `merchandise` WHERE `ArtistID` = @ID;",
+				SQLConnection.GetConnection ());
+			merchData.Prepare ();
+			merchData.Parameters.AddWithValue ("@ID", artistID);
+
+			LoadInfo (artistID, parent, SQLConnection.Query (merchData));
+		}
+
+		//This can be used to load cached data directly
+		public frmMerchEditor (int artistID, frmMenu parent, SQLResult merchResults) :
+			base (Gtk.WindowType.Toplevel)
+		{
+			LoadInfo (artistID, parent, merchResults);
 		}
 
 		/////////////////////////
@@ -35,7 +71,8 @@ namespace Momiji
 		protected void OnBtnGenIDClicked (object sender, EventArgs e)
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand ("SELECT MAX(`PieceID`)+1 as `next_id` FROM `merchandise` limit 0,1;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT MAX(`PieceID`)+1 as `next_id` FROM `merchandise` limit 0,1;",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 
 			SQLResult results = SQLConnection.Query (query);

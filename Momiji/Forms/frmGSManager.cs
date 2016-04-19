@@ -11,18 +11,55 @@ namespace Momiji
 		/////////////////////////
 
 		private frmMenu parent;
+		private NodeStore merchStore;
 		private int artistID;
 
 		/////////////////////////
-		//     Contructor      //
+		//  Private Functions  //
 		/////////////////////////
 
+		private void LoadInfo (int ID, frmMenu parent, SQLResult merch)
+		{
+			this.parent = parent;
+			this.artistID = ID;
+			this.Build ();
+			StockNode.buildTableGSMerch (ref lstMerch, ref merchStore);
+
+			if (merch.GetNumberOfRows () > 0) {
+				for (int i = 0; i < merch.GetNumberOfRows (); i++) {
+					merchStore.AddNode (new StockNode (
+						merch.getCellInt ("PieceID", i),
+						merch.getCell ("PieceTitle", i),
+						merch.getCell ("PiecePrice", i),
+						merch.getCellInt ("PieceStock", i),
+						merch.getCellInt ("PieceSDC", i))
+					);
+				}
+			}
+		}
+
+		/////////////////////////
+		//     Contructors     //
+		/////////////////////////
+
+		//This pulls fresh data
 		public frmGSManager (int artistID, frmMenu parent) :
 			base (Gtk.WindowType.Toplevel)
 		{
-			this.parent = parent;
-			this.artistID = artistID;
-			this.Build ();
+			SQL SQLConnection = parent.currentSQLConnection;
+			MySqlCommand merchData = new MySqlCommand ("SELECT `PieceID`,`PieceTitle`,`PiecePrice`,`PieceStock`,`PieceSDC` FROM `GSmerchandise` WHERE `ArtistID` = @ID;",
+				                         SQLConnection.GetConnection ());
+			merchData.Prepare ();
+			merchData.Parameters.AddWithValue ("@ID", artistID);
+
+			LoadInfo (artistID, parent, SQLConnection.Query (merchData));
+		}
+
+		//This loads cached data directly
+		public frmGSManager (int artistID, frmMenu parent, SQLResult merchResults) :
+			base (Gtk.WindowType.Toplevel)
+		{
+			LoadInfo (artistID, parent, merchResults);
 		}
 
 		/////////////////////////
@@ -34,7 +71,8 @@ namespace Momiji
 		protected void OnBtnGenIDClicked (object sender, EventArgs e)
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand ("SELECT MAX(`PieceID`)+1 as `next_id` FROM `gsmerchandise` limit 0,1;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT MAX(`PieceID`)+1 as `next_id` FROM `gsmerchandise` limit 0,1;",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 
 			SQLResult results = SQLConnection.Query (query);

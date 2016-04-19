@@ -14,58 +14,75 @@ namespace Momiji
 		private bool newartist;
 
 		/////////////////////////
+		//  Private Functions  //
+		/////////////////////////
+
+		private void LoadInfo (int ID, frmMenu parent, SQLResult results)
+		{
+			this.parent = parent;
+			this.Build ();
+
+			newartist = false;
+			btnDelete.Sensitive = true;
+			btnGenerate.Sensitive = false;
+			txtArtistID.Sensitive = false;
+			txtArtistID.Text = ID.ToString ();
+			txtArtistName.Text = results.getCell ("ArtistName", 0);
+			txtArtistPhone.Text = results.getCell ("ArtistPhone", 0);
+			txtArtistWebsite.Text = results.getCell ("ArtistUrl", 0);
+			txtEmail.Text = results.getCell ("ArtistEmail", 0);
+			txtArtistAddress.Buffer.Text = results.getCell ("ArtistAddress", 0);
+			txtAgentAddress.Buffer.Text = results.getCell ("ArtistAgentAddress", 0);
+			txtAgentEmail.Text = results.getCell ("ArtistAgentEmail", 0);
+			txtAgentName.Text = results.getCell ("ArtistAgentName", 0);
+			txtAgentPhone.Text = results.getCell ("ArtistAgentPhone", 0);
+			txtArtistShowName.Text = results.getCell ("ArtistShowName", 0);
+		}
+
+		/////////////////////////
 		//     Contructors     //
 		/////////////////////////
 
+		//This is to create a new artist
 		public frmArtistAdd (frmMenu parent) :
 			base (Gtk.WindowType.Toplevel)
 		{
 			this.parent = parent;
 			this.Build ();
 
-			//No ID, thus make a new artist
 			newartist = true;
 			btnDelete.Sensitive = false;
 			btnGenerate.Sensitive = true;
 			txtArtistID.Sensitive = true;
 		}
 
+		//This pulls fresh data for editing existing artist
 		public frmArtistAdd (int artistID, frmMenu parent) :
 			base (Gtk.WindowType.Toplevel)
 		{
-			this.parent = parent;
-			this.Build ();
-
-			//Artist ID specified, thus edit an existing artist
-			newartist = false;
-			btnDelete.Sensitive = true;
-			btnGenerate.Sensitive = false;
-			txtArtistID.Sensitive = false;
-			//Load existing data
+			//Load existing data for editing
 			SQL SQLConnection = parent.currentSQLConnection;
 
-			MySqlCommand query = new MySqlCommand ("SELECT `ArtistName`,`ArtistEmail`,`ArtistAddress`,`ArtistUrl`,`ArtistAgentName`,`ArtistAgentPhone`,`ArtistPhone`,`ArtistAgentAddress`,`ArtistAgentEmail`,`ArtistShowName` FROM `artists` WHERE `ArtistID` = @AID;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT `ArtistCheckIn`,`ArtistName`,`ArtistEmail`,`ArtistAddress`,`ArtistUrl`,`ArtistAgentName`,`ArtistAgentPhone`,`ArtistPhone`,`ArtistAgentAddress`,`ArtistAgentEmail`,`ArtistShowName` FROM `artists` WHERE `ArtistID` = @AID;",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@AID", artistID);
 			SQLResult results = SQLConnection.Query (query);
 
 			if (results.GetNumberOfRows () == 1) {
-				txtArtistID.Text = artistID.ToString ();
-				txtArtistName.Text = results.getCell ("ArtistName", 0);
-				txtArtistPhone.Text = results.getCell ("ArtistPhone", 0);
-				txtArtistWebsite.Text = results.getCell ("ArtistUrl", 0);
-				txtEmail.Text = results.getCell ("ArtistEmail", 0);
-				txtArtistAddress.Buffer.Text = results.getCell ("ArtistAddress", 0);
-				txtAgentAddress.Buffer.Text = results.getCell ("ArtistAgentAddress", 0);
-				txtAgentEmail.Text = results.getCell ("ArtistAgentEmail", 0);
-				txtAgentName.Text = results.getCell ("ArtistAgentName", 0);
-				txtAgentPhone.Text = results.getCell ("ArtistAgentPhone", 0);
-				txtArtistShowName.Text = results.getCell ("ArtistShowName", 0);
+				LoadInfo (artistID, parent, results);
 			} else {
 				MessageBox.Show (this, MessageType.Error,
 					"Unable to load artist information.\nPlease try again, and if this issue persists, please contact your administrator.");
 				this.Destroy ();
 			}
+		}
+
+		//This loads cached data directly for editing existing artist
+		public frmArtistAdd (int artistID, frmMenu parent, SQLResult results) :
+			base (Gtk.WindowType.Toplevel)
+		{
+			LoadInfo (artistID, parent, results);
 		}
 
 		/////////////////////////
@@ -75,7 +92,8 @@ namespace Momiji
 		protected void OnBtnGenerateClicked (object sender, EventArgs e)
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand ("SELECT MAX(`ArtistID`)+1 as `next_id` FROM `artists` limit 0,1;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT MAX(`ArtistID`)+1 as `next_id` FROM `artists` limit 0,1;",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 
 			SQLResult results = SQLConnection.Query (query);
@@ -95,7 +113,8 @@ namespace Momiji
 			MySqlCommand query;
 
 			if (newartist) {
-				query = new MySqlCommand ("SELECT `ArtistID` FROM `artists` WHERE `ArtistID` = @AID;", SQLConnection.GetConnection ());
+				query = new MySqlCommand ("SELECT `ArtistID` FROM `artists` WHERE `ArtistID` = @AID;",
+					SQLConnection.GetConnection ());
 				results = SQLConnection.Query (query);
 				query.Parameters.AddWithValue ("@ID", txtArtistID.Text);
 				if (results.GetNumberOfRows () > 0) {
@@ -104,9 +123,11 @@ namespace Momiji
 					return;
 				}
 
-				query = new MySqlCommand ("INSERT INTO `artists` (`ArtistID`, `ArtistName`, `ArtistEmail`, `ArtistAddress`, `ArtistUrl`, `ArtistAgentName`, `ArtistAgentPhone`, `ArtistPhone`, `ArtistAgentAddress`, `ArtistAgentEmail`, `ArtistShowName`) VALUES (@ID, @NAME, @EMAIL, @ADDRESS, @URL, @AGENTNAME, @AGENTPHONE, @PHONE, @AGENTADDRESS, @AGENTEMAIL, @ARTISTSHOWNAME);", SQLConnection.GetConnection ());
+				query = new MySqlCommand ("INSERT INTO `artists` (`ArtistID`, `ArtistName`, `ArtistEmail`, `ArtistAddress`, `ArtistUrl`, `ArtistAgentName`, `ArtistAgentPhone`, `ArtistPhone`, `ArtistAgentAddress`, `ArtistAgentEmail`, `ArtistShowName`) VALUES (@ID, @NAME, @EMAIL, @ADDRESS, @URL, @AGENTNAME, @AGENTPHONE, @PHONE, @AGENTADDRESS, @AGENTEMAIL, @ARTISTSHOWNAME);",
+					SQLConnection.GetConnection ());
 			} else {
-				query = new MySqlCommand ("UPDATE `artists` SET `ArtistID`=@ID, `ArtistName`=@NAME, `ArtistEmail`=@EMAIL, `ArtistAddress`=@ADDRESS, `ArtistUrl`=@URL, `ArtistAgentName`=@AGENTNAME, `ArtistAgentPhone`=@AGENTPHONE, `ArtistPhone`=@PHONE, `ArtistAgentAddress`=@AGENTADDRESS, `ArtistAgentEmail`=@AGENTEMAIL, `ArtistShowName`=@ARTISTSHOWNAME;", SQLConnection.GetConnection ());
+				query = new MySqlCommand ("UPDATE `artists` SET `ArtistID`=@ID, `ArtistName`=@NAME, `ArtistEmail`=@EMAIL, `ArtistAddress`=@ADDRESS, `ArtistUrl`=@URL, `ArtistAgentName`=@AGENTNAME, `ArtistAgentPhone`=@AGENTPHONE, `ArtistPhone`=@PHONE, `ArtistAgentAddress`=@AGENTADDRESS, `ArtistAgentEmail`=@AGENTEMAIL, `ArtistShowName`=@ARTISTSHOWNAME;",
+					SQLConnection.GetConnection ());
 			}
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@ID", txtArtistID.Text);
@@ -141,7 +162,8 @@ namespace Momiji
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
 
-			MySqlCommand query = new MySqlCommand ("DELETE FROM `artists` WHERE `id`=@ID;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("DELETE FROM `artists` WHERE `id`=@ID;",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@ID", txtArtistID.Text);
 			SQLResult results = SQLConnection.Query (query);
