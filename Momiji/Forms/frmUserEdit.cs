@@ -25,7 +25,8 @@ namespace Momiji
 				SQLResult User = parent.currentUser;
 				string userID = userids [drpUsers.Active].ToString ();
 
-				MySqlCommand query = new MySqlCommand ("SELECT `name`,`username`,`class` FROM `users` WHERE `id` = @ID;", SQLConnection.GetConnection ());
+				MySqlCommand query = new MySqlCommand ("SELECT `name`,`username`,`class` FROM `users` WHERE `id` = @ID;",
+					SQLConnection.GetConnection ());
 				query.Prepare ();
 				query.Parameters.AddWithValue ("@ID", userID);
 				SQLConnection.LogAction ("Queried DB for users", User);
@@ -78,7 +79,8 @@ namespace Momiji
 			SQLResult User = parent.currentUser;
 
 			SQLConnection.LogAction ("Attempting to query user information", User);
-			MySqlCommand query = new MySqlCommand ("SELECT `id`, `username` FROM `users`;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT `id`, `username` FROM `users`;",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 			SQLConnection.LogAction ("Queried DB for users", User);
 			SQLResult results = SQLConnection.Query (query);
@@ -152,7 +154,8 @@ namespace Momiji
 			SQL SQLConnection = parent.currentSQLConnection;
 			string userID = userids [drpUsers.Active].ToString ();
 
-			MySqlCommand query = new MySqlCommand ("DELETE FROM `users` WHERE `id`=@ID;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("DELETE FROM `users` WHERE `id`=@ID;",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@ID", userID);
 			SQLResult results = SQLConnection.Query (query);
@@ -191,14 +194,16 @@ namespace Momiji
 			if (password1.Length != 0 || password2.Length != 0) {
 				if (txtPass.Text == txtPassRepeat.Text) {
 					MD5 passHash = new MD5 (password1);
-					query = new MySqlCommand ("UPDATE `users` SET `username`=@USER, `password`=@PASS, `class`=@RANK, `name`=@NAME WHERE `id`=@ID;", SQLConnection.GetConnection ());
+					query = new MySqlCommand ("UPDATE `users` SET `username`=@USER, `password`=@PASS, `class`=@RANK, `name`=@NAME WHERE `id`=@ID;",
+						SQLConnection.GetConnection ());
 					query.Parameters.AddWithValue ("@PASS", passHash.getShortHash ());
 				} else {
 					MessageBox.Show (this, MessageType.Info, "Password and and retype password fields do not match");
 					return;
 				}
 			} else {
-				query = new MySqlCommand ("UPDATE `users` SET `username`=@USER, `class`=@RANK, `name`=@NAME WHERE `id`=@ID;", SQLConnection.GetConnection ());
+				query = new MySqlCommand ("UPDATE `users` SET `username`=@USER, `class`=@RANK, `name`=@NAME WHERE `id`=@ID;",
+					SQLConnection.GetConnection ());
 			}
 
 			query.Prepare ();

@@ -26,7 +26,8 @@ namespace Momiji
 			this.Build ();
 
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand ("SELECT `ArtistName`,`ArtistCheckedOut` FROM `artists` WHERE `ArtistID` = @ID;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT `ArtistName`,`ArtistCheckedOut` FROM `artists` WHERE `ArtistID` = @ID;",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@ID", this.artistID);
 
@@ -60,7 +61,8 @@ namespace Momiji
 		{
 			if (chkStep1.Active && chkStep2.Active && chkStep3.Active) {
 				SQL SQLConnection = parent.currentSQLConnection;
-				MySqlCommand checkinQuery = new MySqlCommand ("UPDATE `artists` SET `ArtistCheckedOut`=1 WHERE  `ArtistID`=@ID;", SQLConnection.GetConnection ());
+				MySqlCommand checkinQuery = new MySqlCommand ("UPDATE `artists` SET `ArtistCheckedOut`=1 WHERE  `ArtistID`=@ID;",
+					SQLConnection.GetConnection ());
 				checkinQuery.Prepare ();
 				checkinQuery.Parameters.AddWithValue ("@ID", this.artistID);
 				SQLResult checkinQueryResults = SQLConnection.Query (checkinQuery);

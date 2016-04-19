@@ -115,7 +115,8 @@ namespace Momiji
 				return;
 			}
 
-			MySqlCommand query = new MySqlCommand ("SELECT * FROM `users` WHERE `username` = @username AND `password` = @password;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT * FROM `users` WHERE `username` = @username AND `password` = @password;",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@username", user);
 			query.Parameters.AddWithValue ("@password", pass);

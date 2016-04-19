@@ -28,7 +28,8 @@ namespace Momiji
 			SQLResult User = parent.currentUser;
 
 			SQLConnection.LogAction ("Attempting to query recent receipts", User);
-			MySqlCommand query = new MySqlCommand ("SELECT `id`, `userid`, `price` FROM `receipts` ORDER BY id DESC LIMIT 50;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT `id`, `userid`, `price` FROM `receipts` ORDER BY id DESC LIMIT 50;",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 			SQLConnection.LogAction ("Queried DB for receipts", User);
 			SQLResult results = SQLConnection.Query (query);
@@ -58,7 +59,8 @@ namespace Momiji
 
 			SQL SQLConnection = parent.currentSQLConnection;
 
-			MySqlCommand reprint = new MySqlCommand ("UPDATE `receipts` SET `isPrinted`=0 WHERE `id` = @ID;", SQLConnection.GetConnection ());
+			MySqlCommand reprint = new MySqlCommand ("UPDATE `receipts` SET `isPrinted`=0 WHERE `id` = @ID;",
+				SQLConnection.GetConnection ());
 			reprint.Prepare ();
 			reprint.Parameters.AddWithValue ("@ID", idnumbers [drpTransaction.Active]);
 

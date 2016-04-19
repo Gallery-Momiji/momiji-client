@@ -57,7 +57,8 @@ namespace Momiji
 			SQLResult User = parent.currentUser;
 
 			SQLConnection.LogAction ("Searched for artist", User);
-			MySqlCommand query = new MySqlCommand ("SELECT ArtistID, ArtistName, ArtistShowName FROM `artists` WHERE `ArtistID` = @ID OR `ArtistName` LIKE @name OR `ArtistShowName` LIKE @name;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT ArtistID, ArtistName, ArtistShowName FROM `artists` WHERE `ArtistID` = @ID OR `ArtistName` LIKE @name OR `ArtistShowName` LIKE @name;",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@name", '%' + txtSearch.Text + '%');
 			query.Parameters.AddWithValue ("@ID", getSearchID ());
@@ -147,7 +148,7 @@ namespace Momiji
 			case Operations.GenerateBiddingSheets:
 				//TODO//
 				throw new System.NotImplementedException ();
-				break;
+				//break;
 #endif
 			case Operations.EditArtist:
 				new frmArtistAdd (selectednode.ArtistID, parent);
@@ -162,6 +163,7 @@ namespace Momiji
 			case Operations.ManageArtistBalance:
 				//TODO//
 				throw new System.NotImplementedException ();
+				//break;
 #endif
 			}
 		}

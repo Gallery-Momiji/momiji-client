@@ -54,7 +54,8 @@ namespace Momiji
 
 			// Make sure user doesn't exist already
 
-			MySqlCommand query = new MySqlCommand ("SELECT `id` FROM `users` WHERE `username` = @username;", SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT `id` FROM `users` WHERE `username` = @username;",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@username", userName);
 
@@ -68,7 +69,8 @@ namespace Momiji
 
 			MD5 passHash = new MD5 (password1);
 
-			query = new MySqlCommand ("INSERT INTO `users` (`username`, `password`, `class`, `name`) VALUES (@username, @password, @class, @name);", SQLConnection.GetConnection ());
+			query = new MySqlCommand ("INSERT INTO `users` (`username`, `password`, `class`, `name`) VALUES (@username, @password, @class, @name);",
+				SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@username", userName);
 			query.Parameters.AddWithValue ("@password", passHash.getShortHash ());
