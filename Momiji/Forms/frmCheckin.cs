@@ -15,12 +15,7 @@ namespace Momiji
 		private NodeStore gsmerchStore;
 		private int artistID;
 		//Cached data:
-#if DEBUG
-		//TODO artist info tab unfinished
-		SQLResult infoCache, merchCache, GSmerchCache;
-#else
 		SQLResult merchCache, GSmerchCache;
-#endif
 
 		/////////////////////////
 		//  Private Functions  //
@@ -29,17 +24,10 @@ namespace Momiji
 		private void RefreshInfo ()
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
-#if DEBUG
-			//TODO load artist info tab unfinished
-			MySqlCommand info = new MySqlCommand ("SELECT `ArtistCheckIn`,`ArtistName`,`ArtistEmail`,`ArtistAddress`,`ArtistUrl`,`ArtistAgentName`,`ArtistAgentPhone`,`ArtistPhone`,`ArtistAgentAddress`,`ArtistAgentEmail`,`ArtistShowName` FROM `artists` WHERE `ArtistID` = @AID;",
-				SQLConnection.GetConnection ());
-#else
 			//Load minimal data for now
 			MySqlCommand info = new MySqlCommand ("SELECT `ArtistCheckIn` FROM `artists` WHERE `ArtistID` = @AID;",
 				SQLConnection.GetConnection ());
-			//Hide tab as it's unfinished for now
-			tabControlMerch.GetNthPage(0).Hide();
-#endif
+
 			info.Prepare ();
 			info.Parameters.AddWithValue ("@ID", artistID);
 
@@ -56,11 +44,6 @@ namespace Momiji
 					"Warning, this artist is already checked in.");
 				btnCheckIn.Sensitive = false;
 			}
-#if DEBUG
-			//Overwriting only if successful request
-			infoCache = temp;
-			//TODO load data into form
-#endif
 
 			MySqlCommand merchData = new MySqlCommand ("SELECT `MerchID`,`MerchTitle`,`MerchMinBid`,`MerchQuickSale`,`MerchAAMB` FROM `merchandise` WHERE `ArtistID` = @ID;",
 				                         SQLConnection.GetConnection ());
@@ -133,16 +116,10 @@ namespace Momiji
 		protected void OnBtnEditArtistClicked (object sender, EventArgs e)
 		{
 			switch (tabControlMerch.CurrentPage) {
-#if DEBUG
-		//TODO artist info tab unfinished
 			case 0:
-				new frmArtistAdd (artistID, parent, infoCache);
-				break;
-#endif
-			case 1:
 				new frmMerchEditor (artistID, parent, merchCache);
 				break;
-			case 2:
+			case 1:
 				new frmGSManager (artistID, parent, GSmerchCache);
 				break;
 			}

@@ -8,8 +8,6 @@ namespace Momiji
 		
 		private global::Gtk.Notebook tabControlMerch;
 		
-		private global::Gtk.Label lblArtistInfo;
-		
 		private global::Gtk.ScrolledWindow GtkScrolledWindow1;
 		
 		private global::Gtk.NodeView lstMerch;
@@ -43,23 +41,13 @@ namespace Momiji
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child Momiji.frmCheckin.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox ();
-			this.vbox1.Name = "vbox1";
 			this.vbox1.Spacing = 6;
 			this.vbox1.BorderWidth = ((uint)(8));
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.tabControlMerch = new global::Gtk.Notebook ();
 			this.tabControlMerch.CanFocus = true;
 			this.tabControlMerch.Name = "tabControlMerch";
-			this.tabControlMerch.CurrentPage = 1;
-			// Notebook tab
-			global::Gtk.Label w1 = new global::Gtk.Label ();
-			w1.Visible = true;
-			this.tabControlMerch.Add (w1);
-			this.lblArtistInfo = new global::Gtk.Label ();
-			this.lblArtistInfo.Name = "lblArtistInfo";
-			this.lblArtistInfo.LabelProp = global::Mono.Unix.Catalog.GetString ("Artist Info");
-			this.tabControlMerch.SetTabLabel (w1, this.lblArtistInfo);
-			this.lblArtistInfo.ShowAll ();
+			this.tabControlMerch.CurrentPage = 0;
 			// Container child tabControlMerch.Gtk.Notebook+NotebookChild
 			this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow1.Name = "GtkScrolledWindow1";
@@ -71,8 +59,6 @@ namespace Momiji
 			this.lstMerch.EnableSearch = false;
 			this.GtkScrolledWindow1.Add (this.lstMerch);
 			this.tabControlMerch.Add (this.GtkScrolledWindow1);
-			global::Gtk.Notebook.NotebookChild w3 = ((global::Gtk.Notebook.NotebookChild)(this.tabControlMerch [this.GtkScrolledWindow1]));
-			w3.Position = 1;
 			// Notebook tab
 			this.lblControlSheet = new global::Gtk.Label ();
 			this.lblControlSheet.Name = "lblControlSheet";
@@ -90,8 +76,8 @@ namespace Momiji
 			this.lstGSMerch.EnableSearch = false;
 			this.GtkScrolledWindow.Add (this.lstGSMerch);
 			this.tabControlMerch.Add (this.GtkScrolledWindow);
-			global::Gtk.Notebook.NotebookChild w5 = ((global::Gtk.Notebook.NotebookChild)(this.tabControlMerch [this.GtkScrolledWindow]));
-			w5.Position = 2;
+			global::Gtk.Notebook.NotebookChild w4 = ((global::Gtk.Notebook.NotebookChild)(this.tabControlMerch [this.GtkScrolledWindow]));
+			w4.Position = 1;
 			// Notebook tab
 			this.lblGalleryStore = new global::Gtk.Label ();
 			this.lblGalleryStore.Name = "lblGalleryStore";
@@ -99,8 +85,8 @@ namespace Momiji
 			this.tabControlMerch.SetTabLabel (this.GtkScrolledWindow, this.lblGalleryStore);
 			this.lblGalleryStore.ShowAll ();
 			this.vbox1.Add (this.tabControlMerch);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.tabControlMerch]));
-			w6.Position = 0;
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.tabControlMerch]));
+			w5.Position = 0;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.hbox1 = new global::Gtk.HBox ();
 			this.hbox1.Name = "hbox1";
@@ -111,42 +97,42 @@ namespace Momiji
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.UseUnderline = true;
 			this.btnCancel.Label = global::Mono.Unix.Catalog.GetString ("Cancel");
-			global::Gtk.Image w7 = new global::Gtk.Image ();
-			w7.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-cancel", global::Gtk.IconSize.Menu);
-			this.btnCancel.Image = w7;
+			global::Gtk.Image w6 = new global::Gtk.Image ();
+			w6.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-cancel", global::Gtk.IconSize.Menu);
+			this.btnCancel.Image = w6;
 			this.hbox1.Add (this.btnCancel);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnCancel]));
-			w8.Position = 0;
-			w8.Expand = false;
-			w8.Fill = false;
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnCancel]));
+			w7.Position = 0;
+			w7.Expand = false;
+			w7.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.btnEditArtist = new global::Gtk.Button ();
 			this.btnEditArtist.CanFocus = true;
 			this.btnEditArtist.Name = "btnEditArtist";
 			this.btnEditArtist.UseUnderline = true;
 			this.btnEditArtist.Label = global::Mono.Unix.Catalog.GetString ("Edit Artist");
-			global::Gtk.Image w9 = new global::Gtk.Image ();
-			w9.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-edit", global::Gtk.IconSize.Menu);
-			this.btnEditArtist.Image = w9;
+			global::Gtk.Image w8 = new global::Gtk.Image ();
+			w8.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-edit", global::Gtk.IconSize.Menu);
+			this.btnEditArtist.Image = w8;
 			this.hbox1.Add (this.btnEditArtist);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnEditArtist]));
-			w10.Position = 1;
-			w10.Expand = false;
-			w10.Fill = false;
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnEditArtist]));
+			w9.Position = 1;
+			w9.Expand = false;
+			w9.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.btnReload = new global::Gtk.Button ();
 			this.btnReload.CanFocus = true;
 			this.btnReload.Name = "btnReload";
 			this.btnReload.UseUnderline = true;
 			this.btnReload.Label = global::Mono.Unix.Catalog.GetString ("Reload Info");
-			global::Gtk.Image w11 = new global::Gtk.Image ();
-			w11.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-refresh", global::Gtk.IconSize.Menu);
-			this.btnReload.Image = w11;
+			global::Gtk.Image w10 = new global::Gtk.Image ();
+			w10.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-refresh", global::Gtk.IconSize.Menu);
+			this.btnReload.Image = w10;
 			this.hbox1.Add (this.btnReload);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnReload]));
-			w12.Position = 2;
-			w12.Expand = false;
-			w12.Fill = false;
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnReload]));
+			w11.Position = 2;
+			w11.Expand = false;
+			w11.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.chkService = new global::Gtk.CheckButton ();
 			this.chkService.CanFocus = true;
@@ -155,27 +141,27 @@ namespace Momiji
 			this.chkService.DrawIndicator = true;
 			this.chkService.UseUnderline = true;
 			this.hbox1.Add (this.chkService);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.chkService]));
-			w13.Position = 3;
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.chkService]));
+			w12.Position = 3;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.btnCheckIn = new global::Gtk.Button ();
 			this.btnCheckIn.CanFocus = true;
 			this.btnCheckIn.Name = "btnCheckIn";
 			this.btnCheckIn.UseUnderline = true;
 			this.btnCheckIn.Label = global::Mono.Unix.Catalog.GetString ("Confirm Check In");
-			global::Gtk.Image w14 = new global::Gtk.Image ();
-			w14.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
-			this.btnCheckIn.Image = w14;
+			global::Gtk.Image w13 = new global::Gtk.Image ();
+			w13.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
+			this.btnCheckIn.Image = w13;
 			this.hbox1.Add (this.btnCheckIn);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnCheckIn]));
-			w15.Position = 4;
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnCheckIn]));
+			w14.Position = 4;
+			w14.Expand = false;
+			w14.Fill = false;
+			this.vbox1.Add (this.hbox1);
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
+			w15.Position = 1;
 			w15.Expand = false;
 			w15.Fill = false;
-			this.vbox1.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
-			w16.Position = 1;
-			w16.Expand = false;
-			w16.Fill = false;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
