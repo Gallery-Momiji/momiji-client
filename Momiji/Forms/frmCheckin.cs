@@ -25,7 +25,7 @@ namespace Momiji
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
 			//Load minimal data for now
-			MySqlCommand info = new MySqlCommand ("SELECT `ArtistCheckIn` FROM `artists` WHERE `ArtistID` = @AID;",
+			MySqlCommand info = new MySqlCommand ("SELECT `ArtistCheckIn` FROM `artists` WHERE `ArtistID` = @ID;",
 				SQLConnection.GetConnection ());
 
 			info.Prepare ();
@@ -61,12 +61,9 @@ namespace Momiji
 						merchCache.getCellInt ("MerchAAMB", i))
 					);
 				}
-				tabControlMerch.GetNthPage (1).Show ();
-			} else {
-				tabControlMerch.GetNthPage (1).Hide ();
 			}
 
-			MySqlCommand GSmerchData = new MySqlCommand ("SELECT `PieceID`,`PieceTitle`,`PiecePrice`,`PieceStock`,`PieceSDC` FROM `GSmerchandise` WHERE `ArtistID` = @ID;",
+			MySqlCommand GSmerchData = new MySqlCommand ("SELECT `PieceID`,`PieceTitle`,`PiecePrice`,`PieceStock`,`PieceSDC` FROM `gsmerchandise` WHERE `ArtistID` = @ID;",
 				                           SQLConnection.GetConnection ());
 			GSmerchData.Prepare ();
 			GSmerchData.Parameters.AddWithValue ("@ID", artistID);
@@ -82,9 +79,6 @@ namespace Momiji
 						GSmerchCache.getCellInt ("PieceSDC", i))
 					);
 				}
-				tabControlMerch.GetNthPage (2).Show ();
-			} else {
-				tabControlMerch.GetNthPage (2).Hide ();
 			}
 		}
 

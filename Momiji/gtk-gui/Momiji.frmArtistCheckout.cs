@@ -22,7 +22,11 @@ namespace Momiji
 		
 		private global::Gtk.Label lblArtistName;
 		
+		private global::Gtk.Fixed fixed3;
+		
 		private global::Gtk.HBox hboxArtistInfoButton;
+		
+		private global::Gtk.Fixed fixed4;
 		
 		private global::Gtk.Button btnCancel;
 		
@@ -163,28 +167,43 @@ namespace Momiji
 			w5.Fill = false;
 			w5.Padding = ((uint)(8));
 			// Container child vboxArtistInfo.Gtk.Box+BoxChild
+			this.fixed3 = new global::Gtk.Fixed ();
+			this.fixed3.Name = "fixed3";
+			this.fixed3.HasWindow = false;
+			this.vboxArtistInfo.Add (this.fixed3);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vboxArtistInfo [this.fixed3]));
+			w6.Position = 1;
+			w6.Fill = false;
+			// Container child vboxArtistInfo.Gtk.Box+BoxChild
 			this.hboxArtistInfoButton = new global::Gtk.HBox ();
 			this.hboxArtistInfoButton.Name = "hboxArtistInfoButton";
 			this.hboxArtistInfoButton.Spacing = 6;
+			// Container child hboxArtistInfoButton.Gtk.Box+BoxChild
+			this.fixed4 = new global::Gtk.Fixed ();
+			this.fixed4.Name = "fixed4";
+			this.fixed4.HasWindow = false;
+			this.hboxArtistInfoButton.Add (this.fixed4);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hboxArtistInfoButton [this.fixed4]));
+			w7.Position = 0;
 			// Container child hboxArtistInfoButton.Gtk.Box+BoxChild
 			this.btnCancel = new global::Gtk.Button ();
 			this.btnCancel.CanFocus = true;
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.UseUnderline = true;
-			this.btnCancel.Label = global::Mono.Unix.Catalog.GetString ("Cancel");
-			global::Gtk.Image w6 = new global::Gtk.Image ();
-			w6.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-cancel", global::Gtk.IconSize.Menu);
-			this.btnCancel.Image = w6;
+			this.btnCancel.Label = global::Mono.Unix.Catalog.GetString ("Cancel Checkout");
+			global::Gtk.Image w8 = new global::Gtk.Image ();
+			w8.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-cancel", global::Gtk.IconSize.Menu);
+			this.btnCancel.Image = w8;
 			this.hboxArtistInfoButton.Add (this.btnCancel);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hboxArtistInfoButton [this.btnCancel]));
-			w7.Position = 1;
-			w7.Expand = false;
-			w7.Fill = false;
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hboxArtistInfoButton [this.btnCancel]));
+			w9.Position = 1;
+			w9.Expand = false;
+			w9.Fill = false;
 			this.vboxArtistInfo.Add (this.hboxArtistInfoButton);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vboxArtistInfo [this.hboxArtistInfoButton]));
-			w8.Position = 1;
-			w8.Expand = false;
-			w8.Fill = false;
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vboxArtistInfo [this.hboxArtistInfoButton]));
+			w10.Position = 2;
+			w10.Expand = false;
+			w10.Fill = false;
 			this.GtkAlignArtistInfo.Add (this.vboxArtistInfo);
 			this.frameArtistInfo.Add (this.GtkAlignArtistInfo);
 			this.GtkLabel6 = new global::Gtk.Label ();
@@ -193,13 +212,13 @@ namespace Momiji
 			this.GtkLabel6.UseMarkup = true;
 			this.frameArtistInfo.LabelWidget = this.GtkLabel6;
 			this.tableANCheckout.Add (this.frameArtistInfo);
-			global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.tableANCheckout [this.frameArtistInfo]));
-			w11.TopAttach = ((uint)(1));
-			w11.BottomAttach = ((uint)(2));
-			w11.LeftAttach = ((uint)(1));
-			w11.RightAttach = ((uint)(2));
-			w11.XOptions = ((global::Gtk.AttachOptions)(4));
-			w11.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w13 = ((global::Gtk.Table.TableChild)(this.tableANCheckout [this.frameArtistInfo]));
+			w13.TopAttach = ((uint)(1));
+			w13.BottomAttach = ((uint)(2));
+			w13.LeftAttach = ((uint)(1));
+			w13.RightAttach = ((uint)(2));
+			w13.XOptions = ((global::Gtk.AttachOptions)(4));
+			w13.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child tableANCheckout.Gtk.Table+TableChild
 			this.frameStep1 = new global::Gtk.Frame ();
 			this.frameStep1.Name = "frameStep1";
@@ -216,29 +235,28 @@ namespace Momiji
 			// Container child vboxStep1.Gtk.Box+BoxChild
 			this.lblGenSaleSum = new global::Gtk.Label ();
 			this.lblGenSaleSum.Name = "lblGenSaleSum";
-			this.lblGenSaleSum.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>First, let\'s show the artist their earnings. \nClick the button below for a pag" +
-			"e \ndisplaying the artists\' sales summary \n(make sure you print it!)</b>");
+			this.lblGenSaleSum.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>First, let's show the artist their earnings. \nClick the button below for a page \ndisplaying the artists' sales summary \n(make sure you print it!)</b>");
 			this.lblGenSaleSum.UseMarkup = true;
 			this.vboxStep1.Add (this.lblGenSaleSum);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vboxStep1 [this.lblGenSaleSum]));
-			w12.Position = 0;
-			w12.Expand = false;
-			w12.Fill = false;
-			w12.Padding = ((uint)(8));
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vboxStep1 [this.lblGenSaleSum]));
+			w14.Position = 0;
+			w14.Expand = false;
+			w14.Fill = false;
+			w14.Padding = ((uint)(8));
 			// Container child vboxStep1.Gtk.Box+BoxChild
 			this.btnGenSaleSum = new global::Gtk.Button ();
 			this.btnGenSaleSum.CanFocus = true;
 			this.btnGenSaleSum.Name = "btnGenSaleSum";
 			this.btnGenSaleSum.UseUnderline = true;
 			this.btnGenSaleSum.Label = global::Mono.Unix.Catalog.GetString ("Generate Sales Summary");
-			global::Gtk.Image w13 = new global::Gtk.Image ();
-			w13.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-execute", global::Gtk.IconSize.Menu);
-			this.btnGenSaleSum.Image = w13;
+			global::Gtk.Image w15 = new global::Gtk.Image ();
+			w15.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-execute", global::Gtk.IconSize.Menu);
+			this.btnGenSaleSum.Image = w15;
 			this.vboxStep1.Add (this.btnGenSaleSum);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vboxStep1 [this.btnGenSaleSum]));
-			w14.Position = 1;
-			w14.Expand = false;
-			w14.Fill = false;
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vboxStep1 [this.btnGenSaleSum]));
+			w16.Position = 1;
+			w16.Expand = false;
+			w16.Fill = false;
 			this.GtkAlignment5.Add (this.vboxStep1);
 			this.frameStep1.Add (this.GtkAlignment5);
 			this.lblStep1 = new global::Gtk.Label ();
@@ -246,9 +264,9 @@ namespace Momiji
 			this.lblStep1.LabelProp = global::Mono.Unix.Catalog.GetString ("Step 1 :");
 			this.frameStep1.LabelWidget = this.lblStep1;
 			this.tableANCheckout.Add (this.frameStep1);
-			global::Gtk.Table.TableChild w17 = ((global::Gtk.Table.TableChild)(this.tableANCheckout [this.frameStep1]));
-			w17.XOptions = ((global::Gtk.AttachOptions)(4));
-			w17.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w19 = ((global::Gtk.Table.TableChild)(this.tableANCheckout [this.frameStep1]));
+			w19.XOptions = ((global::Gtk.AttachOptions)(4));
+			w19.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child tableANCheckout.Gtk.Table+TableChild
 			this.frameStep4 = new global::Gtk.Frame ();
 			this.frameStep4.Name = "frameStep4";
@@ -272,10 +290,10 @@ namespace Momiji
 			this.chkStep1.DrawIndicator = true;
 			this.chkStep1.UseUnderline = true;
 			this.vbox4.Add (this.chkStep1);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.chkStep1]));
-			w18.Position = 0;
-			w18.Expand = false;
-			w18.Fill = false;
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.chkStep1]));
+			w20.Position = 0;
+			w20.Expand = false;
+			w20.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.chkStep2 = new global::Gtk.CheckButton ();
 			this.chkStep2.CanFocus = true;
@@ -284,10 +302,10 @@ namespace Momiji
 			this.chkStep2.DrawIndicator = true;
 			this.chkStep2.UseUnderline = true;
 			this.vbox4.Add (this.chkStep2);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.chkStep2]));
-			w19.Position = 1;
-			w19.Expand = false;
-			w19.Fill = false;
+			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.chkStep2]));
+			w21.Position = 1;
+			w21.Expand = false;
+			w21.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.chkStep3 = new global::Gtk.CheckButton ();
 			this.chkStep3.CanFocus = true;
@@ -296,24 +314,24 @@ namespace Momiji
 			this.chkStep3.DrawIndicator = true;
 			this.chkStep3.UseUnderline = true;
 			this.vbox4.Add (this.chkStep3);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.chkStep3]));
-			w20.Position = 2;
-			w20.Expand = false;
-			w20.Fill = false;
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.chkStep3]));
+			w22.Position = 2;
+			w22.Expand = false;
+			w22.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.btnMarkCheckout = new global::Gtk.Button ();
 			this.btnMarkCheckout.CanFocus = true;
 			this.btnMarkCheckout.Name = "btnMarkCheckout";
 			this.btnMarkCheckout.UseUnderline = true;
 			this.btnMarkCheckout.Label = global::Mono.Unix.Catalog.GetString ("Mark Artist as Checked out");
-			global::Gtk.Image w21 = new global::Gtk.Image ();
-			w21.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-ok", global::Gtk.IconSize.Menu);
-			this.btnMarkCheckout.Image = w21;
+			global::Gtk.Image w23 = new global::Gtk.Image ();
+			w23.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-ok", global::Gtk.IconSize.Menu);
+			this.btnMarkCheckout.Image = w23;
 			this.vbox4.Add (this.btnMarkCheckout);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.btnMarkCheckout]));
-			w22.Position = 3;
-			w22.Expand = false;
-			w22.Fill = false;
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.btnMarkCheckout]));
+			w24.Position = 3;
+			w24.Expand = false;
+			w24.Fill = false;
 			this.GtkSAlignStep4.Add (this.vbox4);
 			this.frameStep4.Add (this.GtkSAlignStep4);
 			this.lblStep4 = new global::Gtk.Label ();
@@ -321,11 +339,11 @@ namespace Momiji
 			this.lblStep4.LabelProp = global::Mono.Unix.Catalog.GetString ("Step 4 :");
 			this.frameStep4.LabelWidget = this.lblStep4;
 			this.tableANCheckout.Add (this.frameStep4);
-			global::Gtk.Table.TableChild w25 = ((global::Gtk.Table.TableChild)(this.tableANCheckout [this.frameStep4]));
-			w25.TopAttach = ((uint)(1));
-			w25.BottomAttach = ((uint)(2));
-			w25.XOptions = ((global::Gtk.AttachOptions)(4));
-			w25.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w27 = ((global::Gtk.Table.TableChild)(this.tableANCheckout [this.frameStep4]));
+			w27.TopAttach = ((uint)(1));
+			w27.BottomAttach = ((uint)(2));
+			w27.XOptions = ((global::Gtk.AttachOptions)(4));
+			w27.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child tableANCheckout.Gtk.Table+TableChild
 			this.hboxStep23 = new global::Gtk.HBox ();
 			this.hboxStep23.Name = "hboxStep23";
@@ -352,21 +370,20 @@ namespace Momiji
 			this.lblIMPORTANT.LabelProp = global::Mono.Unix.Catalog.GetString ("<span foreground=\"red\" size=\"x-large\"><b>IMPORTANT</b></span>");
 			this.lblIMPORTANT.UseMarkup = true;
 			this.vboxStep2.Add (this.lblIMPORTANT);
-			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vboxStep2 [this.lblIMPORTANT]));
-			w26.Position = 0;
-			w26.Expand = false;
-			w26.Fill = false;
+			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.vboxStep2 [this.lblIMPORTANT]));
+			w28.Position = 0;
+			w28.Expand = false;
+			w28.Fill = false;
 			// Container child vboxStep2.Gtk.Box+BoxChild
 			this.lblIMPORTANTDetails = new global::Gtk.Label ();
 			this.lblIMPORTANTDetails.Name = "lblIMPORTANTDetails";
-			this.lblIMPORTANTDetails.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Once you go over the artists\' sales\nsummary, make sure the artist has \ncollect" +
-			"ed all of his/her art work, \nwhere applicable.</b>");
+			this.lblIMPORTANTDetails.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Once you go over the artists' sales\nsummary, make sure the artist has \ncollected all of his/her art work, \nwhere applicable.</b>");
 			this.lblIMPORTANTDetails.UseMarkup = true;
 			this.vboxStep2.Add (this.lblIMPORTANTDetails);
-			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.vboxStep2 [this.lblIMPORTANTDetails]));
-			w27.Position = 1;
-			w27.Expand = false;
-			w27.Fill = false;
+			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.vboxStep2 [this.lblIMPORTANTDetails]));
+			w29.Position = 1;
+			w29.Expand = false;
+			w29.Fill = false;
 			this.GtkAlignStep2.Add (this.vboxStep2);
 			this.frameStep2.Add (this.GtkAlignStep2);
 			this.lblStep2 = new global::Gtk.Label ();
@@ -375,10 +392,10 @@ namespace Momiji
 			this.lblStep2.UseMarkup = true;
 			this.frameStep2.LabelWidget = this.lblStep2;
 			this.hboxStep23.Add (this.frameStep2);
-			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.hboxStep23 [this.frameStep2]));
-			w30.Position = 0;
-			w30.Expand = false;
-			w30.Fill = false;
+			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.hboxStep23 [this.frameStep2]));
+			w32.Position = 0;
+			w32.Expand = false;
+			w32.Fill = false;
 			// Container child hboxStep23.Gtk.Box+BoxChild
 			this.frameStep3 = new global::Gtk.Frame ();
 			this.frameStep3.Name = "frameStep3";
@@ -397,23 +414,22 @@ namespace Momiji
 			// Container child vboxStep3.Gtk.Box+BoxChild
 			this.lblStep3a = new global::Gtk.Label ();
 			this.lblStep3a.Name = "lblStep3a";
-			this.lblStep3a.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Make sure to pay the artist in\nan envelope, as well as including\ntheir copy of" +
-			" the sales summary.</b>");
+			this.lblStep3a.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Make sure to pay the artist in\nan envelope, as well as including\ntheir copy of the sales summary.</b>");
 			this.lblStep3a.UseMarkup = true;
 			this.vboxStep3.Add (this.lblStep3a);
-			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vboxStep3 [this.lblStep3a]));
-			w31.Position = 0;
-			w31.Expand = false;
-			w31.Fill = false;
+			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vboxStep3 [this.lblStep3a]));
+			w33.Position = 0;
+			w33.Expand = false;
+			w33.Fill = false;
 			// Container child vboxStep3.Gtk.Box+BoxChild
 			this.lblStep3b = new global::Gtk.Label ();
 			this.lblStep3b.Name = "lblStep3b";
 			this.lblStep3b.LabelProp = global::Mono.Unix.Catalog.GetString ("If their earnings are $500 or more,\noffer a cheque, and ask for help.");
 			this.vboxStep3.Add (this.lblStep3b);
-			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.vboxStep3 [this.lblStep3b]));
-			w32.Position = 1;
-			w32.Expand = false;
-			w32.Fill = false;
+			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vboxStep3 [this.lblStep3b]));
+			w34.Position = 1;
+			w34.Expand = false;
+			w34.Fill = false;
 			this.GtkAlignStep3.Add (this.vboxStep3);
 			this.frameStep3.Add (this.GtkAlignStep3);
 			this.lblStep3 = new global::Gtk.Label ();
@@ -421,16 +437,16 @@ namespace Momiji
 			this.lblStep3.LabelProp = global::Mono.Unix.Catalog.GetString ("Step 3 :");
 			this.frameStep3.LabelWidget = this.lblStep3;
 			this.hboxStep23.Add (this.frameStep3);
-			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hboxStep23 [this.frameStep3]));
-			w35.Position = 1;
-			w35.Expand = false;
-			w35.Fill = false;
+			global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.hboxStep23 [this.frameStep3]));
+			w37.Position = 1;
+			w37.Expand = false;
+			w37.Fill = false;
 			this.tableANCheckout.Add (this.hboxStep23);
-			global::Gtk.Table.TableChild w36 = ((global::Gtk.Table.TableChild)(this.tableANCheckout [this.hboxStep23]));
-			w36.LeftAttach = ((uint)(1));
-			w36.RightAttach = ((uint)(2));
-			w36.XOptions = ((global::Gtk.AttachOptions)(4));
-			w36.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w38 = ((global::Gtk.Table.TableChild)(this.tableANCheckout [this.hboxStep23]));
+			w38.LeftAttach = ((uint)(1));
+			w38.RightAttach = ((uint)(2));
+			w38.XOptions = ((global::Gtk.AttachOptions)(4));
+			w38.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.Add (this.tableANCheckout);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

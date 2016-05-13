@@ -26,14 +26,14 @@ namespace Momiji
 			this.Build ();
 
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand ("SELECT `ArtistName`,`ArtistCheckedOut` FROM `artists` WHERE `ArtistID` = @ID;",
+			MySqlCommand query = new MySqlCommand ("SELECT `ArtistName`,`ArtistcheckOut` FROM `artists` WHERE `ArtistID` = @ID;",
 				SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@ID", this.artistID);
 
 			SQLResult results = SQLConnection.Query (query);
 			if (results.successful ()) {
-				if (results.getCellInt ("ArtistCheckedOut", 0) == 1) {
+				if (results.getCellInt ("ArtistcheckOut", 0) == 1) {
 					btnMarkCheckout.Sensitive = false;
 					MessageBox.Show (this, MessageType.Warning,
 						"Artist already marked as Checked Out.");
@@ -61,7 +61,7 @@ namespace Momiji
 		{
 			if (chkStep1.Active && chkStep2.Active && chkStep3.Active) {
 				SQL SQLConnection = parent.currentSQLConnection;
-				MySqlCommand checkinQuery = new MySqlCommand ("UPDATE `artists` SET `ArtistCheckedOut`=1 WHERE  `ArtistID`=@ID;",
+				MySqlCommand checkinQuery = new MySqlCommand ("UPDATE `artists` SET `ArtistcheckOut`=1 WHERE  `ArtistID`=@ID;",
 					SQLConnection.GetConnection ());
 				checkinQuery.Prepare ();
 				checkinQuery.Parameters.AddWithValue ("@ID", this.artistID);

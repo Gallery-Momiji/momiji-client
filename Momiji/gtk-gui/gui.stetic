@@ -507,11 +507,29 @@ Learn more at http://www.animenorth.com</property>
                       </packing>
                     </child>
                     <child>
+                      <widget class="Gtk.Fixed" id="fixed3">
+                        <property name="MemberName" />
+                        <property name="HasWindow">False</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
                       <widget class="Gtk.HBox" id="hboxArtistInfoButton">
                         <property name="MemberName" />
                         <property name="Spacing">6</property>
                         <child>
-                          <placeholder />
+                          <widget class="Gtk.Fixed" id="fixed4">
+                            <property name="MemberName" />
+                            <property name="HasWindow">False</property>
+                          </widget>
+                          <packing>
+                            <property name="Position">0</property>
+                            <property name="AutoSize">False</property>
+                          </packing>
                         </child>
                         <child>
                           <widget class="Gtk.Button" id="btnCancel">
@@ -519,7 +537,7 @@ Learn more at http://www.animenorth.com</property>
                             <property name="CanFocus">True</property>
                             <property name="Type">TextAndIcon</property>
                             <property name="Icon">stock:gtk-cancel Menu</property>
-                            <property name="Label" translatable="yes">Cancel</property>
+                            <property name="Label" translatable="yes">Cancel Checkout</property>
                             <property name="UseUnderline">True</property>
                             <signal name="Clicked" handler="OnBtnCancelClicked" />
                           </widget>
@@ -532,7 +550,7 @@ Learn more at http://www.animenorth.com</property>
                         </child>
                       </widget>
                       <packing>
-                        <property name="Position">1</property>
+                        <property name="Position">2</property>
                         <property name="AutoSize">True</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
