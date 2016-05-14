@@ -95,6 +95,8 @@ namespace Momiji
 			StockNode.buildTableMerch (ref lstMerch, ref merchStore);
 			StockNode.buildTableGSMerch (ref lstGSMerch, ref gsmerchStore);
 
+			this.Title += " (Artist #" + artistID.ToString() + ")";
+
 			RefreshInfo ();
 		}
 

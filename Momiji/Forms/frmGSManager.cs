@@ -23,6 +23,7 @@ namespace Momiji
 			this.parent = parent;
 			this.artistID = ID;
 			this.Build ();
+			this.lblArtistID.Text = ID.ToString ();
 			StockNode.buildTableGSMerch (ref lstMerch, ref merchStore);
 
 			if (merch.GetNumberOfRows () > 0) {
@@ -36,6 +37,17 @@ namespace Momiji
 					);
 				}
 			}
+			SQL SQLConnection = parent.currentSQLConnection;
+			MySqlCommand query = new MySqlCommand ("SELECT `ArtistName` FROM `artists` WHERE `ArtistID` = @ID;",
+				                     SQLConnection.GetConnection ());
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@ID", artistID);
+
+			this.lblArtistName.Text = merch.getCell ("ArtistName", 0);
+
+			this.btnAdd.Sensitive = true;
+			this.btnDelete.Sensitive = false;
+			this.btnUpdate.Sensitive = false;
 		}
 
 		/////////////////////////
@@ -47,7 +59,7 @@ namespace Momiji
 			base (Gtk.WindowType.Toplevel)
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand merchData = new MySqlCommand ("SELECT `PieceID`,`PieceTitle`,`PiecePrice`,`PieceStock`,`PieceSDC` FROM `GSmerchandise` WHERE `ArtistID` = @ID;",
+			MySqlCommand merchData = new MySqlCommand ("SELECT `PieceID`,`PieceTitle`,`PiecePrice`,`PieceStock`,`PieceSDC` FROM `gsmerchandise` WHERE `ArtistID` = @ID;",
 				                         SQLConnection.GetConnection ());
 			merchData.Prepare ();
 			merchData.Parameters.AddWithValue ("@ID", artistID);
@@ -66,46 +78,146 @@ namespace Momiji
 		//     GTK Signals     //
 		/////////////////////////
 
-		//TODO//
+		//TODO//no current stock setting!!!
 
 		protected void OnBtnGenIDClicked (object sender, EventArgs e)
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand ("SELECT MAX(`PieceID`)+1 as `next_id` FROM `gsmerchandise` limit 0,1;",
-				SQLConnection.GetConnection ());
+			MySqlCommand query = new MySqlCommand ("SELECT MAX(`PieceID`)+1 as `next_id` FROM `gsmerchandise` WHERE `ArtistID` = @ID limit 0,1;",
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
+			query.Parameters.AddWithValue ("@ID", artistID);
 
 			SQLResult results = SQLConnection.Query (query);
 
 			txtPieceID.Text = results.getCell ("next_id", 0);
+
+			this.btnAdd.Sensitive = true;
+			this.btnDelete.Sensitive = false;
+			this.btnUpdate.Sensitive = false;
 		}
 
 		protected void OnBtnUpdateClicked (object sender, EventArgs e)
 		{
-#if DEBUG
-			throw new System.NotImplementedException ();
-#endif
+			if (txtPieceTitle.Text == "" ||
+				txtPricePerUnit.Text  == "" ||
+				txtGivenStock.Text  == "") {
+				MessageBox.Show (this, MessageType.Error,
+					"Please fill in all the fields");
+				return;
+			}
+
+			SQL SQLConnection = parent.currentSQLConnection;
+			MySqlCommand query = new MySqlCommand ("UPDATE `gsmerchandise` SET `PieceTitle`=@TITLE, `PiecePrice`=@PRICE,`PieceSDC`=@SDC,`PieceStock`=@STOCK,`PieceInitialStock`=@ISTOCK WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
+				                     SQLConnection.GetConnection ());
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@AID", artistID);
+			query.Parameters.AddWithValue ("@PID", txtPieceID.Text);
+			query.Parameters.AddWithValue ("@TITLE", txtPieceTitle.Text);
+			query.Parameters.AddWithValue ("@PRICE", txtPricePerUnit.Text);
+			query.Parameters.AddWithValue ("@SDC", chkSDC.Active ? 1 : 0);
+			query.Parameters.AddWithValue ("@ISTOCK", txtGivenStock.Text);
+			//TODO//no current stock setting!!!
+			query.Parameters.AddWithValue ("@STOCK", txtGivenStock.Text);
+
+			SQLResult results = SQLConnection.Query (query);
+
+			if (results.successful ()) {
+				MessageBox.Show (this, MessageType.Info,
+					"Updated piece successfully.");
+				OnBtnClearClicked (sender, e);
+				//TODO// update lstmerch row
+			} else {
+				MessageBox.Show (this, MessageType.Error,
+					"Could not update piece.\nPlease contact your administrator.\");");
+			}
 		}
 
 		protected void OnBtnAddClicked (object sender, EventArgs e)
 		{
-#if DEBUG
-			throw new System.NotImplementedException ();
-#endif
+			if (txtPieceID.Text == "" ||
+				txtPieceTitle.Text == "" ||
+				txtPricePerUnit.Text  == "" ||
+				txtGivenStock.Text  == "") {
+				MessageBox.Show (this, MessageType.Error,
+					"Please fill in all the fields");
+				return;
+			}
+
+			int pieceid;
+			if (!int.TryParse (txtPieceID.Text, out pieceid)) {
+				MessageBox.Show (this, MessageType.Error,
+					"Invalid Piece ID");
+				return;
+			}
+
+			//TODO//no current stock setting!!!
+			/*int stock;
+			if (!int.TryParse (txtStock.Text, out stock)) {
+				MessageBox.Show (this, MessageType.Error,
+					"Invalid Piece ID");
+				return;
+			}*/
+
+			SQL SQLConnection = parent.currentSQLConnection;
+			MySqlCommand query = new MySqlCommand ("INSERT INTO `gsmerchandise` (`ArtistID`, `PieceID`, `PieceTitle`, `PiecePrice`,`PieceSDC`,`PieceInitialStock`,`PieceStock`) VALUES (@AID, @PID, @TITLE, @PRICE, @SDC, @ISTOCK, @STOCK);",
+				SQLConnection.GetConnection ());
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@AID", artistID);
+			query.Parameters.AddWithValue ("@PID", txtPieceID.Text);
+			query.Parameters.AddWithValue ("@TITLE", txtPieceTitle.Text);
+			query.Parameters.AddWithValue ("@PRICE", txtPricePerUnit.Text);
+			query.Parameters.AddWithValue ("@SDC", chkSDC.Active ? 1 : 0);
+			query.Parameters.AddWithValue ("@ISTOCK", txtGivenStock.Text);
+			//TODO//no current stock setting!!!
+			query.Parameters.AddWithValue ("@STOCK", txtGivenStock.Text);
+
+			SQLResult results = SQLConnection.Query (query);
+
+			if (results.successful ()) {//todo check if piece exists
+				merchStore.AddNode (new StockNode (
+					pieceid,
+					txtPieceTitle.Text,
+					txtPricePerUnit.Text,
+					//TODO//no current stock setting!!!
+					0/*stock*/,
+					chkSDC.Active ? 1 : 0)
+				);
+				MessageBox.Show (this, MessageType.Info,
+					"Added new piece successfully.");
+				OnBtnClearClicked (sender, e);
+			} else {
+				MessageBox.Show (this, MessageType.Error,
+					"Could not add piece, please try again.\nHint: Does this piece id already exist? If so, did you mean to hit update?");
+			}
 		}
 
 		protected void OnBtnClearClicked (object sender, EventArgs e)
 		{
-#if DEBUG
-			throw new System.NotImplementedException ();
-#endif
+			txtPieceID.Text = "";
+			txtPieceTitle.Text = "";
+			txtPricePerUnit.Text  = "";
+			txtGivenStock.Text  = "";
+			chkSDC.Active = false;
 		}
 
 		protected void OnBtnDeleteClicked (object sender, EventArgs e)
 		{
-#if DEBUG
-			throw new System.NotImplementedException ();
-#endif
+			SQL SQLConnection = parent.currentSQLConnection;
+			MySqlCommand query = new MySqlCommand ("DELETE FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
+				                     SQLConnection.GetConnection ());
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@AID", artistID);
+			query.Parameters.AddWithValue ("@PID", txtPieceID.Text);
+			SQLResult results = SQLConnection.Query (query);
+
+			if (results.successful ()) {//todo check if piece exists
+				MessageBox.Show (this, MessageType.Info, "Piece deleted successfully");
+				OnBtnClearClicked (sender, e);
+				//TODO// update lstmerch row
+			} else {
+				MessageBox.Show (this, MessageType.Error, "Could not delete piece.\nPlease contact your administrator.");
+			}
 		}
 
 		protected void OnBtnGenBarcodeClicked (object sender, EventArgs e)
@@ -150,12 +262,42 @@ namespace Momiji
 			}
 		}
 
-		//TODO// Rename this button
-		protected void OnButton6Clicked (object sender, EventArgs e)
+		protected void OnBtnCancelClicked (object sender, EventArgs e)
 		{
-#if DEBUG
-			throw new System.NotImplementedException ();
-#endif
+			this.Destroy ();
+		}
+
+		protected void OnLstMerchRowActivated (object o, RowActivatedArgs args)
+		{
+			StockNode selectednode = (StockNode)lstMerch.NodeSelection.SelectedNode;
+
+			SQL SQLConnection = parent.currentSQLConnection;
+			MySqlCommand query = new MySqlCommand ("SELECT `PieceInitialStock` FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
+				SQLConnection.GetConnection ());
+			query.Prepare ();
+			query.Parameters.AddWithValue ("@AID", artistID);
+			query.Parameters.AddWithValue ("@PID", selectednode.PieceID);
+
+			SQLResult results = SQLConnection.Query (query);
+			this.txtGivenStock.Text = results.getCell ("PieceInitialStock", 0);
+
+			this.txtPieceID.Text = selectednode.PieceID.ToString ();
+			this.txtPieceTitle.Text = selectednode.PieceTitle;
+			this.txtPricePerUnit.Text = selectednode.PieceMinPrice.Substring (1, selectednode.PieceMinPrice.Length - 1);
+			//TODO//no current stock setting!!!
+			//this.txtStock.Text = selectednode.PieceOther;
+			this.chkSDC.Active = selectednode.PieceBool == "Yes";
+
+			this.btnAdd.Sensitive = false;
+			this.btnDelete.Sensitive = true;
+			this.btnUpdate.Sensitive = true;
+		}
+
+		protected void OnTxtPieceIDChanged (object sender, EventArgs e)
+		{
+			this.btnAdd.Sensitive = true;
+			this.btnDelete.Sensitive = false;
+			this.btnUpdate.Sensitive = false;
 		}
 	}
 }

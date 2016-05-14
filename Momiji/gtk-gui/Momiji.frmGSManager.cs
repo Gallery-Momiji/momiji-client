@@ -80,9 +80,11 @@ namespace Momiji
 		{
 			global::Stetic.Gui.Initialize (this);
 			// Widget Momiji.frmGSManager
+			this.WidthRequest = 800;
 			this.Name = "Momiji.frmGSManager";
 			this.Title = global::Mono.Unix.Catalog.GetString ("GS Manager");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.Modal = true;
 			// Container child Momiji.frmGSManager.Gtk.Container+ContainerChild
 			this.hbox2 = new global::Gtk.HBox ();
 			this.hbox2.Name = "hbox2";
@@ -447,9 +449,11 @@ namespace Momiji
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 400;
+			this.DefaultWidth = 800;
 			this.DefaultHeight = 532;
 			this.Show ();
+			this.lstMerch.RowActivated += new global::Gtk.RowActivatedHandler (this.OnLstMerchRowActivated);
+			this.txtPieceID.Changed += new global::System.EventHandler (this.OnTxtPieceIDChanged);
 			this.btnGenID.Clicked += new global::System.EventHandler (this.OnBtnGenIDClicked);
 			this.btnUpdate.Clicked += new global::System.EventHandler (this.OnBtnUpdateClicked);
 			this.btnDelete.Clicked += new global::System.EventHandler (this.OnBtnDeleteClicked);
@@ -457,7 +461,7 @@ namespace Momiji
 			this.btnAdd.Clicked += new global::System.EventHandler (this.OnBtnAddClicked);
 			this.btnGenBarcode.Clicked += new global::System.EventHandler (this.OnBtnGenBarcodeClicked);
 			this.btnGenCS.Clicked += new global::System.EventHandler (this.OnBtnGenCSClicked);
-			this.btnCancel.Clicked += new global::System.EventHandler (this.OnButton6Clicked);
+			this.btnCancel.Clicked += new global::System.EventHandler (this.OnBtnCancelClicked);
 		}
 	}
 }

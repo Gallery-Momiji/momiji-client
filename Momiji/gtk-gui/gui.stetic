@@ -2001,10 +2001,12 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmGSManager" design-size="400 532">
+  <widget class="Gtk.Window" id="Momiji.frmGSManager" design-size="800 532">
     <property name="MemberName" />
+    <property name="WidthRequest">800</property>
     <property name="Title" translatable="yes">GS Manager</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="Modal">True</property>
     <child>
       <widget class="Gtk.HBox" id="hbox2">
         <property name="MemberName" />
@@ -2020,6 +2022,7 @@ offer a cheque, and ask for help.</property>
                 <property name="CanFocus">True</property>
                 <property name="ShowScrollbars">True</property>
                 <property name="EnableSearch">False</property>
+                <signal name="RowActivated" handler="OnLstMerchRowActivated" />
               </widget>
             </child>
           </widget>
@@ -2179,6 +2182,7 @@ offer a cheque, and ask for help.</property>
                                 <property name="WidthChars">3</property>
                                 <property name="MaxLength">3</property>
                                 <property name="InvisibleChar">●</property>
+                                <signal name="Changed" handler="OnTxtPieceIDChanged" />
                               </widget>
                               <packing>
                                 <property name="Position">1</property>
@@ -2505,7 +2509,7 @@ offer a cheque, and ask for help.</property>
                 <property name="Icon">stock:gtk-close Menu</property>
                 <property name="Label" translatable="yes">Cancel</property>
                 <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnButton6Clicked" />
+                <signal name="Clicked" handler="OnBtnCancelClicked" />
               </widget>
               <packing>
                 <property name="Position">4</property>
@@ -2964,7 +2968,7 @@ offer a cheque, and ask for help.</property>
   </widget>
   <widget class="Gtk.Window" id="Momiji.frmCheckin" design-size="595 300">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">frmCheckin</property>
+    <property name="Title" translatable="yes">Artist Check In</property>
     <property name="WindowPosition">CenterOnParent</property>
     <child>
       <widget class="Gtk.VBox" id="vbox1">
@@ -3839,10 +3843,12 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmMerchEditor" design-size="419 539">
+  <widget class="Gtk.Window" id="Momiji.frmMerchEditor" design-size="800 539">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">frmMerchEditor</property>
+    <property name="WidthRequest">800</property>
+    <property name="Title" translatable="yes">Merch Editor</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="Modal">True</property>
     <child>
       <widget class="Gtk.HBox" id="hbox2">
         <property name="MemberName" />
@@ -3858,6 +3864,7 @@ offer a cheque, and ask for help.</property>
                 <property name="CanFocus">True</property>
                 <property name="ShowScrollbars">True</property>
                 <property name="EnableSearch">False</property>
+                <signal name="RowActivated" handler="OnLstMerchRowActivated" />
               </widget>
             </child>
           </widget>
@@ -4001,6 +4008,7 @@ offer a cheque, and ask for help.</property>
                                 <property name="WidthChars">3</property>
                                 <property name="MaxLength">3</property>
                                 <property name="InvisibleChar">●</property>
+                                <signal name="Changed" handler="OnTxtPieceIDChanged" />
                               </widget>
                               <packing>
                                 <property name="Position">1</property>
@@ -4307,7 +4315,6 @@ offer a cheque, and ask for help.</property>
                             <property name="Icon">stock:gtk-execute Menu</property>
                             <property name="Label" translatable="yes">Create Bid Sheet</property>
                             <property name="UseUnderline">True</property>
-                            <signal name="Clicked" handler="OnBtnCreateSheetClicked" />
                           </widget>
                           <packing>
                             <property name="Position">7</property>
@@ -4346,7 +4353,6 @@ offer a cheque, and ask for help.</property>
                 <property name="Icon">stock:gtk-execute Menu</property>
                 <property name="Label" translatable="yes">Generate Control Sheet</property>
                 <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnGenCSClicked" />
               </widget>
               <packing>
                 <property name="Position">2</property>
@@ -4363,7 +4369,6 @@ offer a cheque, and ask for help.</property>
                 <property name="Icon">stock:gtk-close Menu</property>
                 <property name="Label" translatable="yes">Cancel</property>
                 <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnCancelClicked" />
               </widget>
               <packing>
                 <property name="Position">3</property>

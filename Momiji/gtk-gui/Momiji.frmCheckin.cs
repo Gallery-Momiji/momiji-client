@@ -37,7 +37,7 @@ namespace Momiji
 			global::Stetic.Gui.Initialize (this);
 			// Widget Momiji.frmCheckin
 			this.Name = "Momiji.frmCheckin";
-			this.Title = global::Mono.Unix.Catalog.GetString ("frmCheckin");
+			this.Title = global::Mono.Unix.Catalog.GetString ("Artist Check In");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child Momiji.frmCheckin.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox ();
