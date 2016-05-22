@@ -159,7 +159,6 @@ namespace Momiji
 
 					SQLConnection.LogAction ("Attempted to auction sell an already sold item (" + txtBarcode.Text + ")",
 						parent.currentUser);
-					txtPrice.Text = "";
 				} else {
 					merchStore.AddNode (new MerchNode (ArtistID,
 						MerchID,
@@ -172,7 +171,6 @@ namespace Momiji
 					items = items + txtBarcode.Text + "#";
 					prices = prices + Price.ToString () + "#";
 
-					txtPrice.Text = "";
 					btnPay.Sensitive = true;
 					txtPaid.Sensitive = true;
 					btnCancel.Sensitive = true;
@@ -184,6 +182,7 @@ namespace Momiji
 
 			txtBarcode.GrabFocus ();
 			txtBarcode.Text = "";
+			txtPrice.Text = "";
 		}
 
 		protected void OnTxtPriceActivated (object sender, EventArgs e)
