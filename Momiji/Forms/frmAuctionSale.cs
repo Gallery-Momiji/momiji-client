@@ -150,6 +150,9 @@ namespace Momiji
 					MessageBox.Show (this, MessageType.Error,
 						"Price is too low.\nThis item has a minimum bid of $" +
 						String.Format ("{0:0.00}", minbid));
+					txtPrice.Text = "";
+					txtPrice.GrabFocus ();
+					return;
 				} else if (results.getCell ("MerchSold", 0) == "1") {
 					MessageBox.Show (this, MessageType.Error,
 						"This item has already been sold. This will be reported.");
