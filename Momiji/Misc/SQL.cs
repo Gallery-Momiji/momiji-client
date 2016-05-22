@@ -83,9 +83,7 @@ namespace Momiji
 		public void LogAction (string action, SQLResult user)
 		{
 			try {
-				string time = DateTime.Now.Hour.ToString () + ":" + DateTime.Now.Minute.ToString () + ":" + DateTime.Now.Second.ToString ();
-				string date = DateTime.Now.Year.ToString () + "-" + DateTime.Now.Month.ToString () + "-" + DateTime.Now.Date.Day.ToString ();
-				string sqlQuery = "INSERT INTO `log` (`user_id`, `action`, `timestamp`, `date`) VALUES (" + user.getCell ("id", 0) + ", '" + action + "', '" + time + "', '" + date + "');";
+				string sqlQuery = "INSERT INTO `log` (`user_id`, `action`, `timestamp`, `date`) VALUES (" + user.getCell ("id", 0) + ", '" + action + "', CURRENT_TIME, CURRENT_DATE);";
 
 				MySqlCommand log = new MySqlCommand (sqlQuery, this.link);
 				log.Prepare ();

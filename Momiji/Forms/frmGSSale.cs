@@ -173,7 +173,7 @@ namespace Momiji
 			SQL SQLConnection = parent.currentSQLConnection;
 			SQLResult User = parent.currentUser;
 
-			MySqlCommand query = new MySqlCommand ("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isGalleryStoreSale`, `itemArray`, `priceArray`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES);",
+			MySqlCommand query = new MySqlCommand ("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isGalleryStoreSale`, `itemArray`, `priceArray`, `timestamp`, `date`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES, CURRENT_TIME, CURRENT_DATE);",
 				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
