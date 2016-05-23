@@ -90,28 +90,7 @@ namespace Momiji
 			// Container child GtkViewport.Gtk.Container+ContainerChild
 			this.lblCopyright = new global::Gtk.Label ();
 			this.lblCopyright.Name = "lblCopyright";
-			this.lblCopyright.LabelProp = global::Mono.Unix.Catalog.GetString ("Copyright 2012-2015 Tiago Rogue Medeiros (medeirosT)\nCopyright 2014-2016 Alexande" +
-			"r Jeremy Newton (mystro256)\nSpecial thanks to all the testers and users of this " +
-			"program!\n\nThis code is open source!\nView the code here:\nhttps://github.com/Galle" +
-			"ry-Momiji/momiji-client\nReport issues and bugs here:\nhttps://github.com/Gallery-" +
-			"Momiji/momiji-client/issues\n\nThe open source license(s) can be found online here" +
-			":\nhttp://www.gnu.org/licenses/gpl-3.0.html\nhttp://www.gnu.org/licenses/lgpl-3.0." +
-			"html\n\nAll credit shall be provided to the copyright holders above, and these nam" +
-			"es\nshall not be removed from this notice without written consent from such\nindiv" +
-			"iduals, although names of contributors may be added at the digression of\nsuch in" +
-			"dividual. This notice must be provided with any redistribution of this\ncode, alo" +
-			"ng with a copy of the GPL 3.0 or later and any other applicable\nlicense files ne" +
-			"cessary as described below.\n\nAll code listed in this project is licensed as GPL " +
-			"3.0 or later, with two\nexceptions. First, any BUNDLED CODE (i.e. code not derive" +
-			"d from this project)\nmaybe licensed differently, in which it should be placed in" +
-			" the Extern folder\nand needs to be GPL compatible. Second, LGPL 3.0 or later can" +
-			" be used ONLY if\nrequired for compiling and or running with .NET for Windows pla" +
-			"tforms.\n\nAll logos and pictures showing Gallery Momiji or Anime North logos, tex" +
-			"t or\ntrademarks are owned and copyrighted by either Gallery Momiji or Anime Nort" +
-			"h,\nwhich have been used with permission. If this code is redistributed, these\nlo" +
-			"gos must be removed, or require written permission, unless otherwise\nspecified b" +
-			"y the authors.\nAnime North is a non-profit organization.\nLearn more at http://ww" +
-			"w.animenorth.com");
+			this.lblCopyright.LabelProp = global::Mono.Unix.Catalog.GetString ("Copyright 2012-2015 Tiago Rogue Medeiros (medeirosT)\nCopyright 2014-2016 Alexander Jeremy Newton (mystro256)\nSpecial thanks to all the testers and users of this program!\n\nThis code is open source!\nView the code here:\nhttps://github.com/Gallery-Momiji/momiji-client\nReport issues and bugs here:\nhttps://github.com/Gallery-Momiji/momiji-client/issues\n\nThe open source license(s) can be found online here:\nhttp://www.gnu.org/licenses/gpl-3.0.html\nhttp://www.gnu.org/licenses/lgpl-3.0.html\n\nAll credit shall be provided to the copyright holders above, and these names\nshall not be removed from this notice without written consent from such\nindividuals, although names of contributors may be added at the digression of\nsuch individual. This notice must be provided with any redistribution of this\ncode, along with a copy of the GPL 3.0 or later and any other applicable\nlicense files necessary as described below.\n\nAll code listed in this project is licensed as GPL 3.0 or later, with two\nexceptions. First, any BUNDLED CODE (i.e. code not derived from this project)\nmaybe licensed differently, in which it should be placed in the Extern folder\nand needs to be GPL compatible. Second, LGPL 3.0 or later can be used ONLY if\nrequired for compiling and or running with .NET for Windows platforms.\n\nAll logos and pictures showing Gallery Momiji or Anime North logos, text or\ntrademarks are owned and copyrighted by either Gallery Momiji or Anime North,\nwhich have been used with permission. If this code is redistributed, these\nlogos must be removed, or require written permission, unless otherwise\nspecified by the authors.\nAnime North is a non-profit organization.\nLearn more at http://www.animenorth.com");
 			w5.Add (this.lblCopyright);
 			this.scrolledwindowAbout.Add (w5);
 			this.vboxAbout.Add (this.scrolledwindowAbout);

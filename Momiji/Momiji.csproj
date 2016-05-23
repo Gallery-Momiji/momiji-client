@@ -106,6 +106,7 @@
     <Compile Include="Misc\SQLResult.cs" />
     <Compile Include="Extern\INI.cs" />
     <Compile Include="Misc\StockNode.cs" />
+    <Compile Include="Misc\DateNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

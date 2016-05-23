@@ -275,9 +275,7 @@ namespace Momiji
 
 		protected void OnCheckSalesActionActivated (object sender, EventArgs e)
 		{
-			if (SearchDateForm != null)
-				SearchDateForm.Destroy ();
-			SearchDateForm = new frmSearchDate (frmSearchDate.Operations.CheckSales, this);
+			System.Diagnostics.Process.Start("http://" + SQLConnection.getHost() + "/momiji/summary.php");
 		}
 
 		protected void OnRefundActionActivated (object sender, EventArgs e)

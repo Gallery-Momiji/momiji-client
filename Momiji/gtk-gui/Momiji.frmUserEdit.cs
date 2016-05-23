@@ -176,17 +176,17 @@ namespace Momiji
 			w10.Fill = false;
 			// Container child vboxUserInfo.Gtk.Box+BoxChild
 			this.drpRank = global::Gtk.ComboBox.NewText ();
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("0 - Login\r"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("1 - Gallery Store Sales\r"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("2 - Quick Sales\r"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("3 - Auction Sales\r"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("4 - Re-Print Receipts\r"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("5 - Check-in Artists\r"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("6 - Bidding sheets, Check-out, Bidders\r"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("7 - Manage artist stock\r"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("8 - View Activity logs\r"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("9 - View Monetary activity logs\r"));
-			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("10 - Manage Treasury/refunds\r"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("0 - Login"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("1 - Gallery Store Sales"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("2 - Quick Sales"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("3 - Auction Sales"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("4 - Re-Print Receipts"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("5 - Check-in Artists"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("6 - Bidding sheets, Check-out, Bidders"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("7 - Manage artist stock"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("8 - View Activity logs"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("9 - View Monetary activity logs"));
+			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("10 - Manage Treasury/refunds"));
 			this.drpRank.AppendText (global::Mono.Unix.Catalog.GetString ("11 - Administrator"));
 			this.drpRank.Name = "drpRank";
 			this.vboxUserInfo.Add (this.drpRank);

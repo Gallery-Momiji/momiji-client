@@ -4855,7 +4855,6 @@ offer a cheque, and ask for help.</property>
                 <property name="HeightRequest">400</property>
                 <property name="CanFocus">True</property>
                 <property name="ShowScrollbars">True</property>
-                <signal name="RowActivated" handler="OnLstLogRowActivated" />
               </widget>
             </child>
           </widget>
