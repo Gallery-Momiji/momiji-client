@@ -99,11 +99,11 @@ namespace Momiji
 
 				MySqlCommand query;
 				if (operation == Operations.CheckUserActivities) {
-					query = new MySqlCommand ("SELECT `log`.`id`,`name`,`action`,`timestamp` FROM `log` LEFT JOIN `users` ON (`log`.`user_id`=`users`.`id`) WHERE `date` = @DATE ORDER BY `timestamp`;",
+					query = new MySqlCommand ("SELECT `log`.`id`,`name`,`action`,`timestamp` FROM `log` LEFT JOIN `users` ON (`log`.`user_id`=`users`.`id`) WHERE `date` = @DATE ORDER BY `timestamp` DESC LIMIT 99;",
 						SQLConnection.GetConnection ());
 					SQLConnection.LogAction ("Queried DB for logs", User);
 				} else {
-					query = new MySqlCommand ("SELECT `receipts`.`id`,`name`,`price`,`isQuickSale`,`isAuctionSale`,`isGalleryStoreSale`,`timestamp` FROM `receipts` LEFT JOIN `users` ON (`receipts`.`userid`=`users`.`id`) WHERE `date` = @DATE ORDER BY `timestamp`;",
+					query = new MySqlCommand ("SELECT `itemArray`,`receipts`.`id`,`name`,`price`,`isQuickSale`,`isAuctionSale`,`isGalleryStoreSale`,`timestamp` FROM `receipts` LEFT JOIN `users` ON (`receipts`.`userid`=`users`.`id`) WHERE `date` = @DATE ORDER BY `timestamp` DESC LIMIT 99;",
 						SQLConnection.GetConnection ());
 					SQLConnection.LogAction ("Queried DB for receipts", User);
 				}
@@ -117,13 +117,14 @@ namespace Momiji
 						if (operation == Operations.CheckUserActivities) {
 							detail = results.getCell ("action", i);
 						} else {
-							detail = "$" + results.getCell ("price", i);
+							detail = results.getCell ("itemArray", 0).Replace ("#", "\n")
+							+ "Total $" + results.getCell ("price", i);
 							if (results.getCellInt ("isQuickSale", i) == 1)
-								detail = "Quick sale of " + detail;
+								detail = "Quick sale\n" + detail;
 							else if (results.getCellInt ("isAuctionSale", i) == 1)
-								detail = "Auction sale of " + detail;
+								detail = "Auction sale\n" + detail;
 							else if (results.getCellInt ("isGalleryStoreSale", i) == 1)
-								detail = "Gallery Store sale of " + detail;
+								detail = "Gallery Store\n" + detail;
 						}
 
 						dateStore.AddNode (new DateNode (results.getCellInt ("id", i),
@@ -138,13 +139,53 @@ namespace Momiji
 			}
 		}
 
-		//TODO//
-
 		protected void OnLstLogRowActivated (object o, Gtk.RowActivatedArgs args)
 		{
-#if DEBUG
-			throw new System.NotImplementedException ();
-#endif
+			DateNode selectednode = (DateNode)lstLog.NodeSelection.SelectedNode;
+			SQL SQLConnection = parent.currentSQLConnection;
+			SQLResult User = parent.currentUser;
+			SQLResult results;
+			MySqlCommand query;
+
+			switch (operation) {
+			case Operations.Refund:
+				string message = "Receipt #" + selectednode.uniqueID.ToString ()
+				                 + "\nMade by: " + selectednode.User
+				                 + "\nAt: " + datelist [drpDate.Active] + ", " + selectednode.Time
+				                 + "\n\nDetails:\n" + selectednode.Details;
+				if (MessageBox.Ask (this, "Are you absolutely sure you want to refund the following?\n\n"
+				    + message)) {
+					if (MessageBox.Ask (this, "ARE YOU 100% SURE? THIS CAN BE UNDONE!\n\n"
+					    + message)) {
+
+						query = new MySqlCommand ("DELETE FROM `receipts` WHERE `id`=@ID;",
+							SQLConnection.GetConnection ());
+						query.Prepare ();
+						query.Parameters.AddWithValue ("@ID", selectednode.uniqueID.ToString ());
+						results = SQLConnection.Query (query);
+
+						if (results.successful ()) {
+							SQLConnection.LogAction ("Refunded Receipt#" + selectednode.uniqueID.ToString (), User);
+							MessageBox.Show (this, MessageType.Info, "The following has been refunded and removed from the system.\n\n"
+							+ message);
+							this.Destroy ();
+						} else {
+							MessageBox.Show (this, MessageType.Error, "Could not process refund.\nPlease contact your administrator.");
+						}
+					}
+				}
+				break;
+			case Operations.CheckReceipts:
+				query = new MySqlCommand ("SELECT `itemArray` FROM `receipts` WHERE `id`=@ID;",
+					SQLConnection.GetConnection ());
+				query.Prepare ();
+				query.Parameters.AddWithValue ("@ID", selectednode.uniqueID.ToString ());
+				results = SQLConnection.Query (query);
+
+				if (results.successful ())
+					MessageBox.Show (this, MessageType.Info, "Sales:\n" + results.getCell ("itemArray", 0).Replace ("#", "\n"));
+				break;
+			}
 		}
 	}
 }
