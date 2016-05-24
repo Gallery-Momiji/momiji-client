@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Gtk;
 using MySql.Data.MySqlClient;
 
@@ -231,11 +232,20 @@ namespace Momiji
 					pieceid + "barcode.rtf");
 
 			if (filename != "") {
-				string output = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream( "Momiji.Resources.barcode" ).ToString();
+				string output = "";
+				using (Stream stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream( "Momiji.Resources.barcode" ))
+				using (StreamReader reader = new StreamReader(stream))
+				{
+					while(!reader.EndOfStream)
+					{
+						output = reader.ReadToEnd();
+					}
+				}
+
 				output = output.Replace ("PIECE_ID", pieceid);
 
 				try {
-					System.IO.File.WriteAllText (filename, output);
+					File.WriteAllText (filename, output);
 				} catch (Exception d) {
 					MessageBox.Show (this, MessageType.Error,
 						"Unable to save file:\n" + d.Message.ToString ());
@@ -254,7 +264,7 @@ namespace Momiji
 				string output = ""; //TODO// RTF template
 
 				try {
-					System.IO.File.WriteAllText (filename, output);
+					File.WriteAllText (filename, output);
 				} catch (Exception d) {
 					MessageBox.Show (this, MessageType.Error,
 						"Unable to save file:\n" + d.Message.ToString ());
