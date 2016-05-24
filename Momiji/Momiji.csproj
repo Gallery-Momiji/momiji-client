@@ -56,6 +56,10 @@
     <EmbeddedResource Include="Resources\shopping-basket-icon.png" />
     <EmbeddedResource Include="Resources\Crystal-Star-256.ico" />
     <EmbeddedResource Include="Resources\momijilogosmall.jpg" />
+    <EmbeddedResource Include="Resources\barcode.txt">
+      <LogicalName>Momiji.Resources.barcode</LogicalName>
+      <DeployService-Deploy>True</DeployService-Deploy>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />

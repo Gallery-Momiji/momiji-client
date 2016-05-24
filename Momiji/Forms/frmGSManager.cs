@@ -231,7 +231,7 @@ namespace Momiji
 					pieceid + "barcode.rtf");
 
 			if (filename != "") {
-				string output = ""; //TODO// RTF template
+				string output = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream( "Momiji.Resources.barcode" ).ToString();
 				output = output.Replace ("PIECE_ID", pieceid);
 
 				try {
