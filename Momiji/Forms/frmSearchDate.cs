@@ -1,6 +1,7 @@
 ﻿using System;
 using Gtk;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace Momiji
 {
@@ -56,8 +57,8 @@ namespace Momiji
 				drpDate.Model = ClearList;
 				datelist = new string[results.GetNumberOfRows ()];
 				for (int i = 0; i < results.GetNumberOfRows (); i++) {
-					datelist [i] = results.getCell ("date", i);
-					drpDate.AppendText (results.getCell ("date", i));
+					datelist [i] = Regex.Replace (results.getCell ("date", i), " .*:.*", "");
+					drpDate.AppendText (datelist [i]);
 				}
 			} else {
 				MessageBox.Show (this, MessageType.Error, "Could not find any entries.");
@@ -87,10 +88,10 @@ namespace Momiji
 			parent.CleanupSearchDate ();
 		}
 
-		//TODO//
-
 		protected void OnDrpDateChanged (object sender, EventArgs e)
 		{
+			dateStore.Clear ();
+
 			if (drpDate.Active >= 0) {
 				SQL SQLConnection = parent.currentSQLConnection;
 				SQLResult User = parent.currentUser;
@@ -98,11 +99,11 @@ namespace Momiji
 
 				MySqlCommand query;
 				if (operation == Operations.CheckUserActivities) {
-					query = new MySqlCommand ("SELECT `id`,`user_id` AS `userid`,`action`,`timestamp` FROM `log` WHERE `date` = @DATE;",
+					query = new MySqlCommand ("SELECT `log`.`id`,`name`,`action`,`timestamp` FROM `log` LEFT JOIN `users` ON (`log`.`user_id`=`users`.`id`) WHERE `date` = @DATE ORDER BY `timestamp`;",
 						SQLConnection.GetConnection ());
 					SQLConnection.LogAction ("Queried DB for logs", User);
 				} else {
-					query = new MySqlCommand ("SELECT `id`,`userid`,`price`,`timestamp` FROM `receipts` WHERE `date` = @DATE;",
+					query = new MySqlCommand ("SELECT `receipts`.`id`,`name`,`price`,`isQuickSale`,`isAuctionSale`,`isGalleryStoreSale`,`timestamp` FROM `receipts` LEFT JOIN `users` ON (`receipts`.`userid`=`users`.`id`) WHERE `date` = @DATE ORDER BY `timestamp`;",
 						SQLConnection.GetConnection ());
 					SQLConnection.LogAction ("Queried DB for receipts", User);
 				}
@@ -112,9 +113,22 @@ namespace Momiji
 
 				if (results.successful ()) {
 					for (int i = 0; i < results.GetNumberOfRows (); i++) {
+						string detail;
+						if (operation == Operations.CheckUserActivities) {
+							detail = results.getCell ("action", i);
+						} else {
+							detail = "$" + results.getCell ("price", i);
+							if (results.getCellInt ("isQuickSale", i) == 1)
+								detail = "Quick sale of " + detail;
+							else if (results.getCellInt ("isAuctionSale", i) == 1)
+								detail = "Auction sale of " + detail;
+							else if (results.getCellInt ("isGalleryStoreSale", i) == 1)
+								detail = "Gallery Store sale of " + detail;
+						}
+
 						dateStore.AddNode (new DateNode (results.getCellInt ("id", i),
-							results.getCellInt ("userid", i),
-							"",
+							results.getCell ("name", i),
+							detail,
 							results.getCell ("timestamp", i)));
 					}
 				} else {
@@ -122,11 +136,9 @@ namespace Momiji
 					drpDate.Active = -1; //load error
 				}
 			}
-			//If no date is selected or on load error, reset form
-			if (drpDate.Active < 0) {
-				dateStore.Clear ();
-			}
 		}
+
+		//TODO//
 
 		protected void OnLstLogRowActivated (object o, Gtk.RowActivatedArgs args)
 		{
