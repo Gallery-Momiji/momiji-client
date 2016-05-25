@@ -60,6 +60,12 @@
       <LogicalName>Momiji.Resources.barcode</LogicalName>
       <DeployService-Deploy>True</DeployService-Deploy>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\bid_sheetbody.txt">
+      <LogicalName>Momiji.Resources.bid_sheetbody</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\bid_sheetheader.txt">
+      <LogicalName>Momiji.Resources.bid_sheetheader</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
@@ -111,6 +117,7 @@
     <Compile Include="Extern\INI.cs" />
     <Compile Include="Misc\StockNode.cs" />
     <Compile Include="Misc\DateNode.cs" />
+    <Compile Include="Misc\Biddersheet.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

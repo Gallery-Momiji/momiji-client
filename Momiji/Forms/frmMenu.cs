@@ -1,5 +1,6 @@
 using System;
 using Gtk;
+using MySql.Data.MySqlClient;
 
 namespace Momiji
 {
@@ -275,7 +276,7 @@ namespace Momiji
 
 		protected void OnCheckSalesActionActivated (object sender, EventArgs e)
 		{
-			System.Diagnostics.Process.Start("http://" + SQLConnection.getHost() + "/momiji/summary.php");
+			System.Diagnostics.Process.Start ("http://" + SQLConnection.getHost () + "/momiji/summary.php");
 		}
 
 		protected void OnRefundActionActivated (object sender, EventArgs e)
@@ -306,9 +307,41 @@ namespace Momiji
 
 		protected void OnGenerateBiddingSheetsActionActivated (object sender, EventArgs e)
 		{
-			if (SearchArtistForm != null)
-				SearchArtistForm.Destroy ();
-			new frmSearchArtist (frmSearchArtist.Operations.GenerateBiddingSheets, this);
+			string filename =
+				SaveFileDialog.rtf (this,
+					"Save bidder sheet to file",
+					"BiddingSheets.rtf");
+
+			if (filename != "") {
+				MySqlCommand artistquery = new MySqlCommand ("SELECT `ArtistID`,`ArtistName` FROM `artists` ORDER BY `ArtistID`;",
+					                           SQLConnection.GetConnection ());
+				artistquery.Prepare ();
+				SQLResult artists = SQLConnection.Query (artistquery);
+
+				if (artists.GetNumberOfRows () >= 1) {
+					Biddersheet bidsheet = new Biddersheet (filename);
+
+					for (int i = 0; i < artists.GetNumberOfRows (); i++) {
+						MySqlCommand merchquery = new MySqlCommand ("SELECT `MerchID`,`MerchTitle`,`MerchMinBid`,`MerchAAMB`,`MerchQuickSale`,`MerchMedium` FROM `merchandise` WHERE `ArtistID` = @ID ORDER BY `MerchID`;",
+							                          SQLConnection.GetConnection ());
+						merchquery.Prepare ();
+						merchquery.Parameters.AddWithValue ("@ID", artists.getCellInt ("ArtistID", i));
+						SQLResult merch = SQLConnection.Query (merchquery);
+
+						for (int j = 0; j < merch.GetNumberOfRows (); j++) {
+							bidsheet.AddSheet (artists.getCell ("ArtistID", i), merch.getCell ("MerchID", j), artists.getCell ("ArtistName", i),
+								merch.getCell ("MerchTitle", j), merch.getCell ("MerchMedium", j), merch.getCell ("MerchMinBid", j),
+								merch.getCell ("MerchQuickSale", j), merch.getCellInt ("MerchAAMB", j) == 1);
+						}
+					}
+					bidsheet.Finish ();
+					MessageBox.Show (this, MessageType.Info,
+						"Bidder Sheets generated!");
+				} else {
+					MessageBox.Show (this, MessageType.Error,
+						"Unable to find any artists");
+				}
+			}
 		}
 
 		//Preferences

@@ -478,6 +478,7 @@ namespace Momiji
 			this.btnDelete.Clicked += new global::System.EventHandler (this.OnBtnDeleteClicked);
 			this.btnClear.Clicked += new global::System.EventHandler (this.OnBtnClearClicked);
 			this.btnAdd.Clicked += new global::System.EventHandler (this.OnBtnAddClicked);
+			this.btnCreateSheet.Clicked += new global::System.EventHandler (this.OnBtnCreateSheetClicked);
 		}
 	}
 }

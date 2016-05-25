@@ -101,8 +101,8 @@ namespace Momiji
 		protected void OnBtnUpdateClicked (object sender, EventArgs e)
 		{
 			if (txtPieceTitle.Text == "" ||
-				txtPricePerUnit.Text  == "" ||
-				txtGivenStock.Text  == "") {
+			    txtPricePerUnit.Text == "" ||
+			    txtGivenStock.Text == "") {
 				MessageBox.Show (this, MessageType.Error,
 					"Please fill in all the fields");
 				return;
@@ -137,9 +137,9 @@ namespace Momiji
 		protected void OnBtnAddClicked (object sender, EventArgs e)
 		{
 			if (txtPieceID.Text == "" ||
-				txtPieceTitle.Text == "" ||
-				txtPricePerUnit.Text  == "" ||
-				txtGivenStock.Text  == "") {
+			    txtPieceTitle.Text == "" ||
+			    txtPricePerUnit.Text == "" ||
+			    txtGivenStock.Text == "") {
 				MessageBox.Show (this, MessageType.Error,
 					"Please fill in all the fields");
 				return;
@@ -162,7 +162,7 @@ namespace Momiji
 
 			SQL SQLConnection = parent.currentSQLConnection;
 			MySqlCommand query = new MySqlCommand ("INSERT INTO `gsmerchandise` (`ArtistID`, `PieceID`, `PieceTitle`, `PiecePrice`,`PieceSDC`,`PieceInitialStock`,`PieceStock`) VALUES (@AID, @PID, @TITLE, @PRICE, @SDC, @ISTOCK, @STOCK);",
-				SQLConnection.GetConnection ());
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@AID", artistID);
 			query.Parameters.AddWithValue ("@PID", txtPieceID.Text);
@@ -197,8 +197,8 @@ namespace Momiji
 		{
 			txtPieceID.Text = "";
 			txtPieceTitle.Text = "";
-			txtPricePerUnit.Text  = "";
-			txtGivenStock.Text  = "";
+			txtPricePerUnit.Text = "";
+			txtGivenStock.Text = "";
 			chkSDC.Active = false;
 		}
 
@@ -233,12 +233,10 @@ namespace Momiji
 
 			if (filename != "") {
 				string output = "";
-				using (Stream stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream( "Momiji.Resources.barcode" ))
-				using (StreamReader reader = new StreamReader(stream))
-				{
-					while(!reader.EndOfStream)
-					{
-						output = reader.ReadToEnd();
+				using (Stream stream = System.Reflection.Assembly.GetExecutingAssembly ().GetManifestResourceStream ("Momiji.Resources.barcode"))
+				using (StreamReader reader = new StreamReader (stream)) {
+					while (!reader.EndOfStream) {
+						output = reader.ReadToEnd ();
 					}
 				}
 
@@ -283,7 +281,7 @@ namespace Momiji
 
 			SQL SQLConnection = parent.currentSQLConnection;
 			MySqlCommand query = new MySqlCommand ("SELECT `PieceInitialStock` FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
-				SQLConnection.GetConnection ());
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@AID", artistID);
 			query.Parameters.AddWithValue ("@PID", selectednode.PieceID);

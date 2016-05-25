@@ -4315,6 +4315,7 @@ offer a cheque, and ask for help.</property>
                             <property name="Icon">stock:gtk-execute Menu</property>
                             <property name="Label" translatable="yes">Create Bid Sheet</property>
                             <property name="UseUnderline">True</property>
+                            <signal name="Clicked" handler="OnBtnCreateSheetClicked" />
                           </widget>
                           <packing>
                             <property name="Position">7</property>

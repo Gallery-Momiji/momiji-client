@@ -137,7 +137,7 @@ namespace Momiji
 		protected void OnBtnAddClicked (object sender, EventArgs e)
 		{
 			if (txtPieceID.Text == "" ||
-				txtPieceTitle.Text == "" ||
+			    txtPieceTitle.Text == "" ||
 			    txtPieceMinimumBid.Text == "" ||
 			    txtQuickSale.Text == "" ||
 			    txtMedium.Text == "") {
@@ -221,24 +221,16 @@ namespace Momiji
 			string filename =
 				SaveFileDialog.rtf (this,
 					"Save bidder sheet to file",
-					"PN" + artistID.ToString () + ".rtf");
+					pieceid + ".rtf");
 
 			if (filename != "") {
-				string output = ""; //TODO// RTF template
-				output = output.Replace ("PIECE_ID", pieceid);
-				output = output.Replace ("ARTIST_ID", lblArtistName.Text);
-				output = output.Replace ("PIECE_TITLE", txtPieceTitle.Text);
-				output = output.Replace ("PIECE_MEDIUM", txtMedium.Text);
-				output = output.Replace ("PIECE_MINBID", "$" + txtPieceMinimumBid.Text);
-				output = output.Replace ("PIECE_QS", (txtQuickSale.Text == "0" || txtQuickSale.Text == "" ? "N/A" : "$" + txtQuickSale.Text));
-				output = output.Replace ("PIECE_MS", (chkAAMB.Active ? "YES" : "NO"));
-
-				try {
-					System.IO.File.WriteAllText (filename, output);
-				} catch (Exception d) {
-					MessageBox.Show (this, MessageType.Error,
-						"Unable to save file:\n" + d.Message.ToString ());
-				}
+				Biddersheet bidsheet = new Biddersheet (filename);
+				bidsheet.AddSheet (pieceid, lblArtistName.Text,
+					txtPieceTitle.Text,	txtMedium.Text, txtPieceMinimumBid.Text,
+					txtQuickSale.Text, chkAAMB.Active);
+				bidsheet.Finish ();
+				MessageBox.Show (this, MessageType.Info,
+					"Bidder Sheet generated!");
 			}
 		}
 
