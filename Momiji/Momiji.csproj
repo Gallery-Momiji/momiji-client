@@ -118,6 +118,7 @@
     <Compile Include="Misc\StockNode.cs" />
     <Compile Include="Misc\DateNode.cs" />
     <Compile Include="Misc\Biddersheet.cs" />
+    <Compile Include="Misc\BidderNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
