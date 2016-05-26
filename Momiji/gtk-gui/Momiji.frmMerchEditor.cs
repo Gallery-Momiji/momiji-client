@@ -78,7 +78,7 @@ namespace Momiji
 		
 		private global::Gtk.Button btnGenCS;
 		
-		private global::Gtk.Button btnCancel;
+		private global::Gtk.Button btnClose;
 
 		protected virtual void Build ()
 		{
@@ -445,16 +445,16 @@ namespace Momiji
 			w41.Expand = false;
 			w41.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
-			this.btnCancel = new global::Gtk.Button ();
-			this.btnCancel.CanFocus = true;
-			this.btnCancel.Name = "btnCancel";
-			this.btnCancel.UseUnderline = true;
-			this.btnCancel.Label = global::Mono.Unix.Catalog.GetString ("Cancel");
+			this.btnClose = new global::Gtk.Button ();
+			this.btnClose.CanFocus = true;
+			this.btnClose.Name = "btnClose";
+			this.btnClose.UseUnderline = true;
+			this.btnClose.Label = global::Mono.Unix.Catalog.GetString ("Close");
 			global::Gtk.Image w42 = new global::Gtk.Image ();
 			w42.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-close", global::Gtk.IconSize.Menu);
-			this.btnCancel.Image = w42;
-			this.vbox3.Add (this.btnCancel);
-			global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.btnCancel]));
+			this.btnClose.Image = w42;
+			this.vbox3.Add (this.btnClose);
+			global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.btnClose]));
 			w43.Position = 3;
 			w43.Expand = false;
 			w43.Fill = false;
@@ -471,6 +471,7 @@ namespace Momiji
 			this.DefaultWidth = 800;
 			this.DefaultHeight = 539;
 			this.Show ();
+			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 			this.lstMerch.RowActivated += new global::Gtk.RowActivatedHandler (this.OnLstMerchRowActivated);
 			this.txtPieceID.Changed += new global::System.EventHandler (this.OnTxtPieceIDChanged);
 			this.btnGenID.Clicked += new global::System.EventHandler (this.OnBtnGenIDClicked);
@@ -479,6 +480,7 @@ namespace Momiji
 			this.btnClear.Clicked += new global::System.EventHandler (this.OnBtnClearClicked);
 			this.btnAdd.Clicked += new global::System.EventHandler (this.OnBtnAddClicked);
 			this.btnCreateSheet.Clicked += new global::System.EventHandler (this.OnBtnCreateSheetClicked);
+			this.btnClose.Clicked += new global::System.EventHandler (this.OnBtnCloseClicked);
 		}
 	}
 }

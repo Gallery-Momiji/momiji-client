@@ -11,6 +11,7 @@ namespace Momiji
 		/////////////////////////
 
 		private frmMenu parent;
+		private frmCheckin parent2;
 		private NodeStore merchStore;
 		private int artistID;
 
@@ -59,6 +60,7 @@ namespace Momiji
 		public frmMerchEditor (int artistID, frmMenu parent) :
 			base (Gtk.WindowType.Toplevel)
 		{
+			this.parent2 = null;
 			SQL SQLConnection = parent.currentSQLConnection;
 			MySqlCommand merchData = new MySqlCommand ("SELECT `MerchID`,`MerchTitle`,`MerchMinBid`,`MerchQuickSale`,`MerchAAMB` FROM `merchandise` WHERE `ArtistID` = @ID;",
 				                         SQLConnection.GetConnection ());
@@ -69,9 +71,10 @@ namespace Momiji
 		}
 
 		//This can be used to load cached data directly
-		public frmMerchEditor (int artistID, frmMenu parent, SQLResult merchResults) :
+		public frmMerchEditor (int artistID, frmMenu parent, frmCheckin parent2, SQLResult merchResults) :
 			base (Gtk.WindowType.Toplevel)
 		{
+			this.parent2 = parent2;
 			LoadInfo (artistID, parent, merchResults);
 		}
 
@@ -253,7 +256,7 @@ namespace Momiji
 			}
 		}
 
-		protected void OnBtnCancelClicked (object sender, EventArgs e)
+		protected void OnBtnCloseClicked (object sender, EventArgs e)
 		{
 			this.Destroy ();
 		}
@@ -288,6 +291,12 @@ namespace Momiji
 			this.btnAdd.Sensitive = true;
 			this.btnDelete.Sensitive = false;
 			this.btnUpdate.Sensitive = false;
+		}
+
+		protected void OnDeleteEvent (object sender, EventArgs e)
+		{
+			if (this.parent2 != null)
+				parent2.RefreshInfo ();
 		}
 	}
 }

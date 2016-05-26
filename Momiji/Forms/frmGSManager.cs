@@ -12,6 +12,7 @@ namespace Momiji
 		/////////////////////////
 
 		private frmMenu parent;
+		private frmCheckin parent2;
 		private NodeStore merchStore;
 		private int artistID;
 
@@ -44,7 +45,8 @@ namespace Momiji
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@ID", artistID);
 
-			this.lblArtistName.Text = merch.getCell ("ArtistName", 0);
+			SQLResult results = SQLConnection.Query (query);
+			this.lblArtistName.Text = results.getCell ("ArtistName", 0);
 
 			this.btnAdd.Sensitive = true;
 			this.btnDelete.Sensitive = false;
@@ -59,6 +61,7 @@ namespace Momiji
 		public frmGSManager (int artistID, frmMenu parent) :
 			base (Gtk.WindowType.Toplevel)
 		{
+			this.parent2 = null;
 			SQL SQLConnection = parent.currentSQLConnection;
 			MySqlCommand merchData = new MySqlCommand ("SELECT `PieceID`,`PieceTitle`,`PiecePrice`,`PieceStock`,`PieceSDC` FROM `gsmerchandise` WHERE `ArtistID` = @ID;",
 				                         SQLConnection.GetConnection ());
@@ -69,9 +72,10 @@ namespace Momiji
 		}
 
 		//This loads cached data directly
-		public frmGSManager (int artistID, frmMenu parent, SQLResult merchResults) :
+		public frmGSManager (int artistID, frmMenu parent, frmCheckin parent2, SQLResult merchResults) :
 			base (Gtk.WindowType.Toplevel)
 		{
+			this.parent2 = parent2;
 			LoadInfo (artistID, parent, merchResults);
 		}
 
@@ -270,7 +274,7 @@ namespace Momiji
 			}
 		}
 
-		protected void OnBtnCancelClicked (object sender, EventArgs e)
+		protected void OnBtnCloseClicked (object sender, EventArgs e)
 		{
 			this.Destroy ();
 		}
@@ -306,6 +310,12 @@ namespace Momiji
 			this.btnAdd.Sensitive = true;
 			this.btnDelete.Sensitive = false;
 			this.btnUpdate.Sensitive = false;
+		}
+
+		protected void OnDeleteEvent (object sender, EventArgs e)
+		{
+			if (this.parent2 != null)
+				parent2.RefreshInfo ();
 		}
 	}
 }
