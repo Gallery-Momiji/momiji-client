@@ -42,10 +42,16 @@ namespace Momiji
 
 			//Populate the date dropdown
 			SQL SQLConnection = parent.currentSQLConnection;
+			SQLResult User = parent.currentUser;
 			MySqlCommand query;
-			string table = "`receipts`";
-			if (operation == Operations.CheckUserActivities)
+			string table;
+			if (operation == Operations.CheckUserActivities) {
 				table = "`log`";
+				SQLConnection.LogAction ("Queried DB for logs", User);
+			} else {
+				table = "`receipts`";
+				SQLConnection.LogAction ("Queried DB for receipts", User);
+			}
 			query = new MySqlCommand ("SELECT `date`,TRUNCATE(`id`,-2) as `series`,MAX(`timestamp`) as `upto` from " + table + " group by `date`,`series`;",
 				SQLConnection.GetConnection ());
 
@@ -96,18 +102,14 @@ namespace Momiji
 
 			if (drpDate.Active >= 0) {
 				SQL SQLConnection = parent.currentSQLConnection;
-				SQLResult User = parent.currentUser;
 
 				MySqlCommand query;
-				if (operation == Operations.CheckUserActivities) {
-					query = new MySqlCommand ("SELECT `log`.`id`,`name`,`action`,`timestamp` FROM `log` LEFT JOIN `users` ON (`log`.`user_id`=`users`.`id`) WHERE `date` = @DATE AND `log`.`id` BETWEEN @START AND @END ORDER BY `timestamp` DESC;",
+				if (operation == Operations.CheckUserActivities)
+					query = new MySqlCommand ("SELECT `log`.`id`,`name`,`action`,`timestamp` FROM `log` LEFT JOIN `users` ON (`log`.`user_id`=`users`.`id`) WHERE `date` = @DATE AND `log`.`id` BETWEEN @START AND @END ORDER BY `log`.`id` DESC;",
 						SQLConnection.GetConnection ());
-					SQLConnection.LogAction ("Queried DB for logs", User);
-				} else {
-					query = new MySqlCommand ("SELECT `itemArray`,`receipts`.`id`,`name`,`price`,`isQuickSale`,`isAuctionSale`,`isGalleryStoreSale`,`timestamp` FROM `receipts` LEFT JOIN `users` ON (`receipts`.`userid`=`users`.`id`) WHERE `date` = @DATE AND `receipts`.`id` BETWEEN @START AND @END ORDER BY `timestamp` DESC;",
+				else
+					query = new MySqlCommand ("SELECT `itemArray`,`receipts`.`id`,`name`,`price`,`isQuickSale`,`isAuctionSale`,`isGalleryStoreSale`,`timestamp` FROM `receipts` LEFT JOIN `users` ON (`receipts`.`userid`=`users`.`id`) WHERE `date` = @DATE AND `receipts`.`id` BETWEEN @START AND @END ORDER BY `receipts`.`id` DESC;",
 						SQLConnection.GetConnection ());
-					SQLConnection.LogAction ("Queried DB for receipts", User);
-				}
 				query.Prepare ();
 				query.Parameters.AddWithValue ("@DATE", datelist [drpDate.Active]);
 				query.Parameters.AddWithValue ("@START", series [drpDate.Active]);

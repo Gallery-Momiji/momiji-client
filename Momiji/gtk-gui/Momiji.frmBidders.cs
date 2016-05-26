@@ -25,7 +25,7 @@ namespace Momiji
 			global::Stetic.Gui.Initialize (this);
 			// Widget Momiji.frmBidders
 			this.Name = "Momiji.frmBidders";
-			this.Title = global::Mono.Unix.Catalog.GetString ("frmBidders");
+			this.Title = global::Mono.Unix.Catalog.GetString ("Bidder Search");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child Momiji.frmBidders.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox ();
