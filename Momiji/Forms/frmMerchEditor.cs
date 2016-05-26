@@ -199,6 +199,9 @@ namespace Momiji
 
 		protected void OnBtnDeleteClicked (object sender, EventArgs e)
 		{
+			if (!MessageBox.Ask (this, "Are you sure you want to delete this piece?"))
+				return;
+
 			SQL SQLConnection = parent.currentSQLConnection;
 			MySqlCommand query = new MySqlCommand ("DELETE FROM `merchandise` WHERE `ArtistID` = @AID AND `MerchID` = @MID;",
 				                     SQLConnection.GetConnection ());
