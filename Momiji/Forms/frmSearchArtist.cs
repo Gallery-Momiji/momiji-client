@@ -22,7 +22,6 @@ namespace Momiji
 		{
 			ArtistCheckin,
 			ArtistCheckout,
-			GenerateBiddingSheets,
 			EditArtist,
 			EditMerchandise,
 			EditGalleryStore,
@@ -58,7 +57,7 @@ namespace Momiji
 
 			SQLConnection.LogAction ("Searched for artist", User);
 			MySqlCommand query = new MySqlCommand ("SELECT ArtistID, ArtistName, ArtistShowName FROM `artists` WHERE `ArtistID` = @ID OR `ArtistName` LIKE @name OR `ArtistShowName` LIKE @name;",
-				SQLConnection.GetConnection ());
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@name", '%' + txtSearch.Text + '%');
 			query.Parameters.AddWithValue ("@ID", getSearchID ());
@@ -96,9 +95,6 @@ namespace Momiji
 				break;
 			case Operations.ArtistCheckout:
 				this.Title = "Search for Artist Check Out";
-				break;
-			case Operations.GenerateBiddingSheets:
-				this.Title = "Search for Generating Bidding Sheets";
 				break;
 			case Operations.EditArtist:
 				this.Title = "Search for Editing an Artist";
@@ -144,12 +140,6 @@ namespace Momiji
 			case Operations.ArtistCheckout:
 				new frmArtistCheckout (selectednode.ArtistID, parent);
 				break;
-#if DEBUG
-			case Operations.GenerateBiddingSheets:
-				//TODO//
-				throw new System.NotImplementedException ();
-				//break;
-#endif
 			case Operations.EditArtist:
 				new frmArtistAdd (selectednode.ArtistID, parent);
 				break;
@@ -163,7 +153,7 @@ namespace Momiji
 			case Operations.ManageArtistBalance:
 				//TODO//
 				throw new System.NotImplementedException ();
-				//break;
+			//break;
 #endif
 			}
 		}

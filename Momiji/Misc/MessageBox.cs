@@ -12,4 +12,13 @@ public class MessageBox
 		diag.Destroy ();
 		win.Present ();
 	}
+
+	public static bool Ask (Window win, string msg)
+	{
+		MessageDialog diag = new MessageDialog (win, DialogFlags.Modal, MessageType.Question, ButtonsType.YesNo, msg);
+		ResponseType result = (ResponseType)diag.Run ();
+		diag.Destroy ();
+		win.Present ();
+		return (result == ResponseType.Yes);
+	}
 }

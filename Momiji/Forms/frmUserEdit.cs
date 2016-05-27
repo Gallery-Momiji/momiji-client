@@ -26,7 +26,7 @@ namespace Momiji
 				string userID = userids [drpUsers.Active].ToString ();
 
 				MySqlCommand query = new MySqlCommand ("SELECT `name`,`username`,`class` FROM `users` WHERE `id` = @ID;",
-					SQLConnection.GetConnection ());
+					                     SQLConnection.GetConnection ());
 				query.Prepare ();
 				query.Parameters.AddWithValue ("@ID", userID);
 				SQLConnection.LogAction ("Queried DB for users", User);
@@ -80,7 +80,7 @@ namespace Momiji
 
 			SQLConnection.LogAction ("Attempting to query user information", User);
 			MySqlCommand query = new MySqlCommand ("SELECT `id`, `username` FROM `users`;",
-				SQLConnection.GetConnection ());
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			SQLConnection.LogAction ("Queried DB for users", User);
 			SQLResult results = SQLConnection.Query (query);
@@ -151,11 +151,14 @@ namespace Momiji
 
 		protected void OnBtnDeleteClicked (object sender, EventArgs e)
 		{
+			if (!MessageBox.Ask (this, "Are you sure you want to delete this user?"))
+				return;
+
 			SQL SQLConnection = parent.currentSQLConnection;
 			string userID = userids [drpUsers.Active].ToString ();
 
 			MySqlCommand query = new MySqlCommand ("DELETE FROM `users` WHERE `id`=@ID;",
-				SQLConnection.GetConnection ());
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@ID", userID);
 			SQLResult results = SQLConnection.Query (query);

@@ -5,10 +5,10 @@ namespace Momiji
 {
 	public class DateNode : TreeNode
 	{
-		public DateNode (int uniqueID, int UserId, string Details, string Time)
+		public DateNode (int uniqueID, string User, string Details, string Time)
 		{
 			this.uniqueID = uniqueID;
-			this.UserId = UserId;
+			this.User = User;
 			this.Details = Details;
 			this.Time = Time;
 		}
@@ -16,7 +16,7 @@ namespace Momiji
 		[TreeNodeValue (Column = 0)]
 		public int uniqueID;
 		[TreeNodeValue (Column = 1)]
-		public int UserId;
+		public string User;
 		[TreeNodeValue (Column = 2)]
 		public string Details;
 		[TreeNodeValue (Column = 3)]
@@ -36,7 +36,7 @@ namespace Momiji
 			store = new NodeStore (typeof(DateNode));
 			view.NodeStore = store;
 			view.AppendColumn ("Unique ID", new CellRendererText (), "text", 0);
-			view.AppendColumn ("User ID", new CellRendererText (), "text", 1);
+			view.AppendColumn ("User", new CellRendererText (), "text", 1);
 			view.AppendColumn ("Details", new CellRendererText (), "text", 2);
 			view.AppendColumn ("Time", new CellRendererText (), "text", 3);
 		}

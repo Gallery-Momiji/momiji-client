@@ -2001,12 +2001,13 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmGSManager" design-size="800 532">
+  <widget class="Gtk.Window" id="Momiji.frmGSManager" design-size="800 525">
     <property name="MemberName" />
     <property name="WidthRequest">800</property>
     <property name="Title" translatable="yes">GS Manager</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.HBox" id="hbox2">
         <property name="MemberName" />
@@ -2121,22 +2122,6 @@ offer a cheque, and ask for help.</property>
               </widget>
               <packing>
                 <property name="Position">0</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.CheckButton" id="chkAPP">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Label" translatable="yes">Accredited Press Photography</property>
-                <property name="DrawIndicator">True</property>
-                <property name="HasLabel">True</property>
-                <property name="UseUnderline">True</property>
-              </widget>
-              <packing>
-                <property name="Position">1</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -2323,6 +2308,42 @@ offer a cheque, and ask for help.</property>
                           </packing>
                         </child>
                         <child>
+                          <widget class="Gtk.HBox" id="hbox7">
+                            <property name="MemberName" />
+                            <property name="Spacing">6</property>
+                            <child>
+                              <widget class="Gtk.Label" id="lblStock">
+                                <property name="MemberName" />
+                                <property name="LabelProp" translatable="yes">Current Stock:</property>
+                              </widget>
+                              <packing>
+                                <property name="Position">0</property>
+                                <property name="AutoSize">True</property>
+                                <property name="Expand">False</property>
+                                <property name="Fill">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="Gtk.Entry" id="txtStock">
+                                <property name="MemberName" />
+                                <property name="CanFocus">True</property>
+                                <property name="IsEditable">True</property>
+                                <property name="InvisibleChar">●</property>
+                              </widget>
+                              <packing>
+                                <property name="Position">1</property>
+                                <property name="AutoSize">True</property>
+                              </packing>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="Position">4</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
                           <widget class="Gtk.CheckButton" id="chkSDC">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
@@ -2330,9 +2351,10 @@ offer a cheque, and ask for help.</property>
                             <property name="DrawIndicator">True</property>
                             <property name="HasLabel">True</property>
                             <property name="UseUnderline">True</property>
+                            <signal name="Toggled" handler="OnChkSDCToggled" />
                           </widget>
                           <packing>
-                            <property name="Position">4</property>
+                            <property name="Position">5</property>
                             <property name="AutoSize">True</property>
                             <property name="Expand">False</property>
                             <property name="Fill">False</property>
@@ -2439,7 +2461,7 @@ offer a cheque, and ask for help.</property>
                             </child>
                           </widget>
                           <packing>
-                            <property name="Position">5</property>
+                            <property name="Position">6</property>
                             <property name="AutoSize">True</property>
                             <property name="Expand">False</property>
                             <property name="Fill">False</property>
@@ -2456,7 +2478,7 @@ offer a cheque, and ask for help.</property>
                             <signal name="Clicked" handler="OnBtnGenBarcodeClicked" />
                           </widget>
                           <packing>
-                            <property name="Position">6</property>
+                            <property name="Position">7</property>
                             <property name="AutoSize">True</property>
                             <property name="Expand">False</property>
                             <property name="Fill">False</property>
@@ -2478,7 +2500,7 @@ offer a cheque, and ask for help.</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">2</property>
+                <property name="Position">1</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -2495,24 +2517,23 @@ offer a cheque, and ask for help.</property>
                 <signal name="Clicked" handler="OnBtnGenCSClicked" />
               </widget>
               <packing>
-                <property name="Position">3</property>
+                <property name="Position">2</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="btnCancel">
+              <widget class="Gtk.Button" id="btnClose">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextAndIcon</property>
                 <property name="Icon">stock:gtk-close Menu</property>
-                <property name="Label" translatable="yes">Cancel</property>
+                <property name="Label" translatable="yes">Close</property>
                 <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnCancelClicked" />
               </widget>
               <packing>
-                <property name="Position">4</property>
+                <property name="Position">3</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -2966,7 +2987,7 @@ offer a cheque, and ask for help.</property>
       <placeholder />
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmCheckin" design-size="595 300">
+  <widget class="Gtk.Window" id="Momiji.frmCheckin" design-size="687 300">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Artist Check In</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -3074,20 +3095,18 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="btnReload">
+              <widget class="Gtk.CheckButton" id="chkAgree">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Type">TextAndIcon</property>
-                <property name="Icon">stock:gtk-refresh Menu</property>
-                <property name="Label" translatable="yes">Reload Info</property>
+                <property name="Label" translatable="yes">Artist agrees to the above</property>
+                <property name="DrawIndicator">True</property>
+                <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnReloadClicked" />
+                <signal name="Toggled" handler="OnChkAgreeToggled" />
               </widget>
               <packing>
                 <property name="Position">2</property>
                 <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
               </packing>
             </child>
             <child>
@@ -3098,6 +3117,7 @@ offer a cheque, and ask for help.</property>
                 <property name="DrawIndicator">True</property>
                 <property name="HasLabel">True</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Toggled" handler="OnChkServiceToggled" />
               </widget>
               <packing>
                 <property name="Position">3</property>
@@ -3849,6 +3869,7 @@ offer a cheque, and ask for help.</property>
     <property name="Title" translatable="yes">Merch Editor</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.HBox" id="hbox2">
         <property name="MemberName" />
@@ -4315,6 +4336,7 @@ offer a cheque, and ask for help.</property>
                             <property name="Icon">stock:gtk-execute Menu</property>
                             <property name="Label" translatable="yes">Create Bid Sheet</property>
                             <property name="UseUnderline">True</property>
+                            <signal name="Clicked" handler="OnBtnCreateSheetClicked" />
                           </widget>
                           <packing>
                             <property name="Position">7</property>
@@ -4362,13 +4384,14 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="btnCancel">
+              <widget class="Gtk.Button" id="btnClose">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextAndIcon</property>
                 <property name="Icon">stock:gtk-close Menu</property>
-                <property name="Label" translatable="yes">Cancel</property>
+                <property name="Label" translatable="yes">Close</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnCloseClicked" />
               </widget>
               <packing>
                 <property name="Position">3</property>
@@ -4389,12 +4412,101 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmBidders" design-size="400 300">
+  <widget class="Gtk.Window" id="Momiji.frmBidders" design-size="588 339">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">frmBidders</property>
+    <property name="Title" translatable="yes">Bidder Search</property>
     <property name="WindowPosition">CenterOnParent</property>
     <child>
-      <placeholder />
+      <widget class="Gtk.VBox" id="vbox1">
+        <property name="MemberName" />
+        <property name="Spacing">6</property>
+        <property name="BorderWidth">8</property>
+        <child>
+          <widget class="Gtk.HBox" id="hbox1">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.VBox" id="vbox4">
+                <property name="MemberName" />
+                <property name="Spacing">6</property>
+                <child>
+                  <widget class="Gtk.Label" id="lblSearch">
+                    <property name="MemberName" />
+                    <property name="LabelProp" translatable="yes">Enter part of the bidder's name, email, phone number or the bidder number :</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Entry" id="txtSearch">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">True</property>
+                    <property name="InvisibleChar">●</property>
+                    <signal name="Activated" handler="OnTxtSearchActivated" />
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="btnSearch">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-find Menu</property>
+                <property name="Label">Search</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnSearchClicked" />
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">False</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+            <property name="MemberName" />
+            <property name="ShadowType">In</property>
+            <child>
+              <widget class="Gtk.NodeView" id="lstBidders">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="ShowScrollbars">True</property>
+                <property name="EnableSearch">False</property>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Padding">6</property>
+          </packing>
+        </child>
+      </widget>
     </child>
   </widget>
   <widget class="Gtk.Window" id="Momiji.frmMenu" design-size="438 312">

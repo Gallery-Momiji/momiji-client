@@ -1,6 +1,7 @@
 ﻿using System;
 using Gtk;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace Momiji
 {
@@ -14,6 +15,7 @@ namespace Momiji
 		private NodeStore dateStore;
 		private frmMenu parent;
 		private string[] datelist;
+		private int[] series;
 
 		/////////////////////////
 		//   Public Attributes //
@@ -40,13 +42,18 @@ namespace Momiji
 
 			//Populate the date dropdown
 			SQL SQLConnection = parent.currentSQLConnection;
+			SQLResult User = parent.currentUser;
 			MySqlCommand query;
-			if (operation == Operations.CheckUserActivities)
-				query = new MySqlCommand ("SELECT DISTINCT(`date`) from `log`;",
-					SQLConnection.GetConnection ());
-			else
-				query = new MySqlCommand ("SELECT DISTINCT(`date`) from `receipts`;",
-					SQLConnection.GetConnection ());
+			string table;
+			if (operation == Operations.CheckUserActivities) {
+				table = "`log`";
+				SQLConnection.LogAction ("Queried DB for logs", User);
+			} else {
+				table = "`receipts`";
+				SQLConnection.LogAction ("Queried DB for receipts", User);
+			}
+			query = new MySqlCommand ("SELECT `date`,TRUNCATE(`id`,-2) as `series`,MAX(`timestamp`) as `upto` from " + table + " group by `date`,`series`;",
+				SQLConnection.GetConnection ());
 
 			query.Prepare ();
 			SQLResult results = SQLConnection.Query (query);
@@ -55,9 +62,11 @@ namespace Momiji
 				ListStore ClearList = new ListStore (typeof(string), typeof(string));
 				drpDate.Model = ClearList;
 				datelist = new string[results.GetNumberOfRows ()];
+				series = new int[results.GetNumberOfRows ()];
 				for (int i = 0; i < results.GetNumberOfRows (); i++) {
-					datelist [i] = results.getCell ("date", i);
-					drpDate.AppendText (results.getCell ("date", i));
+					datelist [i] = Regex.Replace (results.getCell ("date", i), " .*:.*", "");
+					series [i] = results.getCellInt ("series", i);
+					drpDate.AppendText (datelist [i] + " - Up to " + results.getCell ("upto", i));
 				}
 			} else {
 				MessageBox.Show (this, MessageType.Error, "Could not find any entries.");
@@ -87,34 +96,45 @@ namespace Momiji
 			parent.CleanupSearchDate ();
 		}
 
-		//TODO//
-
 		protected void OnDrpDateChanged (object sender, EventArgs e)
 		{
+			dateStore.Clear ();
+
 			if (drpDate.Active >= 0) {
 				SQL SQLConnection = parent.currentSQLConnection;
-				SQLResult User = parent.currentUser;
-				string date = datelist [drpDate.Active];
 
 				MySqlCommand query;
-				if (operation == Operations.CheckUserActivities) {
-					query = new MySqlCommand ("SELECT `id`,`user_id` AS `userid`,`action`,`timestamp` FROM `log` WHERE `date` = @DATE;",
+				if (operation == Operations.CheckUserActivities)
+					query = new MySqlCommand ("SELECT `log`.`id`,`name`,`action`,`timestamp` FROM `log` LEFT JOIN `users` ON (`log`.`user_id`=`users`.`id`) WHERE `date` = @DATE AND `log`.`id` BETWEEN @START AND @END ORDER BY `log`.`id` DESC;",
 						SQLConnection.GetConnection ());
-					SQLConnection.LogAction ("Queried DB for logs", User);
-				} else {
-					query = new MySqlCommand ("SELECT `id`,`userid`,`price`,`timestamp` FROM `receipts` WHERE `date` = @DATE;",
+				else
+					query = new MySqlCommand ("SELECT `itemArray`,`receipts`.`id`,`name`,`price`,`isQuickSale`,`isAuctionSale`,`isGalleryStoreSale`,`timestamp` FROM `receipts` LEFT JOIN `users` ON (`receipts`.`userid`=`users`.`id`) WHERE `date` = @DATE AND `receipts`.`id` BETWEEN @START AND @END ORDER BY `receipts`.`id` DESC;",
 						SQLConnection.GetConnection ());
-					SQLConnection.LogAction ("Queried DB for receipts", User);
-				}
 				query.Prepare ();
-				query.Parameters.AddWithValue ("@DATE", date);
+				query.Parameters.AddWithValue ("@DATE", datelist [drpDate.Active]);
+				query.Parameters.AddWithValue ("@START", series [drpDate.Active]);
+				query.Parameters.AddWithValue ("@END", series [drpDate.Active] + 99);
 				SQLResult results = SQLConnection.Query (query);
 
 				if (results.successful ()) {
 					for (int i = 0; i < results.GetNumberOfRows (); i++) {
+						string detail;
+						if (operation == Operations.CheckUserActivities) {
+							detail = results.getCell ("action", i);
+						} else {
+							detail = results.getCell ("itemArray", 0).Replace ("#", "\n")
+							+ "Total $" + results.getCell ("price", i);
+							if (results.getCellInt ("isQuickSale", i) == 1)
+								detail = "Quick sale\n" + detail;
+							else if (results.getCellInt ("isAuctionSale", i) == 1)
+								detail = "Auction sale\n" + detail;
+							else if (results.getCellInt ("isGalleryStoreSale", i) == 1)
+								detail = "Gallery Store\n" + detail;
+						}
+
 						dateStore.AddNode (new DateNode (results.getCellInt ("id", i),
-							results.getCellInt ("userid", i),
-							"",
+							results.getCell ("name", i),
+							detail,
 							results.getCell ("timestamp", i)));
 					}
 				} else {
@@ -122,17 +142,55 @@ namespace Momiji
 					drpDate.Active = -1; //load error
 				}
 			}
-			//If no date is selected or on load error, reset form
-			if (drpDate.Active < 0) {
-				dateStore.Clear ();
-			}
 		}
 
 		protected void OnLstLogRowActivated (object o, Gtk.RowActivatedArgs args)
 		{
-#if DEBUG
-			throw new System.NotImplementedException ();
-#endif
+			DateNode selectednode = (DateNode)lstLog.NodeSelection.SelectedNode;
+			SQL SQLConnection = parent.currentSQLConnection;
+			SQLResult User = parent.currentUser;
+			SQLResult results;
+			MySqlCommand query;
+
+			switch (operation) {
+			case Operations.Refund:
+				string message = "Receipt #" + selectednode.uniqueID.ToString ()
+				                 + "\nMade by: " + selectednode.User
+				                 + "\nAt: " + datelist [drpDate.Active] + ", " + selectednode.Time
+				                 + "\n\nDetails:\n" + selectednode.Details;
+				if (MessageBox.Ask (this, "Are you absolutely sure you want to refund the following?\n\n"
+				    + message)) {
+					if (MessageBox.Ask (this, "ARE YOU 100% SURE? THIS CAN BE UNDONE!\n\n"
+					    + message)) {
+
+						query = new MySqlCommand ("DELETE FROM `receipts` WHERE `id`=@ID;",
+							SQLConnection.GetConnection ());
+						query.Prepare ();
+						query.Parameters.AddWithValue ("@ID", selectednode.uniqueID.ToString ());
+						results = SQLConnection.Query (query);
+
+						if (results.successful ()) {
+							SQLConnection.LogAction ("Refunded Receipt#" + selectednode.uniqueID.ToString (), User);
+							MessageBox.Show (this, MessageType.Info, "The following has been refunded and removed from the system.\n\n"
+							+ message);
+							this.Destroy ();
+						} else {
+							MessageBox.Show (this, MessageType.Error, "Could not process refund.\nPlease contact your administrator.");
+						}
+					}
+				}
+				break;
+			case Operations.CheckReceipts:
+				query = new MySqlCommand ("SELECT `itemArray` FROM `receipts` WHERE `id`=@ID;",
+					SQLConnection.GetConnection ());
+				query.Prepare ();
+				query.Parameters.AddWithValue ("@ID", selectednode.uniqueID.ToString ());
+				results = SQLConnection.Query (query);
+
+				if (results.successful ())
+					MessageBox.Show (this, MessageType.Info, "Sales:\n" + results.getCell ("itemArray", 0).Replace ("#", "\n"));
+				break;
+			}
 		}
 	}
 }

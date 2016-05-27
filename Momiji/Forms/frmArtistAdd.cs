@@ -45,7 +45,7 @@ namespace Momiji
 			SQL SQLConnection = parent.currentSQLConnection;
 
 			MySqlCommand query = new MySqlCommand ("SELECT `ArtistName`,`ArtistEmail`,`ArtistAddress`,`ArtistUrl`,`ArtistAgentName`,`ArtistAgentPhone`,`ArtistPhone`,`ArtistAgentAddress`,`ArtistAgentEmail`,`ArtistShowName` FROM `artists` WHERE `ArtistID` = @AID;",
-				SQLConnection.GetConnection ());
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@AID", artistID);
 			SQLResult results = SQLConnection.Query (query);
@@ -77,7 +77,7 @@ namespace Momiji
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
 			MySqlCommand query = new MySqlCommand ("SELECT MAX(`ArtistID`)+1 as `next_id` FROM `artists` limit 0,1;",
-				SQLConnection.GetConnection ());
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 
 			SQLResult results = SQLConnection.Query (query);
@@ -144,10 +144,13 @@ namespace Momiji
 
 		protected void OnBtnDeleteClicked (object sender, EventArgs e)
 		{
+			if (!MessageBox.Ask (this, "Are you sure you want to delete this Artist?"))
+				return;
+
 			SQL SQLConnection = parent.currentSQLConnection;
 
 			MySqlCommand query = new MySqlCommand ("DELETE FROM `artists` WHERE `id`=@ID;",
-				SQLConnection.GetConnection ());
+				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@ID", txtArtistID.Text);
 			SQLResult results = SQLConnection.Query (query);
