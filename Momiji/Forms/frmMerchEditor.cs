@@ -254,7 +254,7 @@ namespace Momiji
 		protected void OnBtnCreateSheetClicked (object sender, EventArgs e)
 		{
 			string pieceid =
-				String.Format ("PN{0:D3}-" + txtPieceID.Text.PadLeft (3, '0'),
+				String.Format ("AN{0:D3}-" + txtPieceID.Text.PadLeft (3, '0'),
 					artistID);
 			string filename =
 				SaveFileDialog.rtf (this,
@@ -277,7 +277,7 @@ namespace Momiji
 			string filename =
 				SaveFileDialog.rtf (this,
 					"Save control sheet to file",
-					"PN" + artistID.ToString () + ".rtf");
+					"AN" + artistID.ToString () + ".rtf");
 
 			if (filename != "") {
 				string output = ""; //TODO// RTF template

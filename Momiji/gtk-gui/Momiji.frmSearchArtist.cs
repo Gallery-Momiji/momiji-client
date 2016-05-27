@@ -43,7 +43,7 @@ namespace Momiji
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.lblSearch = new global::Gtk.Label ();
 			this.lblSearch.Name = "lblSearch";
-			this.lblSearch.LabelProp = global::Mono.Unix.Catalog.GetString ("Enter part of the Artist's name or artist ID :");
+			this.lblSearch.LabelProp = global::Mono.Unix.Catalog.GetString ("Enter part of the Artist\'s name or artist ID :");
 			this.vbox4.Add (this.lblSearch);
 			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.lblSearch]));
 			w1.Position = 0;

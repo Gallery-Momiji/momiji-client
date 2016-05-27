@@ -62,6 +62,10 @@ namespace Momiji
 		
 		private global::Gtk.Action editUserAction;
 		
+		private global::Gtk.Action ArtistGenBidsheetAction;
+		
+		private global::Gtk.Action ArtistGenBarcodeAction;
+		
 		private global::Gtk.VBox vbox2;
 		
 		private global::Gtk.MenuBar mainMenubar;
@@ -182,6 +186,12 @@ namespace Momiji
 			this.editUserAction = new global::Gtk.Action ("editUserAction", global::Mono.Unix.Catalog.GetString ("Edit User"), null, "gtk-preferences");
 			this.editUserAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit User");
 			w1.Add (this.editUserAction, null);
+			this.ArtistGenBidsheetAction = new global::Gtk.Action ("ArtistGenBidsheetAction", global::Mono.Unix.Catalog.GetString ("Generate Artist\'s Bidding Sheets"), null, "gtk-execute");
+			this.ArtistGenBidsheetAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Generate Artist\'s Bidding Sheets");
+			w1.Add (this.ArtistGenBidsheetAction, null);
+			this.ArtistGenBarcodeAction = new global::Gtk.Action ("ArtistGenBarcodeAction", global::Mono.Unix.Catalog.GetString ("Generate Artist\'s GS Barcodes"), null, "gtk-execute");
+			this.ArtistGenBarcodeAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Generate Artist\'s GS Barcodes");
+			w1.Add (this.ArtistGenBarcodeAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "Momiji.frmMenu";
@@ -195,7 +205,31 @@ namespace Momiji
 			this.vbox2.Name = "vbox2";
 			this.vbox2.Spacing = 8;
 			// Container child vbox2.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><menubar name='mainMenubar'><menu name='FileAction' action='FileAction'><menuitem name='closeAction' action='closeAction'/><menuitem name='quitAction' action='quitAction'/></menu><menu name='ArtistsAction' action='ArtistsAction'><menuitem name='checkInAction' action='checkInAction'/><menuitem name='checkOutAction' action='checkOutAction'/><menu name='manageArtistAction' action='manageArtistAction'><menuitem name='addArtistAction' action='addArtistAction'/><menuitem name='editArtistAction' action='editArtistAction'/><menuitem name='editMerchandiseAction' action='editMerchandiseAction'/><menuitem name='editGalleryStoreMerchandiseAction' action='editGalleryStoreMerchandiseAction'/><menuitem name='manageArtistBalanceAction' action='manageArtistBalanceAction'/></menu></menu><menu name='ToolsAction' action='ToolsAction'><menuitem name='checkSalesAction' action='checkSalesAction'/><menuitem name='refundAction' action='refundAction'/><menuitem name='reprintReceiptAction' action='reprintReceiptAction'/><menuitem name='checkReceiptsAction' action='checkReceiptsAction'/><menuitem name='checkUserActivitiesAction' action='checkUserActivitiesAction'/><menuitem name='generateBiddingSheetsAction' action='generateBiddingSheetsAction'/></menu><menu name='PreferencesAction' action='PreferencesAction'><menuitem name='userPreferencesAction' action='userPreferencesAction'/><menuitem name='pricingAction' action='pricingAction'/><menuitem name='biddersAction' action='biddersAction'/><menu name='usersPrefAction' action='usersPrefAction'><menuitem name='addUserAction' action='addUserAction'/><menuitem name='editUserAction' action='editUserAction'/></menu></menu><menu name='HelpAction' action='HelpAction'><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
+			this.UIManager.AddUiFromString ("<ui><menubar name=\'mainMenubar\'><menu name=\'FileAction\' action=\'FileAction\'><menu" +
+			"item name=\'closeAction\' action=\'closeAction\'/><menuitem name=\'quitAction\' action" +
+			"=\'quitAction\'/></menu><menu name=\'ArtistsAction\' action=\'ArtistsAction\'><menuite" +
+			"m name=\'checkInAction\' action=\'checkInAction\'/><menuitem name=\'checkOutAction\' a" +
+			"ction=\'checkOutAction\'/><menu name=\'manageArtistAction\' action=\'manageArtistActi" +
+			"on\'><menuitem name=\'addArtistAction\' action=\'addArtistAction\'/><menuitem name=\'e" +
+			"ditArtistAction\' action=\'editArtistAction\'/><menuitem name=\'editMerchandiseActio" +
+			"n\' action=\'editMerchandiseAction\'/><menuitem name=\'editGalleryStoreMerchandiseAc" +
+			"tion\' action=\'editGalleryStoreMerchandiseAction\'/><menuitem name=\'manageArtistBa" +
+			"lanceAction\' action=\'manageArtistBalanceAction\'/><menuitem name=\'ArtistGenBidshe" +
+			"etAction\' action=\'ArtistGenBidsheetAction\'/><menuitem name=\'ArtistGenBarcodeActi" +
+			"on\' action=\'ArtistGenBarcodeAction\'/></menu></menu><menu name=\'ToolsAction\' acti" +
+			"on=\'ToolsAction\'><menuitem name=\'checkSalesAction\' action=\'checkSalesAction\'/><m" +
+			"enuitem name=\'refundAction\' action=\'refundAction\'/><menuitem name=\'reprintReceip" +
+			"tAction\' action=\'reprintReceiptAction\'/><menuitem name=\'checkReceiptsAction\' act" +
+			"ion=\'checkReceiptsAction\'/><menuitem name=\'checkUserActivitiesAction\' action=\'ch" +
+			"eckUserActivitiesAction\'/><menuitem name=\'generateBiddingSheetsAction\' action=\'g" +
+			"enerateBiddingSheetsAction\'/></menu><menu name=\'PreferencesAction\' action=\'Prefe" +
+			"rencesAction\'><menuitem name=\'userPreferencesAction\' action=\'userPreferencesActi" +
+			"on\'/><menuitem name=\'pricingAction\' action=\'pricingAction\'/><menuitem name=\'bidd" +
+			"ersAction\' action=\'biddersAction\'/><menu name=\'usersPrefAction\' action=\'usersPre" +
+			"fAction\'><menuitem name=\'addUserAction\' action=\'addUserAction\'/><menuitem name=\'" +
+			"editUserAction\' action=\'editUserAction\'/></menu></menu><menu name=\'HelpAction\' a" +
+			"ction=\'HelpAction\'><menuitem name=\'aboutAction\' action=\'aboutAction\'/></menu></m" +
+			"enubar></ui>");
 			this.mainMenubar = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/mainMenubar")));
 			this.mainMenubar.Name = "mainMenubar";
 			this.vbox2.Add (this.mainMenubar);
@@ -355,6 +389,8 @@ namespace Momiji
 			this.biddersAction.Activated += new global::System.EventHandler (this.OnBiddersActionActivated);
 			this.addUserAction.Activated += new global::System.EventHandler (this.OnAddUserActionActivated);
 			this.editUserAction.Activated += new global::System.EventHandler (this.OnEditUserActionActivated);
+			this.ArtistGenBidsheetAction.Activated += new global::System.EventHandler (this.OnArtistGenBidsheetActionActivated);
+			this.ArtistGenBarcodeAction.Activated += new global::System.EventHandler (this.OnArtistGenBarcodeActionActivated);
 			this.btnQuickSale.Clicked += new global::System.EventHandler (this.OnBtnQuickSaleClicked);
 			this.btnAuctionSale.Clicked += new global::System.EventHandler (this.OnBtnAuctionSaleClicked);
 			this.btnGalleryStoreSale.Clicked += new global::System.EventHandler (this.OnBtnGalleryStoreSaleClicked);

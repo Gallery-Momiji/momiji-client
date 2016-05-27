@@ -398,6 +398,20 @@ namespace Momiji
 		{
 			CloseForm ();
 		}
+
+		protected void OnArtistGenBidsheetActionActivated (object sender, EventArgs e)
+		{
+			if (SearchArtistForm != null)
+				SearchArtistForm.Destroy ();
+			new frmSearchArtist (frmSearchArtist.Operations.GenerateBiddersheets, this);
+		}
+
+		protected void OnArtistGenBarcodeActionActivated (object sender, EventArgs e)
+		{
+			if (SearchArtistForm != null)
+				SearchArtistForm.Destroy ();
+			new frmSearchArtist (frmSearchArtist.Operations.GenerateBarcodes, this);
+		}
 	}
 }
 

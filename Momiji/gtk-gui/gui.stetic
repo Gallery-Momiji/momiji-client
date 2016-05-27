@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Debug/Momiji.exe" internal="true" />
+    <widget-library name="../bin/Release/Momiji.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="Momiji.frmLogin" design-size="524 157">
     <property name="MemberName" />
@@ -4695,6 +4695,20 @@ offer a cheque, and ask for help.</property>
         <property name="StockId">gtk-preferences</property>
         <signal name="Activated" handler="OnEditUserActionActivated" />
       </action>
+      <action id="ArtistGenBidsheetAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Generate Artist's Bidding Sheets</property>
+        <property name="ShortLabel" translatable="yes">Generate Artist's Bidding Sheets</property>
+        <property name="StockId">gtk-execute</property>
+        <signal name="Activated" handler="OnArtistGenBidsheetActionActivated" />
+      </action>
+      <action id="ArtistGenBarcodeAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Generate Artist's GS Barcodes</property>
+        <property name="ShortLabel" translatable="yes">Generate Artist's GS Barcodes</property>
+        <property name="StockId">gtk-execute</property>
+        <signal name="Activated" handler="OnArtistGenBarcodeActionActivated" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">Gallery Momiji Point-Of-Sale</property>
@@ -4724,6 +4738,8 @@ offer a cheque, and ask for help.</property>
                   <node type="Menuitem" action="editMerchandiseAction" />
                   <node type="Menuitem" action="editGalleryStoreMerchandiseAction" />
                   <node type="Menuitem" action="manageArtistBalanceAction" />
+                  <node type="Menuitem" action="ArtistGenBidsheetAction" />
+                  <node type="Menuitem" action="ArtistGenBarcodeAction" />
                 </node>
               </node>
               <node type="Menu" action="ToolsAction">
