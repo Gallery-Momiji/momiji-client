@@ -25,7 +25,9 @@ namespace Momiji
 			EditArtist,
 			EditMerchandise,
 			EditGalleryStore,
-			ManageArtistBalance
+			ManageArtistBalance,
+			GenerateBiddersheets,
+			GenerateBarcodes
 		}
 
 		/////////////////////////
@@ -108,6 +110,12 @@ namespace Momiji
 			case Operations.ManageArtistBalance:
 				this.Title = "Search for Managing Artist Balance";
 				break;
+			case Operations.GenerateBiddersheets:
+				this.Title = "Search for Generating Bidder Sheets";
+				break;
+			case Operations.GenerateBarcodes:
+				this.Title = "Search for Generating Bidder Sheets";
+				break;
 			}
 		}
 
@@ -132,6 +140,7 @@ namespace Momiji
 
 		protected void OnLstArtistsRowActivated (object o, RowActivatedArgs args)
 		{
+			SQL SQLConnection = parent.currentSQLConnection;
 			ArtistNode selectednode = (ArtistNode)lstArtists.NodeSelection.SelectedNode;
 			switch (operation) {
 			case Operations.ArtistCheckin:
@@ -148,6 +157,65 @@ namespace Momiji
 				break;
 			case Operations.EditGalleryStore:
 				new frmGSManager (selectednode.ArtistID, parent);
+				break;
+			case Operations.GenerateBiddersheets:
+				string filename =
+				SaveFileDialog.rtf (this,
+					"Save bidder sheets to file",
+					"BiddingSheets - " +
+					selectednode.ArtistID.ToString () +
+					".rtf");
+
+				if (filename != "") {
+					Biddersheet bidsheet = new Biddersheet (filename);
+
+					MySqlCommand merchquery = new MySqlCommand ("SELECT `MerchID`,`MerchTitle`,`MerchMinBid`,`MerchAAMB`,`MerchQuickSale`,`MerchMedium` FROM `merchandise` WHERE `ArtistID` = @ID ORDER BY `MerchID`;",
+							                          SQLConnection.GetConnection ());
+					merchquery.Prepare ();
+					merchquery.Parameters.AddWithValue ("@ID", selectednode.ArtistID);
+					SQLResult merch = SQLConnection.Query (merchquery);
+
+					for (int j = 0; j < merch.GetNumberOfRows (); j++) {
+						bidsheet.AddSheet (selectednode.ArtistID.ToString (), merch.getCell ("MerchID", j), selectednode.ArtistShowName == "" ? selectednode.ArtistName : selectednode.ArtistShowName,
+								merch.getCell ("MerchTitle", j), merch.getCell ("MerchMedium", j), merch.getCell ("MerchMinBid", j),
+								merch.getCell ("MerchQuickSale", j), merch.getCellInt ("MerchAAMB", j) == 1);
+					}
+
+					bidsheet.Finish ();
+					MessageBox.Show (this, MessageType.Info,
+						"Bidder Sheets generated!");
+				}
+				break;
+			case Operations.GenerateBarcodes:
+				string filename2 =
+				SaveFileDialog.rtf (this,
+					"Save barcodes to file",
+					"Barcodes - " +
+					selectednode.ArtistID.ToString () +
+					".rtf");
+
+				if (filename2 != "") {
+					Barcodes barcode = new Barcodes (filename2);
+
+					MySqlCommand gsmerchquery = new MySqlCommand ("SELECT `PieceID`,`PiecePrice` FROM `gsmerchandise` WHERE `ArtistID` = @ID ORDER BY `PieceID`;",
+							                          SQLConnection.GetConnection ());
+					gsmerchquery.Prepare ();
+					gsmerchquery.Parameters.AddWithValue ("@ID", selectednode.ArtistID);
+					SQLResult gsmerch = SQLConnection.Query (gsmerchquery);
+
+					for (int j = 0; j <= gsmerch.GetNumberOfRows (); j+=2) {
+						if (j < gsmerch.GetNumberOfRows ())
+							barcode.AddCode (selectednode.ArtistID.ToString (), gsmerch.getCell ("PieceID", j), float.Parse (gsmerch.getCell ("PiecePrice", j)),
+									gsmerch.getCell ("PieceID", j + 1), float.Parse (gsmerch.getCell ("PiecePrice", j + 1)));
+						else
+							barcode.AddCode (String.Format ("PN{0:D3}-" + gsmerch.getCell ("PieceID", j).PadLeft (3, '0'),
+							                                selectednode.ArtistID), float.Parse (gsmerch.getCell ("PiecePrice", j)));
+					}
+
+					barcode.Finish ();
+					MessageBox.Show (this, MessageType.Info,
+						"Barcodes generated!");
+				}
 				break;
 #if DEBUG
 			case Operations.ManageArtistBalance:

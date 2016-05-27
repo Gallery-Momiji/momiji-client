@@ -1,0 +1,21 @@
+{\rtf1\ansi\deff3\adeflang1025
+{\fonttbl{\f0\froman\fprq2\fcharset0 Times New Roman;}{\f1\froman\fprq2\fcharset2 Symbol;}{\f2\fswiss\fprq2\fcharset0 Arial;}{\f3\froman\fprq2\fcharset0 Liberation Serif{\*\falt Times New Roman};}{\f4\fswiss\fprq2\fcharset0 Liberation Sans{\*\falt Arial};}{\f5\froman\fprq2\fcharset0 Liberation Sans{\*\falt Arial};}{\f6\froman\fprq2\fcharset0 C39HrP36DlTt;}{\f7\froman\fprq2\fcharset0 Arial;}{\f8\fnil\fprq2\fcharset0 Lohit Devanagari;}{\f9\fnil\fprq2\fcharset0 Liberation Serif{\*\falt Times New Roman};}}
+{\colortbl;\red0\green0\blue0;\red128\green128\blue128;}
+{\stylesheet{\s0\snext0\ql\nowidctlpar\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf1\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\alang1081\loch\f3\fs24\lang4105 Normal;}
+{\s1\sbasedon15\snext1\ql\nowidctlpar\sb240\sa120\keepn\ltrpar\cf1\b\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\loch\f4\fs36\lang4105 Heading 1;}
+{\s2\sbasedon15\snext2\ql\nowidctlpar\sb200\sa120\keepn\ltrpar\cf1\b\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\loch\f4\fs32\lang4105 Heading 2;}
+{\s3\sbasedon15\snext3\ql\nowidctlpar\sb140\sa120\keepn\ltrpar\cf1\b\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\loch\f4\fs28\lang4105 Heading 3;}
+{\s15\sbasedon0\snext16\ql\nowidctlpar\sb240\sa120\keepn\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\loch\f5\fs28\lang4105 Heading;}
+{\s16\sbasedon0\snext16\sl288\slmult1\ql\nowidctlpar\sb0\sa140\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\loch\f3\fs24\lang4105 Text Body;}
+{\s17\sbasedon16\snext17\sl288\slmult1\ql\nowidctlpar\sb0\sa140\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\loch\f3\fs24\lang4105 List;}
+{\s18\sbasedon0\snext18\ql\nowidctlpar\sb120\sa120\ltrpar\cf1\i\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\loch\f3\fs24\lang4105 Caption;}
+{\s19\sbasedon0\snext19\ql\nowidctlpar\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\loch\f3\fs24\lang4105 Index;}
+{\s20\sbasedon0\snext20\ql\nowidctlpar\li567\ri567\lin567\rin567\fi0\sb0\sa283\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\loch\f3\fs24\lang4105 Quotations;}
+{\s21\sbasedon15\snext21\qc\nowidctlpar\sb240\sa120\keepn\ltrpar\cf1\b\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\loch\f5\fs56\lang4105 Title;}
+{\s22\sbasedon15\snext22\qc\nowidctlpar\sb60\sa120\keepn\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\loch\f5\fs36\lang4105 Subtitle;}
+}{\*\generator LibreOffice/4.4.7.2$Linux_X86_64 LibreOffice_project/40$Build-2}{\info{\author Jeremy }{\creatim\yr2016\mo5\dy27\hr8\min26}{\author Jeremy }{\revtim\yr2016\mo5\dy27\hr9\min1}{\printim\yr0\mo0\dy0\hr0\min0}}\deftab709
+\viewscale100
+{\*\pgdsctbl
+{\pgdsc0\pgdscuse451\pgwsxn12240\pghsxn15840\marglsxn1134\margrsxn1134\margtsxn1134\margbsxn1134\pgdscnxt0 Default Style;}}
+\formshade{\*\pgdscno0}\paperh15840\paperw12240\margl1134\margr1134\margt1134\margb1134\sectd\sbknone\sectunlocked1\pgndec\pgwsxn12240\pghsxn15840\marglsxn1134\margrsxn1134\margtsxn1134\margbsxn1134\ftnbj\ftnstart1\ftnrstcont\ftnnar\aenddoc\aftnrstcont\aftnstart1\aftnnrlc
+{\*\ftnsep\chftnsep}\pgndec

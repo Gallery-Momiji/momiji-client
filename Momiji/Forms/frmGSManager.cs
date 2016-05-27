@@ -53,6 +53,9 @@ namespace Momiji
 			btnAdd.Sensitive = true;
 			btnDelete.Sensitive = false;
 			btnUpdate.Sensitive = false;
+
+			//TODO not done
+			btnGenCS.Sensitive = false;
 		}
 
 		/////////////////////////
@@ -259,28 +262,22 @@ namespace Momiji
 			string pieceid =
 				String.Format ("PN{0:D3}-" + txtPieceID.Text.PadLeft (3, '0'),
 					artistID);
+			float price;
+			if (!float.TryParse (txtPricePerUnit.Text, out price)) {
+				MessageBox.Show (this, MessageType.Error, "Invalid price listed");
+				return;
+			}
 			string filename =
 				SaveFileDialog.rtf (this,
 					"Save barcode to file",
 					pieceid + "barcode.rtf");
 
 			if (filename != "") {
-				string output = "";
-				using (Stream stream = System.Reflection.Assembly.GetExecutingAssembly ().GetManifestResourceStream ("Momiji.Resources.barcode"))
-				using (StreamReader reader = new StreamReader (stream)) {
-					while (!reader.EndOfStream) {
-						output = reader.ReadToEnd ();
-					}
-				}
-
-				output = output.Replace ("PIECE_ID", pieceid);
-
-				try {
-					File.WriteAllText (filename, output);
-				} catch (Exception d) {
-					MessageBox.Show (this, MessageType.Error,
-						"Unable to save file:\n" + d.Message.ToString ());
-				}
+				Barcodes barcode = new Barcodes (filename);
+				barcode.AddCode (pieceid, price);
+				barcode.Finish ();
+				MessageBox.Show (this, MessageType.Info,
+					"Barcode generated!");
 			}
 		}
 

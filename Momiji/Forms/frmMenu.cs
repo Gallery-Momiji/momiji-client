@@ -297,7 +297,7 @@ namespace Momiji
 		{
 			string filename =
 				SaveFileDialog.rtf (this,
-					"Save bidder sheet to file",
+					"Save bidder sheets to file",
 					"BiddingSheets.rtf");
 
 			if (filename != "") {

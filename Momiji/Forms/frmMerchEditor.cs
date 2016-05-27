@@ -52,6 +52,9 @@ namespace Momiji
 			btnAdd.Sensitive = true;
 			btnDelete.Sensitive = false;
 			btnUpdate.Sensitive = false;
+
+			//TODO not done
+			btnGenCS.Sensitive = false;
 		}
 
 		/////////////////////////

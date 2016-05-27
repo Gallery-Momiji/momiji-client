@@ -55,15 +55,17 @@
     <EmbeddedResource Include="Resources\shopping-basket-icon.png" />
     <EmbeddedResource Include="Resources\Crystal-Star-256.ico" />
     <EmbeddedResource Include="Resources\momijilogosmall.jpg" />
-    <EmbeddedResource Include="Resources\barcode.txt">
-      <LogicalName>Momiji.Resources.barcode</LogicalName>
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\bid_sheetbody.txt">
       <LogicalName>Momiji.Resources.bid_sheetbody</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\bid_sheetheader.txt">
       <LogicalName>Momiji.Resources.bid_sheetheader</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\barcodeheader.txt">
+      <LogicalName>Momiji.Resources.barcodeheader</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\barcodebody.txt">
+      <LogicalName>Momiji.Resources.barcodebody</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +120,7 @@
     <Compile Include="Misc\DateNode.cs" />
     <Compile Include="Misc\Biddersheet.cs" />
     <Compile Include="Misc\BidderNode.cs" />
+    <Compile Include="Misc\Barcode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
