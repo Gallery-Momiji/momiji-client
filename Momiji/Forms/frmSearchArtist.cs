@@ -203,7 +203,7 @@ namespace Momiji
 					gsmerchquery.Parameters.AddWithValue ("@ID", selectednode.ArtistID);
 					SQLResult gsmerch = SQLConnection.Query (gsmerchquery);
 
-					for (int j = 0; j <= gsmerch.GetNumberOfRows (); j+=2) {
+					for (int j = 0; j < gsmerch.GetNumberOfRows (); j+=2) {
 						if (j < gsmerch.GetNumberOfRows ())
 							barcode.AddCode (selectednode.ArtistID.ToString (), gsmerch.getCell ("PieceID", j), float.Parse (gsmerch.getCell ("PiecePrice", j)),
 									gsmerch.getCell ("PieceID", j + 1), float.Parse (gsmerch.getCell ("PiecePrice", j + 1)));
