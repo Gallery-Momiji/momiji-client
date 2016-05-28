@@ -44,8 +44,8 @@ namespace Momiji
 		{
 			string output = sheetbody;
 			//write the body info
-			output = output.Replace ("PIECE_ID1", String.Format ("AN" + aid.PadLeft (3, '0') + "-" + pid1.PadLeft (3, '0')));
-			output = output.Replace ("PIECE_ID2", String.Format ("AN" + aid.PadLeft (3, '0') + "-" + pid2.PadLeft (3, '0')));
+			output = output.Replace ("PIECE_ID1", String.Format ("PN" + aid.PadLeft (3, '0') + "-" + pid1.PadLeft (3, '0')));
+			output = output.Replace ("PIECE_ID2", String.Format ("PN" + aid.PadLeft (3, '0') + "-" + pid2.PadLeft (3, '0')));
 			output = output.Replace ("PRICE1", String.Format ("${0:0.00}", price1));
 			output = output.Replace ("PRICE2", String.Format ("${0:0.00}", price2));
 

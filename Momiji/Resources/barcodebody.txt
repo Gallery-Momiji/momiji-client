@@ -3,7 +3,7 @@
 \tab \tab \tab \tab }{\rtlch \ltrch\loch\fs64\loch\f6
 *PIECE_ID2*}
 \par \pard\plain \s0\ql\nowidctlpar\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf1\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\alang1081\loch\f3\fs24\lang4105\ql\widctlpar\faauto\li0\ri0\lin0\rin0\fi0{\rtlch \ltrch\loch\fs40\loch\f7
-\tab $PRICE1\tab \tab \tab \tab \tab \tab $PRICE2}
+\tab PRICE1\tab \tab \tab \tab \tab \tab PRICE2}
 \par \pard\plain \s0\ql\nowidctlpar\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf1\kerning1\dbch\af8\langfe1081\dbch\af9\afs24\alang1081\loch\f3\fs24\lang4105\ql\widctlpar\faauto\li0\ri0\lin0\rin0\fi0\rtlch \ltrch\loch
 
 \par
