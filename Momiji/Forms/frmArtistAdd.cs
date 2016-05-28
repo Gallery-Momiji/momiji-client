@@ -110,7 +110,7 @@ namespace Momiji
 				query = new MySqlCommand ("INSERT INTO `artists` (`ArtistID`, `ArtistName`, `ArtistEmail`, `ArtistAddress`, `ArtistUrl`, `ArtistAgentName`, `ArtistAgentPhone`, `ArtistPhone`, `ArtistAgentAddress`, `ArtistAgentEmail`, `ArtistShowName`) VALUES (@ID, @NAME, @EMAIL, @ADDRESS, @URL, @AGENTNAME, @AGENTPHONE, @PHONE, @AGENTADDRESS, @AGENTEMAIL, @ARTISTSHOWNAME);",
 					SQLConnection.GetConnection ());
 			} else {
-				query = new MySqlCommand ("UPDATE `artists` SET `ArtistID`=@ID, `ArtistName`=@NAME, `ArtistEmail`=@EMAIL, `ArtistAddress`=@ADDRESS, `ArtistUrl`=@URL, `ArtistAgentName`=@AGENTNAME, `ArtistAgentPhone`=@AGENTPHONE, `ArtistPhone`=@PHONE, `ArtistAgentAddress`=@AGENTADDRESS, `ArtistAgentEmail`=@AGENTEMAIL, `ArtistShowName`=@ARTISTSHOWNAME;",
+				query = new MySqlCommand ("UPDATE `artists` SET `ArtistName`=@NAME, `ArtistEmail`=@EMAIL, `ArtistAddress`=@ADDRESS, `ArtistUrl`=@URL, `ArtistAgentName`=@AGENTNAME, `ArtistAgentPhone`=@AGENTPHONE, `ArtistPhone`=@PHONE, `ArtistAgentAddress`=@AGENTADDRESS, `ArtistAgentEmail`=@AGENTEMAIL, `ArtistShowName`=@ARTISTSHOWNAME WHERE `ArtistID`=@ID;",
 					SQLConnection.GetConnection ());
 			}
 			query.Prepare ();
