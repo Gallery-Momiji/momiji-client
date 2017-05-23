@@ -26,9 +26,9 @@ namespace Momiji
 		
 		private global::Gtk.Button btnEditArtist;
 		
-		private global::Gtk.Button btnPrintSummary;
-		
 		private global::Gtk.CheckButton chkService;
+		
+		private global::Gtk.Button btnPrintSummary;
 		
 		private global::Gtk.Button btnCheckIn;
 
@@ -90,7 +90,6 @@ namespace Momiji
 			w5.Position = 0;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.hbox1 = new global::Gtk.HBox ();
-			this.hbox1.Name = "hbox1";
 			this.hbox1.Spacing = 6;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.btnCancel = new global::Gtk.Button ();
@@ -121,20 +120,6 @@ namespace Momiji
 			w9.Expand = false;
 			w9.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.btnPrintSummary = new global::Gtk.Button ();
-			this.btnPrintSummary.CanFocus = true;
-			this.btnPrintSummary.Name = "btnPrintSummary";
-			this.btnPrintSummary.UseUnderline = true;
-			this.btnPrintSummary.Label = global::Mono.Unix.Catalog.GetString ("Print Summary");
-			global::Gtk.Image w10 = new global::Gtk.Image ();
-			w10.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-print", global::Gtk.IconSize.Menu);
-			this.btnPrintSummary.Image = w10;
-			this.hbox1.Add (this.btnPrintSummary);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnPrintSummary]));
-			w11.Position = 2;
-			w11.Expand = false;
-			w11.Fill = false;
-			// Container child hbox1.Gtk.Box+BoxChild
 			this.chkService = new global::Gtk.CheckButton ();
 			this.chkService.CanFocus = true;
 			this.chkService.Name = "chkService";
@@ -142,8 +127,22 @@ namespace Momiji
 			this.chkService.DrawIndicator = true;
 			this.chkService.UseUnderline = true;
 			this.hbox1.Add (this.chkService);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.chkService]));
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.chkService]));
+			w10.Position = 2;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.btnPrintSummary = new global::Gtk.Button ();
+			this.btnPrintSummary.CanFocus = true;
+			this.btnPrintSummary.Name = "btnPrintSummary";
+			this.btnPrintSummary.UseUnderline = true;
+			this.btnPrintSummary.Label = global::Mono.Unix.Catalog.GetString ("Print Summary");
+			global::Gtk.Image w11 = new global::Gtk.Image ();
+			w11.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-print", global::Gtk.IconSize.Menu);
+			this.btnPrintSummary.Image = w11;
+			this.hbox1.Add (this.btnPrintSummary);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnPrintSummary]));
 			w12.Position = 3;
+			w12.Expand = false;
+			w12.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.btnCheckIn = new global::Gtk.Button ();
 			this.btnCheckIn.CanFocus = true;
@@ -172,8 +171,8 @@ namespace Momiji
 			this.Show ();
 			this.btnCancel.Clicked += new global::System.EventHandler (this.OnBtnCancelClicked);
 			this.btnEditArtist.Clicked += new global::System.EventHandler (this.OnBtnEditArtistClicked);
-			this.btnPrintSummary.Clicked += new global::System.EventHandler (this.OnBtnPrintSummaryClicked);
 			this.chkService.Toggled += new global::System.EventHandler (this.OnChkServiceToggled);
+			this.btnPrintSummary.Clicked += new global::System.EventHandler (this.OnBtnPrintSummaryClicked);
 			this.btnCheckIn.Clicked += new global::System.EventHandler (this.OnBtnCheckInClicked);
 		}
 	}

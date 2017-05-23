@@ -3095,23 +3095,6 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="btnPrintSummary">
-                <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextAndIcon</property>
-                <property name="Icon">stock:gtk-print Menu</property>
-                <property name="Label" translatable="yes">Print Summary</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnBtnPrintSummaryClicked" />
-              </widget>
-              <packing>
-                <property name="Position">2</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
               <widget class="Gtk.CheckButton" id="chkService">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
@@ -3122,8 +3105,25 @@ offer a cheque, and ask for help.</property>
                 <signal name="Toggled" handler="OnChkServiceToggled" />
               </widget>
               <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="btnPrintSummary">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-print Menu</property>
+                <property name="Label" translatable="yes">Print Summary</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnPrintSummaryClicked" />
+              </widget>
+              <packing>
                 <property name="Position">3</property>
                 <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
               </packing>
             </child>
             <child>
