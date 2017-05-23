@@ -1,6 +1,7 @@
 using System;
 using Gtk;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace Momiji
 {
@@ -14,6 +15,7 @@ namespace Momiji
 		private NodeStore merchStore;
 		private NodeStore gsmerchStore;
 		private int artistID;
+		private bool printsummary;
 		//Cached data:
 		SQLResult merchCache, GSmerchCache;
 
@@ -94,6 +96,7 @@ namespace Momiji
 		{
 			this.parent = parent;
 			this.artistID = artistID;
+			this.printsummary = false;
 			this.Build ();
 			StockNode.buildTableMerch (ref lstMerch, ref merchStore);
 			StockNode.buildTableGSMerch (ref lstGSMerch, ref gsmerchStore);
@@ -114,7 +117,7 @@ namespace Momiji
 
 		protected void OnBtnEditArtistClicked (object sender, EventArgs e)
 		{
-			MessageBox.Show (this, MessageType.Info, "If more than 5 items need to be changed, please remember to click the service fee checkbox.");
+			MessageBox.Show (this, MessageType.Info, "If any changes need to be made, excluding removal of items, please remember to click the service fee checkbox.");
 
 			switch (tabControlMerch.CurrentPage) {
 			case 0:
@@ -128,8 +131,8 @@ namespace Momiji
 
 		protected void OnBtnCheckInClicked (object sender, EventArgs e)
 		{
-			if (!chkAgree.Active) {
-				MessageBox.Show (this, MessageType.Error, "Please show all of our records above to the artist and check the box if they agree that everything is correct");
+			if (!printsummary) {
+				MessageBox.Show (this, MessageType.Error, "Please review all items with the artist and if they are happy with it, print the summary and have time sign it.\n\nIf any changes or additions (not including removals) need to be done, please make the changes above, click on the service fee checkbox, and reprint the summary.");
 				return;
 			}
 			SQL SQLConnection = parent.currentSQLConnection;
@@ -153,10 +156,10 @@ namespace Momiji
 			this.Destroy ();
 		}
 
-		protected void OnChkAgreeToggled (object sender, EventArgs e)
+		protected void OnBtnPrintSummaryClicked (object sender, EventArgs e)
 		{
-			if (chkAgree.Active)
-				chkAgree.Active = MessageBox.Ask (this, "Did you show the artist all of our records? Did they see no issues with it?");
+			Process.Start ("http://" + parent.currentSQLConnection.getHost () + "/momiji/checkin.php?id=" + artistID);
+			printsummary = MessageBox.Ask (this, "Did you show the artist all of our records? Did they see no issues with it?");
 		}
 
 		protected void OnChkServiceToggled (object sender, EventArgs e)

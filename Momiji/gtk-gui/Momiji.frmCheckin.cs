@@ -26,7 +26,7 @@ namespace Momiji
 		
 		private global::Gtk.Button btnEditArtist;
 		
-		private global::Gtk.CheckButton chkAgree;
+		private global::Gtk.Button btnPrintSummary;
 		
 		private global::Gtk.CheckButton chkService;
 		
@@ -121,15 +121,19 @@ namespace Momiji
 			w9.Expand = false;
 			w9.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.chkAgree = new global::Gtk.CheckButton ();
-			this.chkAgree.CanFocus = true;
-			this.chkAgree.Name = "chkAgree";
-			this.chkAgree.Label = global::Mono.Unix.Catalog.GetString ("Artist agrees to the above");
-			this.chkAgree.DrawIndicator = true;
-			this.chkAgree.UseUnderline = true;
-			this.hbox1.Add (this.chkAgree);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.chkAgree]));
-			w10.Position = 2;
+			this.btnPrintSummary = new global::Gtk.Button ();
+			this.btnPrintSummary.CanFocus = true;
+			this.btnPrintSummary.Name = "btnPrintSummary";
+			this.btnPrintSummary.UseUnderline = true;
+			this.btnPrintSummary.Label = global::Mono.Unix.Catalog.GetString ("Print Summary");
+			global::Gtk.Image w10 = new global::Gtk.Image ();
+			w10.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-print", global::Gtk.IconSize.Menu);
+			this.btnPrintSummary.Image = w10;
+			this.hbox1.Add (this.btnPrintSummary);
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnPrintSummary]));
+			w11.Position = 2;
+			w11.Expand = false;
+			w11.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.chkService = new global::Gtk.CheckButton ();
 			this.chkService.CanFocus = true;
@@ -138,27 +142,27 @@ namespace Momiji
 			this.chkService.DrawIndicator = true;
 			this.chkService.UseUnderline = true;
 			this.hbox1.Add (this.chkService);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.chkService]));
-			w11.Position = 3;
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.chkService]));
+			w12.Position = 3;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.btnCheckIn = new global::Gtk.Button ();
 			this.btnCheckIn.CanFocus = true;
 			this.btnCheckIn.Name = "btnCheckIn";
 			this.btnCheckIn.UseUnderline = true;
 			this.btnCheckIn.Label = global::Mono.Unix.Catalog.GetString ("Confirm Check In");
-			global::Gtk.Image w12 = new global::Gtk.Image ();
-			w12.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
-			this.btnCheckIn.Image = w12;
+			global::Gtk.Image w13 = new global::Gtk.Image ();
+			w13.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
+			this.btnCheckIn.Image = w13;
 			this.hbox1.Add (this.btnCheckIn);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnCheckIn]));
-			w13.Position = 4;
-			w13.Expand = false;
-			w13.Fill = false;
-			this.vbox1.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
-			w14.Position = 1;
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnCheckIn]));
+			w14.Position = 4;
 			w14.Expand = false;
 			w14.Fill = false;
+			this.vbox1.Add (this.hbox1);
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
+			w15.Position = 1;
+			w15.Expand = false;
+			w15.Fill = false;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -168,7 +172,7 @@ namespace Momiji
 			this.Show ();
 			this.btnCancel.Clicked += new global::System.EventHandler (this.OnBtnCancelClicked);
 			this.btnEditArtist.Clicked += new global::System.EventHandler (this.OnBtnEditArtistClicked);
-			this.chkAgree.Toggled += new global::System.EventHandler (this.OnChkAgreeToggled);
+			this.btnPrintSummary.Clicked += new global::System.EventHandler (this.OnBtnPrintSummaryClicked);
 			this.chkService.Toggled += new global::System.EventHandler (this.OnChkServiceToggled);
 			this.btnCheckIn.Clicked += new global::System.EventHandler (this.OnBtnCheckInClicked);
 		}

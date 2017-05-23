@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Release/Momiji.exe" internal="true" />
+    <widget-library name="../bin/Debug/Momiji.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="Momiji.frmLogin" design-size="524 157">
     <property name="MemberName" />
@@ -3095,18 +3095,20 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.CheckButton" id="chkAgree">
+              <widget class="Gtk.Button" id="btnPrintSummary">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Label" translatable="yes">Artist agrees to the above</property>
-                <property name="DrawIndicator">True</property>
-                <property name="HasLabel">True</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-print Menu</property>
+                <property name="Label" translatable="yes">Print Summary</property>
                 <property name="UseUnderline">True</property>
-                <signal name="Toggled" handler="OnChkAgreeToggled" />
+                <signal name="Clicked" handler="OnBtnPrintSummaryClicked" />
               </widget>
               <packing>
                 <property name="Position">2</property>
                 <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
               </packing>
             </child>
             <child>

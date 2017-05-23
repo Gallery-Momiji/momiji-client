@@ -201,7 +201,7 @@ namespace Momiji
 
 				//Readjust the stock counts
 				//TODO// Test me!
-				string temp = items;
+				/*string temp = items;
 				while (temp.Length >= 10) {
 					query = new MySqlCommand ("UPDATE `gsmerchandise` SET `PieceStock`=`PieceStock`-1 WHERE  `ArtistID`=@ARTISTID AND `MerchID`=@MERCHID LIMIT 1;",
 						SQLConnection.GetConnection ());
@@ -210,7 +210,7 @@ namespace Momiji
 					query.Parameters.AddWithValue ("@MERCHID", temp.Substring (6, 3));
 					results = SQLConnection.Query (query);
 					temp = temp.Substring (10);
-				}
+				}*/
 
 				MessageBox.Show (this, MessageType.Info,
 					"Receipt processed, please give the following change: "

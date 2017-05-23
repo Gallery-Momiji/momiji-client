@@ -256,12 +256,12 @@ namespace Momiji
 
 				//Mark items as sold
 				//TODO// Test me!
-				query = new MySqlCommand ("UPDATE `merchandise` SET `MerchSold`=1, `ReceiptID`=@RECEIPTID WHERE  LOCATE(`ArtistID`+'-'+`MerchID`,@ITEMS)>0",
+				/*query = new MySqlCommand ("UPDATE `merchandise` SET `MerchSold`=1, `ReceiptID`=@RECEIPTID WHERE  LOCATE(`ArtistID`+'-'+`MerchID`,@ITEMS)>0",
 					SQLConnection.GetConnection ());
 				query.Prepare ();
 				query.Parameters.AddWithValue ("@RECEIPTID", receiptID);
 				query.Parameters.AddWithValue ("@ITEMS", items);
-				results = SQLConnection.Query (query);
+				results = SQLConnection.Query (query);*/
 
 				MessageBox.Show (this, MessageType.Info,
 					"Receipt processed, please give the following change: "
