@@ -1,6 +1,7 @@
 using System;
 using Gtk;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace Momiji
 {
@@ -13,6 +14,7 @@ namespace Momiji
 		private frmMenu parent;
 		private NodeStore merchStore;
 		private float total = 0;
+		private int receiptID = 0;
 		public string items = "";
 		public string prices = "";
 
@@ -26,10 +28,14 @@ namespace Momiji
 			btnCancel.Sensitive = false;
 			btnPay.Sensitive = false;
 			txtPaid.Sensitive = false;
+			drpPaymentType.Sensitive = false;
+			btnPrintReceipt.Sensitive = false;
 			txtBarcode.Text = "";
 			txtTotal.Text = "";
 			txtChange.Text = "";
 			txtPaid.Text = "";
+			drpPaymentType.Active = 0;
+			lblPaid.LabelProp = "Paid: <b>$</b>";
 			this.items = "";
 			this.prices = "";
 			this.total = 0;
@@ -132,6 +138,7 @@ namespace Momiji
 
 					btnPay.Sensitive = true;
 					txtPaid.Sensitive = true;
+					drpPaymentType.Sensitive = true;
 					btnCancel.Sensitive = true;
 				}
 			} else {
@@ -151,29 +158,50 @@ namespace Momiji
 
 		protected void OnBtnPayClicked (object sender, EventArgs e)
 		{
-			if (txtPaid.Text == "") {
-				MessageBox.Show (this, MessageType.Info,
-					"Please specify the amount that the customer has paid");
-				return;
-			}
-
 			float paid;
-			if (!float.TryParse (txtPaid.Text, out paid)) {
-				MessageBox.Show (this, MessageType.Info,
-					"Please enter a valid number in the paid box");
-				return;
-			}
+			int fourdigits = 0;
 
-			if (total > paid) {
-				MessageBox.Show (this, MessageType.Info,
-					"Paid amount is too small");
-				return;
+			if(drpPaymentType.Active == 0) {
+				if (txtPaid.Text == "") {
+					MessageBox.Show (this, MessageType.Info,
+						"Please specify the amount that the customer has paid");
+					return;
+				}
+
+				if (!float.TryParse (txtPaid.Text, out paid)) {
+					MessageBox.Show (this, MessageType.Info,
+						"Please enter a valid number in the paid box");
+					return;
+				}
+
+				if (total > paid) {
+					MessageBox.Show (this, MessageType.Info,
+						"Paid amount is too small");
+					return;
+				}
+			} else {
+				if (txtPaid.Text.Length != 4) {
+					MessageBox.Show (this, MessageType.Info,
+						"Please enter the last 4 digits on the credit card");
+					return;
+				}
+
+				if (!int.TryParse (txtPaid.Text, out fourdigits)) {
+					MessageBox.Show (this, MessageType.Info,
+						"Please enter a valid set of 4 digits");
+					return;
+				}
+
+				if (!MessageBox.Ask (this, "Has the credit card transaction been approved?"))
+					return;
+
+				paid = total;
 			}
 
 			SQL SQLConnection = parent.currentSQLConnection;
 			SQLResult User = parent.currentUser;
 
-			MySqlCommand query = new MySqlCommand ("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isGalleryStoreSale`, `itemArray`, `priceArray`, `timestamp`, `date`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES, CURRENT_TIME, CURRENT_DATE);",
+			MySqlCommand query = new MySqlCommand ("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isGalleryStoreSale`, `itemArray`, `priceArray`, `Last4digitsCard`, `timestamp`, `date`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES, @FOURDIG, CURRENT_TIME, CURRENT_DATE);",
 				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
@@ -181,11 +209,11 @@ namespace Momiji
 			query.Parameters.AddWithValue ("@PAID", paid);
 			query.Parameters.AddWithValue ("@ITEMS", items);
 			query.Parameters.AddWithValue ("@PRICES", prices);
+			query.Parameters.AddWithValue ("@FOURDIG", fourdigits);
 			SQLResult results = SQLConnection.Query (query);
 
 			if (results.successful ()) {
 				//Get receiptid
-				//TODO// Possible redundant code
 				query = new MySqlCommand ("SELECT `id` FROM `receipts` WHERE `userID` = @UID AND `itemArray` = @ITEMS AND `priceArray` = @PRICES AND `isGalleryStoreSale` = 1 ORDER BY `id` DESC LIMIT 0,1;",
 					SQLConnection.GetConnection ());
 				query.Prepare ();
@@ -195,9 +223,9 @@ namespace Momiji
 				query.Parameters.AddWithValue ("@ITEMS", items);
 				query.Parameters.AddWithValue ("@PRICES", prices);
 				results = SQLConnection.Query (query);
+				receiptID = results.getCellInt ("id", 0);
+
 				txtChange.Text = String.Format ("{0:0.00}", (paid - total));
-				//End of possible redundant code//
-				int receiptID = results.getCellInt ("id", 0);
 
 				//Readjust the stock counts
 				//TODO// Test me!
@@ -212,18 +240,26 @@ namespace Momiji
 					temp = temp.Substring (10);
 				}*/
 
-				MessageBox.Show (this, MessageType.Info,
-					"Receipt processed, please give the following change: "
-					+ txtChange.Text +
-					"\n\nPlease check the receipt printer.\nThis was transaction ID #"
-					+ receiptID);
+				if(paid == total) {
+					MessageBox.Show (this, MessageType.Info,
+						"Sale processed!\n\nClick on the button below to generate a receipt.\nThis was transaction ID #"
+						+ receiptID);
+				} else {
+					MessageBox.Show (this, MessageType.Info,
+						"Sale processed, please give the following change: $"
+						+ txtChange.Text +
+						"\n\nClick on the button below to generate a receipt.\nThis was transaction ID #"
+						+ receiptID);
+				}
 
 				SQLConnection.LogAction ("Made a gallery store sale with receipt #" + receiptID,
 					User);
 				btnPay.Sensitive = false;
 				txtPaid.Sensitive = false;
+				drpPaymentType.Sensitive = false;
 				txtBarcode.Sensitive = false;
-				btnCancel.GrabFocus ();
+				btnPrintReceipt.Sensitive = true;
+				btnPrintReceipt.GrabFocus ();
 
 			} else {
 				MessageBox.Show (this, MessageType.Error,
@@ -234,6 +270,20 @@ namespace Momiji
 		protected void OnTxtPaidActivated (object sender, EventArgs e)
 		{
 			OnBtnPayClicked (sender, e);
+		}
+
+		protected void OnDrpPaymentTypeChanged (object sender, EventArgs e)
+		{
+			if(drpPaymentType.Active == 0) {
+				lblPaid.LabelProp = "Paid: <b>$</b>";
+			} else {
+				lblPaid.LabelProp = "Last 4 Digits:";
+			}
+		}
+
+		protected void OnBtnPrintReceiptClicked (object sender, EventArgs e)
+		{
+			Process.Start ("http://" + parent.currentSQLConnection.getHost () + "/momiji/receipt.php?id=" + receiptID);
 		}
 	}
 }

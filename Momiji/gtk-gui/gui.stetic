@@ -929,7 +929,7 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmAuctionSale" design-size="800 446">
+  <widget class="Gtk.Window" id="Momiji.frmAuctionSale" design-size="800 563">
     <property name="MemberName" />
     <property name="WidthRequest">800</property>
     <property name="Title" translatable="yes">Auction Sale</property>
@@ -1064,6 +1064,22 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
+              <widget class="Gtk.ComboBox" id="drpPaymentType">
+                <property name="MemberName" />
+                <property name="IsTextCombo">True</property>
+                <property name="Items" translatable="yes">Cash
+Credit</property>
+                <property name="Active">0</property>
+                <signal name="Changed" handler="OnDrpPaymentTypeChanged" />
+              </widget>
+              <packing>
+                <property name="Position">5</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="Gtk.Table" id="table1">
                 <property name="MemberName" />
                 <property name="NRows">2</property>
@@ -1155,7 +1171,7 @@ offer a cheque, and ask for help.</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">5</property>
+                <property name="Position">6</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -1192,7 +1208,7 @@ offer a cheque, and ask for help.</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">6</property>
+                <property name="Position">7</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -1230,7 +1246,24 @@ offer a cheque, and ask for help.</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">7</property>
+                <property name="Position">8</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="btnPrintReceipt">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-print Menu</property>
+                <property name="Label" translatable="yes">Print Receipt</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnPrintReceiptClicked" />
+              </widget>
+              <packing>
+                <property name="Position">9</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -1247,7 +1280,7 @@ offer a cheque, and ask for help.</property>
                 <signal name="Clicked" handler="OnBtnCancelClicked" />
               </widget>
               <packing>
-                <property name="Position">8</property>
+                <property name="Position">10</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -1266,7 +1299,7 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmGSSale" design-size="800 344">
+  <widget class="Gtk.Window" id="Momiji.frmGSSale" design-size="800 452">
     <property name="MemberName" />
     <property name="WidthRequest">800</property>
     <property name="Title" translatable="yes">Gallery Store Sale</property>
@@ -1329,6 +1362,22 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
+              <widget class="Gtk.ComboBox" id="drpPaymentType">
+                <property name="MemberName" />
+                <property name="IsTextCombo">True</property>
+                <property name="Items" translatable="yes">Cash
+Credit</property>
+                <property name="Active">0</property>
+                <signal name="Changed" handler="OnDrpPaymentTypeChanged" />
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="Gtk.Table" id="table1">
                 <property name="MemberName" />
                 <property name="NRows">2</property>
@@ -1420,7 +1469,7 @@ offer a cheque, and ask for help.</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">2</property>
+                <property name="Position">3</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -1457,7 +1506,7 @@ offer a cheque, and ask for help.</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">3</property>
+                <property name="Position">4</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -1495,7 +1544,24 @@ offer a cheque, and ask for help.</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">4</property>
+                <property name="Position">5</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="btnPrintReceipt">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-print Menu</property>
+                <property name="Label" translatable="yes">Print Receipt</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnPrintReceiptClicked" />
+              </widget>
+              <packing>
+                <property name="Position">6</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -1512,7 +1578,7 @@ offer a cheque, and ask for help.</property>
                 <signal name="Clicked" handler="OnBtnCancelClicked" />
               </widget>
               <packing>
-                <property name="Position">5</property>
+                <property name="Position">7</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -1531,7 +1597,7 @@ offer a cheque, and ask for help.</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmQuickSale" design-size="800 344">
+  <widget class="Gtk.Window" id="Momiji.frmQuickSale" design-size="800 452">
     <property name="MemberName" />
     <property name="WidthRequest">800</property>
     <property name="Title" translatable="yes">Quick Sale</property>
@@ -1594,6 +1660,22 @@ offer a cheque, and ask for help.</property>
               </packing>
             </child>
             <child>
+              <widget class="Gtk.ComboBox" id="drpPaymentType">
+                <property name="MemberName" />
+                <property name="IsTextCombo">True</property>
+                <property name="Items" translatable="yes">Cash
+Credit</property>
+                <property name="Active">0</property>
+                <signal name="Changed" handler="OnDrpPaymentTypeChanged" />
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
               <widget class="Gtk.Table" id="table1">
                 <property name="MemberName" />
                 <property name="NRows">2</property>
@@ -1606,6 +1688,7 @@ offer a cheque, and ask for help.</property>
                     <property name="Xalign">0</property>
                     <property name="LabelProp" translatable="yes">Paid: &lt;b&gt;$&lt;/b&gt;</property>
                     <property name="UseMarkup">True</property>
+                    <property name="Justify">Right</property>
                   </widget>
                   <packing>
                     <property name="TopAttach">1</property>
@@ -1626,6 +1709,7 @@ offer a cheque, and ask for help.</property>
                     <property name="MemberName" />
                     <property name="LabelProp" translatable="yes">Total: &lt;b&gt;$&lt;/b&gt;</property>
                     <property name="UseMarkup">True</property>
+                    <property name="Justify">Right</property>
                   </widget>
                   <packing>
                     <property name="AutoSize">True</property>
@@ -1685,7 +1769,7 @@ offer a cheque, and ask for help.</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">2</property>
+                <property name="Position">3</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -1722,7 +1806,7 @@ offer a cheque, and ask for help.</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">3</property>
+                <property name="Position">4</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -1760,7 +1844,24 @@ offer a cheque, and ask for help.</property>
                 </child>
               </widget>
               <packing>
-                <property name="Position">4</property>
+                <property name="Position">5</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="btnPrintReceipt">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextAndIcon</property>
+                <property name="Icon">stock:gtk-print Menu</property>
+                <property name="Label" translatable="yes">Print Receipt</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnPrintReceiptClicked" />
+              </widget>
+              <packing>
+                <property name="Position">6</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
@@ -1777,7 +1878,7 @@ offer a cheque, and ask for help.</property>
                 <signal name="Clicked" handler="OnBtnCancelClicked" />
               </widget>
               <packing>
-                <property name="Position">5</property>
+                <property name="Position">7</property>
                 <property name="AutoSize">True</property>
                 <property name="Expand">False</property>
                 <property name="Fill">False</property>
