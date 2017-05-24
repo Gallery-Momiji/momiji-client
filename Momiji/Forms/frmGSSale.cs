@@ -198,6 +198,9 @@ namespace Momiji
 				paid = total;
 			}
 
+			//Disable before querying to avoid double clicks
+			btnPay.Sensitive = false;
+
 			SQL SQLConnection = parent.currentSQLConnection;
 			SQLResult User = parent.currentUser;
 
@@ -254,7 +257,6 @@ namespace Momiji
 
 				SQLConnection.LogAction ("Made a gallery store sale with receipt #" + receiptID,
 					User);
-				btnPay.Sensitive = false;
 				txtPaid.Sensitive = false;
 				drpPaymentType.Sensitive = false;
 				txtBarcode.Sensitive = false;
@@ -264,6 +266,7 @@ namespace Momiji
 			} else {
 				MessageBox.Show (this, MessageType.Error,
 					"Connection Error, please close and try again.");
+				btnPay.Sensitive = true;
 			}
 		}
 
