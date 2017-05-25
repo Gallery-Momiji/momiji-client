@@ -158,7 +158,10 @@ namespace Momiji
 
 		protected void OnBtnPrintSummaryClicked (object sender, EventArgs e)
 		{
-			Process.Start ("http://" + parent.currentSQLConnection.getHost () + "/momiji/checkin.php?id=" + artistID);
+			if (chkService.Active)
+				Process.Start ("http://" + parent.currentSQLConnection.getHost () + "/momiji/checkin.php?fee=10&id=" + artistID);
+			else
+				Process.Start ("http://" + parent.currentSQLConnection.getHost () + "/momiji/checkin.php?id=" + artistID);
 			printsummary = MessageBox.Ask (this, "Did you show the artist all of our records? Did they see no issues with it?");
 		}
 
