@@ -414,7 +414,7 @@ namespace Momiji
 			// Container child vboxStep3.Gtk.Box+BoxChild
 			this.lblStep3a = new global::Gtk.Label ();
 			this.lblStep3a.Name = "lblStep3a";
-			this.lblStep3a.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Make sure to pay the artist in\nan envelope, as well as including\ntheir copy of the sales summary.</b>");
+			this.lblStep3a.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Make sure to give the artist their\ncheque with their earnings.</b>");
 			this.lblStep3a.UseMarkup = true;
 			this.vboxStep3.Add (this.lblStep3a);
 			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vboxStep3 [this.lblStep3a]));
@@ -424,7 +424,7 @@ namespace Momiji
 			// Container child vboxStep3.Gtk.Box+BoxChild
 			this.lblStep3b = new global::Gtk.Label ();
 			this.lblStep3b.Name = "lblStep3b";
-			this.lblStep3b.LabelProp = global::Mono.Unix.Catalog.GetString ("If their earnings are $500 or more,\noffer a cheque, and ask for help.");
+			this.lblStep3b.LabelProp = global::Mono.Unix.Catalog.GetString ("Provide them a copy of their sales\nsummary and an envelope, if\nrequested.");
 			this.vboxStep3.Add (this.lblStep3b);
 			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vboxStep3 [this.lblStep3b]));
 			w34.Position = 1;
@@ -451,7 +451,7 @@ namespace Momiji
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 829;
+			this.DefaultWidth = 828;
 			this.DefaultHeight = 360;
 			this.Show ();
 			this.btnMarkCheckout.Clicked += new global::System.EventHandler (this.OnBtnMarkCheckoutClicked);

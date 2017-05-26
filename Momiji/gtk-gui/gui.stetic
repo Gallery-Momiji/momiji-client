@@ -384,7 +384,7 @@ Learn more at http://www.animenorth.com</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmArtistCheckout" design-size="829 360">
+  <widget class="Gtk.Window" id="Momiji.frmArtistCheckout" design-size="828 360">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Artist Checkout</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -865,9 +865,8 @@ where applicable.&lt;/b&gt;</property>
                         <child>
                           <widget class="Gtk.Label" id="lblStep3a">
                             <property name="MemberName" />
-                            <property name="LabelProp" translatable="yes">&lt;b&gt;Make sure to pay the artist in
-an envelope, as well as including
-their copy of the sales summary.&lt;/b&gt;</property>
+                            <property name="LabelProp" translatable="yes">&lt;b&gt;Make sure to give the artist their
+cheque with their earnings.&lt;/b&gt;</property>
                             <property name="UseMarkup">True</property>
                           </widget>
                           <packing>
@@ -880,8 +879,9 @@ their copy of the sales summary.&lt;/b&gt;</property>
                         <child>
                           <widget class="Gtk.Label" id="lblStep3b">
                             <property name="MemberName" />
-                            <property name="LabelProp" translatable="yes">If their earnings are $500 or more,
-offer a cheque, and ask for help.</property>
+                            <property name="LabelProp" translatable="yes">Provide them a copy of their sales
+summary and an envelope, if
+requested.</property>
                           </widget>
                           <packing>
                             <property name="Position">1</property>
