@@ -1,6 +1,7 @@
 using System;
 using Gtk;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace Momiji
 {
@@ -57,19 +58,7 @@ namespace Momiji
 				return;
 			}
 
-			SQL SQLConnection = parent.currentSQLConnection;
-
-			MySqlCommand reprint = new MySqlCommand ("UPDATE `receipts` SET `isPrinted`=0 WHERE `id` = @ID;",
-				SQLConnection.GetConnection ());
-			reprint.Prepare ();
-			reprint.Parameters.AddWithValue ("@ID", idnumbers [drpTransaction.Active]);
-
-			SQLResult result = SQLConnection.Query (reprint);
-
-			if (result.successful ())
-				MessageBox.Show (this, MessageType.Info, "The follow receipt has been requested to be reprinted:\n" + drpTransaction.ActiveText + "\nPlease check receipt printer.");
-			else
-				MessageBox.Show (this, MessageType.Error, "Could not reprint receipt.\nPlease contact your administrator.");
+			Process.Start ("http://" + parent.currentSQLConnection.getHost () + "/momiji/receipt.php?id=" + idnumbers [drpTransaction.Active]);
 		}
 	}
 }

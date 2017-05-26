@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Release/Momiji.exe" internal="true" />
+    <widget-library name="../bin/Debug/Momiji.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="Momiji.frmLogin" design-size="524 157">
     <property name="MemberName" />
@@ -2652,7 +2652,7 @@ Credit</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmReceipts" design-size="400 116">
+  <widget class="Gtk.Window" id="Momiji.frmReceipts" design-size="400 120">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Print Receipts</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -2696,6 +2696,7 @@ Credit</property>
             <property name="Icon">stock:gtk-print Menu</property>
             <property name="Label" translatable="yes">Re-print Receipt</property>
             <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="OnBtnPrintClicked" />
           </widget>
           <packing>
             <property name="Position">2</property>
