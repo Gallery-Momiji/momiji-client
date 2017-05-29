@@ -259,7 +259,7 @@ namespace Momiji
 			SQL SQLConnection = parent.currentSQLConnection;
 			SQLResult User = parent.currentUser;
 
-			MySqlCommand query = new MySqlCommand ("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isAuctionSale`, `itemArray`, `priceArray`, `Last4digitsCard`, `timestamp`, `date`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES, @FOURDIG, CURRENT_TIME, CURRENT_DATE);",
+			MySqlCommand query = new MySqlCommand ("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isAuctionSale`, `itemArray`, `priceArray`, `Last4digitsCard`, `timestamp`, `date`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES, @FOURDIG, CURRENT_TIME, CURRENT_DATE); SELECT LAST_INSERT_ID() as `id`;",
 				                     SQLConnection.GetConnection ());
 			query.Prepare ();
 			query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
@@ -272,15 +272,6 @@ namespace Momiji
 
 			if (results.successful ()) {
 				//Get receiptid
-				query = new MySqlCommand ("SELECT `id` FROM `receipts` WHERE `userID` = @UID AND `itemArray` = @ITEMS AND `priceArray` = @PRICES AND `isAuctionSale` = 1 ORDER BY `id` DESC LIMIT 0,1;",
-					SQLConnection.GetConnection ());
-				query.Prepare ();
-				query.Parameters.AddWithValue ("@UID", User.getCell ("id", 0));
-				query.Parameters.AddWithValue ("@TOTAL", total);
-				query.Parameters.AddWithValue ("@PAID", paid);
-				query.Parameters.AddWithValue ("@ITEMS", items);
-				query.Parameters.AddWithValue ("@PRICES", prices);
-				results = SQLConnection.Query (query);
 				receiptID = results.getCellInt ("id", 0);
 
 				txtChange.Text = String.Format ("{0:0.00}", (paid - total));
