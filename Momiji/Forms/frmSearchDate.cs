@@ -122,7 +122,7 @@ namespace Momiji
 						if (operation == Operations.CheckUserActivities) {
 							detail = results.getCell ("action", i);
 						} else {
-							detail = results.getCell ("itemArray", 0).Replace ("#", "\n")
+							detail = results.getCell ("itemArray", i).Replace ("#", "\n")
 							+ "Total $" + results.getCell ("price", i);
 							if (results.getCellInt ("isQuickSale", i) == 1)
 								detail = "Quick sale\n" + detail;
