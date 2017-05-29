@@ -97,10 +97,18 @@ namespace Momiji
 			MySqlCommand query;
 
 			if (newartist) {
+				{
+					int temp;
+					if (!int.TryParse(txtArtistID.Text, out temp)) {
+						MessageBox.Show (this, MessageType.Error,
+							"Please enter a valid Artist Number.");
+						return;
+					}
+				}
 				query = new MySqlCommand ("SELECT `ArtistID` FROM `artists` WHERE `ArtistID` = @AID;",
 					SQLConnection.GetConnection ());
+				query.Parameters.AddWithValue ("@AID", txtArtistID.Text);
 				results = SQLConnection.Query (query);
-				query.Parameters.AddWithValue ("@ID", txtArtistID.Text);
 				if (results.GetNumberOfRows () > 0) {
 					MessageBox.Show (this, MessageType.Error,
 						"This artistID already in use.\nPlease select another one or generate a new ID.");

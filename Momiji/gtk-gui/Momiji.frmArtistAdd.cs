@@ -451,7 +451,7 @@ namespace Momiji
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 672;
-			this.DefaultHeight = 284;
+			this.DefaultHeight = 309;
 			this.Show ();
 			this.btnGenerate.Clicked += new global::System.EventHandler (this.OnBtnGenerateClicked);
 			this.btnCancel.Clicked += new global::System.EventHandler (this.OnBtnCancelClicked);
