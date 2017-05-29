@@ -30,7 +30,7 @@ namespace Momiji
 		
 		private global::Gtk.Button btnCancel;
 		
-		private global::Gtk.Label GtkLabel6;
+		private global::Gtk.Label lblArtistInfo;
 		
 		private global::Gtk.Frame frameStep1;
 		
@@ -80,9 +80,7 @@ namespace Momiji
 		
 		private global::Gtk.VBox vboxStep3;
 		
-		private global::Gtk.Label lblStep3a;
-		
-		private global::Gtk.Label lblStep3b;
+		private global::Gtk.Label lblStep3info;
 		
 		private global::Gtk.Label lblStep3;
 
@@ -206,11 +204,11 @@ namespace Momiji
 			w10.Fill = false;
 			this.GtkAlignArtistInfo.Add (this.vboxArtistInfo);
 			this.frameArtistInfo.Add (this.GtkAlignArtistInfo);
-			this.GtkLabel6 = new global::Gtk.Label ();
-			this.GtkLabel6.Name = "GtkLabel6";
-			this.GtkLabel6.LabelProp = global::Mono.Unix.Catalog.GetString ("Artist Information");
-			this.GtkLabel6.UseMarkup = true;
-			this.frameArtistInfo.LabelWidget = this.GtkLabel6;
+			this.lblArtistInfo = new global::Gtk.Label ();
+			this.lblArtistInfo.Name = "lblArtistInfo";
+			this.lblArtistInfo.LabelProp = global::Mono.Unix.Catalog.GetString ("Artist Information");
+			this.lblArtistInfo.UseMarkup = true;
+			this.frameArtistInfo.LabelWidget = this.lblArtistInfo;
 			this.tableANCheckout.Add (this.frameArtistInfo);
 			global::Gtk.Table.TableChild w13 = ((global::Gtk.Table.TableChild)(this.tableANCheckout [this.frameArtistInfo]));
 			w13.TopAttach = ((uint)(1));
@@ -412,24 +410,15 @@ namespace Momiji
 			this.vboxStep3.Name = "vboxStep3";
 			this.vboxStep3.Spacing = 6;
 			// Container child vboxStep3.Gtk.Box+BoxChild
-			this.lblStep3a = new global::Gtk.Label ();
-			this.lblStep3a.Name = "lblStep3a";
-			this.lblStep3a.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Make sure to give the artist their\ncheque with their earnings.</b>");
-			this.lblStep3a.UseMarkup = true;
-			this.vboxStep3.Add (this.lblStep3a);
-			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vboxStep3 [this.lblStep3a]));
+			this.lblStep3info = new global::Gtk.Label ();
+			this.lblStep3info.Name = "lblStep3info";
+			this.lblStep3info.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Make sure the Artist signs one of the copies\nof the sales summary, mark it as paid, and place\nit somewhere safe.</b>\nGive the artist their earnings\nin an envelope, along with the other unsigned\ncopy of the sales summary for their records.");
+			this.lblStep3info.UseMarkup = true;
+			this.vboxStep3.Add (this.lblStep3info);
+			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vboxStep3 [this.lblStep3info]));
 			w33.Position = 0;
 			w33.Expand = false;
 			w33.Fill = false;
-			// Container child vboxStep3.Gtk.Box+BoxChild
-			this.lblStep3b = new global::Gtk.Label ();
-			this.lblStep3b.Name = "lblStep3b";
-			this.lblStep3b.LabelProp = global::Mono.Unix.Catalog.GetString ("Provide them a copy of their sales\nsummary and an envelope, if\nrequested.");
-			this.vboxStep3.Add (this.lblStep3b);
-			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vboxStep3 [this.lblStep3b]));
-			w34.Position = 1;
-			w34.Expand = false;
-			w34.Fill = false;
 			this.GtkAlignStep3.Add (this.vboxStep3);
 			this.frameStep3.Add (this.GtkAlignStep3);
 			this.lblStep3 = new global::Gtk.Label ();
@@ -437,21 +426,21 @@ namespace Momiji
 			this.lblStep3.LabelProp = global::Mono.Unix.Catalog.GetString ("Step 3 :");
 			this.frameStep3.LabelWidget = this.lblStep3;
 			this.hboxStep23.Add (this.frameStep3);
-			global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.hboxStep23 [this.frameStep3]));
-			w37.Position = 1;
-			w37.Expand = false;
-			w37.Fill = false;
+			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hboxStep23 [this.frameStep3]));
+			w36.Position = 1;
+			w36.Expand = false;
+			w36.Fill = false;
 			this.tableANCheckout.Add (this.hboxStep23);
-			global::Gtk.Table.TableChild w38 = ((global::Gtk.Table.TableChild)(this.tableANCheckout [this.hboxStep23]));
-			w38.LeftAttach = ((uint)(1));
-			w38.RightAttach = ((uint)(2));
-			w38.XOptions = ((global::Gtk.AttachOptions)(4));
-			w38.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w37 = ((global::Gtk.Table.TableChild)(this.tableANCheckout [this.hboxStep23]));
+			w37.LeftAttach = ((uint)(1));
+			w37.RightAttach = ((uint)(2));
+			w37.XOptions = ((global::Gtk.AttachOptions)(4));
+			w37.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.Add (this.tableANCheckout);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 828;
+			this.DefaultWidth = 1482;
 			this.DefaultHeight = 360;
 			this.Show ();
 			this.btnMarkCheckout.Clicked += new global::System.EventHandler (this.OnBtnMarkCheckoutClicked);

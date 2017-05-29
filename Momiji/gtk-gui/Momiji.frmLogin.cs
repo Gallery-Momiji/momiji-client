@@ -42,7 +42,6 @@ namespace Momiji
 			this.DefaultHeight = 103;
 			// Container child Momiji.frmLogin.Gtk.Container+ContainerChild
 			this.vbox1 = new global::Gtk.VBox ();
-			this.vbox1.Name = "vbox1";
 			this.vbox1.Spacing = 8;
 			this.vbox1.BorderWidth = ((uint)(8));
 			// Container child vbox1.Gtk.Box+BoxChild

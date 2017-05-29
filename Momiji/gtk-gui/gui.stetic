@@ -6,7 +6,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Debug/Momiji.exe" internal="true" />
+    <widget-library name="../bin/Release/Momiji.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="Momiji.frmLogin" design-size="524 157">
     <property name="MemberName" />
@@ -384,7 +384,7 @@ Learn more at http://www.animenorth.com</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmArtistCheckout" design-size="828 360">
+  <widget class="Gtk.Window" id="Momiji.frmArtistCheckout" design-size="1482 360">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Artist Checkout</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -561,7 +561,7 @@ Learn more at http://www.animenorth.com</property>
               </widget>
             </child>
             <child>
-              <widget class="Gtk.Label" id="GtkLabel6">
+              <widget class="Gtk.Label" id="lblArtistInfo">
                 <property name="MemberName" />
                 <property name="LabelProp" translatable="yes">Artist Information</property>
                 <property name="UseMarkup">True</property>
@@ -863,28 +863,18 @@ where applicable.&lt;/b&gt;</property>
                         <property name="MemberName" />
                         <property name="Spacing">6</property>
                         <child>
-                          <widget class="Gtk.Label" id="lblStep3a">
+                          <widget class="Gtk.Label" id="lblStep3info">
                             <property name="MemberName" />
-                            <property name="LabelProp" translatable="yes">&lt;b&gt;Make sure to give the artist their
-cheque with their earnings.&lt;/b&gt;</property>
+                            <property name="LabelProp" translatable="yes">&lt;b&gt;Make sure the Artist signs one of the copies
+of the sales summary, mark it as paid, and place
+it somewhere safe.&lt;/b&gt;
+Give the artist their earnings
+in an envelope, along with the other unsigned
+copy of the sales summary for their records.</property>
                             <property name="UseMarkup">True</property>
                           </widget>
                           <packing>
                             <property name="Position">0</property>
-                            <property name="AutoSize">True</property>
-                            <property name="Expand">False</property>
-                            <property name="Fill">False</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="Gtk.Label" id="lblStep3b">
-                            <property name="MemberName" />
-                            <property name="LabelProp" translatable="yes">Provide them a copy of their sales
-summary and an envelope, if
-requested.</property>
-                          </widget>
-                          <packing>
-                            <property name="Position">1</property>
                             <property name="AutoSize">True</property>
                             <property name="Expand">False</property>
                             <property name="Fill">False</property>
