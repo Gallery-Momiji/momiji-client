@@ -23,24 +23,24 @@ namespace Momiji
 		//  Private Functions  //
 		/////////////////////////
 
-		private void CloseForm ()
+		private void CloseForm()
 		{
-			this.SQLConnection.LogAction ("Logged Out", this.User);
-			SQLConnection.Close ();
+			this.SQLConnection.LogAction("Logged Out", this.User);
+			SQLConnection.Close();
 
 			if (QuickSaleForm != null)
-				QuickSaleForm.Destroy ();
+				QuickSaleForm.Destroy();
 			if (AuctionSaleForm != null)
-				AuctionSaleForm.Destroy ();
+				AuctionSaleForm.Destroy();
 			if (GSSaleForm != null)
-				GSSaleForm.Destroy ();
+				GSSaleForm.Destroy();
 			if (SearchArtistForm != null)
-				SearchArtistForm.Destroy ();
+				SearchArtistForm.Destroy();
 			if (SearchDateForm != null)
-				SearchDateForm.Destroy ();
-			LoginForm.Show ();
-			LoginForm.GrabFocus ();
-			this.Destroy ();
+				SearchDateForm.Destroy();
+			LoginForm.Show();
+			LoginForm.GrabFocus();
+			this.Destroy();
 		}
 
 		/////////////////////////
@@ -50,7 +50,7 @@ namespace Momiji
 		/// <summary>
 		/// This should be called when the user closes frmGSSale.
 		/// </summary>
-		public void CleanupGSSale ()
+		public void CleanupGSSale()
 		{
 			GSSaleForm = null;
 		}
@@ -58,7 +58,7 @@ namespace Momiji
 		/// <summary>
 		/// This should be called when the user closes frmQuickSale.
 		/// </summary>
-		public void CleanupQuickSale ()
+		public void CleanupQuickSale()
 		{
 			QuickSaleForm = null;
 		}
@@ -66,7 +66,7 @@ namespace Momiji
 		/// <summary>
 		/// This should be called when the user closes frmAuctionSale.
 		/// </summary>
-		public void CleanupAuctionSale ()
+		public void CleanupAuctionSale()
 		{
 			AuctionSaleForm = null;
 		}
@@ -74,7 +74,7 @@ namespace Momiji
 		/// <summary>
 		/// This should be called when the user closes frmSearchArtist.
 		/// </summary>
-		public void CleanupSearchDate ()
+		public void CleanupSearchDate()
 		{
 			SearchDateForm = null;
 		}
@@ -82,7 +82,7 @@ namespace Momiji
 		/// <summary>
 		/// This should be called when the user closes frmSearchArtist.
 		/// </summary>
-		public void CleanupSearchArtist ()
+		public void CleanupSearchArtist()
 		{
 			SearchArtistForm = null;
 		}
@@ -91,11 +91,13 @@ namespace Momiji
 		//  Public Accessors   //
 		/////////////////////////
 
-		public SQLResult currentUser {
+		public SQLResult currentUser
+		{
 			get { return User; }
 		}
 
-		public SQL currentSQLConnection {
+		public SQL currentSQLConnection
+		{
 			get { return SQLConnection; }
 		}
 
@@ -103,13 +105,13 @@ namespace Momiji
 		//     Contructor      //
 		/////////////////////////
 
-		public frmMenu (SQL SQLConnection, SQLResult results, frmLogin parent) :
-			base (Gtk.WindowType.Toplevel)
+		public frmMenu(SQL SQLConnection, SQLResult results, frmLogin parent) :
+			base(Gtk.WindowType.Toplevel)
 		{
 			this.LoginForm = parent;
 			this.SQLConnection = SQLConnection;
 			this.User = results;
-			this.Build ();
+			this.Build();
 
 			////////////////////////////
 			// User class explanation //
@@ -130,10 +132,10 @@ namespace Momiji
 			// 10 - Manage Treasury - refunds
 			// 11 - Administrator
 			////////////////////////////
-			int userClass = User.getCellInt ("class", 0);
+			int userClass = User.getCellInt("class", 0);
 
 			//Welcome Message:
-			string userRank = userClass.ToString ();
+			string userRank = userClass.ToString();
 			if (userClass >= 11)
 				userRank += " (Administrator)";
 			else if (userClass >= 4)
@@ -142,7 +144,7 @@ namespace Momiji
 				userRank += " (Basic User)";
 			else
 				userRank += " (No privileges)";
-			lblGreeting.Text = "Welcome " + User.getCell ("name", 0) + ", Your Rank is " + userRank;
+			lblGreeting.Text = "Welcome " + User.getCell("name", 0) + ", Your Rank is " + userRank;
 
 			//Basic Functionality:
 			btnGalleryStoreSale.Sensitive = userClass >= 1 ? true : false;
@@ -178,155 +180,161 @@ namespace Momiji
 		//     GTK Signals     //
 		/////////////////////////
 
-		protected void OnDeleteEvent (object o, Gtk.DeleteEventArgs args)
+		protected void OnDeleteEvent(object o, Gtk.DeleteEventArgs args)
 		{
-			CloseForm ();
+			CloseForm();
 		}
 
 		//File
 
-		protected void OnCloseActionActivated (object sender, EventArgs e)
+		protected void OnCloseActionActivated(object sender, EventArgs e)
 		{
-			CloseForm ();
+			CloseForm();
 		}
 
-		protected void OnQuitActionActivated (object sender, EventArgs e)
+		protected void OnQuitActionActivated(object sender, EventArgs e)
 		{
-			this.SQLConnection.LogAction ("Logged Out", this.User);
-			SQLConnection.Close ();
+			this.SQLConnection.LogAction("Logged Out", this.User);
+			SQLConnection.Close();
 
 			if (QuickSaleForm != null)
-				QuickSaleForm.Destroy ();
+				QuickSaleForm.Destroy();
 			if (AuctionSaleForm != null)
-				AuctionSaleForm.Destroy ();
+				AuctionSaleForm.Destroy();
 			if (GSSaleForm != null)
-				GSSaleForm.Destroy ();
+				GSSaleForm.Destroy();
 			if (SearchArtistForm != null)
-				SearchArtistForm.Destroy ();
-			LoginForm.Destroy ();
-			this.Destroy ();
-			Application.Quit ();
+				SearchArtistForm.Destroy();
+			LoginForm.Destroy();
+			this.Destroy();
+			Application.Quit();
 		}
 
 		//Artists
 
-		protected void OnCheckInActionActivated (object sender, EventArgs e)
+		protected void OnCheckInActionActivated(object sender, EventArgs e)
 		{
 			if (SearchArtistForm != null)
-				SearchArtistForm.Destroy ();
-			SearchArtistForm = new frmSearchArtist (frmSearchArtist.Operations.ArtistCheckin, this);
+				SearchArtistForm.Destroy();
+			SearchArtistForm = new frmSearchArtist(frmSearchArtist.Operations.ArtistCheckin, this);
 		}
 
-		protected void OnCheckOutActionActivated (object sender, EventArgs e)
+		protected void OnCheckOutActionActivated(object sender, EventArgs e)
 		{
 			if (SearchArtistForm != null)
-				SearchArtistForm.Destroy ();
-			new frmSearchArtist (frmSearchArtist.Operations.ArtistCheckout, this);
+				SearchArtistForm.Destroy();
+			new frmSearchArtist(frmSearchArtist.Operations.ArtistCheckout, this);
 		}
 
 		//Artists > Manage
 
-		protected void OnAddArtistActionActivated (object sender, EventArgs e)
+		protected void OnAddArtistActionActivated(object sender, EventArgs e)
 		{
 			//Negative ID means to make a new artist
-			new frmArtistAdd (this);
+			new frmArtistAdd(this);
 		}
 
-		protected void OnEditArtistActionActivated (object sender, EventArgs e)
+		protected void OnEditArtistActionActivated(object sender, EventArgs e)
 		{
 			if (SearchArtistForm != null)
-				SearchArtistForm.Destroy ();
-			new frmSearchArtist (frmSearchArtist.Operations.EditArtist, this);
+				SearchArtistForm.Destroy();
+			new frmSearchArtist(frmSearchArtist.Operations.EditArtist, this);
 		}
 
-		protected void OnEditMerchandiseActionActivated (object sender, EventArgs e)
+		protected void OnEditMerchandiseActionActivated(object sender, EventArgs e)
 		{
 			if (SearchArtistForm != null)
-				SearchArtistForm.Destroy ();
-			new frmSearchArtist (frmSearchArtist.Operations.EditMerchandise, this);
+				SearchArtistForm.Destroy();
+			new frmSearchArtist(frmSearchArtist.Operations.EditMerchandise, this);
 		}
 
-		protected void OnEditGalleryStoreMerchandiseActionActivated (object sender, EventArgs e)
+		protected void OnEditGalleryStoreMerchandiseActionActivated(object sender, EventArgs e)
 		{
 			if (SearchArtistForm != null)
-				SearchArtistForm.Destroy ();
-			new frmSearchArtist (frmSearchArtist.Operations.EditGalleryStore, this);
+				SearchArtistForm.Destroy();
+			new frmSearchArtist(frmSearchArtist.Operations.EditGalleryStore, this);
 		}
 
-		protected void OnManageArtistBalanceActionActivated (object sender, EventArgs e)
+		protected void OnManageArtistBalanceActionActivated(object sender, EventArgs e)
 		{
 			if (SearchArtistForm != null)
-				SearchArtistForm.Destroy ();
-			new frmSearchArtist (frmSearchArtist.Operations.ManageArtistBalance, this);
+				SearchArtistForm.Destroy();
+			new frmSearchArtist(frmSearchArtist.Operations.ManageArtistBalance, this);
 		}
 
 		//Tools
 
-		protected void OnCheckSalesActionActivated (object sender, EventArgs e)
+		protected void OnCheckSalesActionActivated(object sender, EventArgs e)
 		{
-			System.Diagnostics.Process.Start ("http://" + SQLConnection.getHost () + "/momiji/summary.php");
+			System.Diagnostics.Process.Start("http://" + SQLConnection.getHost() + "/momiji/summary.php");
 		}
 
-		protected void OnRefundActionActivated (object sender, EventArgs e)
-		{
-			if (SearchDateForm != null)
-				SearchDateForm.Destroy ();
-			SearchDateForm = new frmSearchDate (frmSearchDate.Operations.Refund, this);
-		}
-
-		protected void OnReprintReceiptActionActivated (object sender, EventArgs e)
-		{
-			new frmReceipts (this);
-		}
-
-		protected void OnCheckReceiptsActionActivated (object sender, EventArgs e)
+		protected void OnRefundActionActivated(object sender, EventArgs e)
 		{
 			if (SearchDateForm != null)
-				SearchDateForm.Destroy ();
-			SearchDateForm = new frmSearchDate (frmSearchDate.Operations.CheckReceipts, this);
+				SearchDateForm.Destroy();
+			SearchDateForm = new frmSearchDate(frmSearchDate.Operations.Refund, this);
 		}
 
-		protected void OnCheckUserActivitiesActionActivated (object sender, EventArgs e)
+		protected void OnReprintReceiptActionActivated(object sender, EventArgs e)
+		{
+			new frmReceipts(this);
+		}
+
+		protected void OnCheckReceiptsActionActivated(object sender, EventArgs e)
 		{
 			if (SearchDateForm != null)
-				SearchDateForm.Destroy ();
-			SearchDateForm = new frmSearchDate (frmSearchDate.Operations.CheckUserActivities, this);
+				SearchDateForm.Destroy();
+			SearchDateForm = new frmSearchDate(frmSearchDate.Operations.CheckReceipts, this);
 		}
 
-		protected void OnGenerateBiddingSheetsActionActivated (object sender, EventArgs e)
+		protected void OnCheckUserActivitiesActionActivated(object sender, EventArgs e)
+		{
+			if (SearchDateForm != null)
+				SearchDateForm.Destroy();
+			SearchDateForm = new frmSearchDate(frmSearchDate.Operations.CheckUserActivities, this);
+		}
+
+		protected void OnGenerateBiddingSheetsActionActivated(object sender, EventArgs e)
 		{
 			string filename =
-				SaveFileDialog.rtf (this,
+				SaveFileDialog.rtf(this,
 					"Save bidder sheets to file",
 					"BiddingSheets.rtf");
 
-			if (filename != "") {
-				MySqlCommand artistquery = new MySqlCommand ("SELECT `ArtistID`,`ArtistName` FROM `artists` ORDER BY `ArtistID`;",
-					                           SQLConnection.GetConnection ());
-				artistquery.Prepare ();
-				SQLResult artists = SQLConnection.Query (artistquery);
+			if (filename != "")
+			{
+				MySqlCommand artistquery = new MySqlCommand("SELECT `ArtistID`,`ArtistName` FROM `artists` ORDER BY `ArtistID`;",
+											   SQLConnection.GetConnection());
+				artistquery.Prepare();
+				SQLResult artists = SQLConnection.Query(artistquery);
 
-				if (artists.GetNumberOfRows () >= 1) {
-					Biddersheet bidsheet = new Biddersheet (filename);
+				if (artists.GetNumberOfRows() >= 1)
+				{
+					Biddersheet bidsheet = new Biddersheet(filename);
 
-					for (int i = 0; i < artists.GetNumberOfRows (); i++) {
-						MySqlCommand merchquery = new MySqlCommand ("SELECT `MerchID`,`MerchTitle`,`MerchMinBid`,`MerchAAMB`,`MerchQuickSale`,`MerchMedium` FROM `merchandise` WHERE `ArtistID` = @ID ORDER BY `MerchID`;",
-							                          SQLConnection.GetConnection ());
-						merchquery.Prepare ();
-						merchquery.Parameters.AddWithValue ("@ID", artists.getCellInt ("ArtistID", i));
-						SQLResult merch = SQLConnection.Query (merchquery);
+					for (int i = 0; i < artists.GetNumberOfRows(); i++)
+					{
+						MySqlCommand merchquery = new MySqlCommand("SELECT `MerchID`,`MerchTitle`,`MerchMinBid`,`MerchAAMB`,`MerchQuickSale`,`MerchMedium` FROM `merchandise` WHERE `ArtistID` = @ID ORDER BY `MerchID`;",
+													  SQLConnection.GetConnection());
+						merchquery.Prepare();
+						merchquery.Parameters.AddWithValue("@ID", artists.getCellInt("ArtistID", i));
+						SQLResult merch = SQLConnection.Query(merchquery);
 
-						for (int j = 0; j < merch.GetNumberOfRows (); j++) {
-							bidsheet.AddSheet (artists.getCell ("ArtistID", i), merch.getCell ("MerchID", j), artists.getCell ("ArtistName", i),
-								merch.getCell ("MerchTitle", j), merch.getCell ("MerchMedium", j), merch.getCell ("MerchMinBid", j),
-								merch.getCell ("MerchQuickSale", j), merch.getCellInt ("MerchAAMB", j) == 1);
+						for (int j = 0; j < merch.GetNumberOfRows(); j++)
+						{
+							bidsheet.AddSheet(artists.getCell("ArtistID", i), merch.getCell("MerchID", j), artists.getCell("ArtistName", i),
+								merch.getCell("MerchTitle", j), merch.getCell("MerchMedium", j), merch.getCell("MerchMinBid", j),
+								merch.getCell("MerchQuickSale", j), merch.getCellInt("MerchAAMB", j) == 1);
 						}
 					}
-					bidsheet.Finish ();
-					MessageBox.Show (this, MessageType.Info,
+					bidsheet.Finish();
+					MessageBox.Show(this, MessageType.Info,
 						"Bidder Sheets generated!");
-				} else {
-					MessageBox.Show (this, MessageType.Error,
+				}
+				else
+				{
+					MessageBox.Show(this, MessageType.Error,
 						"Unable to find any artists");
 				}
 			}
@@ -334,83 +342,83 @@ namespace Momiji
 
 		//Preferences
 
-		protected void OnUserPreferencesActionActivated (object sender, EventArgs e)
+		protected void OnUserPreferencesActionActivated(object sender, EventArgs e)
 		{
-			new frmUserEdit (User.getCellInt ("id", 0), this);
+			new frmUserEdit(User.getCellInt("id", 0), this);
 		}
 
-		protected void OnPricingActionActivated (object sender, EventArgs e)
+		protected void OnPricingActionActivated(object sender, EventArgs e)
 		{
-			new frmPricing (this);
+			new frmPricing(this);
 		}
 
-		protected void OnBiddersActionActivated (object sender, EventArgs e)
+		protected void OnBiddersActionActivated(object sender, EventArgs e)
 		{
-			new frmBidders (this);
+			new frmBidders(this);
 		}
 
 		//Preferences > Users
 
-		protected void OnAddUserActionActivated (object sender, EventArgs e)
+		protected void OnAddUserActionActivated(object sender, EventArgs e)
 		{
-			new frmUserAdd (this);
+			new frmUserAdd(this);
 		}
 
-		protected void OnEditUserActionActivated (object sender, EventArgs e)
+		protected void OnEditUserActionActivated(object sender, EventArgs e)
 		{
-			new frmUserEdit (this);
+			new frmUserEdit(this);
 		}
 
 		//About
 
-		protected void OnAboutActionActivated (object sender, EventArgs e)
+		protected void OnAboutActionActivated(object sender, EventArgs e)
 		{
-			new AboutBox ();
+			new AboutBox();
 		}
 
 		//Buttons
 
-		protected void OnBtnQuickSaleClicked (object sender, EventArgs e)
+		protected void OnBtnQuickSaleClicked(object sender, EventArgs e)
 		{
 			if (QuickSaleForm != null)
-				QuickSaleForm.Present ();
+				QuickSaleForm.Present();
 			else
-				QuickSaleForm = new frmQuickSale (this);
+				QuickSaleForm = new frmQuickSale(this);
 		}
 
-		protected void OnBtnAuctionSaleClicked (object sender, EventArgs e)
+		protected void OnBtnAuctionSaleClicked(object sender, EventArgs e)
 		{
 			if (AuctionSaleForm != null)
-				AuctionSaleForm.Present ();
+				AuctionSaleForm.Present();
 			else
-				AuctionSaleForm = new frmAuctionSale (this);
+				AuctionSaleForm = new frmAuctionSale(this);
 		}
 
-		protected void OnBtnGalleryStoreSaleClicked (object sender, EventArgs e)
+		protected void OnBtnGalleryStoreSaleClicked(object sender, EventArgs e)
 		{
 			if (GSSaleForm != null)
-				GSSaleForm.Present ();
+				GSSaleForm.Present();
 			else
-				GSSaleForm = new frmGSSale (this);
+				GSSaleForm = new frmGSSale(this);
 		}
 
-		protected void OnBtnLogoutClicked (object sender, EventArgs e)
+		protected void OnBtnLogoutClicked(object sender, EventArgs e)
 		{
-			CloseForm ();
+			CloseForm();
 		}
 
-		protected void OnArtistGenBidsheetActionActivated (object sender, EventArgs e)
-		{
-			if (SearchArtistForm != null)
-				SearchArtistForm.Destroy ();
-			new frmSearchArtist (frmSearchArtist.Operations.GenerateBiddersheets, this);
-		}
-
-		protected void OnArtistGenBarcodeActionActivated (object sender, EventArgs e)
+		protected void OnArtistGenBidsheetActionActivated(object sender, EventArgs e)
 		{
 			if (SearchArtistForm != null)
-				SearchArtistForm.Destroy ();
-			new frmSearchArtist (frmSearchArtist.Operations.GenerateBarcodes, this);
+				SearchArtistForm.Destroy();
+			new frmSearchArtist(frmSearchArtist.Operations.GenerateBiddersheets, this);
+		}
+
+		protected void OnArtistGenBarcodeActionActivated(object sender, EventArgs e)
+		{
+			if (SearchArtistForm != null)
+				SearchArtistForm.Destroy();
+			new frmSearchArtist(frmSearchArtist.Operations.GenerateBarcodes, this);
 		}
 	}
 }

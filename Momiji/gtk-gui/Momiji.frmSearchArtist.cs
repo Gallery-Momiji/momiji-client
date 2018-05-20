@@ -5,108 +5,109 @@ namespace Momiji
 	public partial class frmSearchArtist
 	{
 		private global::Gtk.VBox vbox1;
-		
+
 		private global::Gtk.HBox hbox1;
-		
+
 		private global::Gtk.VBox vbox4;
-		
+
 		private global::Gtk.Label lblSearch;
-		
+
 		private global::Gtk.Entry txtSearch;
-		
+
 		private global::Gtk.Button btnSearch;
-		
+
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
-		
+
 		private global::Gtk.NodeView lstArtists;
 
-		protected virtual void Build ()
+		protected virtual void Build()
 		{
-			global::Stetic.Gui.Initialize (this);
+			global::Stetic.Gui.Initialize(this);
 			// Widget Momiji.frmSearchArtist
 			this.Name = "Momiji.frmSearchArtist";
-			this.Title = global::Mono.Unix.Catalog.GetString ("frmSearchArtist");
+			this.Title = global::Mono.Unix.Catalog.GetString("frmSearchArtist");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child Momiji.frmSearchArtist.Gtk.Container+ContainerChild
-			this.vbox1 = new global::Gtk.VBox ();
+			this.vbox1 = new global::Gtk.VBox();
 			this.vbox1.Name = "vbox1";
 			this.vbox1.Spacing = 6;
 			this.vbox1.BorderWidth = ((uint)(8));
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.hbox1 = new global::Gtk.HBox ();
+			this.hbox1 = new global::Gtk.HBox();
 			this.hbox1.Name = "hbox1";
 			this.hbox1.Spacing = 6;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.vbox4 = new global::Gtk.VBox ();
+			this.vbox4 = new global::Gtk.VBox();
 			this.vbox4.Name = "vbox4";
 			this.vbox4.Spacing = 6;
 			// Container child vbox4.Gtk.Box+BoxChild
-			this.lblSearch = new global::Gtk.Label ();
+			this.lblSearch = new global::Gtk.Label();
 			this.lblSearch.Name = "lblSearch";
-			this.lblSearch.LabelProp = global::Mono.Unix.Catalog.GetString ("Enter part of the Artist's name or artist ID :");
-			this.vbox4.Add (this.lblSearch);
-			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.lblSearch]));
+			this.lblSearch.LabelProp = global::Mono.Unix.Catalog.GetString("Enter part of the Artist\'s name or artist ID :");
+			this.vbox4.Add(this.lblSearch);
+			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.lblSearch]));
 			w1.Position = 0;
 			w1.Expand = false;
 			w1.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
-			this.txtSearch = new global::Gtk.Entry ();
+			this.txtSearch = new global::Gtk.Entry();
 			this.txtSearch.CanFocus = true;
 			this.txtSearch.Name = "txtSearch";
 			this.txtSearch.IsEditable = true;
 			this.txtSearch.InvisibleChar = '●';
-			this.vbox4.Add (this.txtSearch);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.txtSearch]));
+			this.vbox4.Add(this.txtSearch);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.txtSearch]));
 			w2.Position = 1;
 			w2.Expand = false;
 			w2.Fill = false;
-			this.hbox1.Add (this.vbox4);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox4]));
+			this.hbox1.Add(this.vbox4);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox4]));
 			w3.Position = 0;
 			w3.Expand = false;
 			w3.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.btnSearch = new global::Gtk.Button ();
+			this.btnSearch = new global::Gtk.Button();
 			this.btnSearch.CanFocus = true;
 			this.btnSearch.Name = "btnSearch";
 			this.btnSearch.UseUnderline = true;
 			this.btnSearch.Label = "Search";
-			global::Gtk.Image w4 = new global::Gtk.Image ();
-			w4.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-find", global::Gtk.IconSize.Menu);
+			global::Gtk.Image w4 = new global::Gtk.Image();
+			w4.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-find", global::Gtk.IconSize.Menu);
 			this.btnSearch.Image = w4;
-			this.hbox1.Add (this.btnSearch);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnSearch]));
+			this.hbox1.Add(this.btnSearch);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.btnSearch]));
 			w5.Position = 1;
-			this.vbox1.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
+			this.vbox1.Add(this.hbox1);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox1]));
 			w6.Position = 0;
 			w6.Expand = false;
 			w6.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-			this.lstArtists = new global::Gtk.NodeView ();
+			this.lstArtists = new global::Gtk.NodeView();
 			this.lstArtists.CanFocus = true;
 			this.lstArtists.Name = "lstArtists";
 			this.lstArtists.EnableSearch = false;
-			this.GtkScrolledWindow.Add (this.lstArtists);
-			this.vbox1.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
+			this.GtkScrolledWindow.Add(this.lstArtists);
+			this.vbox1.Add(this.GtkScrolledWindow);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
 			w8.Position = 1;
 			w8.Padding = ((uint)(6));
-			this.Add (this.vbox1);
-			if ((this.Child != null)) {
-				this.Child.ShowAll ();
+			this.Add(this.vbox1);
+			if ((this.Child != null))
+			{
+				this.Child.ShowAll();
 			}
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 376;
-			this.Show ();
-			this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
-			this.txtSearch.Activated += new global::System.EventHandler (this.OnTxtSearchActivated);
-			this.btnSearch.Clicked += new global::System.EventHandler (this.OnBtnSearchClicked);
-			this.lstArtists.RowActivated += new global::Gtk.RowActivatedHandler (this.OnLstArtistsRowActivated);
+			this.Show();
+			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+			this.txtSearch.Activated += new global::System.EventHandler(this.OnTxtSearchActivated);
+			this.btnSearch.Clicked += new global::System.EventHandler(this.OnBtnSearchClicked);
+			this.lstArtists.RowActivated += new global::Gtk.RowActivatedHandler(this.OnLstArtistsRowActivated);
 		}
 	}
 }
