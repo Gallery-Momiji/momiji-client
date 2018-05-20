@@ -3,10 +3,10 @@ Piece ID:}{\rtlch \ltrch\loch\fs20\loch\f6
        }{\rtlch \ltrch\loch\fs72\loch\f8
 *PIECE_ID*}
 \par \pard\plain \s0\ql\widctlpar\faauto\li0\ri0\lin0\rin0\fi0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf1\kerning1\dbch\af9\langfe1081\dbch\af9\afs24\alang1081\loch\f5\fs24\lang4105\ql\widctlpar\faauto\li0\ri144\lin0\rin144\fi0\sb142\sa142\ltrpar{\ul\ulc0\b\rtlch \ltrch\loch\fs20\loch\f6
-Artist: ARTIST_ID}
-\par \pard\plain \s0\ql\widctlpar\faauto\li0\ri0\lin0\rin0\fi0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf1\kerning1\dbch\af9\langfe1081\dbch\af9\afs24\alang1081\loch\f5\fs24\lang4105\ql\widctlpar\faauto\li0\ri144\lin0\rin144\fi0\sb142\sa142\ltrpar{\ul\ulc0\b\rtlch \ltrch\loch\fs20\loch\f6
-Title: PIECE_TITLE}
-\par \pard\plain \s0\ql\widctlpar\faauto\li0\ri0\lin0\rin0\fi0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf1\kerning1\dbch\af9\langfe1081\dbch\af9\afs24\alang1081\loch\f5\fs24\lang4105\ql\widctlpar\faauto\li0\ri144\lin0\rin144\fi0\sb142\sa142\ltrpar{\ul\ulc0\b\rtlch \ltrch\loch\fs20\loch\f6
+Artist: ARTIST_ID
+\line
+Title: PIECE_TITLE
+\line
 Medium: PIECE_MEDIUM}
 \par \pard\plain \s0\ql\widctlpar\faauto\li0\ri0\lin0\rin0\fi0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf1\kerning1\dbch\af9\langfe1081\dbch\af9\afs24\alang1081\loch\f5\fs24\lang4105\ql\widctlpar\faauto\li0\ri144\lin0\rin144\fi0\sb142\sa142\ltrpar{\ul\ulc0\b\rtlch \ltrch\loch\fs20\loch\f6
 Minimum Bid: PIECE_MINBID}{\b\rtlch \ltrch\loch\fs20\loch\f6
