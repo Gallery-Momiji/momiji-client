@@ -141,7 +141,7 @@ namespace Momiji
 		protected void OnLstArtistsRowActivated (object o, RowActivatedArgs args)
 		{
 			SQL SQLConnection = parent.currentSQLConnection;
-			ArtistNode selectednode = (ArtistNode)lstArtists.NodeSelection.SelectedNode;
+			ArtistNode selectednode = (ArtistNode)artistStore.GetNode((TreePath)args.Path);
 			switch (operation) {
 			case Operations.ArtistCheckin:
 				new frmCheckin (selectednode.ArtistID, parent);

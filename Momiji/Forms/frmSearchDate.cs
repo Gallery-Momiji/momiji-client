@@ -146,7 +146,7 @@ namespace Momiji
 
 		protected void OnLstLogRowActivated (object o, Gtk.RowActivatedArgs args)
 		{
-			DateNode selectednode = (DateNode)lstLog.NodeSelection.SelectedNode;
+			DateNode selectednode = (DateNode)dateStore.GetNode((TreePath)args.Path);
 			SQL SQLConnection = parent.currentSQLConnection;
 			SQLResult User = parent.currentUser;
 			SQLResult results;

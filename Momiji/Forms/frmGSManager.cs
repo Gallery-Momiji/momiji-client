@@ -307,7 +307,7 @@ namespace Momiji
 
 		protected void OnLstMerchRowActivated (object o, RowActivatedArgs args)
 		{
-			StockNode selectednode = (StockNode)lstMerch.NodeSelection.SelectedNode;
+			StockNode selectednode = (StockNode)merchStore.GetNode((TreePath)args.Path);
 
 			SQL SQLConnection = parent.currentSQLConnection;
 			MySqlCommand query = new MySqlCommand ("SELECT `PieceInitialStock` FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;",

@@ -298,7 +298,7 @@ namespace Momiji
 
 		protected void OnLstMerchRowActivated (object o, RowActivatedArgs args)
 		{
-			StockNode selectednode = (StockNode)lstMerch.NodeSelection.SelectedNode;
+			StockNode selectednode = (StockNode)merchStore.GetNode((TreePath)args.Path);
 
 			if(selectednode.PieceID == 0)
 				return;
