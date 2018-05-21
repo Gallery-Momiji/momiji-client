@@ -3347,7 +3347,7 @@ Credit</property>
   </widget>
   <widget class="Gtk.Window" id="Momiji.frmArtistAdd" design-size="672 309">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">frmArtistAdd</property>
+    <property name="Title" translatable="yes">Add Artist</property>
     <property name="WindowPosition">CenterOnParent</property>
     <child>
       <widget class="Gtk.HBox" id="hbox2">
