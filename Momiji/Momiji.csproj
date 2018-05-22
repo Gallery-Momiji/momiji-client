@@ -82,7 +82,6 @@
     <Compile Include="gtk-gui\Momiji.frmGSManager.cs" />
     <Compile Include="gtk-gui\Momiji.frmReceipts.cs" />
     <Compile Include="gtk-gui\Momiji.frmUserEdit.cs" />
-    <Compile Include="gtk-gui\Momiji.frmPricing.cs" />
     <Compile Include="gtk-gui\Momiji.frmCheckin.cs" />
     <Compile Include="gtk-gui\Momiji.frmSearchArtist.cs" />
     <Compile Include="gtk-gui\Momiji.frmArtistAdd.cs" />
@@ -105,7 +104,6 @@
     <Compile Include="Forms\frmLogin.cs" />
     <Compile Include="Forms\frmMenu.cs" />
     <Compile Include="Forms\frmMerchEditor.cs" />
-    <Compile Include="Forms\frmPricing.cs" />
     <Compile Include="Forms\frmQuickSale.cs" />
     <Compile Include="Forms\frmReceipts.cs" />
     <Compile Include="Forms\frmSearchArtist.cs" />

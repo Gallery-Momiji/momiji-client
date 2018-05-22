@@ -164,16 +164,7 @@ namespace Momiji
 			checkReceiptsAction.Sensitive = userClass >= 9 ? true : false;
 			checkSalesAction.Sensitive = userClass >= 9 ? true : false;
 			refundAction.Sensitive = userClass >= 10 ? true : false;
-			//NOTE! unimplemented options should be DEBUG ONLY
-#if DEBUG
 			manageArtistBalanceAction.Sensitive = userClass >= 10 ? true : false;
-			pricingAction.Sensitive = userClass >= 11 ? true : false;
-#else
-			//TODO//artistBalance
-			manageArtistBalanceAction.Sensitive = false;
-			//TODO//frmpricing
-			pricingAction.Sensitive = false;
-#endif
 		}
 
 		/////////////////////////
@@ -345,11 +336,6 @@ namespace Momiji
 		protected void OnUserPreferencesActionActivated(object sender, EventArgs e)
 		{
 			new frmUserEdit(User.getCellInt("id", 0), this);
-		}
-
-		protected void OnPricingActionActivated(object sender, EventArgs e)
-		{
-			new frmPricing(this);
 		}
 
 		protected void OnBiddersActionActivated(object sender, EventArgs e)

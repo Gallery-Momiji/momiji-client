@@ -52,8 +52,6 @@ namespace Momiji
 
 		private global::Gtk.Action userPreferencesAction;
 
-		private global::Gtk.Action pricingAction;
-
 		private global::Gtk.Action biddersAction;
 
 		private global::Gtk.Action usersPrefAction;
@@ -171,9 +169,6 @@ namespace Momiji
 			this.userPreferencesAction = new global::Gtk.Action("userPreferencesAction", global::Mono.Unix.Catalog.GetString("User Preferences"), null, "gtk-preferences");
 			this.userPreferencesAction.ShortLabel = global::Mono.Unix.Catalog.GetString("User Preferences");
 			w1.Add(this.userPreferencesAction, null);
-			this.pricingAction = new global::Gtk.Action("pricingAction", global::Mono.Unix.Catalog.GetString("Pricing"), null, "gtk-properties");
-			this.pricingAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Pricing");
-			w1.Add(this.pricingAction, null);
 			this.biddersAction = new global::Gtk.Action("biddersAction", global::Mono.Unix.Catalog.GetString("Bidders"), null, "gtk-select-color");
 			this.biddersAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Bidders");
 			w1.Add(this.biddersAction, null);
@@ -224,12 +219,11 @@ namespace Momiji
 					"eckUserActivitiesAction\'/><menuitem name=\'generateBiddingSheetsAction\' action=\'g" +
 					"enerateBiddingSheetsAction\'/></menu><menu name=\'PreferencesAction\' action=\'Prefe" +
 					"rencesAction\'><menuitem name=\'userPreferencesAction\' action=\'userPreferencesActi" +
-					"on\'/><menuitem name=\'pricingAction\' action=\'pricingAction\'/><menuitem name=\'bidd" +
-					"ersAction\' action=\'biddersAction\'/><menu name=\'usersPrefAction\' action=\'usersPre" +
-					"fAction\'><menuitem name=\'addUserAction\' action=\'addUserAction\'/><menuitem name=\'" +
-					"editUserAction\' action=\'editUserAction\'/></menu></menu><menu name=\'HelpAction\' a" +
-					"ction=\'HelpAction\'><menuitem name=\'aboutAction\' action=\'aboutAction\'/></menu></m" +
-					"enubar></ui>");
+					"on\'/><menuitem name=\'biddersAction\' action=\'biddersAction\'/><menu name=\'usersPre" +
+					"fAction\' action=\'usersPrefAction\'><menuitem name=\'addUserAction\' action=\'addUser" +
+					"Action\'/><menuitem name=\'editUserAction\' action=\'editUserAction\'/></menu></menu>" +
+					"<menu name=\'HelpAction\' action=\'HelpAction\'><menuitem name=\'aboutAction\' action=" +
+					"\'aboutAction\'/></menu></menubar></ui>");
 			this.mainMenubar = ((global::Gtk.MenuBar)(this.UIManager.GetWidget("/mainMenubar")));
 			this.mainMenubar.Name = "mainMenubar";
 			this.vbox2.Add(this.mainMenubar);
@@ -366,7 +360,7 @@ namespace Momiji
 				this.Child.ShowAll();
 			}
 			this.DefaultWidth = 438;
-			this.DefaultHeight = 312;
+			this.DefaultHeight = 322;
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 			this.aboutAction.Activated += new global::System.EventHandler(this.OnAboutActionActivated);
@@ -386,7 +380,6 @@ namespace Momiji
 			this.checkUserActivitiesAction.Activated += new global::System.EventHandler(this.OnCheckUserActivitiesActionActivated);
 			this.generateBiddingSheetsAction.Activated += new global::System.EventHandler(this.OnGenerateBiddingSheetsActionActivated);
 			this.userPreferencesAction.Activated += new global::System.EventHandler(this.OnUserPreferencesActionActivated);
-			this.pricingAction.Activated += new global::System.EventHandler(this.OnPricingActionActivated);
 			this.biddersAction.Activated += new global::System.EventHandler(this.OnBiddersActionActivated);
 			this.addUserAction.Activated += new global::System.EventHandler(this.OnAddUserActionActivated);
 			this.editUserAction.Activated += new global::System.EventHandler(this.OnEditUserActionActivated);

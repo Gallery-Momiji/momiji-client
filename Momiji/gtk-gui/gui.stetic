@@ -3036,14 +3036,6 @@ Credit</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmPricing" design-size="400 300">
-    <property name="MemberName" />
-    <property name="Title" translatable="yes">Pricing</property>
-    <property name="WindowPosition">CenterOnParent</property>
-    <child>
-      <placeholder />
-    </child>
-  </widget>
   <widget class="Gtk.Window" id="Momiji.frmCheckin" design-size="687 300">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Artist Check In</property>
@@ -4568,7 +4560,7 @@ Credit</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmMenu" design-size="438 312">
+  <widget class="Gtk.Window" id="Momiji.frmMenu" design-size="438 322">
     <action-group name="Default">
       <action id="FileAction">
         <property name="Type">Action</property>
@@ -4720,13 +4712,6 @@ Credit</property>
         <property name="StockId">gtk-preferences</property>
         <signal name="Activated" handler="OnUserPreferencesActionActivated" />
       </action>
-      <action id="pricingAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Pricing</property>
-        <property name="ShortLabel" translatable="yes">Pricing</property>
-        <property name="StockId">gtk-properties</property>
-        <signal name="Activated" handler="OnPricingActionActivated" />
-      </action>
       <action id="biddersAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Bidders</property>
@@ -4811,7 +4796,6 @@ Credit</property>
               </node>
               <node type="Menu" action="PreferencesAction">
                 <node type="Menuitem" action="userPreferencesAction" />
-                <node type="Menuitem" action="pricingAction" />
                 <node type="Menuitem" action="biddersAction" />
                 <node type="Menu" action="usersPrefAction">
                   <node type="Menuitem" action="addUserAction" />
