@@ -176,7 +176,7 @@ namespace Momiji
 		protected void OnChkServiceToggled(object sender, EventArgs e)
 		{
 			if (chkService.Active)
-				MessageBox.Show(this, MessageType.Info, "Remember to inform the artist that they will be charged $10 on checkout.");
+				MessageBox.Show(this, MessageType.Info, "If the artist is able to pay now, remember to balance their account and print a receipt, so they do not get charged at checkout.");
 		}
 	}
 }
