@@ -77,7 +77,7 @@ namespace Momiji
 			global::Stetic.Gui.Initialize(this);
 			// Widget Momiji.frmArtistAdd
 			this.Name = "Momiji.frmArtistAdd";
-			this.Title = global::Mono.Unix.Catalog.GetString("frmArtistAdd");
+			this.Title = global::Mono.Unix.Catalog.GetString("Add Artist");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child Momiji.frmArtistAdd.Gtk.Container+ContainerChild
 			this.hbox2 = new global::Gtk.HBox();
