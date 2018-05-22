@@ -37,7 +37,7 @@ namespace Momiji
 						merch.getCellInt("PieceID", i),
 						merch.getCell("PieceTitle", i),
 						merch.getCell("PiecePrice", i),
-						merch.getCellInt("PieceStock", i),
+						merch.getCellInt("PieceInitialStock", i),
 						merch.getCellInt("PieceSDC", i))
 					);
 				}
@@ -70,7 +70,7 @@ namespace Momiji
 		{
 			this.parent2 = null;
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand merchData = new MySqlCommand("SELECT `PieceID`,`PieceTitle`,`PiecePrice`,`PieceStock`,`PieceSDC` FROM `gsmerchandise` WHERE `ArtistID` = @ID;",
+			MySqlCommand merchData = new MySqlCommand("SELECT `PieceID`,`PieceTitle`,`PiecePrice`,`PieceInitialStock`,`PieceSDC` FROM `gsmerchandise` WHERE `ArtistID` = @ID;",
 										 SQLConnection.GetConnection());
 			merchData.Prepare();
 			merchData.Parameters.AddWithValue("@ID", artistID);
@@ -119,7 +119,7 @@ namespace Momiji
 			}
 
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand("UPDATE `gsmerchandise` SET `PieceTitle`=@TITLE, `PiecePrice`=@PRICE,`PieceSDC`=@SDC,`PieceStock`=@STOCK,`PieceInitialStock`=@ISTOCK WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
+			MySqlCommand query = new MySqlCommand("UPDATE `gsmerchandise` SET `PieceTitle`=@TITLE, `PiecePrice`=@PRICE,`PieceSDC`=@SDC,`PieceInitialStock`=@ISTOCK WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
 									 SQLConnection.GetConnection());
 			query.Prepare();
 			query.Parameters.AddWithValue("@AID", artistID);
@@ -128,7 +128,6 @@ namespace Momiji
 			query.Parameters.AddWithValue("@PRICE", txtPricePerUnit.Text);
 			query.Parameters.AddWithValue("@SDC", chkSDC.Active ? 1 : 0);
 			query.Parameters.AddWithValue("@ISTOCK", txtGivenStock.Text);
-			query.Parameters.AddWithValue("@STOCK", txtStock.Text);
 
 			SQLResult results = SQLConnection.Query(query);
 
@@ -138,7 +137,7 @@ namespace Momiji
 				int.TryParse(txtPieceID.Text, out selectednode.PieceID);
 				selectednode.PieceTitle = txtPieceTitle.Text;
 				selectednode.PieceMinPrice = "$" + txtPricePerUnit.Text;
-				selectednode.PieceOther = txtStock.Text;
+				selectednode.PieceOther = txtGivenStock.Text;
 				selectednode.PieceBool = chkSDC.Active ? "Yes" : "No";
 
 				MessageBox.Show(this, MessageType.Info,
@@ -173,10 +172,10 @@ namespace Momiji
 			}
 
 			int stock;
-			if (!int.TryParse(txtStock.Text, out stock))
+			if (!int.TryParse(txtGivenStock.Text, out stock))
 			{
 				MessageBox.Show(this, MessageType.Error,
-					"Invalid Piece ID");
+					"Invalid Stock");
 				return;
 			}
 
@@ -198,7 +197,7 @@ namespace Momiji
 			}
 
 			SQLConnection = parent.currentSQLConnection;
-			query = new MySqlCommand("INSERT INTO `gsmerchandise` (`ArtistID`, `PieceID`, `PieceTitle`, `PiecePrice`,`PieceSDC`,`PieceInitialStock`,`PieceStock`) VALUES (@AID, @PID, @TITLE, @PRICE, @SDC, @ISTOCK, @STOCK);",
+			query = new MySqlCommand("INSERT INTO `gsmerchandise` (`ArtistID`, `PieceID`, `PieceTitle`, `PiecePrice`,`PieceSDC`,`PieceInitialStock`) VALUES (@AID, @PID, @TITLE, @PRICE, @SDC, @ISTOCK, @STOCK);",
 				SQLConnection.GetConnection());
 			query.Prepare();
 			query.Parameters.AddWithValue("@AID", artistID);
@@ -207,7 +206,6 @@ namespace Momiji
 			query.Parameters.AddWithValue("@PRICE", txtPricePerUnit.Text);
 			query.Parameters.AddWithValue("@SDC", chkSDC.Active ? 1 : 0);
 			query.Parameters.AddWithValue("@ISTOCK", txtGivenStock.Text);
-			query.Parameters.AddWithValue("@STOCK", stock);
 
 			results = SQLConnection.Query(query);
 
@@ -237,7 +235,6 @@ namespace Momiji
 			txtPieceTitle.Text = "";
 			txtPricePerUnit.Text = "";
 			txtGivenStock.Text = "";
-			txtStock.Text = "";
 			chkSDC.Active = false;
 		}
 
@@ -331,20 +328,10 @@ namespace Momiji
 		{
 			StockNode selectednode = (StockNode)merchStore.GetNode((TreePath)args.Path);
 
-			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand("SELECT `PieceInitialStock` FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
-									 SQLConnection.GetConnection());
-			query.Prepare();
-			query.Parameters.AddWithValue("@AID", artistID);
-			query.Parameters.AddWithValue("@PID", selectednode.PieceID);
-
-			SQLResult results = SQLConnection.Query(query);
-			txtGivenStock.Text = results.getCell("PieceInitialStock", 0);
-
 			txtPieceID.Text = selectednode.PieceID.ToString();
 			txtPieceTitle.Text = selectednode.PieceTitle;
 			txtPricePerUnit.Text = selectednode.PieceMinPrice.Substring(1, selectednode.PieceMinPrice.Length - 1);
-			txtStock.Text = selectednode.PieceOther;
+			txtGivenStock.Text = selectednode.PieceOther;
 			chkSDC.Active = selectednode.PieceBool == "Yes";
 
 			btnAdd.Sensitive = false;

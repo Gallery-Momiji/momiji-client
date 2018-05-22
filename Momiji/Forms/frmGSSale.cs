@@ -113,7 +113,7 @@ namespace Momiji
 			}
 
 			SQL SQLConnection = parent.currentSQLConnection;
-			MySqlCommand query = new MySqlCommand("SELECT `PieceTitle`,`PiecePrice`,`PieceStock` FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
+			MySqlCommand query = new MySqlCommand("SELECT `PieceTitle`,`PiecePrice` FROM `gsmerchandise` WHERE `ArtistID` = @AID AND `PieceID` = @PID;",
 									 SQLConnection.GetConnection());
 			query.Prepare();
 			query.Parameters.AddWithValue("@AID", ArtistID);
@@ -124,31 +124,23 @@ namespace Momiji
 			{
 
 				int count = countInList(txtBarcode.Text);
-				if (results.getCellInt("PieceStock", 0) <= count)
-				{
-					MessageBox.Show(this, MessageType.Error,
-						"This is item is out of stock.");
-				}
-				else
-				{
-					merchStore.AddNode(new MerchNode(ArtistID,
-						PieceID,
-						results.getCell("PieceTitle", 0),
-						"$" + String.Format("{0:0.00}",
-							float.Parse(results.getCell("PiecePrice", 0)))
-					));
+				merchStore.AddNode(new MerchNode(ArtistID,
+					PieceID,
+					results.getCell("PieceTitle", 0),
+					"$" + String.Format("{0:0.00}",
+						float.Parse(results.getCell("PiecePrice", 0)))
+				));
 
-					total = total + float.Parse(results.getCell("PiecePrice", 0));
-					txtTotal.Text = String.Format("{0:0.00}", total);
+				total = total + float.Parse(results.getCell("PiecePrice", 0));
+				txtTotal.Text = String.Format("{0:0.00}", total);
 
-					items = items + txtBarcode.Text + "#";
-					prices = prices + results.getCell("PiecePrice", 0) + "#";
+				items = items + txtBarcode.Text + "#";
+				prices = prices + results.getCell("PiecePrice", 0) + "#";
 
-					btnPay.Sensitive = true;
-					txtPaid.Sensitive = true;
-					drpPaymentType.Sensitive = true;
-					btnCancel.Sensitive = true;
-				}
+				btnPay.Sensitive = true;
+				txtPaid.Sensitive = true;
+				drpPaymentType.Sensitive = true;
+				btnCancel.Sensitive = true;
 			}
 			else
 			{
@@ -239,19 +231,6 @@ namespace Momiji
 				receiptID = results.getCellInt("id", 0);
 
 				txtChange.Text = String.Format("{0:0.00}", (paid - total));
-
-				//Readjust the stock counts
-				//TODO// Test me!
-				/*string temp = items;
-				while (temp.Length >= 10) {
-					query = new MySqlCommand ("UPDATE `gsmerchandise` SET `PieceStock`=`PieceStock`-1 WHERE  `ArtistID`=@ARTISTID AND `MerchID`=@MERCHID LIMIT 1;",
-						SQLConnection.GetConnection ());
-					query.Prepare ();
-					query.Parameters.AddWithValue ("@ARTISTID", temp.Substring (2, 3));
-					query.Parameters.AddWithValue ("@MERCHID", temp.Substring (6, 3));
-					results = SQLConnection.Query (query);
-					temp = temp.Substring (10);
-				}*/
 
 				if (paid == total)
 				{

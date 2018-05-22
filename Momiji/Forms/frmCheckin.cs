@@ -72,7 +72,7 @@ namespace Momiji
 				}
 			}
 
-			MySqlCommand GSmerchData = new MySqlCommand("SELECT `PieceID`,`PieceTitle`,`PiecePrice`,`PieceStock`,`PieceSDC` FROM `gsmerchandise` WHERE `ArtistID` = @ID;",
+			MySqlCommand GSmerchData = new MySqlCommand("SELECT `PieceID`,`PieceTitle`,`PiecePrice`,`PieceInitialStock`,`PieceSDC` FROM `gsmerchandise` WHERE `ArtistID` = @ID;",
 										   SQLConnection.GetConnection());
 			GSmerchData.Prepare();
 			GSmerchData.Parameters.AddWithValue("@ID", artistID);
@@ -86,7 +86,7 @@ namespace Momiji
 						GSmerchCache.getCellInt("PieceID", i),
 						GSmerchCache.getCell("PieceTitle", i),
 						GSmerchCache.getCell("PiecePrice", i),
-						GSmerchCache.getCellInt("PieceStock", i),
+						GSmerchCache.getCellInt("PieceInitialStock", i),
 						GSmerchCache.getCellInt("PieceSDC", i))
 					);
 				}

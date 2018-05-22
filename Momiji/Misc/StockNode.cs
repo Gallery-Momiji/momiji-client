@@ -53,7 +53,7 @@ namespace Momiji
 			view.AppendColumn ("Title", new CellRendererText (), "text", 1);
 			view.AppendColumn ("Min Bid", new CellRendererText (), "text", 2);
 			view.AppendColumn ("Quick Sale", new CellRendererText (), "text", 3);
-			view.AppendColumn ("AAMB", new CellRendererText (), "text", 4);
+			view.AppendColumn ("After Auction", new CellRendererText (), "text", 4);
 		}
 
 		/// <summary>
@@ -73,7 +73,7 @@ namespace Momiji
 			view.AppendColumn ("Title", new CellRendererText (), "text", 1);
 			view.AppendColumn ("Price", new CellRendererText (), "text", 2);
 			view.AppendColumn ("Stock", new CellRendererText (), "text", 3);
-			view.AppendColumn ("SDC", new CellRendererText (), "text", 4);
+			view.AppendColumn ("Sell Display Copy", new CellRendererText (), "text", 4);
 		}
 
 		/// <summary>

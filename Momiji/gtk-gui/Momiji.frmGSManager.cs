@@ -54,12 +54,6 @@ namespace Momiji
 
 		private global::Gtk.Entry txtGivenStock;
 
-		private global::Gtk.HBox hbox7;
-
-		private global::Gtk.Label lblStock;
-
-		private global::Gtk.Entry txtStock;
-
 		private global::Gtk.CheckButton chkSDC;
 
 		private global::Gtk.Table table2;
@@ -300,33 +294,6 @@ namespace Momiji
 			w21.Expand = false;
 			w21.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
-			this.hbox7 = new global::Gtk.HBox();
-			this.hbox7.Name = "hbox7";
-			this.hbox7.Spacing = 6;
-			// Container child hbox7.Gtk.Box+BoxChild
-			this.lblStock = new global::Gtk.Label();
-			this.lblStock.Name = "lblStock";
-			this.lblStock.LabelProp = global::Mono.Unix.Catalog.GetString("Current Stock:");
-			this.hbox7.Add(this.lblStock);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.lblStock]));
-			w22.Position = 0;
-			w22.Expand = false;
-			w22.Fill = false;
-			// Container child hbox7.Gtk.Box+BoxChild
-			this.txtStock = new global::Gtk.Entry();
-			this.txtStock.CanFocus = true;
-			this.txtStock.Name = "txtStock";
-			this.txtStock.IsEditable = true;
-			this.txtStock.InvisibleChar = '●';
-			this.hbox7.Add(this.txtStock);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox7[this.txtStock]));
-			w23.Position = 1;
-			this.vbox4.Add(this.hbox7);
-			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.hbox7]));
-			w24.Position = 4;
-			w24.Expand = false;
-			w24.Fill = false;
-			// Container child vbox4.Gtk.Box+BoxChild
 			this.chkSDC = new global::Gtk.CheckButton();
 			this.chkSDC.CanFocus = true;
 			this.chkSDC.Name = "chkSDC";
@@ -334,10 +301,10 @@ namespace Momiji
 			this.chkSDC.DrawIndicator = true;
 			this.chkSDC.UseUnderline = true;
 			this.vbox4.Add(this.chkSDC);
-			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.chkSDC]));
-			w25.Position = 5;
-			w25.Expand = false;
-			w25.Fill = false;
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.chkSDC]));
+			w22.Position = 4;
+			w22.Expand = false;
+			w22.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.table2 = new global::Gtk.Table(((uint)(2)), ((uint)(2)), false);
 			this.table2.Name = "table2";
@@ -349,75 +316,75 @@ namespace Momiji
 			this.btnAdd.Name = "btnAdd";
 			this.btnAdd.UseUnderline = true;
 			this.btnAdd.Label = global::Mono.Unix.Catalog.GetString("Add");
-			global::Gtk.Image w26 = new global::Gtk.Image();
-			w26.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-add", global::Gtk.IconSize.Menu);
-			this.btnAdd.Image = w26;
+			global::Gtk.Image w23 = new global::Gtk.Image();
+			w23.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-add", global::Gtk.IconSize.Menu);
+			this.btnAdd.Image = w23;
 			this.table2.Add(this.btnAdd);
-			global::Gtk.Table.TableChild w27 = ((global::Gtk.Table.TableChild)(this.table2[this.btnAdd]));
-			w27.LeftAttach = ((uint)(1));
-			w27.RightAttach = ((uint)(2));
-			w27.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w24 = ((global::Gtk.Table.TableChild)(this.table2[this.btnAdd]));
+			w24.LeftAttach = ((uint)(1));
+			w24.RightAttach = ((uint)(2));
+			w24.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table2.Gtk.Table+TableChild
 			this.btnClear = new global::Gtk.Button();
 			this.btnClear.CanFocus = true;
 			this.btnClear.Name = "btnClear";
 			this.btnClear.UseUnderline = true;
 			this.btnClear.Label = global::Mono.Unix.Catalog.GetString("Clear");
-			global::Gtk.Image w28 = new global::Gtk.Image();
-			w28.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-cancel", global::Gtk.IconSize.Menu);
-			this.btnClear.Image = w28;
+			global::Gtk.Image w25 = new global::Gtk.Image();
+			w25.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-cancel", global::Gtk.IconSize.Menu);
+			this.btnClear.Image = w25;
 			this.table2.Add(this.btnClear);
-			global::Gtk.Table.TableChild w29 = ((global::Gtk.Table.TableChild)(this.table2[this.btnClear]));
-			w29.TopAttach = ((uint)(1));
-			w29.BottomAttach = ((uint)(2));
-			w29.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w26 = ((global::Gtk.Table.TableChild)(this.table2[this.btnClear]));
+			w26.TopAttach = ((uint)(1));
+			w26.BottomAttach = ((uint)(2));
+			w26.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table2.Gtk.Table+TableChild
 			this.btnDelete = new global::Gtk.Button();
 			this.btnDelete.CanFocus = true;
 			this.btnDelete.Name = "btnDelete";
 			this.btnDelete.UseUnderline = true;
 			this.btnDelete.Label = global::Mono.Unix.Catalog.GetString("Delete");
-			global::Gtk.Image w30 = new global::Gtk.Image();
-			w30.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-delete", global::Gtk.IconSize.Menu);
-			this.btnDelete.Image = w30;
+			global::Gtk.Image w27 = new global::Gtk.Image();
+			w27.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-delete", global::Gtk.IconSize.Menu);
+			this.btnDelete.Image = w27;
 			this.table2.Add(this.btnDelete);
-			global::Gtk.Table.TableChild w31 = ((global::Gtk.Table.TableChild)(this.table2[this.btnDelete]));
-			w31.TopAttach = ((uint)(1));
-			w31.BottomAttach = ((uint)(2));
-			w31.LeftAttach = ((uint)(1));
-			w31.RightAttach = ((uint)(2));
-			w31.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w28 = ((global::Gtk.Table.TableChild)(this.table2[this.btnDelete]));
+			w28.TopAttach = ((uint)(1));
+			w28.BottomAttach = ((uint)(2));
+			w28.LeftAttach = ((uint)(1));
+			w28.RightAttach = ((uint)(2));
+			w28.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table2.Gtk.Table+TableChild
 			this.btnUpdate = new global::Gtk.Button();
 			this.btnUpdate.CanFocus = true;
 			this.btnUpdate.Name = "btnUpdate";
 			this.btnUpdate.UseUnderline = true;
 			this.btnUpdate.Label = global::Mono.Unix.Catalog.GetString("Update");
-			global::Gtk.Image w32 = new global::Gtk.Image();
-			w32.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-apply", global::Gtk.IconSize.Menu);
-			this.btnUpdate.Image = w32;
+			global::Gtk.Image w29 = new global::Gtk.Image();
+			w29.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-apply", global::Gtk.IconSize.Menu);
+			this.btnUpdate.Image = w29;
 			this.table2.Add(this.btnUpdate);
-			global::Gtk.Table.TableChild w33 = ((global::Gtk.Table.TableChild)(this.table2[this.btnUpdate]));
-			w33.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w30 = ((global::Gtk.Table.TableChild)(this.table2[this.btnUpdate]));
+			w30.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.vbox4.Add(this.table2);
-			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.table2]));
-			w34.Position = 6;
-			w34.Expand = false;
-			w34.Fill = false;
+			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.table2]));
+			w31.Position = 5;
+			w31.Expand = false;
+			w31.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.btnGenBarcode = new global::Gtk.Button();
 			this.btnGenBarcode.CanFocus = true;
 			this.btnGenBarcode.Name = "btnGenBarcode";
 			this.btnGenBarcode.UseUnderline = true;
 			this.btnGenBarcode.Label = global::Mono.Unix.Catalog.GetString("Generate Barcode");
-			global::Gtk.Image w35 = new global::Gtk.Image();
-			w35.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-execute", global::Gtk.IconSize.Menu);
-			this.btnGenBarcode.Image = w35;
+			global::Gtk.Image w32 = new global::Gtk.Image();
+			w32.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-execute", global::Gtk.IconSize.Menu);
+			this.btnGenBarcode.Image = w32;
 			this.vbox4.Add(this.btnGenBarcode);
-			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.btnGenBarcode]));
-			w36.Position = 7;
-			w36.Expand = false;
-			w36.Fill = false;
+			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.btnGenBarcode]));
+			w33.Position = 6;
+			w33.Expand = false;
+			w33.Fill = false;
 			this.GtkAlignment.Add(this.vbox4);
 			this.frame1.Add(this.GtkAlignment);
 			this.lblPieceInfo = new global::Gtk.Label();
@@ -426,51 +393,51 @@ namespace Momiji
 			this.lblPieceInfo.UseMarkup = true;
 			this.frame1.LabelWidget = this.lblPieceInfo;
 			this.vbox3.Add(this.frame1);
-			global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.frame1]));
-			w39.Position = 1;
-			w39.Expand = false;
-			w39.Fill = false;
+			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.frame1]));
+			w36.Position = 1;
+			w36.Expand = false;
+			w36.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.btnGenCS = new global::Gtk.Button();
 			this.btnGenCS.CanFocus = true;
 			this.btnGenCS.Name = "btnGenCS";
 			this.btnGenCS.UseUnderline = true;
 			this.btnGenCS.Label = global::Mono.Unix.Catalog.GetString("Generate Control Sheet");
-			global::Gtk.Image w40 = new global::Gtk.Image();
-			w40.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-execute", global::Gtk.IconSize.Menu);
-			this.btnGenCS.Image = w40;
+			global::Gtk.Image w37 = new global::Gtk.Image();
+			w37.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-execute", global::Gtk.IconSize.Menu);
+			this.btnGenCS.Image = w37;
 			this.vbox3.Add(this.btnGenCS);
-			global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.btnGenCS]));
-			w41.Position = 2;
-			w41.Expand = false;
-			w41.Fill = false;
+			global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.btnGenCS]));
+			w38.Position = 2;
+			w38.Expand = false;
+			w38.Fill = false;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.btnClose = new global::Gtk.Button();
 			this.btnClose.CanFocus = true;
 			this.btnClose.Name = "btnClose";
 			this.btnClose.UseUnderline = true;
 			this.btnClose.Label = global::Mono.Unix.Catalog.GetString("Close");
-			global::Gtk.Image w42 = new global::Gtk.Image();
-			w42.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-close", global::Gtk.IconSize.Menu);
-			this.btnClose.Image = w42;
+			global::Gtk.Image w39 = new global::Gtk.Image();
+			w39.Pixbuf = global::Stetic.IconLoader.LoadIcon(this, "gtk-close", global::Gtk.IconSize.Menu);
+			this.btnClose.Image = w39;
 			this.vbox3.Add(this.btnClose);
-			global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.btnClose]));
-			w43.Position = 3;
-			w43.Expand = false;
-			w43.Fill = false;
+			global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.btnClose]));
+			w40.Position = 3;
+			w40.Expand = false;
+			w40.Fill = false;
 			this.hbox2.Add(this.vbox3);
-			global::Gtk.Box.BoxChild w44 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.vbox3]));
-			w44.Position = 1;
-			w44.Expand = false;
-			w44.Fill = false;
-			w44.Padding = ((uint)(8));
+			global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.vbox3]));
+			w41.Position = 1;
+			w41.Expand = false;
+			w41.Fill = false;
+			w41.Padding = ((uint)(8));
 			this.Add(this.hbox2);
 			if ((this.Child != null))
 			{
 				this.Child.ShowAll();
 			}
 			this.DefaultWidth = 800;
-			this.DefaultHeight = 525;
+			this.DefaultHeight = 523;
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 			this.lstMerch.RowActivated += new global::Gtk.RowActivatedHandler(this.OnLstMerchRowActivated);
@@ -483,6 +450,7 @@ namespace Momiji
 			this.btnAdd.Clicked += new global::System.EventHandler(this.OnBtnAddClicked);
 			this.btnGenBarcode.Clicked += new global::System.EventHandler(this.OnBtnGenBarcodeClicked);
 			this.btnGenCS.Clicked += new global::System.EventHandler(this.OnBtnGenCSClicked);
+			this.btnClose.Clicked += new global::System.EventHandler(this.OnBtnCloseClicked);
 		}
 	}
 }
