@@ -42,22 +42,9 @@ namespace Momiji
 		public void AddSheet (string aid, string mid, string artist, string title,
 		                      string med, string mbid, string qs, bool aamb)
 		{
-			string output = sheetbody;
-			//write the body info
-			output = output.Replace ("PIECE_ID", String.Format ("AN" + aid.PadLeft (3, '0') + "-" + mid.PadLeft (3, '0')));
-			output = output.Replace ("ARTIST_ID", artist);
-			output = output.Replace ("PIECE_TITLE", title);
-			output = output.Replace ("PIECE_MEDIUM", med);
-			output = output.Replace ("PIECE_MINBID", "$" + mbid);
-			output = output.Replace ("PIECE_QS", (qs == "0" || qs == "") ? "N/A" : "$" + qs);
-			output = output.Replace ("PIECE_MS", aamb ? "YES" : "NO");
-
-			try {
-				File.AppendAllText (filename, output);
-			} catch (Exception d) {
-				MessageBox.Show (null, MessageType.Error,
-					"Unable to save file:\n" + d.Message.ToString ());
-			}
+			AddSheet(String.Format("AN" + aid.PadLeft(3, '0') + "-" +
+									mid.PadLeft(3, '0')), artist, title, med,
+									mbid, qs, aamb);
 		}
 
 		public void AddSheet (string pid, string artist, string title,
@@ -69,9 +56,13 @@ namespace Momiji
 			output = output.Replace ("ARTIST_ID", artist);
 			output = output.Replace ("PIECE_TITLE", title);
 			output = output.Replace ("PIECE_MEDIUM", med);
-			output = output.Replace ("PIECE_MINBID", "$" + mbid);
-			output = output.Replace ("PIECE_QS", (qs == "0" || qs == "") ? "N/A" : "$" + qs);
+			output = output.Replace ("PIECE_MINBID", (float.Parse(mbid) > 0) ? "$" + qs : "N/A");
+			output = output.Replace ("PIECE_QS", (float.Parse(qs) > 0) ? "$" + qs : "N/A");
 			output = output.Replace ("PIECE_MS", aamb ? "YES" : "NO");
+			if ((float.Parse(mbid) > 0) || (float.Parse(qs) > 0))
+			{
+				output = output.Replace("NOT FOR SALE", "");
+			}
 
 			try {
 				File.AppendAllText (filename, output);
