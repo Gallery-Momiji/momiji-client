@@ -1,6 +1,7 @@
 using System;
 using Gtk;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace Momiji
 {
@@ -228,12 +229,56 @@ namespace Momiji
 							"Barcodes generated!");
 					}
 					break;
-#if DEBUG
-			case Operations.ManageArtistBalance:
-				//TODO//
-				throw new System.NotImplementedException ();
-			//break;
-#endif
+				case Operations.ManageArtistBalance:
+					MySqlCommand artistquery = new MySqlCommand("SELECT ArtistDue, ArtistPaid, ArtistCheckIn FROM `artists` WHERE `ArtistID` = @ID;",
+														  SQLConnection.GetConnection());
+					artistquery.Prepare();
+					artistquery.Parameters.AddWithValue("@ID", selectednode.ArtistID);
+					SQLResult artistinfo = SQLConnection.Query(artistquery);
+
+					if (artistinfo.getCell("ArtistCheckIn", 0) == "0")
+					{
+						MessageBox.Show(this, MessageType.Info,
+										"Please check in artist before managing their balance.");
+						return;
+					}
+
+					float fee = float.Parse(artistinfo.getCell("ArtistDue", 0));
+
+					if (fee <= 0.0)
+					{
+						MessageBox.Show(this, MessageType.Info,
+										"This Artist does not have an outstanding balance.");
+						return;
+					}
+
+					string message = "The Artist has an outstanding balance of $"
+						+ fee
+						+ ".\n\nDo they wish to pay this back now? (Cash only)";
+					if (MessageBox.Ask(this, message))
+					{
+						SQLResult User = parent.currentUser;
+
+						MySqlCommand query = new MySqlCommand("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `itemArray`, `priceArray`, `Last4digitsCard`, `timestamp`, `date`) VALUES ( @UID, @TOTAL, @PAID, @ITEMS, @FEE, 0, CURRENT_TIME, CURRENT_DATE); SELECT LAST_INSERT_ID() as `id`; UPDATE `artists` SET `ArtistPaid`=@ARTISTPAID, `ArtistDue`=0 WHERE `ArtistID` = @AID;",
+												 SQLConnection.GetConnection());
+						query.Prepare();
+						query.Parameters.AddWithValue("@UID", User.getCell("id", 0));
+						query.Parameters.AddWithValue("@TOTAL", fee);
+						query.Parameters.AddWithValue("@PAID", fee);
+						query.Parameters.AddWithValue("@ITEMS", "ARTIST" + selectednode.ArtistID.ToString().PadLeft(3, '0') + " BALANCE PAID#");
+						query.Parameters.AddWithValue("@FEE", fee);
+						query.Parameters.AddWithValue("@ARTISTPAID", float.Parse(artistinfo.getCell("ArtistPaid", 0)) + fee);
+						query.Parameters.AddWithValue("@AID", selectednode.ArtistID);
+						SQLResult results = SQLConnection.Query(query);
+
+						if (results.successful())
+						{
+							MessageBox.Show(this, MessageType.Info,
+											"Please make sure you take the money from the artist and give them the receipt. Click on OK now to generate the receipt.");
+							Process.Start("http://" + parent.currentSQLConnection.getHost() + "/momiji/receipt.php?id=" + results.getCellInt("id", 0));
+						}
+					}
+					break;
 			}
 		}
 	}
