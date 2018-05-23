@@ -15,7 +15,7 @@ namespace Momiji
 		private NodeStore dateStore;
 		private frmMenu parent;
 		private string[] datelist;
-		private int[] series;
+		private int[,] series;
 
 		/////////////////////////
 		//   Public Attributes //
@@ -55,7 +55,7 @@ namespace Momiji
 				table = "`receipts`";
 				SQLConnection.LogAction("Queried DB for receipts", User);
 			}
-			query = new MySqlCommand("SELECT `date`,TRUNCATE(`id`,-2) as `series`,MAX(`timestamp`) as `upto` from " + table + " group by `date`,`series`;",
+			query = new MySqlCommand("SELECT `date`,TRUNCATE(`id`,-2) as `series`,MIN(`id`) as `min`,MAX(`id`) as `max`,MAX(`timestamp`) as `upto` from " + table + " group by `date`,`series`;",
 				SQLConnection.GetConnection());
 
 			query.Prepare();
@@ -66,11 +66,12 @@ namespace Momiji
 				ListStore ClearList = new ListStore(typeof(string), typeof(string));
 				drpDate.Model = ClearList;
 				datelist = new string[results.GetNumberOfRows()];
-				series = new int[results.GetNumberOfRows()];
+				series = new int[results.GetNumberOfRows(),2];
 				for (int i = 0; i < results.GetNumberOfRows(); i++)
 				{
 					datelist[i] = Regex.Replace(results.getCell("date", i), " .*:.*", "");
-					series[i] = results.getCellInt("series", i);
+					series[i,0] = results.getCellInt("min", i);
+					series[i,1] = results.getCellInt("max", i);
 					drpDate.AppendText(datelist[i] + " - Up to " + results.getCell("upto", i));
 				}
 			}
@@ -114,15 +115,14 @@ namespace Momiji
 
 				MySqlCommand query;
 				if (operation == Operations.CheckUserActivities)
-					query = new MySqlCommand("SELECT `log`.`id`,`name`,`action`,`timestamp` FROM `log` LEFT JOIN `users` ON (`log`.`user_id`=`users`.`id`) WHERE `date` = @DATE AND `log`.`id` BETWEEN @START AND @END ORDER BY `log`.`id` DESC;",
+					query = new MySqlCommand("SELECT `log`.`id`,`name`,`action`,`timestamp` FROM `log` LEFT JOIN `users` ON (`log`.`user_id`=`users`.`id`) WHERE `log`.`id` BETWEEN @START AND @END ORDER BY `log`.`id` DESC;",
 						SQLConnection.GetConnection());
 				else
-					query = new MySqlCommand("SELECT `itemArray`,`receipts`.`id`,`name`,`price`,`isQuickSale`,`isAuctionSale`,`isGalleryStoreSale`,`timestamp` FROM `receipts` LEFT JOIN `users` ON (`receipts`.`userid`=`users`.`id`) WHERE `date` = @DATE AND `receipts`.`id` BETWEEN @START AND @END ORDER BY `receipts`.`id` DESC;",
+					query = new MySqlCommand("SELECT `itemArray`,`receipts`.`id`,`name`,`price`,`isQuickSale`,`isAuctionSale`,`isGalleryStoreSale`,`timestamp` FROM `receipts` LEFT JOIN `users` ON (`receipts`.`userid`=`users`.`id`) WHERE `receipts`.`id` BETWEEN @START AND @END ORDER BY `receipts`.`id` DESC;",
 						SQLConnection.GetConnection());
 				query.Prepare();
-				query.Parameters.AddWithValue("@DATE", datelist[drpDate.Active]);
-				query.Parameters.AddWithValue("@START", series[drpDate.Active]);
-				query.Parameters.AddWithValue("@END", series[drpDate.Active] + 99);
+				query.Parameters.AddWithValue("@START", series[drpDate.Active,0]);
+				query.Parameters.AddWithValue("@END", series[drpDate.Active, 1]);
 				SQLResult results = SQLConnection.Query(query);
 
 				if (results.successful())
