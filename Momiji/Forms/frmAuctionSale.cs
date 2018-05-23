@@ -74,7 +74,8 @@ namespace Momiji
 			//Wildcards are considered null characters
 			txtBarcode.Text = txtBarcode.Text.Replace("*", "").ToUpper();
 
-			if (!ParseBarcode(txtBarcode.Text, "AN", out int ArtistID, out int MerchID))
+			int ArtistID, MerchID;
+			if (!ParseBarcode(txtBarcode.Text, "AN", out ArtistID, out MerchID))
 			{
 				txtBarcode.Text = "";
 				txtBarcode.GrabFocus();
@@ -180,8 +181,11 @@ namespace Momiji
 
 		protected void OnBtnPayClicked(object sender, EventArgs e)
 		{
+			float paid;
+			int fourdigits;
+
 			if (!CheckPaidAmount(drpPaymentType.Active, txtPaid.Text,
-					out float paid, out int fourdigits))
+					out paid, out fourdigits))
 			{
 				return;
 			}
