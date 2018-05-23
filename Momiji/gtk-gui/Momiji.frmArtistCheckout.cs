@@ -82,6 +82,16 @@ namespace Momiji
 
 		private global::Gtk.Label lblStep3info;
 
+		private global::Gtk.CheckButton chkPaidCash;
+
+		private global::Gtk.CheckButton chkArtistOwes;
+
+		private global::Gtk.HBox hbox1;
+
+		private global::Gtk.Label lblPayout;
+
+		private global::Gtk.Entry txtPayout;
+
 		private global::Gtk.Label lblStep3;
 
 		protected virtual void Build()
@@ -424,6 +434,60 @@ namespace Momiji
 			w33.Position = 0;
 			w33.Expand = false;
 			w33.Fill = false;
+			// Container child vboxStep3.Gtk.Box+BoxChild
+			this.chkPaidCash = new global::Gtk.CheckButton();
+			this.chkPaidCash.CanFocus = true;
+			this.chkPaidCash.Name = "chkPaidCash";
+			this.chkPaidCash.Label = global::Mono.Unix.Catalog.GetString("Artist Payment in Cash");
+			this.chkPaidCash.DrawIndicator = true;
+			this.chkPaidCash.UseUnderline = true;
+			this.vboxStep3.Add(this.chkPaidCash);
+			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vboxStep3[this.chkPaidCash]));
+			w34.Position = 1;
+			w34.Expand = false;
+			w34.Fill = false;
+			// Container child vboxStep3.Gtk.Box+BoxChild
+			this.chkArtistOwes = new global::Gtk.CheckButton();
+			this.chkArtistOwes.Sensitive = false;
+			this.chkArtistOwes.CanFocus = true;
+			this.chkArtistOwes.Name = "chkArtistOwes";
+			this.chkArtistOwes.Label = global::Mono.Unix.Catalog.GetString("Artist Owes Money");
+			this.chkArtistOwes.DrawIndicator = true;
+			this.chkArtistOwes.UseUnderline = true;
+			this.vboxStep3.Add(this.chkArtistOwes);
+			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.vboxStep3[this.chkArtistOwes]));
+			w35.Position = 2;
+			w35.Expand = false;
+			w35.Fill = false;
+			// Container child vboxStep3.Gtk.Box+BoxChild
+			this.hbox1 = new global::Gtk.HBox();
+			this.hbox1.Name = "hbox1";
+			this.hbox1.Spacing = 6;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.lblPayout = new global::Gtk.Label();
+			this.lblPayout.Name = "lblPayout";
+			this.lblPayout.LabelProp = global::Mono.Unix.Catalog.GetString("Amount: <b>$</b>");
+			this.lblPayout.UseMarkup = true;
+			this.hbox1.Add(this.lblPayout);
+			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.lblPayout]));
+			w36.Position = 0;
+			w36.Expand = false;
+			w36.Fill = false;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.txtPayout = new global::Gtk.Entry();
+			this.txtPayout.Sensitive = false;
+			this.txtPayout.CanFocus = true;
+			this.txtPayout.Name = "txtPayout";
+			this.txtPayout.IsEditable = true;
+			this.txtPayout.InvisibleChar = '●';
+			this.hbox1.Add(this.txtPayout);
+			global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.txtPayout]));
+			w37.Position = 1;
+			this.vboxStep3.Add(this.hbox1);
+			global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.vboxStep3[this.hbox1]));
+			w38.Position = 3;
+			w38.Expand = false;
+			w38.Fill = false;
 			this.GtkAlignStep3.Add(this.vboxStep3);
 			this.frameStep3.Add(this.GtkAlignStep3);
 			this.lblStep3 = new global::Gtk.Label();
@@ -431,24 +495,26 @@ namespace Momiji
 			this.lblStep3.LabelProp = global::Mono.Unix.Catalog.GetString("Step 3 :");
 			this.frameStep3.LabelWidget = this.lblStep3;
 			this.hboxStep23.Add(this.frameStep3);
-			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hboxStep23[this.frameStep3]));
-			w36.Position = 1;
-			w36.Expand = false;
-			w36.Fill = false;
+			global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.hboxStep23[this.frameStep3]));
+			w41.Position = 1;
+			w41.Expand = false;
+			w41.Fill = false;
 			this.tableANCheckout.Add(this.hboxStep23);
-			global::Gtk.Table.TableChild w37 = ((global::Gtk.Table.TableChild)(this.tableANCheckout[this.hboxStep23]));
-			w37.LeftAttach = ((uint)(1));
-			w37.RightAttach = ((uint)(2));
-			w37.XOptions = ((global::Gtk.AttachOptions)(4));
-			w37.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w42 = ((global::Gtk.Table.TableChild)(this.tableANCheckout[this.hboxStep23]));
+			w42.LeftAttach = ((uint)(1));
+			w42.RightAttach = ((uint)(2));
+			w42.XOptions = ((global::Gtk.AttachOptions)(4));
+			w42.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.Add(this.tableANCheckout);
 			if ((this.Child != null))
 			{
 				this.Child.ShowAll();
 			}
 			this.DefaultWidth = 1482;
-			this.DefaultHeight = 360;
+			this.DefaultHeight = 436;
 			this.Show();
+			this.chkPaidCash.Toggled += new global::System.EventHandler(this.OnChkPaidCashToggled);
+			this.chkArtistOwes.Toggled += new global::System.EventHandler(this.OnChkArtistOwesToggled);
 			this.btnMarkCheckout.Clicked += new global::System.EventHandler(this.OnBtnMarkCheckoutClicked);
 			this.btnGenSaleSum.Clicked += new global::System.EventHandler(this.OnBtnGenSaleSumClicked);
 			this.btnCancel.Clicked += new global::System.EventHandler(this.OnBtnCancelClicked);

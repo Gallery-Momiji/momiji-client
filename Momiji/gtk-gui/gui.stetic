@@ -384,7 +384,7 @@ Learn more at http://www.animenorth.com</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmArtistCheckout" design-size="1482 360">
+  <widget class="Gtk.Window" id="Momiji.frmArtistCheckout" design-size="1482 436">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Artist Checkout</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -528,7 +528,7 @@ Learn more at http://www.animenorth.com</property>
                           </widget>
                           <packing>
                             <property name="Position">0</property>
-                            <property name="AutoSize">False</property>
+                            <property name="AutoSize">True</property>
                           </packing>
                         </child>
                         <child>
@@ -875,6 +875,79 @@ copy of the sales summary for their records.</property>
                           </widget>
                           <packing>
                             <property name="Position">0</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.CheckButton" id="chkPaidCash">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="Label" translatable="yes">Artist Payment in Cash</property>
+                            <property name="DrawIndicator">True</property>
+                            <property name="HasLabel">True</property>
+                            <property name="UseUnderline">True</property>
+                            <signal name="Toggled" handler="OnChkPaidCashToggled" />
+                          </widget>
+                          <packing>
+                            <property name="Position">1</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.CheckButton" id="chkArtistOwes">
+                            <property name="MemberName" />
+                            <property name="Sensitive">False</property>
+                            <property name="CanFocus">True</property>
+                            <property name="Label" translatable="yes">Artist Owes Money</property>
+                            <property name="DrawIndicator">True</property>
+                            <property name="HasLabel">True</property>
+                            <property name="UseUnderline">True</property>
+                            <signal name="Toggled" handler="OnChkArtistOwesToggled" />
+                          </widget>
+                          <packing>
+                            <property name="Position">2</property>
+                            <property name="AutoSize">True</property>
+                            <property name="Expand">False</property>
+                            <property name="Fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.HBox" id="hbox1">
+                            <property name="MemberName" />
+                            <property name="Spacing">6</property>
+                            <child>
+                              <widget class="Gtk.Label" id="lblPayout">
+                                <property name="MemberName" />
+                                <property name="LabelProp" translatable="yes">Amount: &lt;b&gt;$&lt;/b&gt;</property>
+                                <property name="UseMarkup">True</property>
+                              </widget>
+                              <packing>
+                                <property name="Position">0</property>
+                                <property name="AutoSize">True</property>
+                                <property name="Expand">False</property>
+                                <property name="Fill">False</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="Gtk.Entry" id="txtPayout">
+                                <property name="MemberName" />
+                                <property name="Sensitive">False</property>
+                                <property name="CanFocus">True</property>
+                                <property name="IsEditable">True</property>
+                                <property name="InvisibleChar">●</property>
+                              </widget>
+                              <packing>
+                                <property name="Position">1</property>
+                                <property name="AutoSize">True</property>
+                              </packing>
+                            </child>
+                          </widget>
+                          <packing>
+                            <property name="Position">3</property>
                             <property name="AutoSize">True</property>
                             <property name="Expand">False</property>
                             <property name="Fill">False</property>

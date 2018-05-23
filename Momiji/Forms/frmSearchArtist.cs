@@ -266,7 +266,7 @@ namespace Momiji
 						query.Parameters.AddWithValue("@TOTAL", fee);
 						query.Parameters.AddWithValue("@PAID", fee);
 						query.Parameters.AddWithValue("@ITEMS", "ARTIST" + selectednode.ArtistID.ToString().PadLeft(3, '0') + " BALANCE PAID#");
-						query.Parameters.AddWithValue("@FEE", fee);
+						query.Parameters.AddWithValue("@FEE", fee.ToString() + "#");
 						query.Parameters.AddWithValue("@ARTISTPAID", float.Parse(artistinfo.getCell("ArtistPaid", 0)) + fee);
 						query.Parameters.AddWithValue("@AID", selectednode.ArtistID);
 						SQLResult results = SQLConnection.Query(query);
