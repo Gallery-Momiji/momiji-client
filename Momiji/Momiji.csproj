@@ -119,6 +119,7 @@
     <Compile Include="Misc\Biddersheet.cs" />
     <Compile Include="Misc\BidderNode.cs" />
     <Compile Include="Misc\Barcode.cs" />
+    <Compile Include="Forms\frmParentSale.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

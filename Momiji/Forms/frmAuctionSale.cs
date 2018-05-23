@@ -5,19 +5,8 @@ using System.Diagnostics;
 
 namespace Momiji
 {
-	public partial class frmAuctionSale : Gtk.Window
+	public partial class frmAuctionSale : frmParentSale
 	{
-		/////////////////////////
-		//  Private Attributes //
-		/////////////////////////
-
-		private frmMenu parent;
-		private NodeStore merchStore;
-		private float total = 0;
-		private int receiptID = 0;
-		public string items = "";
-		public string prices = "";
-
 		/////////////////////////
 		//  Private Functions  //
 		/////////////////////////
@@ -46,28 +35,13 @@ namespace Momiji
 			txtBarcode.GrabFocus();
 		}
 
-		private bool existsInList(string barcode)
-		{
-			string temp = items;
-
-			while (temp.Length >= 10)
-			{
-				if (temp.Substring(0, 9) == barcode)
-					return true;
-				temp = temp.Substring(10);
-			}
-
-			return false;
-		}
-
 		/////////////////////////
 		//     Contructor      //
 		/////////////////////////
 
 		public frmAuctionSale(frmMenu parent) :
-			base(Gtk.WindowType.Toplevel)
+			base(parent)
 		{
-			this.parent = parent;
 			this.Build();
 			MerchNode.buildTable(ref lstMerch, ref merchStore);
 
@@ -85,7 +59,14 @@ namespace Momiji
 
 		protected void OnTxtBarcodeActivated(object sender, EventArgs e)
 		{
-			txtPrice.GrabFocus();
+			if (!ExistsInList(txtBarcode.Text))
+			{
+				txtPrice.GrabFocus();
+			}
+			else
+			{
+				txtBarcode.Text = "";
+			}
 		}
 
 		protected void OnBtnAddToListClicked(object sender, EventArgs e)
@@ -93,45 +74,17 @@ namespace Momiji
 			//Wildcards are considered null characters
 			txtBarcode.Text = txtBarcode.Text.Replace("*", "").ToUpper();
 
-			if (txtBarcode.Text.Length < 9)
+			if (!ParseBarcode(txtBarcode.Text, "AN", out int ArtistID, out int MerchID))
 			{
 				txtBarcode.Text = "";
 				txtBarcode.GrabFocus();
 				return;
 			}
 
-			//Catch for format, AN###-###
-			if (txtBarcode.Text.Substring(0, 2) != "AN" ||
-				txtBarcode.Text.Substring(5, 1) != "-")
+			if (ExistsInList(txtBarcode.Text))
 			{
-				MessageBox.Show(this, MessageType.Error,
-					"Invalid merchandise barcode");
-
-				txtBarcode.Text = "";
-				txtBarcode.GrabFocus();
-				return;
-			}
-
-			if (existsInList(txtBarcode.Text))
-			{
-				MessageBox.Show(this, MessageType.Info,
-					"Item already added");
-
 				txtBarcode.Text = "";
 				txtPrice.Text = "";
-				txtBarcode.GrabFocus();
-				return;
-			}
-
-			//Catch an invalid barcode, should be AN###-###
-			int ArtistID, MerchID;
-			if (!int.TryParse(txtBarcode.Text.Substring(2, 3), out ArtistID) ||
-				!int.TryParse(txtBarcode.Text.Substring(6, 3), out MerchID))
-			{
-				MessageBox.Show(this, MessageType.Error,
-					"Invalid barcode format");
-
-				txtBarcode.Text = "";
 				txtBarcode.GrabFocus();
 				return;
 			}
@@ -227,52 +180,10 @@ namespace Momiji
 
 		protected void OnBtnPayClicked(object sender, EventArgs e)
 		{
-			float paid;
-			int fourdigits = 0;
-
-			if (drpPaymentType.Active == 0)
+			if (!CheckPaidAmount(drpPaymentType.Active, txtPaid.Text,
+					out float paid, out int fourdigits))
 			{
-				if (txtPaid.Text == "")
-				{
-					MessageBox.Show(this, MessageType.Info,
-						"Please specify the amount that the customer has paid");
-					return;
-				}
-
-				if (!float.TryParse(txtPaid.Text, out paid))
-				{
-					MessageBox.Show(this, MessageType.Info,
-						"Please enter a valid number in the paid box");
-					return;
-				}
-
-				if (total > paid)
-				{
-					MessageBox.Show(this, MessageType.Info,
-						"Paid amount is too small");
-					return;
-				}
-			}
-			else
-			{
-				if (txtPaid.Text.Length != 4)
-				{
-					MessageBox.Show(this, MessageType.Info,
-						"Please enter the last 4 digits on the credit card");
-					return;
-				}
-
-				if (!int.TryParse(txtPaid.Text, out fourdigits))
-				{
-					MessageBox.Show(this, MessageType.Info,
-						"Please enter a valid set of 4 digits");
-					return;
-				}
-
-				if (!MessageBox.Ask(this, "Has the credit card transaction been approved?"))
-					return;
-
-				paid = total;
+				return;
 			}
 
 			//Disable before querying to avoid double clicks
@@ -300,28 +211,9 @@ namespace Momiji
 				txtChange.Text = String.Format("{0:0.00}", (paid - total));
 
 				//Mark items as sold
-				//TODO// Test me!
-				/*query = new MySqlCommand ("UPDATE `merchandise` SET `MerchSold`=1, `ReceiptID`=@RECEIPTID WHERE  LOCATE(`ArtistID`+'-'+`MerchID`,@ITEMS)>0",
-					SQLConnection.GetConnection ());
-				query.Prepare ();
-				query.Parameters.AddWithValue ("@RECEIPTID", receiptID);
-				query.Parameters.AddWithValue ("@ITEMS", items);
-				results = SQLConnection.Query (query);*/
+				//TODO//
 
-				if (paid == total)
-				{
-					MessageBox.Show(this, MessageType.Info,
-						"Sale processed!\n\nClick on the button below to generate a receipt.\nThis was transaction ID #"
-						+ receiptID);
-				}
-				else
-				{
-					MessageBox.Show(this, MessageType.Info,
-						"Sale processed, please give the following change: $"
-						+ txtChange.Text +
-						"\n\nClick on the button below to generate a receipt.\nThis was transaction ID #"
-						+ receiptID);
-				}
+				FinishSaleMessage(txtChange.Text, paid);
 
 				SQLConnection.LogAction("Made a auction sale with receipt #" + receiptID,
 					User);
@@ -362,7 +254,7 @@ namespace Momiji
 
 		protected void OnBtnPrintReceiptClicked(object sender, EventArgs e)
 		{
-			Process.Start("http://" + parent.currentSQLConnection.getHost() + "/momiji/receipt.php?id=" + receiptID);
+			PrintReceipt();
 		}
 	}
 }
