@@ -77,7 +77,8 @@ namespace Momiji
 
 			if (results.GetNumberOfRows() == 1)
 			{
-				if (results.getCell("MerchQuickSale", 0) == "0")
+				float price = float.Parse(results.getCell("MerchQuickSale", 0));
+				if (price == 0)
 				{
 					MessageBox.Show(this, MessageType.Error,
 						"This item cannot be sold as quicksale. This will be reported.");
@@ -96,7 +97,6 @@ namespace Momiji
 				}
 				else
 				{
-					float price = float.Parse(results.getCell("MerchQuickSale", 0));
 					merchStore.AddNode(new MerchNode(ArtistID,
 						MerchID,
 						results.getCell("MerchTitle", 0),
