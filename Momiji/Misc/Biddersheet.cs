@@ -56,7 +56,7 @@ namespace Momiji
 			output = output.Replace ("ARTIST_ID", artist);
 			output = output.Replace ("PIECE_TITLE", title);
 			output = output.Replace ("PIECE_MEDIUM", med);
-			output = output.Replace ("PIECE_MINBID", (float.Parse(mbid) > 0) ? "$" + qs : "N/A");
+			output = output.Replace ("PIECE_MINBID", (float.Parse(mbid) > 0) ? "$" + mbid : "N/A");
 			output = output.Replace ("PIECE_QS", (float.Parse(qs) > 0) ? "$" + qs : "N/A");
 			output = output.Replace ("PIECE_MS", aamb ? "YES" : "NO");
 			if ((float.Parse(mbid) > 0) || (float.Parse(qs) > 0))
