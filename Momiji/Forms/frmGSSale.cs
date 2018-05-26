@@ -60,7 +60,7 @@ namespace Momiji
 			txtBarcode.Text = txtBarcode.Text.Replace("*", "").ToUpper();
 
 			int ArtistID, PieceID;
-			if (!ParseBarcode(txtBarcode.Text, "AN", out ArtistID, out PieceID))
+			if (!ParseBarcode(txtBarcode.Text, "PN", out ArtistID, out PieceID))
 			{
 				txtBarcode.Text = "";
 				txtBarcode.GrabFocus();
