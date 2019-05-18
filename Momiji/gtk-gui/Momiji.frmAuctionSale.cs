@@ -61,7 +61,7 @@ namespace Momiji
 			this.WidthRequest = 800;
 			this.Name = "Momiji.frmAuctionSale";
 			this.Title = global::Mono.Unix.Catalog.GetString("Auction Sale");
-			this.Icon = global::Gdk.Pixbuf.LoadFromResource("Momiji.Resources.shopping-bag-icon.png");
+			this.Icon = global::Gdk.Pixbuf.LoadFromResource("Momiji.Resources.tag-sale-icon.png");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child Momiji.frmAuctionSale.Gtk.Container+ContainerChild
 			this.hboxCheckin = new global::Gtk.HBox();
@@ -248,7 +248,7 @@ namespace Momiji
 			// Container child fixedPay.Gtk.Fixed+FixedChild
 			this.imgPay = new global::Gtk.Image();
 			this.imgPay.Name = "imgPay";
-			this.imgPay.Pixbuf = global::Gdk.Pixbuf.LoadFromResource("Momiji.Resources.shopping-bag-icon.png");
+			this.imgPay.Pixbuf = global::Gdk.Pixbuf.LoadFromResource("Momiji.Resources.tag-sale-icon.png");
 			this.fixedPay.Add(this.imgPay);
 			global::Gtk.Fixed.FixedChild w19 = ((global::Gtk.Fixed.FixedChild)(this.fixedPay[this.imgPay]));
 			w19.X = 32;

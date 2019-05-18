@@ -70,12 +70,6 @@ namespace Momiji
 
 		private global::Gtk.HBox hbox8;
 
-		private global::Gtk.Fixed fixedQuickSale;
-
-		private global::Gtk.Button btnQuickSale;
-
-		private global::Gtk.Image imgQuickSale;
-
 		private global::Gtk.Fixed fixedAuctionSale;
 
 		private global::Gtk.Button btnAuctionSale;
@@ -237,66 +231,39 @@ namespace Momiji
 			this.hbox8.Spacing = 8;
 			this.hbox8.BorderWidth = ((uint)(16));
 			// Container child hbox8.Gtk.Box+BoxChild
-			this.fixedQuickSale = new global::Gtk.Fixed();
-			this.fixedQuickSale.Name = "fixedQuickSale";
-			this.fixedQuickSale.HasWindow = false;
-			// Container child fixedQuickSale.Gtk.Fixed+FixedChild
-			this.btnQuickSale = new global::Gtk.Button();
-			this.btnQuickSale.WidthRequest = 130;
-			this.btnQuickSale.HeightRequest = 130;
-			this.btnQuickSale.CanFocus = true;
-			this.btnQuickSale.Name = "btnQuickSale";
-			this.btnQuickSale.UseUnderline = true;
-			this.btnQuickSale.Yalign = 1F;
-			this.btnQuickSale.Label = global::Mono.Unix.Catalog.GetString("Quick Sale");
-			this.fixedQuickSale.Add(this.btnQuickSale);
-			// Container child fixedQuickSale.Gtk.Fixed+FixedChild
-			this.imgQuickSale = new global::Gtk.Image();
-			this.imgQuickSale.Name = "imgQuickSale";
-			this.imgQuickSale.Pixbuf = global::Gdk.Pixbuf.LoadFromResource("Momiji.Resources.tag-sale-icon.png");
-			this.fixedQuickSale.Add(this.imgQuickSale);
-			global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixedQuickSale[this.imgQuickSale]));
-			w4.X = 33;
-			w4.Y = 24;
-			this.hbox8.Add(this.fixedQuickSale);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.fixedQuickSale]));
-			w5.Position = 0;
-			w5.Expand = false;
-			w5.Fill = false;
-			// Container child hbox8.Gtk.Box+BoxChild
 			this.fixedAuctionSale = new global::Gtk.Fixed();
 			this.fixedAuctionSale.Name = "fixedAuctionSale";
 			this.fixedAuctionSale.HasWindow = false;
 			// Container child fixedAuctionSale.Gtk.Fixed+FixedChild
 			this.btnAuctionSale = new global::Gtk.Button();
-			this.btnAuctionSale.WidthRequest = 130;
+			this.btnAuctionSale.WidthRequest = 195;
 			this.btnAuctionSale.HeightRequest = 130;
 			this.btnAuctionSale.CanFocus = true;
 			this.btnAuctionSale.Name = "btnAuctionSale";
 			this.btnAuctionSale.UseUnderline = true;
 			this.btnAuctionSale.Yalign = 1F;
-			this.btnAuctionSale.Label = global::Mono.Unix.Catalog.GetString("AuctionSale");
+			this.btnAuctionSale.Label = global::Mono.Unix.Catalog.GetString("Auction Sale");
 			this.fixedAuctionSale.Add(this.btnAuctionSale);
 			// Container child fixedAuctionSale.Gtk.Fixed+FixedChild
 			this.imgAuctionSale = new global::Gtk.Image();
 			this.imgAuctionSale.Name = "imgAuctionSale";
-			this.imgAuctionSale.Pixbuf = global::Gdk.Pixbuf.LoadFromResource("Momiji.Resources.shopping-bag-icon.png");
+			this.imgAuctionSale.Pixbuf = global::Gdk.Pixbuf.LoadFromResource("Momiji.Resources.tag-sale-icon.png");
 			this.fixedAuctionSale.Add(this.imgAuctionSale);
-			global::Gtk.Fixed.FixedChild w7 = ((global::Gtk.Fixed.FixedChild)(this.fixedAuctionSale[this.imgAuctionSale]));
-			w7.X = 33;
-			w7.Y = 24;
+			global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixedAuctionSale[this.imgAuctionSale]));
+			w4.X = 66;
+			w4.Y = 24;
 			this.hbox8.Add(this.fixedAuctionSale);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.fixedAuctionSale]));
-			w8.Position = 1;
-			w8.Expand = false;
-			w8.Fill = false;
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.fixedAuctionSale]));
+			w5.Position = 0;
+			w5.Expand = false;
+			w5.Fill = false;
 			// Container child hbox8.Gtk.Box+BoxChild
 			this.fixedGalleryStoreSale = new global::Gtk.Fixed();
 			this.fixedGalleryStoreSale.Name = "fixedGalleryStoreSale";
 			this.fixedGalleryStoreSale.HasWindow = false;
 			// Container child fixedGalleryStoreSale.Gtk.Fixed+FixedChild
 			this.btnGalleryStoreSale = new global::Gtk.Button();
-			this.btnGalleryStoreSale.WidthRequest = 130;
+			this.btnGalleryStoreSale.WidthRequest = 195;
 			this.btnGalleryStoreSale.HeightRequest = 130;
 			this.btnGalleryStoreSale.CanFocus = true;
 			this.btnGalleryStoreSale.Name = "btnGalleryStoreSale";
@@ -309,19 +276,19 @@ namespace Momiji
 			this.imgGalleryStoreSale.Name = "imgGalleryStoreSale";
 			this.imgGalleryStoreSale.Pixbuf = global::Gdk.Pixbuf.LoadFromResource("Momiji.Resources.shopping-basket-icon.png");
 			this.fixedGalleryStoreSale.Add(this.imgGalleryStoreSale);
-			global::Gtk.Fixed.FixedChild w10 = ((global::Gtk.Fixed.FixedChild)(this.fixedGalleryStoreSale[this.imgGalleryStoreSale]));
-			w10.X = 33;
-			w10.Y = 24;
+			global::Gtk.Fixed.FixedChild w7 = ((global::Gtk.Fixed.FixedChild)(this.fixedGalleryStoreSale[this.imgGalleryStoreSale]));
+			w7.X = 66;
+			w7.Y = 24;
 			this.hbox8.Add(this.fixedGalleryStoreSale);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.fixedGalleryStoreSale]));
-			w11.Position = 2;
-			w11.Expand = false;
-			w11.Fill = false;
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox8[this.fixedGalleryStoreSale]));
+			w8.Position = 1;
+			w8.Expand = false;
+			w8.Fill = false;
 			this.vbox2.Add(this.hbox8);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox8]));
-			w12.Position = 1;
-			w12.Expand = false;
-			w12.Fill = false;
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox8]));
+			w9.Position = 1;
+			w9.Expand = false;
+			w9.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.hbox9 = new global::Gtk.HBox();
 			this.hbox9.Name = "hbox9";
@@ -335,13 +302,13 @@ namespace Momiji
 			this.btnLogout.UseUnderline = true;
 			this.btnLogout.Label = global::Mono.Unix.Catalog.GetString("Logout");
 			this.hbox9.Add(this.btnLogout);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.btnLogout]));
-			w13.Position = 0;
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox9[this.btnLogout]));
+			w10.Position = 0;
 			this.vbox2.Add(this.hbox9);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox9]));
-			w14.Position = 2;
-			w14.Expand = false;
-			w14.Fill = false;
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.hbox9]));
+			w11.Position = 2;
+			w11.Expand = false;
+			w11.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.lblGreeting = new global::Gtk.Label();
 			this.lblGreeting.Name = "lblGreeting";
@@ -349,11 +316,11 @@ namespace Momiji
 			this.lblGreeting.Xalign = 0F;
 			this.lblGreeting.LabelProp = global::Mono.Unix.Catalog.GetString("lblGreeting");
 			this.vbox2.Add(this.lblGreeting);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.lblGreeting]));
-			w15.Position = 3;
-			w15.Expand = false;
-			w15.Fill = false;
-			w15.Padding = ((uint)(8));
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2[this.lblGreeting]));
+			w12.Position = 3;
+			w12.Expand = false;
+			w12.Fill = false;
+			w12.Padding = ((uint)(8));
 			this.Add(this.vbox2);
 			if ((this.Child != null))
 			{
@@ -385,7 +352,6 @@ namespace Momiji
 			this.editUserAction.Activated += new global::System.EventHandler(this.OnEditUserActionActivated);
 			this.ArtistGenBidsheetAction.Activated += new global::System.EventHandler(this.OnArtistGenBidsheetActionActivated);
 			this.ArtistGenBarcodeAction.Activated += new global::System.EventHandler(this.OnArtistGenBarcodeActionActivated);
-			this.btnQuickSale.Clicked += new global::System.EventHandler(this.OnBtnQuickSaleClicked);
 			this.btnAuctionSale.Clicked += new global::System.EventHandler(this.OnBtnAuctionSaleClicked);
 			this.btnGalleryStoreSale.Clicked += new global::System.EventHandler(this.OnBtnGalleryStoreSaleClicked);
 			this.btnLogout.Clicked += new global::System.EventHandler(this.OnBtnLogoutClicked);

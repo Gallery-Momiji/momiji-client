@@ -12,7 +12,6 @@ namespace Momiji
 
 		private frmLogin LoginForm;
 		private frmGSSale GSSaleForm;
-		private frmQuickSale QuickSaleForm;
 		private frmAuctionSale AuctionSaleForm;
 		private frmSearchArtist SearchArtistForm;
 		private frmSearchDate SearchDateForm;
@@ -28,8 +27,6 @@ namespace Momiji
 			this.SQLConnection.LogAction("Logged Out", this.User);
 			SQLConnection.Close();
 
-			if (QuickSaleForm != null)
-				QuickSaleForm.Destroy();
 			if (AuctionSaleForm != null)
 				AuctionSaleForm.Destroy();
 			if (GSSaleForm != null)
@@ -53,14 +50,6 @@ namespace Momiji
 		public void CleanupGSSale()
 		{
 			GSSaleForm = null;
-		}
-
-		/// <summary>
-		/// This should be called when the user closes frmQuickSale.
-		/// </summary>
-		public void CleanupQuickSale()
-		{
-			QuickSaleForm = null;
 		}
 
 		/// <summary>
@@ -148,9 +137,7 @@ namespace Momiji
 
 			//Basic Functionality:
 			btnGalleryStoreSale.Sensitive = userClass >= 1 ? true : false;
-			//TODO these two should be block until a certain time, except admin
-			btnQuickSale.Sensitive = userClass >= 2 ? true : false;
-			btnAuctionSale.Sensitive = userClass >= 3 ? true : false;
+			btnAuctionSale.Sensitive = userClass >= 2 ? true : false;
 
 			//Advanced Functionality:
 			reprintReceiptAction.Sensitive = userClass >= 4 ? true : false;
@@ -188,8 +175,6 @@ namespace Momiji
 			this.SQLConnection.LogAction("Logged Out", this.User);
 			SQLConnection.Close();
 
-			if (QuickSaleForm != null)
-				QuickSaleForm.Destroy();
 			if (AuctionSaleForm != null)
 				AuctionSaleForm.Destroy();
 			if (GSSaleForm != null)
@@ -363,14 +348,6 @@ namespace Momiji
 		}
 
 		//Buttons
-
-		protected void OnBtnQuickSaleClicked(object sender, EventArgs e)
-		{
-			if (QuickSaleForm != null)
-				QuickSaleForm.Present();
-			else
-				QuickSaleForm = new frmQuickSale(this);
-		}
 
 		protected void OnBtnAuctionSaleClicked(object sender, EventArgs e)
 		{
