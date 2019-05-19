@@ -118,6 +118,7 @@ namespace Momiji
 			w5.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.txtPrice = new global::Gtk.Entry();
+			this.txtPrice.Sensitive = false;
 			this.txtPrice.CanFocus = true;
 			this.txtPrice.Name = "txtPrice";
 			this.txtPrice.IsEditable = true;

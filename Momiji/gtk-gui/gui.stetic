@@ -1070,6 +1070,7 @@ copy of the sales summary for their records.</property>
             <child>
               <widget class="Gtk.Entry" id="txtPrice">
                 <property name="MemberName" />
+                <property name="Sensitive">False</property>
                 <property name="CanFocus">True</property>
                 <property name="IsEditable">True</property>
                 <property name="InvisibleChar">●</property>
