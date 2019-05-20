@@ -78,7 +78,7 @@ namespace Momiji
 				}
 
 				SQL SQLConnection = parent.currentSQLConnection;
-				MySqlCommand query = new MySqlCommand("SELECT `MerchTitle`,`MerchMinBid`,`MerchSold` FROM `merchandise` WHERE `ArtistID` = @AID AND `MerchID` = @MID;",
+				MySqlCommand query = new MySqlCommand("SELECT `MerchTitle`,`MerchMinBid`,`MerchSold`,`MerchAAMB`,`MerchQuicksale`,COUNT(`value`) as `BidCount`,MAX(`value`) as `CurrentBid`,`AuctionEnd`,`AuctionCutoff` FROM `merchandise` LEFT JOIN `bids` USING (`ArtistID`,`MerchID`) CROSS JOIN `options` WHERE `ArtistID` = @AID AND `MerchID` = @MID GROUP BY `ArtistID`,`MerchID`;",
 										 SQLConnection.GetConnection());
 				query.Prepare();
 				query.Parameters.AddWithValue("@AID", ArtistID);
@@ -107,6 +107,53 @@ namespace Momiji
 					txtBarcode.Sensitive = false;
 					txtPrice.Sensitive = true;
 					txtPrice.GrabFocus();
+
+					int BidCount = results.getCellInt("BidCount", 0);
+					if (BidCount > 0)
+					{
+						if (results.getCell("AuctionEnd", 0) == "0")
+						{
+							MessageBox.Show(this, MessageType.Error,
+								"This item cannot be sold as quicksale as it has bids on it. This will be reported.");
+
+							SQLConnection.LogAction("Attempted to sell an item with bids (" + txtBarcode.Text + ")",
+								parent.currentUser);
+							OnBtnClearClicked(sender, e);
+						}
+						else if (BidCount < results.getCellInt("AuctionCutoff", 0))
+						{
+							txtPrice.Text = results.getCell("CurrentBid", 0);
+							OnBtnAddToListClicked(sender, e);
+						}
+					}
+					else
+					{
+						float price;
+						if (results.getCell("AuctionEnd", 0) == "1" &&
+							results.getCell("MerchAAMB", 0) == "1")
+						{
+							price = MinBid;
+						}
+						else
+						{
+							price = float.Parse(results.getCell("MerchQuicksale", 0));
+						}
+
+						if (price > 0)
+						{
+							txtPrice.Text = price.ToString();
+							OnBtnAddToListClicked(sender, e);
+						}
+						else
+						{
+							MessageBox.Show(this, MessageType.Error,
+								"This item cannot be sold as quicksale. This will be reported.");
+
+							SQLConnection.LogAction("Attempted to quick sell a non quick sellable item (" + txtBarcode.Text + ")",
+								parent.currentUser);
+							OnBtnClearClicked(sender, e);
+						}
+					}
 				}
 			}
 			else
