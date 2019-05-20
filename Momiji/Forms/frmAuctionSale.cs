@@ -8,6 +8,13 @@ namespace Momiji
 	public partial class frmAuctionSale : frmParentSale
 	{
 		/////////////////////////
+		//  Private Attributes //
+		/////////////////////////
+
+		private int ArtistID;
+		private int MerchID;
+
+		/////////////////////////
 		//  Private Functions  //
 		/////////////////////////
 
@@ -20,7 +27,7 @@ namespace Momiji
 			drpPaymentType.Sensitive = false;
 			btnPrintReceipt.Sensitive = false;
 			txtPrice.Sensitive = false;
-			btnAddToList.Sensitive = false;
+			btnAddToList.Sensitive = true;
 			btnClear.Sensitive = true;
 			txtBarcode.Text = "";
 			txtPrice.Text = "";
@@ -62,7 +69,6 @@ namespace Momiji
 			if (!ExistsInList(txtBarcode.Text))
 			{
 				txtBarcode.Text = txtBarcode.Text.Replace("*", "").ToUpper();
-				int ArtistID, MerchID;
 				if (!ParseBarcode(txtBarcode.Text, "AN", out ArtistID, out MerchID))
 				{
 					OnBtnClearClicked(sender, e);
@@ -70,7 +76,6 @@ namespace Momiji
 				}
 				txtBarcode.Sensitive = false;
 				txtPrice.Sensitive = true;
-				btnAddToList.Sensitive = true;
 				txtPrice.GrabFocus();
 			}
 			else
@@ -81,10 +86,9 @@ namespace Momiji
 
 		protected void OnBtnAddToListClicked(object sender, EventArgs e)
 		{
-			int ArtistID, MerchID;
-			if (!ParseBarcode(txtBarcode.Text, "AN", out ArtistID, out MerchID))
+			if (txtBarcode.Sensitive)
 			{
-				OnBtnClearClicked(sender, e);
+				OnTxtBarcodeActivated(sender, e);
 				return;
 			}
 
@@ -175,7 +179,6 @@ namespace Momiji
 			txtPrice.Text = "";
 			txtBarcode.Sensitive = true;
 			txtPrice.Sensitive = false;
-			btnAddToList.Sensitive = false;
 			txtBarcode.GrabFocus();
 		}
 
