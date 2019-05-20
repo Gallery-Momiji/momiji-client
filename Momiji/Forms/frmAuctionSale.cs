@@ -15,6 +15,7 @@ namespace Momiji
 		private int MerchID;
 		private string MerchTitle;
 		private float MinBid;
+		private string MerchSQLQuery;
 
 		/////////////////////////
 		//  Private Functions  //
@@ -41,6 +42,7 @@ namespace Momiji
 			this.items = "";
 			this.prices = "";
 			this.total = 0;
+			this.MerchSQLQuery = "false";
 			txtBarcode.GrabFocus();
 		}
 
@@ -200,6 +202,9 @@ namespace Momiji
 
 				items = items + txtBarcode.Text + "#";
 				prices = prices + Price.ToString() + "#";
+				MerchSQLQuery = MerchSQLQuery + " OR (`ArtistID` = " +
+					ArtistID.ToString() +" AND `MerchID` = " +
+					MerchID.ToString()+")";
 
 				btnPay.Sensitive = true;
 				txtPaid.Sensitive = true;
@@ -247,7 +252,7 @@ namespace Momiji
 			SQL SQLConnection = parent.currentSQLConnection;
 			SQLResult User = parent.currentUser;
 
-			MySqlCommand query = new MySqlCommand("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isAuctionSale`, `itemArray`, `priceArray`, `Last4digitsCard`, `timestamp`, `date`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES, @FOURDIG, CURRENT_TIME, CURRENT_DATE); SELECT LAST_INSERT_ID() as `id`;",
+			MySqlCommand query = new MySqlCommand("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isAuctionSale`, `itemArray`, `priceArray`, `Last4digitsCard`, `timestamp`, `date`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES, @FOURDIG, CURRENT_TIME, CURRENT_DATE); SELECT LAST_INSERT_ID() as `id`; UPDATE `merchandise` SET `MerchSold`=1 WHERE " + MerchSQLQuery + ";",
 									 SQLConnection.GetConnection());
 			query.Prepare();
 			query.Parameters.AddWithValue("@UID", User.getCell("id", 0));
