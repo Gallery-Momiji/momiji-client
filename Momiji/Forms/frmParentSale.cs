@@ -104,6 +104,13 @@ namespace Momiji
 						"Paid amount is too small");
 					return false;
 				}
+
+				if (paid - total >= 100)
+				{
+					if (!MessageBox.Ask(this,
+						"Paid amount is very large, are you sure this is a cash sale?"))
+						return false;
+				}
 			}
 			else //Credit
 			{
