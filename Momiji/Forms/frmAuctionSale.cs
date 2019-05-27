@@ -252,7 +252,7 @@ namespace Momiji
 			SQL SQLConnection = parent.currentSQLConnection;
 			SQLResult User = parent.currentUser;
 
-			MySqlCommand query = new MySqlCommand("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isAuctionSale`, `itemArray`, `priceArray`, `Last4digitsCard`, `timestamp`, `date`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES, @FOURDIG, CURRENT_TIME, CURRENT_DATE); SELECT LAST_INSERT_ID() as `id`; UPDATE `merchandise` SET `MerchSold`=1 WHERE " + MerchSQLQuery + ";",
+			MySqlCommand query = new MySqlCommand("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `isAuctionSale`, `itemArray`, `priceArray`, `Last4digitsCard`, `timestamp`, `date`) VALUES ( @UID, @TOTAL, @PAID, 1, @ITEMS, @PRICES, @FOURDIG, CURRENT_TIME, CURRENT_DATE); SELECT LAST_INSERT_ID() as `id`; UPDATE `merchandise` SET `MerchSold`=1, `ReceiptID`=LAST_INSERT_ID() WHERE " + MerchSQLQuery + ";",
 									 SQLConnection.GetConnection());
 			query.Prepare();
 			query.Parameters.AddWithValue("@UID", User.getCell("id", 0));
@@ -270,9 +270,6 @@ namespace Momiji
 
 				txtChange.Text = String.Format("{0:0.00}", (paid - total));
 
-				//Mark items as sold
-				//TODO//
-
 				FinishSaleMessage(txtChange.Text, paid);
 
 				SQLConnection.LogAction("Made a auction sale with receipt #" + receiptID,
@@ -285,7 +282,6 @@ namespace Momiji
 				btnClear.Sensitive = false;
 				btnPrintReceipt.Sensitive = true;
 				btnPrintReceipt.GrabFocus();
-
 			}
 			else
 			{
