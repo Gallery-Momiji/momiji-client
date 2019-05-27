@@ -80,7 +80,7 @@ namespace Momiji
 				}
 
 				SQL SQLConnection = parent.currentSQLConnection;
-				MySqlCommand query = new MySqlCommand("SELECT `MerchTitle`,`MerchMinBid`,`MerchSold`,`MerchAAMB`,`MerchQuicksale`,COUNT(`value`) as `BidCount`,MAX(`value`) as `CurrentBid`,`AuctionEnd`,`AuctionCutoff` FROM `merchandise` LEFT JOIN `bids` USING (`ArtistID`,`MerchID`) CROSS JOIN `options` WHERE `ArtistID` = @AID AND `MerchID` = @MID GROUP BY `ArtistID`,`MerchID`;",
+				MySqlCommand query = new MySqlCommand("SELECT `MerchTitle`,`MerchMinBid`,`MerchSold`,`MerchAAMB`,`MerchQuicksale`,COUNT(`value`) as `BidCount`,MAX(`value`) as `CurrentBid`,`AuctionEnd`,`EnableDigitalBid`,`AuctionCutoff` FROM `merchandise` LEFT JOIN `bids` USING (`ArtistID`,`MerchID`) CROSS JOIN `options` WHERE `ArtistID` = @AID AND `MerchID` = @MID GROUP BY `ArtistID`,`MerchID`;",
 										 SQLConnection.GetConnection());
 				query.Prepare();
 				query.Parameters.AddWithValue("@AID", ArtistID);
@@ -109,6 +109,10 @@ namespace Momiji
 					txtBarcode.Sensitive = false;
 					txtPrice.Sensitive = true;
 					txtPrice.GrabFocus();
+
+					if (results.getCell("EnableDigitalBid", 0) != "1") {
+						return;
+					}
 
 					int BidCount = results.getCellInt("BidCount", 0);
 					if (BidCount > 0)
