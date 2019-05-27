@@ -242,7 +242,7 @@ namespace Momiji
 
 		protected void OnCheckSalesActionActivated(object sender, EventArgs e)
 		{
-			System.Diagnostics.Process.Start("http://" + SQLConnection.getHost() + "/momiji/summary.php");
+			System.Diagnostics.Process.Start("http://" + SQLConnection.getHost() + "/summary.php");
 		}
 
 		protected void OnRefundActionActivated(object sender, EventArgs e)

@@ -61,7 +61,7 @@ namespace Momiji
 				return;
 			}
 
-			Process.Start("http://" + parent.currentSQLConnection.getHost() + "/momiji/receipt.php?id=" + idnumbers[drpTransaction.Active]);
+			Process.Start("http://" + parent.currentSQLConnection.getHost() + "/receipt.php?id=" + idnumbers[drpTransaction.Active]);
 		}
 	}
 }

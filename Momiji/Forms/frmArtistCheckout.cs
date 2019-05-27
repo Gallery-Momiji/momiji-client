@@ -66,7 +66,7 @@ namespace Momiji
 
 		protected void OnBtnGenSaleSumClicked(object sender, EventArgs e)
 		{
-			Process.Start("http://" + parent.currentSQLConnection.getHost() + "/momiji/checkout.php?id=" + artistID);
+			Process.Start("http://" + parent.currentSQLConnection.getHost() + "/checkout.php?id=" + artistID);
 		}
 
 		protected void OnBtnMarkCheckoutClicked(object sender, EventArgs e)

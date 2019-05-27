@@ -275,7 +275,7 @@ namespace Momiji
 						{
 							MessageBox.Show(this, MessageType.Info,
 											"Please make sure you take the money from the artist and give them the receipt. Click on OK now to generate the receipt.");
-							Process.Start("http://" + parent.currentSQLConnection.getHost() + "/momiji/receipt.php?id=" + results.getCellInt("id", 0));
+							Process.Start("http://" + parent.currentSQLConnection.getHost() + "/receipt.php?id=" + results.getCellInt("id", 0));
 						}
 					}
 					break;

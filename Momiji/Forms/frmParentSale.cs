@@ -157,7 +157,7 @@ namespace Momiji
 
 		protected void PrintReceipt()
 		{
-			Process.Start("http://" + parent.currentSQLConnection.getHost() + "/momiji/receipt.php?id=" + receiptID);
+			Process.Start("http://" + parent.currentSQLConnection.getHost() + "/receipt.php?id=" + receiptID);
 		}
 	}
 }
