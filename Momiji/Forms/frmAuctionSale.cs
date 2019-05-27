@@ -31,7 +31,7 @@ namespace Momiji
 			btnPrintReceipt.Sensitive = false;
 			txtPrice.Sensitive = false;
 			btnAddToList.Sensitive = true;
-			btnClear.Sensitive = true;
+			btnClear.Sensitive = false;
 			txtBarcode.Text = "";
 			txtPrice.Text = "";
 			txtTotal.Text = "";
@@ -107,6 +107,7 @@ namespace Momiji
 					MerchTitle = results.getCell("MerchTitle", 0);
 					MinBid = float.Parse(results.getCell("MerchMinBid", 0));
 					txtBarcode.Sensitive = false;
+					btnClear.Sensitive = true;
 					txtPrice.Sensitive = true;
 					txtPrice.GrabFocus();
 
@@ -228,15 +229,21 @@ namespace Momiji
 			txtBarcode.Text = "";
 			txtPrice.Text = "";
 			txtBarcode.Sensitive = true;
+			btnClear.Sensitive = false;
 			txtPrice.Sensitive = false;
 			txtBarcode.GrabFocus();
 		}
 
 		protected void OnBtnCancelClicked(object sender, EventArgs e)
 		{
-			MerchNode.clearTable(ref lstMerch, ref merchStore);
+			if (!drpPaymentType.Sensitive ||
+				MessageBox.Ask(this,
+					"Are you sure you want to cancel this sale?"))
+			{
+				MerchNode.clearTable(ref lstMerch, ref merchStore);
 
-			ResetForm();
+				ResetForm();
+			}
 		}
 
 		protected void OnBtnPayClicked(object sender, EventArgs e)

@@ -1103,6 +1103,7 @@ copy of the sales summary for their records.</property>
                 <child>
                   <widget class="Gtk.Button" id="btnClear">
                     <property name="MemberName" />
+                    <property name="Sensitive">False</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextAndIcon</property>
                     <property name="Icon">stock:gtk-delete Menu</property>

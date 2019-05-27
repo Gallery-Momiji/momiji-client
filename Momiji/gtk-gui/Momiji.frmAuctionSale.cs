@@ -147,6 +147,7 @@ namespace Momiji
 			w8.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.btnClear = new global::Gtk.Button();
+			this.btnClear.Sensitive = false;
 			this.btnClear.CanFocus = true;
 			this.btnClear.Name = "btnClear";
 			this.btnClear.UseUnderline = true;

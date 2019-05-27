@@ -106,9 +106,14 @@ namespace Momiji
 
 		protected void OnBtnCancelClicked(object sender, EventArgs e)
 		{
-			MerchNode.clearTable(ref lstMerch, ref merchStore);
+			if (!drpPaymentType.Sensitive ||
+				MessageBox.Ask(this,
+					"Are you sure you want to cancel this sale?"))
+			{
+				MerchNode.clearTable(ref lstMerch, ref merchStore);
 
-			ResetForm();
+				ResetForm();
+			}
 		}
 
 		protected void OnBtnPayClicked(object sender, EventArgs e)
