@@ -82,9 +82,9 @@ namespace Momiji
 
 		private global::Gtk.Label lblStep3info;
 
-		private global::Gtk.CheckButton chkPaidCash;
-
 		private global::Gtk.CheckButton chkArtistOwes;
+
+		private global::Gtk.CheckButton chkPaidCheque;
 
 		private global::Gtk.HBox hbox1;
 
@@ -435,27 +435,26 @@ namespace Momiji
 			w33.Expand = false;
 			w33.Fill = false;
 			// Container child vboxStep3.Gtk.Box+BoxChild
-			this.chkPaidCash = new global::Gtk.CheckButton();
-			this.chkPaidCash.CanFocus = true;
-			this.chkPaidCash.Name = "chkPaidCash";
-			this.chkPaidCash.Label = global::Mono.Unix.Catalog.GetString("Artist Payment in Cash");
-			this.chkPaidCash.DrawIndicator = true;
-			this.chkPaidCash.UseUnderline = true;
-			this.vboxStep3.Add(this.chkPaidCash);
-			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vboxStep3[this.chkPaidCash]));
-			w34.Position = 1;
-			w34.Expand = false;
-			w34.Fill = false;
-			// Container child vboxStep3.Gtk.Box+BoxChild
 			this.chkArtistOwes = new global::Gtk.CheckButton();
-			this.chkArtistOwes.Sensitive = false;
 			this.chkArtistOwes.CanFocus = true;
 			this.chkArtistOwes.Name = "chkArtistOwes";
 			this.chkArtistOwes.Label = global::Mono.Unix.Catalog.GetString("Artist Owes Money");
 			this.chkArtistOwes.DrawIndicator = true;
 			this.chkArtistOwes.UseUnderline = true;
 			this.vboxStep3.Add(this.chkArtistOwes);
-			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.vboxStep3[this.chkArtistOwes]));
+			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vboxStep3[this.chkArtistOwes]));
+			w34.Position = 1;
+			w34.Expand = false;
+			w34.Fill = false;
+			// Container child vboxStep3.Gtk.Box+BoxChild
+			this.chkPaidCheque = new global::Gtk.CheckButton();
+			this.chkPaidCheque.CanFocus = true;
+			this.chkPaidCheque.Name = "chkPaidCheque";
+			this.chkPaidCheque.Label = global::Mono.Unix.Catalog.GetString("Payment in Cheque (or Card)");
+			this.chkPaidCheque.DrawIndicator = true;
+			this.chkPaidCheque.UseUnderline = true;
+			this.vboxStep3.Add(this.chkPaidCheque);
+			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.vboxStep3[this.chkPaidCheque]));
 			w35.Position = 2;
 			w35.Expand = false;
 			w35.Fill = false;
@@ -475,7 +474,6 @@ namespace Momiji
 			w36.Fill = false;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.txtPayout = new global::Gtk.Entry();
-			this.txtPayout.Sensitive = false;
 			this.txtPayout.CanFocus = true;
 			this.txtPayout.Name = "txtPayout";
 			this.txtPayout.IsEditable = true;
@@ -510,10 +508,9 @@ namespace Momiji
 			{
 				this.Child.ShowAll();
 			}
-			this.DefaultWidth = 1482;
-			this.DefaultHeight = 436;
+			this.DefaultWidth = 928;
+			this.DefaultHeight = 421;
 			this.Show();
-			this.chkPaidCash.Toggled += new global::System.EventHandler(this.OnChkPaidCashToggled);
 			this.chkArtistOwes.Toggled += new global::System.EventHandler(this.OnChkArtistOwesToggled);
 			this.btnMarkCheckout.Clicked += new global::System.EventHandler(this.OnBtnMarkCheckoutClicked);
 			this.btnGenSaleSum.Clicked += new global::System.EventHandler(this.OnBtnGenSaleSumClicked);
