@@ -112,12 +112,12 @@ namespace Momiji
 						return false;
 				}
 			}
-			else //Credit
+			else //Card
 			{
 				if (paidtext.Length != 4)
 				{
 					MessageBox.Show(this, MessageType.Info,
-						"Please enter the last 4 digits on the credit card");
+						"Please enter the last 4 digits on the card");
 					return false;
 				}
 
@@ -128,7 +128,7 @@ namespace Momiji
 					return false;
 				}
 
-				if (!MessageBox.Ask(this, "Has the credit card transaction been approved?"))
+				if (!MessageBox.Ask(this, "Has the card transaction been approved?"))
 					return false;
 
 				paid = total;

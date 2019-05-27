@@ -166,7 +166,7 @@ namespace Momiji
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.drpPaymentType = global::Gtk.ComboBox.NewText();
 			this.drpPaymentType.AppendText(global::Mono.Unix.Catalog.GetString("Cash"));
-			this.drpPaymentType.AppendText(global::Mono.Unix.Catalog.GetString("Credit"));
+			this.drpPaymentType.AppendText(global::Mono.Unix.Catalog.GetString("Card"));
 			this.drpPaymentType.Name = "drpPaymentType";
 			this.drpPaymentType.Active = 0;
 			this.vbox2.Add(this.drpPaymentType);

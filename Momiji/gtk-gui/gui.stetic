@@ -1129,7 +1129,7 @@ copy of the sales summary for their records.</property>
                 <property name="MemberName" />
                 <property name="IsTextCombo">True</property>
                 <property name="Items" translatable="yes">Cash
-Credit</property>
+Card</property>
                 <property name="Active">0</property>
                 <signal name="Changed" handler="OnDrpPaymentTypeChanged" />
               </widget>
@@ -1427,7 +1427,7 @@ Credit</property>
                 <property name="MemberName" />
                 <property name="IsTextCombo">True</property>
                 <property name="Items" translatable="yes">Cash
-Credit</property>
+Card</property>
                 <property name="Active">0</property>
                 <signal name="Changed" handler="OnDrpPaymentTypeChanged" />
               </widget>
