@@ -382,7 +382,7 @@ namespace Momiji
 			if (SearchArtistForm != null)
 				SearchArtistForm.Destroy();
 			new frmSearchArtist(frmSearchArtist.Operations.GenerateBarcodes, this);
-		}
+		}
 	}
 }
 
