@@ -101,6 +101,10 @@ namespace Momiji
 			SQLResult results = SQLConnection.Query(query);
 
 			txtPieceID.Text = results.getCell("next_id", 0);
+			if (txtPieceID.Text == "")
+			{
+				txtPieceID.Text = "1";
+			}
 
 			btnAdd.Sensitive = true;
 			btnDelete.Sensitive = false;
