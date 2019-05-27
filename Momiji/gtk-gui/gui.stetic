@@ -4714,7 +4714,7 @@ Card</property>
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="Momiji.frmSearchDate" design-size="631 495">
+  <widget class="Gtk.Window" id="Momiji.frmSearchDate" design-size="632 498">
     <property name="MemberName" />
     <property name="Title" translatable="yes">frmSearchDate</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -4762,6 +4762,7 @@ Card</property>
                 <property name="HeightRequest">400</property>
                 <property name="CanFocus">True</property>
                 <property name="ShowScrollbars">True</property>
+                <signal name="RowActivated" handler="OnLstLogRowActivated" />
               </widget>
             </child>
           </widget>

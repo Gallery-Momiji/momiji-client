@@ -63,11 +63,12 @@ namespace Momiji
 			{
 				this.Child.ShowAll();
 			}
-			this.DefaultWidth = 631;
-			this.DefaultHeight = 495;
+			this.DefaultWidth = 632;
+			this.DefaultHeight = 498;
 			this.Show();
 			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 			this.drpDate.Changed += new global::System.EventHandler(this.OnDrpDateChanged);
+			this.lstLog.RowActivated += new global::Gtk.RowActivatedHandler(this.OnLstLogRowActivated);
 		}
 	}
 }

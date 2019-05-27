@@ -181,8 +181,12 @@ namespace Momiji
 						if (MessageBox.Ask(this, "ARE YOU 100% SURE? THIS CAN BE UNDONE!\n\n"
 							+ message))
 						{
-
-							query = new MySqlCommand("DELETE FROM `receipts` WHERE `id`=@ID;",
+							string querystring = "DELETE FROM `receipts` WHERE `id`=@ID;";
+							if (selectednode.Details.Substring(0, 7) == "Auction")
+							{
+								querystring += " UPDATE `merchandise` SET `MerchSold`=0 WHERE `ReceiptID`=@ID";
+							}
+							query = new MySqlCommand(querystring,
 								SQLConnection.GetConnection());
 							query.Prepare();
 							query.Parameters.AddWithValue("@ID", selectednode.uniqueID.ToString());
