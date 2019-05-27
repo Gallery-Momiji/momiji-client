@@ -197,7 +197,7 @@ namespace Momiji
 			}
 
 			SQLConnection = parent.currentSQLConnection;
-			query = new MySqlCommand("INSERT INTO `gsmerchandise` (`ArtistID`, `PieceID`, `PieceTitle`, `PiecePrice`,`PieceSDC`,`PieceInitialStock`) VALUES (@AID, @PID, @TITLE, @PRICE, @SDC, @ISTOCK, @STOCK);",
+			query = new MySqlCommand("INSERT INTO `gsmerchandise` (`ArtistID`, `PieceID`, `PieceTitle`, `PiecePrice`,`PieceSDC`,`PieceInitialStock`) VALUES (@AID, @PID, @TITLE, @PRICE, @SDC, @ISTOCK);",
 				SQLConnection.GetConnection());
 			query.Prepare();
 			query.Parameters.AddWithValue("@AID", artistID);
