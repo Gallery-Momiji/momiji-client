@@ -1,6 +1,4 @@
-﻿using System;
-using Gtk;
-using MySql.Data.MySqlClient;
+﻿using Gtk;
 using System.Diagnostics;
 
 namespace Momiji

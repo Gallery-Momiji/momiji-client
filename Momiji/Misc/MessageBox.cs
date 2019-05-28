@@ -1,4 +1,3 @@
-using System;
 using Gtk;
 
 //This is to clean things up

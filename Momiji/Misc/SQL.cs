@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Gtk;
-using MySql.Data.Common;
 using MySql.Data.MySqlClient;
-using MySql.Data.Types;
 
 namespace Momiji
 {
