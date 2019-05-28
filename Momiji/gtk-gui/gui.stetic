@@ -4525,6 +4525,26 @@ Card</property>
         <property name="StockId">gtk-execute</property>
         <signal name="Activated" handler="OnArtistGenBarcodeActionActivated" />
       </action>
+      <action id="dialogAuthenticationAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Monetary Management</property>
+        <property name="ShortLabel" translatable="yes">Monetary Management</property>
+        <property name="StockId">gtk-dialog-authentication</property>
+      </action>
+      <action id="SetInitialFloatAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Set Initial Float</property>
+        <property name="ShortLabel" translatable="yes">Set Initial Float</property>
+        <property name="StockId">gtk-add</property>
+        <signal name="Activated" handler="OnSetInitialFloatActionActivated" />
+      </action>
+      <action id="ManualPayoutAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Manual Payout</property>
+        <property name="ShortLabel" translatable="yes">Manual Payout</property>
+        <property name="StockId">gtk-remove</property>
+        <signal name="Activated" handler="OnRemoveActionActivated" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">Gallery Momiji Point-Of-Sale</property>
@@ -4565,6 +4585,10 @@ Card</property>
                 <node type="Menuitem" action="checkReceiptsAction" />
                 <node type="Menuitem" action="checkUserActivitiesAction" />
                 <node type="Menuitem" action="generateBiddingSheetsAction" />
+                <node type="Menu" action="dialogAuthenticationAction">
+                  <node type="Menuitem" action="SetInitialFloatAction" />
+                  <node type="Menuitem" action="ManualPayoutAction" />
+                </node>
               </node>
               <node type="Menu" action="PreferencesAction">
                 <node type="Menuitem" action="userPreferencesAction" />

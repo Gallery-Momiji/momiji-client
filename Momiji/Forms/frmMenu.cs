@@ -152,6 +152,8 @@ namespace Momiji
 			checkSalesAction.Sensitive = userClass >= 9 ? true : false;
 			refundAction.Sensitive = userClass >= 10 ? true : false;
 			manageArtistBalanceAction.Sensitive = userClass >= 10 ? true : false;
+			SetInitialFloatAction.Sensitive = userClass >= 10 ? true : false;
+			ManualPayoutAction.Sensitive = userClass >= 10 ? true : false;
 		}
 
 		/////////////////////////
@@ -382,6 +384,85 @@ namespace Momiji
 			if (SearchArtistForm != null)
 				SearchArtistForm.Destroy();
 			new frmSearchArtist(frmSearchArtist.Operations.GenerateBarcodes, this);
+		}
+
+		protected void OnSetInitialFloatActionActivated(object sender, EventArgs e)
+		{
+			string floatstring = "";
+			MySqlCommand query = new MySqlCommand("Select `price` from receipts where `id` = 1;",
+				currentSQLConnection.GetConnection());
+			query.Prepare();
+			SQLResult results = currentSQLConnection.Query(query);
+
+			if (results.GetNumberOfRows() > 0)
+			{
+				floatstring = results.getCell("price", 0);
+				if (!MessageBox.Ask(this,
+					"The initial float is already defined as $" + floatstring +
+					".\nDo you want to update it?"))
+				{
+					return;
+				}
+			}
+			if (MessageBox.Entry(this, "Set Initial Float", ref floatstring))
+			{
+				if (!float.TryParse(floatstring, out float val))
+				{
+					MessageBox.Show(this, MessageType.Error, "Invalid Number!");
+					return;
+				}
+
+				query = new MySqlCommand("DELETE FROM `receipts` WHERE `id`= 1; INSERT INTO `receipts` ( `id`, `userID`, `price`, `paid`, `itemArray`, `priceArray`, `timestamp`, `date`) VALUES ( 1, @UID, @AMOUNT, @AMOUNT, 'FLOAT#', '" + val.ToString() + "#', CURRENT_TIME, CURRENT_DATE);",
+				currentSQLConnection.GetConnection());
+				query.Prepare();
+				query.Parameters.AddWithValue("@UID", User.getCell("id", 0));
+				query.Parameters.AddWithValue("@AMOUNT", val);
+				results = currentSQLConnection.Query(query);
+
+				if (!results.successful())
+				{
+					MessageBox.Show(this, MessageType.Error, "Unable to update float!");
+				}
+			}
+		}
+
+		protected void OnRemoveActionActivated(object sender, EventArgs e)
+		{
+			string floatstring = "";
+			if (MessageBox.Entry(this, "Manual Payout", ref floatstring))
+			{
+				if (!float.TryParse(floatstring, out float val))
+				{
+					MessageBox.Show(this, MessageType.Error, "Invalid Number!");
+					return;
+				}
+
+				if (!MessageBox.Ask(this,
+					"Are you sure you want to make a payout of $" +
+					floatstring + "?"))
+				{
+					return;
+				}
+				val *= -1;
+
+				MySqlCommand query = new MySqlCommand("INSERT INTO `receipts` ( `userID`, `price`, `paid`, `itemArray`, `priceArray`, `timestamp`, `date`) VALUES ( @UID, @AMOUNT, @AMOUNT, 'MANUAL PAYOUT#', '" + val.ToString() + "#', CURRENT_TIME, CURRENT_DATE); SELECT LAST_INSERT_ID() as `id`;",
+				currentSQLConnection.GetConnection());
+				query.Prepare();
+				query.Parameters.AddWithValue("@UID", User.getCell("id", 0));
+				query.Parameters.AddWithValue("@AMOUNT", val);
+				SQLResult results = currentSQLConnection.Query(query);
+
+				if (results.successful())
+				{
+					MessageBox.Show(this, MessageType.Info,
+						"Payout processed. This was transaction ID #"
+						+ results.getCellInt("id", 0));
+				}
+				else
+				{
+					MessageBox.Show(this, MessageType.Error, "Unable to update float!");
+				}
+			}
 		}
 	}
 }
