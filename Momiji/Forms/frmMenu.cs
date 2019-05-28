@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Gtk;
 using MySql.Data.MySqlClient;
 
@@ -456,7 +457,10 @@ namespace Momiji
 				{
 					MessageBox.Show(this, MessageType.Info,
 						"Payout processed. This was transaction ID #"
-						+ results.getCellInt("id", 0));
+						+ results.getCellInt("id", 0)
+						+ ". Click on OK now to generate the receipt.");
+					Process.Start("http://" + currentSQLConnection.getHost()
+						+ "/receipt.php?id=" + results.getCellInt("id", 0));
 				}
 				else
 				{
