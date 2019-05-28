@@ -201,7 +201,7 @@ namespace Momiji
 		{
 			if (SearchArtistForm != null)
 				SearchArtistForm.Destroy();
-			new frmSearchArtist(frmSearchArtist.Operations.ArtistCheckout, this);
+			SearchArtistForm = new frmSearchArtist(frmSearchArtist.Operations.ArtistCheckout, this);
 		}
 
 		//Artists > Manage
@@ -216,28 +216,28 @@ namespace Momiji
 		{
 			if (SearchArtistForm != null)
 				SearchArtistForm.Destroy();
-			new frmSearchArtist(frmSearchArtist.Operations.EditArtist, this);
+			SearchArtistForm = new frmSearchArtist(frmSearchArtist.Operations.EditArtist, this);
 		}
 
 		protected void OnEditMerchandiseActionActivated(object sender, EventArgs e)
 		{
 			if (SearchArtistForm != null)
 				SearchArtistForm.Destroy();
-			new frmSearchArtist(frmSearchArtist.Operations.EditMerchandise, this);
+			SearchArtistForm = new frmSearchArtist(frmSearchArtist.Operations.EditMerchandise, this);
 		}
 
 		protected void OnEditGalleryStoreMerchandiseActionActivated(object sender, EventArgs e)
 		{
 			if (SearchArtistForm != null)
 				SearchArtistForm.Destroy();
-			new frmSearchArtist(frmSearchArtist.Operations.EditGalleryStore, this);
+			SearchArtistForm = new frmSearchArtist(frmSearchArtist.Operations.EditGalleryStore, this);
 		}
 
 		protected void OnManageArtistBalanceActionActivated(object sender, EventArgs e)
 		{
 			if (SearchArtistForm != null)
 				SearchArtistForm.Destroy();
-			new frmSearchArtist(frmSearchArtist.Operations.ManageArtistBalance, this);
+			SearchArtistForm = new frmSearchArtist(frmSearchArtist.Operations.ManageArtistBalance, this);
 		}
 
 		//Tools
@@ -376,14 +376,14 @@ namespace Momiji
 		{
 			if (SearchArtistForm != null)
 				SearchArtistForm.Destroy();
-			new frmSearchArtist(frmSearchArtist.Operations.GenerateBiddersheets, this);
+			SearchArtistForm = new frmSearchArtist(frmSearchArtist.Operations.GenerateBiddersheets, this);
 		}
 
 		protected void OnArtistGenBarcodeActionActivated(object sender, EventArgs e)
 		{
 			if (SearchArtistForm != null)
 				SearchArtistForm.Destroy();
-			new frmSearchArtist(frmSearchArtist.Operations.GenerateBarcodes, this);
+			SearchArtistForm = new frmSearchArtist(frmSearchArtist.Operations.GenerateBarcodes, this);
 		}
 
 		protected void OnSetInitialFloatActionActivated(object sender, EventArgs e)
