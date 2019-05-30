@@ -70,6 +70,8 @@ namespace Momiji
 
 		private global::Gtk.Action ManualPayoutAction;
 
+		private global::Gtk.Action optionsAction;
+
 		private global::Gtk.VBox vbox2;
 
 		private global::Gtk.MenuBar mainMenubar;
@@ -196,6 +198,9 @@ namespace Momiji
 			this.ManualPayoutAction = new global::Gtk.Action("ManualPayoutAction", global::Mono.Unix.Catalog.GetString("Manual Payout"), null, "gtk-remove");
 			this.ManualPayoutAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Manual Payout");
 			w1.Add(this.ManualPayoutAction, null);
+			this.optionsAction = new global::Gtk.Action("optionsAction", global::Mono.Unix.Catalog.GetString("Bidding Options"), null, "gtk-execute");
+			this.optionsAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Bidding Options");
+			w1.Add(this.optionsAction, null);
 			this.UIManager.InsertActionGroup(w1, 0);
 			this.AddAccelGroup(this.UIManager.AccelGroup);
 			this.Name = "Momiji.frmMenu";
@@ -233,9 +238,9 @@ namespace Momiji
 					"em name=\'userPreferencesAction\' action=\'userPreferencesAction\'/><menuitem name=\'" +
 					"biddersAction\' action=\'biddersAction\'/><menu name=\'usersPrefAction\' action=\'user" +
 					"sPrefAction\'><menuitem name=\'addUserAction\' action=\'addUserAction\'/><menuitem na" +
-					"me=\'editUserAction\' action=\'editUserAction\'/></menu></menu><menu name=\'HelpActio" +
-					"n\' action=\'HelpAction\'><menuitem name=\'aboutAction\' action=\'aboutAction\'/></menu" +
-					"></menubar></ui>");
+					"me=\'editUserAction\' action=\'editUserAction\'/></menu><menuitem name=\'optionsActio" +
+					"n\' action=\'optionsAction\'/></menu><menu name=\'HelpAction\' action=\'HelpAction\'><m" +
+					"enuitem name=\'aboutAction\' action=\'aboutAction\'/></menu></menubar></ui>");
 			this.mainMenubar = ((global::Gtk.MenuBar)(this.UIManager.GetWidget("/mainMenubar")));
 			this.mainMenubar.Name = "mainMenubar";
 			this.vbox2.Add(this.mainMenubar);
@@ -372,6 +377,7 @@ namespace Momiji
 			this.ArtistGenBarcodeAction.Activated += new global::System.EventHandler(this.OnArtistGenBarcodeActionActivated);
 			this.SetInitialFloatAction.Activated += new global::System.EventHandler(this.OnSetInitialFloatActionActivated);
 			this.ManualPayoutAction.Activated += new global::System.EventHandler(this.OnRemoveActionActivated);
+			this.optionsAction.Activated += new global::System.EventHandler(this.OnOptionsActionActivated);
 			this.btnAuctionSale.Clicked += new global::System.EventHandler(this.OnBtnAuctionSaleClicked);
 			this.btnGalleryStoreSale.Clicked += new global::System.EventHandler(this.OnBtnGalleryStoreSaleClicked);
 			this.btnLogout.Clicked += new global::System.EventHandler(this.OnBtnLogoutClicked);

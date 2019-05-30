@@ -118,6 +118,8 @@
     <Compile Include="Misc\BidderNode.cs" />
     <Compile Include="Misc\Barcode.cs" />
     <Compile Include="Forms\frmParentSale.cs" />
+    <Compile Include="Forms\frmBiddingOptions.cs" />
+    <Compile Include="gtk-gui\Momiji.frmBiddingOptions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

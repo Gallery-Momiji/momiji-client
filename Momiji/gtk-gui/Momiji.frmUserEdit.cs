@@ -324,7 +324,7 @@ namespace Momiji
 			{
 				this.Child.ShowAll();
 			}
-			this.DefaultWidth = 404;
+			this.DefaultWidth = 412;
 			this.DefaultHeight = 488;
 			this.Show();
 			this.drpUsers.Changed += new global::System.EventHandler(this.OnDrpUsersChanged);

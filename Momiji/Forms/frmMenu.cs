@@ -468,6 +468,11 @@ namespace Momiji
 				}
 			}
 		}
+
+		protected void OnOptionsActionActivated(object sender, EventArgs e)
+		{
+			new frmBiddingOptions(this);
+		}
 	}
 }
 
