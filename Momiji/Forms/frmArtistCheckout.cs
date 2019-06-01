@@ -43,6 +43,8 @@ namespace Momiji
 					chkStep2.Sensitive = false;
 					chkStep3.Sensitive = false;
 					chkPaidCheque.Sensitive = false;
+					chkArtistOwes.Sensitive = false;
+					txtPayout.Sensitive = false;
 					MessageBox.Show(this, MessageType.Warning,
 						"Artist already marked as Checked Out.");
 				}
