@@ -95,7 +95,7 @@ namespace Momiji
 				else if (results.getCell("MerchSold", 0) == "1")
 				{
 					MessageBox.Show(this, MessageType.Error,
-						"This item has already been sold. This will be reported.");
+						"This item has already been sold.");
 
 					SQLConnection.LogAction("Attempted to auction sell an already sold item (" + txtBarcode.Text + ")",
 						parent.currentUser);
@@ -120,7 +120,7 @@ namespace Momiji
 						if (results.getCell("AuctionEnd", 0) == "0")
 						{
 							MessageBox.Show(this, MessageType.Error,
-								"This item cannot be sold as quicksale as it has bids on it. This will be reported.");
+								"This item has bids on it and silent auction is not over.");
 
 							SQLConnection.LogAction("Attempted to sell an item with bids (" + txtBarcode.Text + ")",
 								parent.currentUser);
@@ -153,7 +153,7 @@ namespace Momiji
 						else
 						{
 							MessageBox.Show(this, MessageType.Error,
-								"This item cannot be sold as quicksale. This will be reported.");
+								"This item has no quicksale price.");
 
 							SQLConnection.LogAction("Attempted to quick sell a non quick sellable item (" + txtBarcode.Text + ")",
 								parent.currentUser);
