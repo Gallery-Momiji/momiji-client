@@ -90,7 +90,7 @@ namespace Momiji
 			// Container child GtkViewport.Gtk.Container+ContainerChild
 			this.lblCopyright = new global::Gtk.Label ();
 			this.lblCopyright.Name = "lblCopyright";
-			this.lblCopyright.LabelProp = global::Mono.Unix.Catalog.GetString ("Copyright 2012-2015 Tiago Rogue Medeiros (medeirosT)\nCopyright 2014-2019 Alexande" +
+			this.lblCopyright.LabelProp = global::Mono.Unix.Catalog.GetString ("Copyright 2012-2015 Tiago Rogue Medeiros (medeirosT)\nCopyright 2014-2022 Alexande" +
 			"r Jeremy Newton (mystro256)\nSpecial thanks to all the testers and users of this " +
 			"program!\n\nThis code is open source!\nView the code here:\nhttps://github.com/Galle" +
 			"ry-Momiji/momiji-client\nReport issues and bugs here:\nhttps://github.com/Gallery-" +

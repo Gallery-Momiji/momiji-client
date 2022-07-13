@@ -3,7 +3,7 @@ Client code for Gallery Momiji POS
 
 Copyright 2012-2015 Tiago Rogue Medeiros (medeirosT)
 
-Copyright 2014-2019 Alexander Jeremy Newton (mystro256)
+Copyright 2014-2022 Alexander Jeremy Newton (mystro256)
 
 All code and documents are licensed with the GPL unless otherwise specified;
 LGPL can be used ONLY if it is necessary to produce functioning code (see
