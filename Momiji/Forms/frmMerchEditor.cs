@@ -280,9 +280,15 @@ namespace Momiji
 					"Save bidder sheet to file",
 					pieceid + ".rtf");
 
-			if (filename != "")
+			SQL SQLConnection = parent.currentSQLConnection;
+			MySqlCommand digitalquery = new MySqlCommand("SELECT `EnableDigitalBid` FROM `options`;",
+				SQLConnection.GetConnection());
+			digitalquery.Prepare();
+			SQLResult digtalbid = SQLConnection.Query(digitalquery);
+
+			if (filename != "" && digtalbid.successful())
 			{
-				Biddersheet bidsheet = new Biddersheet(filename);
+				Biddersheet bidsheet = new Biddersheet(filename,(digtalbid.getCell("EnableDigitalBid", 0) == "1"));
 				bidsheet.AddSheet(pieceid, lblArtistName.Text,
 					txtPieceTitle.Text, txtMedium.Text, txtPieceMinimumBid.Text,
 					txtQuickSale.Text, chkAAMB.Active);

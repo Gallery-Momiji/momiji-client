@@ -1,0 +1,30 @@
+\pard\plain \s0\rtlch\af10\afs24\alang1081 \ltrch\lang4105\langfe1033\hich\af3\loch\ql\widctlpar\hyphpar0\faauto\ltrpar\cf1\f3\fs24\lang4105\kerning1\dbch\af8\langfe1033\pagebb\loch\li0\ri144\lin0\rin144\fi0{\loch
+\line }{\hich\af5\loch\fs20\ul\ulc0\b\f5\loch
+Piece ID:}{\hich\af5\loch\fs20\f5\loch
+       }{\hich\af6\loch\fs70\f6\loch
+*PIECE_ID*}
+\par \pard\plain \s0\rtlch\af10\afs24\alang1081 \ltrch\lang4105\langfe1033\hich\af3\loch\ql\widctlpar\hyphpar0\faauto\ltrpar\cf1\f3\fs24\lang4105\kerning1\dbch\af8\langfe1033\loch\li0\ri144\lin0\rin144\fi0\hich\af5\loch\fs20\ul\ulc0\b\f5\loch
+
+\par \pard\plain \s0\rtlch\af10\afs24\alang1081 \ltrch\lang4105\langfe1033\hich\af3\loch\ql\widctlpar\hyphpar0\faauto\ltrpar\cf1\f3\fs24\lang4105\kerning1\dbch\af8\langfe1033\loch\li0\ri144\lin0\rin144\fi0{\hich\af5\loch\fs20\ul\ulc0\b\f5\loch
+Artist: ARTIST_ID}
+\par \pard\plain \s0\rtlch\af10\afs24\alang1081 \ltrch\lang4105\langfe1033\hich\af3\loch\ql\widctlpar\hyphpar0\faauto\ltrpar\cf1\f3\fs24\lang4105\kerning1\dbch\af8\langfe1033\loch\li0\ri144\lin0\rin144\fi0{\hich\af5\loch\fs20\ul\ulc0\b\f5\loch
+Title: PIECE_TITLE}
+\par \pard\plain \s0\rtlch\af10\afs24\alang1081 \ltrch\lang4105\langfe1033\hich\af3\loch\ql\widctlpar\hyphpar0\faauto\ltrpar\cf1\f3\fs24\lang4105\kerning1\dbch\af8\langfe1033\loch\li0\ri144\lin0\rin144\fi0{\hich\af5\loch\fs20\ul\ulc0\b\f5\loch
+Medium: PIECE_MEDIUM}
+\par \pard\plain \s0\rtlch\af10\afs24\alang1081 \ltrch\lang4105\langfe1033\hich\af3\loch\ql\widctlpar\hyphpar0\faauto\ltrpar\cf1\f3\fs24\lang4105\kerning1\dbch\af8\langfe1033\loch\li0\ri144\lin0\rin144\fi0\hich\af5\loch\fs20\ul\ulc0\b\f5\loch
+
+\par \pard\plain \s0\rtlch\af10\afs24\alang1081 \ltrch\lang4105\langfe1033\hich\af3\loch\ql\widctlpar\hyphpar0\faauto\ltrpar\cf1\f3\fs24\lang4105\kerning1\dbch\af8\langfe1033\loch\li0\ri144\lin0\rin144\fi0{\hich\af5\loch\fs20\ul\ulc0\b\f5\loch
+Minimum Bid: PIECE_MINBID}{\hich\af5\loch\fs20\b\f5\loch
+\tab }{\hich\af5\loch\fs20\ul\ulc0\b\f5\loch
+Quick Sale: PIECE_QS}
+\par \pard\plain \s0\rtlch\af10\afs24\alang1081 \ltrch\lang4105\langfe1033\hich\af3\loch\ql\widctlpar\hyphpar0\faauto\ltrpar\cf1\f3\fs24\lang4105\kerning1\dbch\af8\langfe1033\loch\li0\ri144\lin0\rin144\fi0{\hich\af5\loch\fs20\b\f5\loch
+Sale at Minimum After Auction: PIECE_MS}
+\par \pard\plain \s0\rtlch\af10\afs24\alang1081 \ltrch\lang4105\langfe1033\hich\af3\loch\ql\widctlpar\hyphpar0\faauto\ltrpar\cf1\f3\fs24\lang4105\kerning1\dbch\af8\langfe1033\loch\li0\ri144\lin0\rin144\fi0\hich\af5\loch\fs20\b\f5\loch
+
+\par \pard\plain \s1\rtlch\af10\afs24\alang1081 \ltrch\lang4105\langfe1033\hich\af3\loch\qc\widctlpar\hyphpar0\faauto\li144\ri144\lin144\rin144\fi0\keepn\ltrpar\cf1\f3\fs24\lang4105\b\kerning1\dbch\af8\langfe1033\loch\li0\ri144\lin0\rin144\fi0{\hich\af5\loch\fs20\b0\f5\loch
+REPRODUCTION RIGHTS }{\hich\af5\loch\fs20\ul\ulc0\b0\f5\loch
+NOT}{\hich\af5\loch\fs20\b0\f5\loch
+ INCLUDED}
+\par \pard\plain \s1\rtlch\af10\afs24\alang1081 \ltrch\lang4105\langfe1033\hich\af3\loch\qc\widctlpar\hyphpar0\faauto\li144\ri144\lin144\rin144\fi0\keepn\ltrpar\cf1\f3\fs24\lang4105\b\kerning1\dbch\af8\langfe1033\loch\li0\ri144\lin0\rin144\fi0\loch
+
+\par

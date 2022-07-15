@@ -67,6 +67,12 @@
     <EmbeddedResource Include="Resources\barcodebody.txt">
       <LogicalName>Momiji.Resources.barcodebody</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\bid_sheetbody_digital.txt">
+      <LogicalName>Momiji.Resources.bid_sheetbody_digital</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\bid_sheetheader_digital.txt">
+      <LogicalName>Momiji.Resources.bid_sheetheader_digital</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />

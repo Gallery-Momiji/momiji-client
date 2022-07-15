@@ -9,15 +9,24 @@ namespace Momiji
 		private string filename;
 		private string sheetbody;
 
-		public Biddersheet (string filename)
+		public Biddersheet (string filename, bool digital)
 		{
 			this.filename = filename;
 			//write the header info
 			string output = "";
-			using (Stream stream = System.Reflection.Assembly.GetExecutingAssembly ().GetManifestResourceStream ("Momiji.Resources.bid_sheetheader"))
-			using (StreamReader reader = new StreamReader (stream)) {
-				while (!reader.EndOfStream) {
-					output = reader.ReadToEnd ();
+			if(digital) {
+				using (Stream stream = System.Reflection.Assembly.GetExecutingAssembly ().GetManifestResourceStream ("Momiji.Resources.bid_sheetheader_digital"))
+				using (StreamReader reader = new StreamReader (stream)) {
+					while (!reader.EndOfStream) {
+						output = reader.ReadToEnd ();
+					}
+				}
+			} else {
+				using (Stream stream = System.Reflection.Assembly.GetExecutingAssembly ().GetManifestResourceStream ("Momiji.Resources.bid_sheetheader"))
+				using (StreamReader reader = new StreamReader (stream)) {
+					while (!reader.EndOfStream) {
+						output = reader.ReadToEnd ();
+					}
 				}
 			}
 
@@ -30,10 +39,19 @@ namespace Momiji
 
 			//Cache the body info
 			sheetbody = "";
-			using (Stream stream = System.Reflection.Assembly.GetExecutingAssembly ().GetManifestResourceStream ("Momiji.Resources.bid_sheetbody"))
-			using (StreamReader reader = new StreamReader (stream)) {
-				while (!reader.EndOfStream) {
-					sheetbody = reader.ReadToEnd ();
+			if(digital) {
+				using (Stream stream = System.Reflection.Assembly.GetExecutingAssembly ().GetManifestResourceStream ("Momiji.Resources.bid_sheetbody_digital"))
+				using (StreamReader reader = new StreamReader (stream)) {
+					while (!reader.EndOfStream) {
+						sheetbody = reader.ReadToEnd ();
+					}
+				}
+			} else {
+				using (Stream stream = System.Reflection.Assembly.GetExecutingAssembly ().GetManifestResourceStream ("Momiji.Resources.bid_sheetbody"))
+				using (StreamReader reader = new StreamReader (stream)) {
+					while (!reader.EndOfStream) {
+						sheetbody = reader.ReadToEnd ();
+					}
 				}
 			}
 		}

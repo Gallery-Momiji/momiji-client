@@ -287,10 +287,14 @@ namespace Momiji
 											   SQLConnection.GetConnection());
 				artistquery.Prepare();
 				SQLResult artists = SQLConnection.Query(artistquery);
+				MySqlCommand digitalquery = new MySqlCommand("SELECT `EnableDigitalBid` FROM `options`;",
+												SQLConnection.GetConnection());
+				digitalquery.Prepare();
+				SQLResult digtalbid = SQLConnection.Query(digitalquery);
 
-				if (artists.GetNumberOfRows() >= 1)
+				if (artists.GetNumberOfRows() >= 1 && digtalbid.successful())
 				{
-					Biddersheet bidsheet = new Biddersheet(filename);
+					Biddersheet bidsheet = new Biddersheet(filename,(digtalbid.getCell("EnableDigitalBid", 0) == "1"));
 
 					for (int i = 0; i < artists.GetNumberOfRows(); i++)
 					{

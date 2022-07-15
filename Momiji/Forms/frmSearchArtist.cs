@@ -173,10 +173,14 @@ namespace Momiji
 						"BiddingSheets - " +
 						selectednode.ArtistID.ToString() +
 						".rtf");
+					MySqlCommand digitalquery = new MySqlCommand("SELECT `EnableDigitalBid` FROM `options`;",
+						SQLConnection.GetConnection());
+					digitalquery.Prepare();
+					SQLResult digtalbid = SQLConnection.Query(digitalquery);
 
-					if (filename != "")
+					if (filename != "" && digtalbid.successful())
 					{
-						Biddersheet bidsheet = new Biddersheet(filename);
+						Biddersheet bidsheet = new Biddersheet(filename,(digtalbid.getCell("EnableDigitalBid", 0) == "1"));
 
 						MySqlCommand merchquery = new MySqlCommand("SELECT `MerchID`,`MerchTitle`,`MerchMinBid`,`MerchAAMB`,`MerchQuickSale`,`MerchMedium` FROM `merchandise` WHERE `ArtistID` = @ID ORDER BY `MerchID`;",
 														  SQLConnection.GetConnection());
