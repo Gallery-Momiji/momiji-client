@@ -54,6 +54,7 @@ namespace Momiji
 			btnAdd.Sensitive = true;
 			btnDelete.Sensitive = false;
 			btnUpdate.Sensitive = false;
+			btnCreateSheet.Sensitive = false;
 
 			//TODO not done
 			btnGenCS.Sensitive = false;
@@ -109,6 +110,7 @@ namespace Momiji
 			btnAdd.Sensitive = true;
 			btnDelete.Sensitive = false;
 			btnUpdate.Sensitive = false;
+			btnCreateSheet.Sensitive = false;
 		}
 
 		protected void OnBtnUpdateClicked(object sender, EventArgs e)
@@ -352,6 +354,7 @@ namespace Momiji
 			btnAdd.Sensitive = false;
 			btnDelete.Sensitive = true;
 			btnUpdate.Sensitive = true;
+			btnCreateSheet.Sensitive = true;
 			//Workaround for mono bug
 			this.selectednode = selectednode;
 		}
@@ -362,6 +365,7 @@ namespace Momiji
 			btnAdd.Sensitive = true;
 			btnDelete.Sensitive = false;
 			btnUpdate.Sensitive = false;
+			btnCreateSheet.Sensitive = false;
 		}
 
 		protected void OnDeleteEvent(object sender, EventArgs e)
