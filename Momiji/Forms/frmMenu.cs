@@ -394,6 +394,7 @@ namespace Momiji
 		protected void OnSetInitialFloatActionActivated(object sender, EventArgs e)
 		{
 			string floatstring = "";
+			float val;
 			MySqlCommand query = new MySqlCommand("Select `price` from receipts where `id` = 1;",
 				currentSQLConnection.GetConnection());
 			query.Prepare();
@@ -411,7 +412,7 @@ namespace Momiji
 			}
 			if (MessageBox.Entry(this, "Set Initial Float", ref floatstring))
 			{
-				if (!float.TryParse(floatstring, out float val))
+				if (!float.TryParse(floatstring, out val))
 				{
 					MessageBox.Show(this, MessageType.Error, "Invalid Number!");
 					return;
@@ -434,9 +435,10 @@ namespace Momiji
 		protected void OnRemoveActionActivated(object sender, EventArgs e)
 		{
 			string floatstring = "";
+			float val;
 			if (MessageBox.Entry(this, "Manual Payout", ref floatstring))
 			{
-				if (!float.TryParse(floatstring, out float val))
+				if (!float.TryParse(floatstring, out val))
 				{
 					MessageBox.Show(this, MessageType.Error, "Invalid Number!");
 					return;
